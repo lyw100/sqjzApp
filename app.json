@@ -1,13 +1,15 @@
 {
   "pages":[
+    "pages/rygl/rygl",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/rygl/rygl"
+    "pages/logs/logs"
+   
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "微信开发",
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh": true
   }
 }
