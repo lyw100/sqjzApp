@@ -1,0 +1,34 @@
+page{
+  height: 98%;
+}
+.contai{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.user-header{
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 50rpx;
+}
+.sjsc{
+  width:90%;
+  height:auto;
+  margin-top:70rpx;
+}
+.sc{
+  width:100%;
+  height:600rpx;
+}
+.anniu{
+  width:60%;
+  height: 80rpx;
+  border: 1px solid #ccc;
+  line-height: 80rpx;
+  text-align: center;
+  color: #2499f9;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  margin-top: 40rpx;
+}
