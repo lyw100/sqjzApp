@@ -1,0 +1,122 @@
+.contai{
+  width: 100%;
+  height: 100%;
+}
+.tit{
+  width: 100%;
+  height: 400rpx;
+  margin-bottom: 20rpx;
+}
+.titimg{
+  width: 100%;
+  height: 100%;
+}
+.titinfo{
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+}
+.js{
+  font-size: 32rpx;
+  color: #626262;
+  margin: 20rpx 0 10rpx 20rpx;
+}
+.bixiuke{
+  margin-left: 20rpx;
+}
+.xueshi{
+  font-size: 30rpx;
+  color: #2499f9;
+  margin: 0 20rpx;
+}
+.wcjd{
+  font-size: 30rpx;
+  color: #f45a52;
+  margin-left: 60rpx;
+}
+.fenxiang{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  margin-right: 20rpx;
+}
+.xgkc{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-top: 1px solid #e5e5e5;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 0 20rpx;
+}
+.gdtj{
+  float: right;
+  margin-right: 40rpx;
+  font-weight: normal;
+}
+.lishikc{
+  width: 31.5%;
+  height: 480rpx;
+  display: inline-block;
+  margin-right: 21rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.lishikc:nth-child(3n){
+  margin-right: 0;
+  float: right;
+}
+.lskcimg{
+  width: 100%;
+  height: 330rpx;
+}
+.yiwancheng{
+  position: absolute;
+  right: 10rpx;
+  top: 290rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+.lscksm{
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 30rpx;
+  margin-left: 15rpx;
+}
+.xuank{
+  font-size: 24rpx;
+  position: absolute;
+  left: 25%;
+  bottom: 10rpx;
+}
+.xuanke{
+  border: 1px solid #2499f9;
+  color: #2499f9;
+  padding: 5rpx 20rpx;
+  border-radius: 17rpx;
+}
+.yixuan{
+  border: 1px solid #b5b5b5;
+  color: #b5b5b5;
+  padding: 5rpx 20rpx;
+  border-radius: 17rpx;
+}
+.bofangcishu{
+   position: absolute;
+   left: 15rpx;
+   top: 10rpx;
+   font-size: 22rpx;
+   color: #fff;
+}
+.syxs{
+  position: absolute;
+   right: 15rpx;
+   top: 10rpx;
+   font-size: 22rpx;
+   color: #fff;
+}

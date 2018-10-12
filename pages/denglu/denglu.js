@@ -7,7 +7,7 @@ Page({
    
   },
   scanQRCode:function(){
-    wx.redirectTo({
+    wx.switchTab({
       url: '../zhuye/zhuye',
     })
   },
