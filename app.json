@@ -5,9 +5,7 @@
     "pages/denglu/denglu",
     "pages/rygl/rygl",
     "pages/index/index",
-    "pages/logs/logs"
-   
-   
+    "pages/logs/logs"   
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",
