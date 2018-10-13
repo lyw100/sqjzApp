@@ -1,21 +1,34 @@
 Page({
-
+  gengduotj: function () {
+    wx.navigateTo({
+      url: '../gengduotuijian/gengduotuijian',
+    });
+  },
   /**
    * 页面的初始数据
    */
   data: {
-   
+    xuankeShow:true,
+    yixuanShow:false
+
   },
-  scanQRCode: function () {
-    wx.navigateTo({
-      url: '../shualiandenglu/shualiandenglu',
+  xzkc: function (event) {
+    this.setData({
+      xuankeShow: false,
+      yixuanShow: true
+    })
+  },
+  yiyuankecheng: function (event) {
+    this.setData({
+      xuankeShow: true,
+      yixuanShow: false
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

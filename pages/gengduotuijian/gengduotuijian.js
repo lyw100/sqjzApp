@@ -4,12 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
-  },
-  scanQRCode: function () {
-    wx.navigateTo({
-      url: '../shualiandenglu/shualiandenglu',
-    })
+
+
   },
   /**
    * 生命周期函数--监听页面加载

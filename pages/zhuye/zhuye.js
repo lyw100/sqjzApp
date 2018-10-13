@@ -1,5 +1,4 @@
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -7,7 +6,11 @@ Page({
 
 
   },
- 
+  shouyebof:function(){
+    wx.navigateTo({
+      url: '../shouyebofang/shouyebofang',
+    }); 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
