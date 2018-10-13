@@ -2,14 +2,7 @@
   "pages":[
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     "pages/denglu/denglu",
-    "pages/rygl/rygl",
-=======
->>>>>>> master
->>>>>>> master
     "pages/index/index",
     "pages/logs/logs" ,
     "pages/shualiandenglu/shualiandenglu",
