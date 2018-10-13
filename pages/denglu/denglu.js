@@ -4,12 +4,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
+    username:"15555555551",
+    password:"555551"
+  },
+  userNameInput:function(e){
+    this.setData({
+      username: e.detail.value
+    })
+  },
+  passWdInput: function (e) {
+    this.setData({
+      password: e.detail.value
+    })
   },
   scanQRCode: function () {
-    wx.navigateTo({
-      url: '../shualiandenglu/shualiandenglu',
+   // var header = getApp().globalData.header; //获取app.js中的请求头
+    wx.request({
+      url: getApp().globalData.url + '/weChat/user/login', //仅为示例，并非真实的接口地址
+      data: {
+        telephone: this.data.username,
+        password: this.data.password
+      },
+      method:"post",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        console.log(res.data)
+        if(res.data.msg=="OK"){
+            getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.sessionId;
+          wx.navigateTo({
+            url: '../shualiandenglu/shualiandenglu',
+          })
+        }
+      }
     })
+   
   },
   /**
    * 生命周期函数--监听页面加载
