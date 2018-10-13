@@ -5,7 +5,12 @@ page{
   height: 100%;
 }
 .tit{
-  margin-bottom: 15rpx;
+position:fixed;
+top:0;
+background:#fff;
+z-index:99;
+width:100%;
+
 }
 .img{
   width: 60rpx;
@@ -35,6 +40,7 @@ page{
   height:310rpx;
   position: relative;
   margin-bottom: 20rpx;
+  margin-top: 80rpx;
 }
 .titimg .biaotou{
   width:100%;
@@ -128,7 +134,7 @@ width: 90%;
   width: 31.5%;
   height: 420rpx;
   display: inline-block;
-  margin-right: 21rpx;
+  margin-right: 20rpx;
   margin-bottom: 20rpx;
   position: relative;
   vertical-align: top;
