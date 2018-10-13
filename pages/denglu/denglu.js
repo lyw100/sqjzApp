@@ -20,9 +20,13 @@ Page({
   },
   scanQRCode: function () {
    // var header = getApp().globalData.header; //获取app.js中的请求头
+<<<<<<< HEAD
 
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(), password)
 
+=======
+    let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(), password)
+>>>>>>> master
     wx.request({
       url: getApp().globalData.url + '/weChat/user/login', //仅为示例，并非真实的接口地址
       data: {
