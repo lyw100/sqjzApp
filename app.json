@@ -26,17 +26,17 @@
          "selectedIconPath": "img/shouyexuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/kechengku.png",
         "selectedIconPath": "img/kechengkuxuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/zhihuibaodian.png",
         "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/wode.png",
         "selectedIconPath": "img/wodexuanzhong.png"
       } 
