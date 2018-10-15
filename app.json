@@ -1,15 +1,19 @@
 {
   "pages":[
-     "pages/sousuo/sousuo",
+    "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/shouye/shouye",
     "pages/denglu/denglu",
-     "pages/zhuye/zhuye",
+    "pages/zhuye/zhuye",
     "pages/rygl/rygl",
     "pages/index/index",
     "pages/logs/logs" ,
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
-    "pages/shouyebofang/shouyebofang"
+    "pages/shouyebofang/shouyebofang",
+    "pages/sousuo/sousuo",
+    "pages/xiaoxi/xiaoxi",
+
+    "pages/xinwenxiaoxi/xinwenxiaoxi"
     
   ],
   "window":{

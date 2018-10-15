@@ -4,7 +4,7 @@
     <image class='img' src="/img/logo.png" bindtap="onCancelImgTap" ></image>
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
     <image class="sis" src='/img/saoyisao.png'></image>
-    <image class="xinxi" src='/img/wuxiaoxi.png' ></image>
+    <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
   </view>
   <view class='titimg' bindtap="shouyebof">
     <image class='biaotou' src="/img/yiyuan.png"></image>

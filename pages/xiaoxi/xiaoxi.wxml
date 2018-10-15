@@ -1,0 +1,21 @@
+<!--消息页面 -->
+<view class='tit' catchtap='tzxtxx'>
+  <view class='tubiao'>
+    <image class='xtxx' src='/img/xitongxiaoxi.png'></image>
+    <text class='shuzi'>90</text>
+  </view>
+  <view class='xitongxiaoxi'>
+    <text>系统消息</text>
+  </view>
+</view>
+
+<view class='tit' catchtap='tzxwxx'>
+  <view class='tubiao'>
+    <image class='xtxx' src='/img/xinwenxiaoxi.png'></image>
+    <text class='shuzi'>9</text>
+  </view>
+  <view class='xitongxiaoxi'>
+    <text>新闻消息</text>
+   <view class='xtxx_info'> <text>新时代广播体阿萨德发送到阿斯蒂芬撒地方撒地方阿斯蒂芬阿斯蒂芬 </text></view>
+  </view>
+</view>
