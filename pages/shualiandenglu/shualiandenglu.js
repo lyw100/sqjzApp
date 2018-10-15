@@ -11,6 +11,59 @@ Page({
 
   },
 
+  takePhoto: function () {
+    const ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        this.setData({
+          src: res.tempImagePath
+        })
+        wx.showLoading({
+          title: '正在核验身份.....',
+        })
+        this.setData({ logindisabled: true });
+        var header = getApp().globalData.header; //获取app.js中的请求头
+        wx.uploadFile({
+          url: getApp().globalData.url + '/weChat/user/face',
+          filePath: res.tempImagePath,
+          header: header,
+          formData: {
+            telephone: wx.getStorageSync("username"),
+            password: wx.getStorageSync("password")
+          },
+          name: 'file',
+          success: (res) => {
+            wx.hideLoading();
+            var data = res.data;
+            if (data == "OK") {
+              wx.switchTab({
+                url: '../zhuye/zhuye',
+              })
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: data,
+                showCancel: false
+              })
+            }
+
+          }
+        })
+      }
+    })
+  },
+  error(e) {
+    console.log(e.detail)
+  },
+  // switch1change: function (e) {
+  //   console.log(e)
+  //   if (e.detail.value) {
+  //     this.setData({ value: 'back' })
+  //   } else {
+  //     this.setData({ value: 'front' })
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -27,6 +27,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    wx.request({
+      url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      data: { },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data);
+        var hours=res.data.hours;
+        var list=res.data.list;
+        that.setData({
+          hours:hours,
+          nowList: list
+        })
+      }
+    })
+
+    wx.request({
+      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求当月已选课程地址
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data);
+        var list = res.data;
+        that.setData({
+          historyList: list
+        })
+      }
+    })
 
   },
 
