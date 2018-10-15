@@ -66,7 +66,8 @@ function decryptedString(key, s) {
 	}
 	return result;
 }
-function getRasKey() {
+
+function getRasKey(empoent, module) {
 	setMaxDigits(130);
 	return new RSAKeyPair(empoent, "", module);
 }
@@ -258,7 +259,8 @@ function digitToHex(n)
 {
 	var mask = 0xf;
 	var result = "";
-	for (i = 0; i < 4; ++i) {
+
+	for (var i = 0; i < 4; ++i) {
 		result += hexToChar[n & mask];
 		n >>>= 4;
 	}
@@ -429,7 +431,8 @@ function biMultiply(x, y)
 	for (var i = 0; i <= t; ++i) {
 		c = 0;
 		k = i;
-		for (j = 0; j <= n; ++j, ++k) {
+		for (var j = 0; j <= n; ++j, ++k) {
+
 			uv = result.digits[k] + x.digits[j] * y.digits[i] + c;
 			result.digits[k] = uv & maxDigitVal;
 			c = uv >>> biRadixBits;
@@ -443,8 +446,7 @@ function biMultiply(x, y)
 function biMultiplyDigit(x, y)
 {
 	var n, c, uv;
-
-	result = new BigInt();
+	var result = new BigInt();
 	n = biHighIndex(x);
 	c = 0;
 	for (var j = 0; j <= n; ++j) {
