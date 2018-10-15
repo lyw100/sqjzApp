@@ -21,15 +21,13 @@ Page({
     })
   },
   scanQRCode: function () {
-    console.log(" odule);");
-    console.log(module);
-    console.log(empoent);
    // var header = getApp().globalData.header; //获取app.js中的请求头
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(empoent, module), this.data.password)
+    let usernm = this.data.username;
     wx.request({
-      url: getApp().globalData.url + '/weChat/user/login', //仅为示例，并非真实的接口地址
+      url: getApp().globalData.url + '/weChat/user/login', 
       data: {
-        telephone: this.data.username,
+        telephone: usernm,
         password: pw
       },
       method:"post",
@@ -37,8 +35,9 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-        console.log(res.data)
         if(res.data.msg=="OK"){
+          wx.setStorageSync("username", usernm);
+          wx.setStorageSync("password", pw)
             getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.sessionId;
           wx.navigateTo({
             url: '../shualiandenglu/shualiandenglu',
