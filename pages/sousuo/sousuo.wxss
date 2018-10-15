@@ -1,0 +1,167 @@
+.nr {
+  height: auto;
+}
+
+.tit {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  background: #fff;
+}
+
+.titipt {
+  width: 70%;
+  height: 74rpx;
+  background: #f2f2f2;
+  display: inline-block;
+  border-radius: 40rpx;
+  margin-top: 10rpx;
+  margin-left: 40rpx;
+  position: relative;
+}
+
+.sousuotb {
+  margin: 0rpx 10rpx 0 25rpx;
+  position: absolute;
+  top: 15rpx;
+}
+
+.titipt input {
+  width: 360rpx;
+  height: 50rpx;
+  display: inline-block;
+  font-size: 32rpx;
+  color: #7a7883;
+  margin-top: 10rpx;
+  margin-left: 80rpx;
+}
+
+.chahao {
+  margin-left: 15rpx;
+  position: absolute;
+  top: 15rpx;
+  right: 25rpx;
+}
+
+.quxiao {
+  float: right;
+  margin-right: 60rpx;
+  font-size: 38rpx;
+  margin-top: 25rpx;
+  color: #7a7883;
+}
+
+.sousuonr {
+  width: 100%;
+  height: auto;
+  margin-top: 120rpx;
+}
+
+.lishi {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-left: 25rpx;
+  margin-top: 20rpx;
+}
+
+.qingkong {
+  width: 100rpx;
+  height: 40rpx;
+  float: right;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+}
+
+.sslsnr {
+  width: 95%;
+  height: 150rpx;
+  margin: 20rpx auto 0rpx;
+  overflow-y: hidden;
+}
+
+.sslsnr text {
+  padding: 10rpx 30rpx;
+  font-size: 32rpx;
+  background: #f2f2f2;
+  margin: 0 10rpx 20rpx 0;
+  border-radius: 30rpx;
+  display: inline-block;
+}
+
+.xiajiantou {
+  width: 50rpx;
+  height: 20rpx;
+  margin-left: 45%;
+}
+
+.remensou {
+  width: 95%;
+  margin: 0 auto;
+  height: auto;
+  margin-top: 30rpx;
+}
+
+.rmss {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.lishinr {
+  font-size: 36rpx;
+  color: #656565;
+}
+
+.one {
+  font-size: 38rpx;
+  color: #f90126;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.two {
+  font-size: 38rpx;
+  color: #fc801e;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.tree {
+  font-size: 38rpx;
+  color: #ffcd02;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.for {
+  font-size: 38rpx;
+  color: #c8c8c8;
+  margin-right: 20rpx;
+  font-weight: bold;
+}
+
+.liuganliang {
+  font-size: 32rpx;
+  color: #ff7401;
+  float: right;
+}
+.synrye,
+.dianjijieguo{
+  margin-top: 110rpx;
+}
+.synrinfo {
+  width: 90%;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+}
+.djjg_tit text{
+  padding: 1rpx 5rpx;
+  border: 1px solid #e5e5e5;
+  font-size: 36rpx;
+}

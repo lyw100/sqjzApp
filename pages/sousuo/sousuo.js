@@ -1,42 +1,36 @@
 Page({
-  tzbfy:function(){
-    wx.navigateTo({
-      url: '../shouyebofang/shouyebofang',
-    })
-  },
-  onSousuo:function(){
-    wx.navigateTo({
-      url: '../sousuo/sousuo',
-    })
-  },
-  /**
+   /**
    * 页面的初始数据
    */
   data: {
-    shipinShow: true,
-    tuwenShow:false,
-    yuyinShow: false,
+    qkch:false,
+    zhuyesousuo:false,
+    ssnrjieguo:false,
+    djjg: true,
   },
-
-  shipin:function(){
-   this.setData({
-      shipinShow: true,
-      tuwenShow : false,
-      yuyinShow : false,
-   })
+  shouyebof: function () {
+    wx.navigateTo({
+      url: '../shouyebofang/shouyebofang',
+    });
   },
-  tuwen: function () {
+  iptchufa:function(e){
+    var vale=e.value
+    if(vale ==""){
+      qkch: false
+    }
     this.setData({
-      shipinShow: false,
-      tuwenShow: true,
-      yuyinShow: false,
+      qkch: true,
+      zhuyesousuo: false,
+      ssnrjieguo:true,
+      djjg: false,
     })
   },
-  yuyin: function () {
+  ssjieguo:function(){
     this.setData({
-      shipinShow: false,
-      tuwenShow: false,
-      yuyinShow: true,
+      qkch: false,
+      zhuyesousuo: false,
+      ssnrjieguo:false,
+      djjg:true,
     })
   },
   /**

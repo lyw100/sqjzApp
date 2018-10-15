@@ -1,1 +1,72 @@
-更多推荐页面
+<view class="nr">
+  <view class='tit'>
+    <image class="sis" src='/img/saoyisao.png'></image>
+    <image class="xinxi" src='/img/wuxiaoxi.png'></image>
+    <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
+    <text class='sp' catchtap='shipin'>视频</text>
+    <text class='tw' catchtap='tuwen'>图文</text>
+    <text class='yy' catchtap='yuyin'>语音</text>
+  </view>
+  <view class='neirong'>
+    <view class='shipineirong' wx:if="{{shipinShow}}">
+      <view class='titimg' bindtap="shouyebof">
+        <image class='biaotou' src="/img/yiyuan.png" catchtap="tzbfy"></image>
+        <text class="titxinxi">国务院新闻办公室会议</text>
+      </view>
+      <view>
+        <text class='dykctext'>正在热播</text>
+      </view>
+      <view class='lskcnr'>
+        <view class='lishikc' catchtap="tzbfy">
+          <image class='lskcimg' src='/img/yiyuan.png'></image>
+          <text class='yiwancheng'>01:26:30</text>
+          <text class='lscksm'>请珍惜高墙外的 "自由"</text>
+          <text class='bofang'>播放:500次</text>
+          <text class='xueshi'>1.5学时</text>
+        </view>
+        <view class='lishikc' catchtap="tzbfy">
+          <image class='lskcimg' src='/img/yiyuan.png'></image>
+          <text class='yiwancheng'>01:26:30</text>
+          <text class='lscksm'>请珍惜</text>
+          <text class='bofang'>播放:500次</text>
+          <text class='xueshi'>1.5学时</text>
+        </view>
+        <view class='lishikc' catchtap="tzbfy">
+          <image class='lskcimg' src='/img/yiyuan.png'></image>
+          <text class='yiwancheng'>01:26:30</text>
+          <text class='lscksm'>请珍惜的高的墙撒旦法师打sad发</text>
+          <text class='bofang'>播放:500次</text>
+          <text class='xueshi'>1.5学时</text>
+        </view>
+        <view>
+          <text class='dykctext'>相关推荐</text>
+        </view>
+        <view class="dykcsp">
+          <view class='left' catchtap="tzbfy">
+            <image class='dykctupian' src='/img/yiyuan.png'></image>
+            <text class="xueshi">学时:1.2</text>
+            <text class="shijian">01:26:30</text>
+            <text class="shuoming">中华人民共和国教育法撒地方</text>
+          </view>
+          <view class='left' catchtap="tzbfy">
+            <image class='dykctupian' src='/img/yiyuan.png'></image>
+            <text class="xueshi">学时:1.2</text>
+            <text class="shijian">01:10:36</text>
+            <text class="shuoming">政策法规解读</text>
+          </view>
+          <view class='left' catchtap="tzbfy">
+            <image class='dykctupian' src='/img/yiyuan.png'></image>
+            <text class="xueshi">学时:1.2</text>
+            <text class="shijian">01:10:36</text>
+            <text class="shuoming">政策法规解读</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='tuweneirong' wx:if="{{tuwenShow}}">图文</view>
+    <view class='yuyinneirong' wx:if="{{yuyinShow}}">语音</view>
+
+
+  </view>
+</view>
