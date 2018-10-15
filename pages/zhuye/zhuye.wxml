@@ -3,12 +3,21 @@
   <view class='tit'>
     <image class='img' src="/img/logo.png" bindtap="onCancelImgTap" ></image>
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-    <image class="sis" src='/img/saoyisao.png'></image>
+    <image class="sis" src='/img/saoyisao.png'></image> 
     <image class="xinxi" src='/img/wuxiaoxi.png' ></image>
   </view>
   <view class='titimg' bindtap="shouyebof">
-    <image class='biaotou' src="/img/yiyuan.png"></image>
-    <text class="titxinxi">国务院新闻办公室会议</text>
+  <!-- indicator-dots 是否显示面板指示点 autoplay 是否自动切换    current  当前所在滑块的 index   -->
+  <!-- interval 自动切换时间间隔 duration 滑动动画时长  circular 是否采用衔接滑动  -->
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}"  class="swiper">
+    <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
+      <swiper-item>
+        <image data-index='{{index}}' src="{{course.thumbnail}}" class="img" bindtap="swipclick" />
+        <text class="titxinxi">{{course.name}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
+
   </view>
   <view>
     <image class="dykcimg" src='/img/dangyuekecheng.png'></image>

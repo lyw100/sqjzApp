@@ -39,7 +39,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求当月已选课程地址
+      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
