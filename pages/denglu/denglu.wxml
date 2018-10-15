@@ -2,8 +2,8 @@
 <view class="contai">
   <image src="/img/logo.png" class="user-header"></image>
   <text class='tit'>社区矫正学习平台</text>
-  <view class='zhanghao'>账号 <input type="text" placeholder="填写账号" class="ipt" /></view>
-  <view class='mimao'>密码 <input type="text" placeholder="填写密码" class="ipt" /></view>
+  <view class='zhanghao'>账号 <input type="text" bindinput ="userNameInput" placeholder="填写账号" class="ipt" value="{{username}}"/></view>
+  <view class='mimao'>密码 <input type="password" bindinput="passWdInput" placeholder="填写密码" class="ipt" value ="{{password}}"/></view>
   <view class="anniu" catchtap="scanQRCode" >
        <text class="kaishi">刷脸登录</text>
    </view>
