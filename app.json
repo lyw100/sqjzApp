@@ -1,59 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-{
-  "pages":[
-   
-    "pages/shouye/shouye",
-    "pages/denglu/denglu",
-    "pages/zhuye/zhuye",
-    "pages/rygl/rygl",
-    "pages/index/index",
-    "pages/logs/logs" ,
-    "pages/gengduotuijian/gengduotuijian",
-    "pages/shualiandenglu/shualiandenglu",
-    "pages/shouyebofang/shouyebofang",
-    "pages/sousuo/sousuo",
-    "pages/xiaoxi/xiaoxi",
-    "pages/xitongxiaoxi/xitongxiaoxi",
-    "pages/xinwenxiaoxi/xinwenxiaoxi"
-    
-  ],
-  "window":{
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "selectedColor": "#405f80",
-    "color": "#707070",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/zhuye/zhuye",
-         "iconPath": "img/shouye.png",
-         "selectedIconPath": "img/shouyexuanzhong.png"
-      },
-      {
-        "pagePath": "pages/rygl/rygl",
-        "iconPath": "img/kechengku.png",
-        "selectedIconPath": "img/kechengkuxuanzhong.png"
-      },
-      {
-        "pagePath": "pages/rygl/rygl",
-        "iconPath": "img/zhihuibaodian.png",
-        "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
-      },
-      {
-        "pagePath": "pages/rygl/rygl",
-        "iconPath": "img/wode.png",
-        "selectedIconPath": "img/wodexuanzhong.png"
-      } 
-    ]
-  }
-}
-=======
-=======
->>>>>>> master
 {
   "pages":[
     "pages/shouye/shouye",
@@ -100,7 +44,3 @@
     ]
   }
 }
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
