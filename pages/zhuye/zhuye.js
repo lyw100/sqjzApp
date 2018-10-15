@@ -8,8 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-
+     
   },
   shouyebof:function(){
     wx.navigateTo({
@@ -39,7 +38,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求当月已选课程地址
+      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
@@ -52,6 +51,24 @@ Page({
         })
       }
     })
+
+    wx.request({
+      url: 'http://localhost:8081/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data);
+        var list = res.data;
+        that.setData({
+          swiperCurrent:0,
+          imgUrls: list
+        })
+      }
+    })
+
+
 
   },
 
@@ -102,5 +119,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 点击滑动的图片
+   */
+  swipclick: function (e) {
+
   }
 })
+
+
+
