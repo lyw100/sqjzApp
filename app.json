@@ -2,9 +2,8 @@
   "pages":[
      "pages/sousuo/sousuo",
     "pages/shouye/shouye",
+    "pages/zhuye/zhuye",
     "pages/denglu/denglu",
-     "pages/zhuye/zhuye",
-    "pages/rygl/rygl",
     "pages/index/index",
     "pages/logs/logs" ,
     "pages/gengduotuijian/gengduotuijian",
@@ -28,17 +27,17 @@
          "selectedIconPath": "img/shouyexuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/kechengku.png",
         "selectedIconPath": "img/kechengkuxuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/zhihuibaodian.png",
         "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
       },
       {
-        "pagePath": "pages/rygl/rygl",
+        "pagePath": "pages/zhuye/zhuye",
         "iconPath": "img/wode.png",
         "selectedIconPath": "img/wodexuanzhong.png"
       } 
