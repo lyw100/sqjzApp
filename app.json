@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/xitongxiaoxi/xitongxiaoxi",
+   
     "pages/shouye/shouye",
     "pages/denglu/denglu",
     "pages/zhuye/zhuye",
@@ -12,7 +12,7 @@
     "pages/shouyebofang/shouyebofang",
     "pages/sousuo/sousuo",
     "pages/xiaoxi/xiaoxi",
-
+    "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiaoxi/xinwenxiaoxi"
     
   ],
