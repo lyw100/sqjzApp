@@ -1,4 +1,9 @@
 Page({
+  onSousuo:function(){
+    wx.navigateTo({
+      url: '../sousuo/sousuo',
+    })
+  },
   /**
    * 页面的初始数据
    */

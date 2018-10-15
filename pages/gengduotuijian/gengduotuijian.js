@@ -1,11 +1,43 @@
 Page({
-
+  tzbfy:function(){
+    wx.navigateTo({
+      url: '../shouyebofang/shouyebofang',
+    })
+  },
+  onSousuo:function(){
+    wx.navigateTo({
+      url: '../sousuo/sousuo',
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
+    shipinShow: true,
+    tuwenShow:false,
+    yuyinShow: false,
+  },
 
-
+  shipin:function(){
+   this.setData({
+      shipinShow: true,
+      tuwenShow : false,
+      yuyinShow : false,
+   })
+  },
+  tuwen: function () {
+    this.setData({
+      shipinShow: false,
+      tuwenShow: true,
+      yuyinShow: false,
+    })
+  },
+  yuyin: function () {
+    this.setData({
+      shipinShow: false,
+      tuwenShow: false,
+      yuyinShow: true,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
