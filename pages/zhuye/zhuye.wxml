@@ -13,59 +13,30 @@
   <view>
     <image class="dykcimg" src='/img/dangyuekecheng.png'></image>
     <text class='dykctext'>当月课程</text>
-    <text class="renwu">每月要求完成8学时 您已完成 <text>4.2</text> 学时</text>
+    <text class="renwu">每月要求完成8学时 您已完成 <text id='hours'>{{hours}}</text> 学时</text>
   </view>
-  <view class="dykcsp">
-    <view class='left'>
-      <image class='dykctupian' src='/img/yiyuan.png'></image>
-      <text class="xueshi">学时:1.2</text>
-      <text class="shijian">01:10:36</text>
-      <text class="shuoming">中华人民共和国教育法撒地方</text>
-      <text class='xuexijindu'>学习进度</text>
-       <progress percent="0" show-info color="#2499f9" stroke-width="3"/>
-    </view>
-    <view class='left'>
-      <image class='dykctupian' src='/img/yiyuan.png'></image>
-      <text class="xueshi">学时:1.2</text>
-      <text class="shijian">01:10:36</text>
-      <text class="shuoming">政策法规解读</text>
-       <text class='xuexijindu'>学习进度</text>
-      <progress percent="100" show-info color="#2499f9" stroke-width="3"/>
-    </view>
-     <view class='left'>
-      <image class='dykctupian' src='/img/yiyuan.png'></image>
-      <text class="xueshi">学时:1.2</text>
-      <text class="shijian">01:10:36</text>
-      <text class="shuoming">政策法规解读</text>
-       <text class='xuexijindu'>学习进度</text>
-      <progress percent="100" show-info color="#2499f9" stroke-width="3"/>
-    </view>
-  </view>
+  <view id="nowList" class="dykcsp">
+    <view  class='left' wx:for="{{nowList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
+            <!-- <image class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image> -->
+        <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image>
+        <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
+        <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
+        <text data-index='{{index}}' class="shuoming">{{sign.course.name}}</text>
+        <text data-index='{{index}}' class='xuexijindu'>学习进度</text>
+        <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3"/>
+      </view>
+   </view>
 
   <view>
     <image class="dykcimg" src='/img/lishikecheng.png'></image>
     <text class='dykctext'>历史课程</text>
   </view>
-  <view class='lskcnr'>
-    <view class='lishikc'>
-      <image class='lskcimg' src='/img/yiyuan.png'></image>
-      <text class='yiwancheng'>已完成</text>
-      <text class='lscksm'>请珍惜高墙外的 "自由"</text>
-    </view>
-    <view class='lishikc'>
-      <image class='lskcimg' src='/img/yiyuan.png'></image>
-      <text class='yiwancheng'>已完成</text>
-      <text class='lscksm'>请珍惜</text>
-    </view>
-    <view class='lishikc'>
-      <image class='lskcimg' src='/img/yiyuan.png'></image>
-      <text class='yiwancheng'>已完成</text>
-      <text class='lscksm'>请珍惜的高的墙撒旦法师打sad发</text>
-    </view>
-     <view class='lishikc'>
-      <image class='lskcimg' src='/img/yiyuan.png'></image>
-      <text class='yiwancheng'>已完成</text>
-      <text class='lscksm'>请珍惜的高的墙撒旦法师打sad发</text>
-    </view>
+  <view id="historyList" class='lskcnr'>
+    <view  class='lishikc' wx:for="{{historyList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
+        <!-- <image class='lskcimg' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image> -->
+        <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image>
+        <text class='yiwancheng'>{{sign.state==1?'已完成':'未完成'}}</text>
+        <text class='lscksm'>{{sign.course.name}}</text>
+      </view>
   </view>
 </view>
