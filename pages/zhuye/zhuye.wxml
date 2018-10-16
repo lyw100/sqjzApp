@@ -11,15 +11,16 @@
   <!-- interval 自动切换时间间隔 duration 滑动动画时长  circular 是否采用衔接滑动  -->
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}"  class="swiper">
     <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
-      <swiper-item>
-        <image data-index='{{index}}' src="{{course.thumbnail}}" class="img" bindtap="swipclick" />
-        <text class="titxinxi">{{course.name}}</text>
+      <swiper-item class="dingwei">
+        <image data-index='{{index}}' src="{{course.thumbnail}}" class="biaotou" bindtap="swipclick" />
+       <!-- <image data-index='{{index}}' src="/img/yiyuan.png" class="biaotou" bindtap="swipclick" /> -->
+       <text class="titxinxi">{{course.name}}</text>
       </swiper-item>
     </block>
   </swiper>
-
+    
   </view>
-  <view>
+  <view class='dukc_tiaoshi'>
     <image class="dykcimg" src='/img/dangyuekecheng.png'></image>
     <text class='dykctext'>当月课程</text>
     <text class="renwu">每月要求完成8学时 您已完成 <text id='hours'>{{hours}}</text> 学时</text>
