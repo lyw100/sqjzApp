@@ -10,11 +10,6 @@ Page({
   data: {
      
   },
-  shouyebof:function(){
-    wx.navigateTo({
-      url: '../shouyebofang/shouyebofang',
-    }); 
-  },
   /**跳转消息页面 */
   xiaoxiyemian:function(){
     wx.navigateTo({
@@ -28,13 +23,13 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.request({
-      url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      url: 'http://47.92.224.59:8080/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
       data: { },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         var hours=res.data.hours;
         var list=res.data.list;
         that.setData({
@@ -45,13 +40,13 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
+      url: 'http://47.92.224.59:8080/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         var list = res.data;
         that.setData({
           historyList: list
@@ -60,13 +55,13 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8081/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
+      url: 'http://47.92.224.59:8080/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         var list = res.data;
         that.setData({
           swiperCurrent:0,
@@ -133,7 +128,27 @@ Page({
    */
   swipclick: function (e) {
 
-  }
+  },
+  /**
+   * 点击当月课程图片跳转
+   */
+  currentRecord:function(e){
+    // console.log(e);
+    var courseid = e.currentTarget.dataset.courseid;
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
+      url: "/pages/shouyebofang/shouyebofang?type=0&courseid="+courseid
+    })
+  },
+  /**
+  * 点击历史课程课程图片跳转
+  */
+  historyRecord: function (e) {
+    // console.log(e);
+    var courseid = e.currentTarget.dataset.courseid;
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
+      url: "/pages/shouyebofang/shouyebofang?type=1&courseid=" + courseid
+    })
+  },
 })
 
 
