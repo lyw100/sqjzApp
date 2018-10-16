@@ -13,8 +13,7 @@
     <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
       <swiper-item class="dingwei">
         <image data-index='{{index}}' src="{{course.thumbnail}}" class="biaotou" bindtap="swipclick" />
-       <!-- <image data-index='{{index}}' src="/img/yiyuan.png" class="biaotou" bindtap="swipclick" /> -->
-       <text class="titxinxi">{{course.name}}</text>
+        <text class="titxinxi">{{course.name}}</text>
       </swiper-item>
     </block>
   </swiper>
