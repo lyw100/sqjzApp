@@ -1,15 +1,17 @@
 {
   "pages":[
     "pages/shouye/shouye",
-     "pages/sousuo/sousuo",
+    "pages/sousuo/sousuo",
     "pages/denglu/denglu",
     "pages/zhuye/zhuye",
     "pages/index/index",
     "pages/logs/logs" ,
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
-    "pages/shouyebofang/shouyebofang"
-    
+    "pages/shouyebofang/shouyebofang",
+    "pages/xinwenxiaoxi/xinwenxiaoxi",
+    "pages/xiaoxi/xiaoxi",
+    "pages/xitongxiaoxi/xitongxiaoxi"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",
