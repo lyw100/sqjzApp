@@ -40,12 +40,19 @@ line-height:60rpx;
   width:100%;
   height:310rpx;
   position: relative;
+  top: 90rpx;
   margin-bottom: 20rpx;
-  margin-top: 90rpx;
 }
 .titimg .biaotou{
   width:100%;
   height:100%;
+}
+.swiper{
+  height: 100%;
+}
+.dingwei{
+  position: absolute;
+  top: 0;
 }
 .titxinxi{
   position: absolute;
@@ -54,6 +61,10 @@ line-height:60rpx;
   color: #fff;
   font-size: 36rpx;
   font-weight: bold;
+}
+.dukc_tiaoshi{
+  margin-top:50px;
+
 }
 .dykcimg{
   width: 25px;
