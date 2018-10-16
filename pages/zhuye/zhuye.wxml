@@ -3,8 +3,8 @@
   <view class='tit'>
     <image class='img' src="/img/logo.png" bindtap="onCancelImgTap" ></image>
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-    <image class="sis" src='/img/saoyisao.png'></image> 
-    <image class="xinxi" src='/img/wuxiaoxi.png' ></image>
+    <image class="sis" src='/img/saoyisao.png'></image>
+    <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
   </view>
   <view class='titimg' bindtap="shouyebof">
   <!-- indicator-dots 是否显示面板指示点 autoplay 是否自动切换    current  当前所在滑块的 index   -->
@@ -26,7 +26,7 @@
   </view>
   <view id="nowList" class="dykcsp">
     <view  class='left' wx:for="{{nowList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
-            <image class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
+        <image class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
         <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>

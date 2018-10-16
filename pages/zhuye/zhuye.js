@@ -15,6 +15,13 @@ Page({
       url: '../shouyebofang/shouyebofang',
     }); 
   },
+  /**跳转消息页面 */
+  xiaoxiyemian:function(){
+    wx.navigateTo({
+      url: '../xiaoxi/xiaoxi',
+    }); 
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
