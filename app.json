@@ -3,7 +3,7 @@
     "pages/shouye/shouye",
      "pages/sousuo/sousuo",
     "pages/denglu/denglu",
-    "pages/zhuye/zhuye",
+   "pages/zhuye/zhuye",
     "pages/index/index",
     "pages/logs/logs" ,
     "pages/gengduotuijian/gengduotuijian",
@@ -11,35 +11,42 @@
     "pages/shouyebofang/shouyebofang",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/xiaoxi/xiaoxi",
-    "pages/xitongxiaoxi/xitongxiaoxi"
+    "pages/xitongxiaoxi/xitongxiaoxi",
+    "pages/xinwenxiangqing/xinwenxiangqing",
+    "pages/kechengku/kechengku"
+   
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "selectedColor": "#405f80",
+    "selectedColor": "#2499f9",
     "color": "#707070",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/zhuye/zhuye",
-         "iconPath": "img/shouye.png",
-         "selectedIconPath": "img/shouyexuanzhong.png"
+        "text": "首页",
+        "iconPath": "img/shouye.png",
+        "selectedIconPath": "img/shouyexuanzhong.png"
       },
       {
-        "pagePath": "pages/zhuye/zhuye",
+        "pagePath": "pages/kechengku/kechengku",
+        "text": "课程库",
         "iconPath": "img/kechengku.png",
         "selectedIconPath": "img/kechengkuxuanzhong.png"
       },
       {
         "pagePath": "pages/zhuye/zhuye",
+        "text": "智慧宝典",
         "iconPath": "img/zhihuibaodian.png",
         "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
       },
       {
         "pagePath": "pages/zhuye/zhuye",
+        "text": "我的",
         "iconPath": "img/wode.png",
         "selectedIconPath": "img/wodexuanzhong.png"
       } 
