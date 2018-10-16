@@ -1,0 +1,20 @@
+<!--课程库页面 -->
+<view class='kck'>
+  <view class='dingwei'>
+    <view class='tit'>
+      <image class='img' src="/img/logo.png" bindtap="onCancelImgTap"></image>
+      <text class='xuanke yanse'>必修课</text>
+      <text class='xuanke'>选修课</text>
+      <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
+      <image class="sis" src='/img/saoyisao.png'></image>
+    </view>
+    <view class='tit2'>
+      <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
+      <text class='sp xzzhangtai' catchtap='shipin'>视频</text>
+      <text class='sp' catchtap='tuwen'>图文</text>
+      <text class='sp' catchtap='yuyin'>语音</text>
+    </view> 
+  </view>
+<!--课程库页面 -->
+ 
+</view>
