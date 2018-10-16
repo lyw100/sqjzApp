@@ -8,8 +8,10 @@
     "pages/logs/logs" ,
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
-    "pages/shouyebofang/shouyebofang"
-    
+    "pages/shouyebofang/shouyebofang",
+    "pages/xinwenxiaoxi/xinwenxiaoxi",
+    "pages/xiaoxi/xiaoxi",
+    "pages/xitongxiaoxi/xitongxiaoxi"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",

@@ -4,9 +4,14 @@ Page({
    */
   data: {
     qkch:false,
-    zhuyesousuo:false,
+    zhuyesousuo:true,
     ssnrjieguo:false,
-    djjg: true,
+    djjg: false,
+    xuankeShow:true,
+    yixuanShow:false,
+    zcfgym:true,
+    ddjy:false,
+    sxjkjyym:false
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -31,6 +36,64 @@ Page({
       zhuyesousuo: false,
       ssnrjieguo:false,
       djjg:true,
+    })
+  },
+  xzkc:function(){
+    this.setData({
+      xuankeShow: false,
+      yixuanShow: true
+    })
+  },
+  yiyuankecheng: function () {
+    this.setData({
+      xuankeShow: true,
+      yixuanShow: false
+    })
+  },
+
+   /**
+   * 政策法规 tab 页切换
+   */
+  zcfganniu:function(){
+    this.setData({
+      zcfgym: true,
+      ddjy: false,
+      sxjkjyym: false,
+    })
+  },
+  ddwhanniu: function () {
+    this.setData({
+      zcfgym: false,
+      ddjy: true,
+      sxjkjyym: false,
+    })
+  },
+
+  sxjkjyanniu: function () {
+    this.setData({
+      zcfgym: false,
+      ddjy: false,
+      sxjkjyym: true,
+    })
+  },
+  /**
+   * 跳转到播放页面
+   */
+  tzbfyemain:function(){
+    wx.navigateTo({
+      url: '../shouyebofang/shouyebofang',
+    });
+  },
+
+  /**
+   * 点击搜索主页面内容跳转结果页面
+   */
+  tzsouzuojieguoym: function () {
+    this.setData({
+      qkch: true,
+      zhuyesousuo: false,
+      ssnrjieguo: false,
+      djjg: true,
     })
   },
   /**
