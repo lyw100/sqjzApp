@@ -148,10 +148,11 @@
   color: #ff7401;
   float: right;
 }
-.synrye,
-.dianjijieguo{
+
+.synrye, .dianjijieguo {
   margin-top: 110rpx;
 }
+
 .synrinfo {
   width: 90%;
   height: 90rpx;
@@ -160,8 +161,124 @@
   border-bottom: 1px solid #e5e5e5;
   font-size: 34rpx;
 }
-.djjg_tit text{
-  padding: 1rpx 5rpx;
-  border: 1px solid #e5e5e5;
-  font-size: 36rpx;
+
+.djjg_tit {
+  height: 80rpx;
+  width: 100%;
+  position: fixed;
+  top: 103rpx;
+  background: #fff;
+  z-index: 99;
+  line-height: 80rpx;
+}
+
+.djjg_tit text {
+  padding: 1rpx 20rpx;
+  font-size: 34rpx;
+}
+
+.zcfg {
+  border-right: 1px solid #e5e5e5;
+}
+
+.yanse {
+  color: #2499f9;
+}
+
+.djjg_baogao {
+  width: 100%;
+  height: auto;
+  padding: 10rpx 20rpx;
+}
+
+.djjg_nr, .ddjy, .sxjkjy {
+  margin-top: 200rpx;
+}
+
+.djjg_img {
+  width: 280rpx;
+  height: 180rpx;
+  vertical-align: top;
+  margin-top: 20rpx;
+}
+
+.djjg_sm {
+  width: 55%;
+  display: inline-block;
+  margin-left: 20rpx;
+}
+
+.djjg_bg {
+  font-size: 34rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.djjg_js {
+  color: #a5a5a5;
+  font-size: 30rpx;
+  margin-top: -2rpx;
+}
+
+.djjg_xsbf {
+  margin-top: -8rpx;
+}
+
+.djjg_xs {
+  color: #2499f9;
+  font-size: 30rpx;
+}
+
+.djjg_bfcs {
+  color: #2499f9;
+  font-size: 30rpx;
+  margin-left: 50rpx;
+}
+
+.xuank {
+  font-size: 24rpx;
+  margin-top: 5rpx;
+}
+
+.xuanke {
+  border: 1px solid #2499f9;
+  color: #2499f9;
+  padding: 2rpx 15rpx;
+  border-radius: 17rpx;
+}
+
+.yixuan {
+  border: 1px solid #b5b5b5;
+  color: #b5b5b5;
+  padding: 2rpx 15rpx;
+  border-radius: 17rpx;
+}
+
+.xgzl {
+  font-size: 34rpx;
+  margin: 40rpx 0 0 20rpx;
+  font-weight: bold;
+}
+
+.xgzl_bg {
+  font-size: 34rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+
+.xgzl_js {
+  color: #a5a5a5;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.xgzl_xs {
+  color: #2499f9;
+  font-size: 30rpx;
+  margin-top: 20rpx;
 }

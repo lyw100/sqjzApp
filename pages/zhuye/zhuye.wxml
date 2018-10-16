@@ -3,30 +3,30 @@
   <view class='tit'>
     <image class='img' src="/img/logo.png" bindtap="onCancelImgTap" ></image>
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-    <image class="sis" src='/img/saoyisao.png'></image> 
-    <image class="xinxi" src='/img/wuxiaoxi.png' ></image>
+    <image class="sis" src='/img/saoyisao.png'></image>
+    <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
   </view>
   <view class='titimg' bindtap="shouyebof">
   <!-- indicator-dots 是否显示面板指示点 autoplay 是否自动切换    current  当前所在滑块的 index   -->
   <!-- interval 自动切换时间间隔 duration 滑动动画时长  circular 是否采用衔接滑动  -->
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}"  class="swiper">
     <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
-      <swiper-item>
-        <image data-index='{{index}}' src="{{course.thumbnail}}" class="img" bindtap="swipclick" />
+      <swiper-item class="dingwei">
+        <image data-index='{{index}}' src="{{course.thumbnail}}" class="biaotou" bindtap="swipclick" />
         <text class="titxinxi">{{course.name}}</text>
       </swiper-item>
     </block>
   </swiper>
-
+    
   </view>
-  <view>
+  <view class='dukc_tiaoshi'>
     <image class="dykcimg" src='/img/dangyuekecheng.png'></image>
     <text class='dykctext'>当月课程</text>
     <text class="renwu">每月要求完成8学时 您已完成 <text id='hours'>{{hours}}</text> 学时</text>
   </view>
   <view id="nowList" class="dykcsp">
     <view  class='left' wx:for="{{nowList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
-            <image class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
+        <image class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
         <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
