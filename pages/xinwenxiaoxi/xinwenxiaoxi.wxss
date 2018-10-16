@@ -24,7 +24,7 @@ page{
 .neirong{
   width: 85%;
   height: auto;
-  padding: 10rpx 20rpx 30rpx;
+  padding: 10rpx 30rpx 30rpx;
   margin: 0 auto;
   background: #fff;
   border-radius: 20rpx;
@@ -56,8 +56,17 @@ page{
 }
 .weidu{
   color: #22d716;
+   float: right;
 }
 .chakanxq{
   font-size: 32rpx;
   color: #a9a9a9;
+  height: 60rpx;
+  line-height:80rpx;
+}
+.jiantou{
+  width: 25rpx;
+  height: 30rpx;
+  float: right;
+  margin-top: 25rpx;
 }

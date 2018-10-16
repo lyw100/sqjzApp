@@ -1,12 +1,12 @@
 <view class="nr">
 
-  <view class='xtxx'>
+  <view class='xtxx' catchtap='tzxwxxinfo'>
     <view class='shijian'>
       <text>2018-12-30  19:50:00</text>
     </view>
     <view class='neirong'>
       <view class='nr_biaoti'>
-          <text>新时代社区矫正模式构建研讨会召开</text>
+        <text>新时代社区矫正模式构建研讨会召开</text>
       </view>
       <view class='nr_jianjie'>
         <text>司法部门预防犯罪研究所与北京市朝阳区司法局今天联合举办新时代社区矫正模式构建研讨会,邀请长期致力于社区矫正领域研究的国内知司法部预防犯罪研究所与北京区司法局今天联合举办新时代社区矫正模式啊是的发送到发送到</text>
@@ -18,17 +18,31 @@
 
       <view class='chakanxq'>
         <text>查看详情</text>
-        <image src='/img/'></image>
+        <image src='/img/shengfenjiantou.png' class='jiantou'></image>
       </view>
     </view>
   </view>
 
-  <view class='xtxx'>
+  <view class='xtxx' catchtap='tzxwxxinfo'>
     <view class='shijian'>
       <text>2018-12-30  19:50:00</text>
     </view>
     <view class='neirong'>
-      <text>大师法士大夫就鲁大师咖啡机拉克丝的积分啊拉克丝的积分</text>
+      <view class='nr_biaoti'>
+        <text>新时代社区矫正模式构建研讨会召开</text>
+      </view>
+      <view class='nr_jianjie'>
+        <text>司法部门预防犯罪研究所与北京市朝阳区司法局今天联合举办新时代社区矫正模式构建研讨会,邀请长期致力于社区矫正领域研究的国内知司法部预防犯罪研究所与北京区司法局今天联合举办新时代社区矫正模式啊是的发送到发送到</text>
+      </view>
+      <view class='ribaotime'>
+        <text>法制日报  2018-10-20 08:32</text>
+        <text class='weidu'>已读</text>
+      </view>
+
+      <view class='chakanxq'>
+        <text>查看详情</text>
+        <image src='/img/shengfenjiantou.png' class='jiantou'></image>
+      </view>
     </view>
   </view>
 </view>
