@@ -18,26 +18,14 @@
       </view>
       <view class='lskcnr'>
         <view class='lishikc' catchtap="tzbfy">
-          <image class='lskcimg' src='/img/yiyuan.png'></image>
-          <text class='yiwancheng'>01:26:30</text>
-          <text class='lscksm'>请珍惜高墙外的 "自由"</text>
-          <text class='bofang'>播放:500次</text>
-          <text class='xueshi'>1.5学时</text>
-        </view>
-        <view class='lishikc' catchtap="tzbfy">
-          <image class='lskcimg' src='/img/yiyuan.png'></image>
-          <text class='yiwancheng'>01:26:30</text>
-          <text class='lscksm'>请珍惜</text>
-          <text class='bofang'>播放:500次</text>
-          <text class='xueshi'>1.5学时</text>
-        </view>
-        <view class='lishikc' catchtap="tzbfy">
-          <image class='lskcimg' src='/img/yiyuan.png'></image>
-          <text class='yiwancheng'>01:26:30</text>
-          <text class='lscksm'>请珍惜的高的墙撒旦法师打sad发</text>
-          <text class='bofang'>播放:500次</text>
-          <text class='xueshi'>1.5学时</text>
-        </view>
+        <image class='lskcimg' src='/img/ceshi.jpg'></image>
+        <text class='yiwancheng'>01:26:30</text>
+        <text class='lscksm'>请珍惜高墙外的 "自由"打发阿斯蒂芬阿斯蒂芬阿斯蒂芬</text>
+        <text class='bofang'>播放:500次</text>
+        <text class='xueshi'>1.5学时</text>
+      </view>
+        
+       
         <view>
           <text class='dykctext'>相关推荐</text>
         </view>
