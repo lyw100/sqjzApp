@@ -5,9 +5,7 @@
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->
   <!--bindplay 当开始/继续播放时触发play事件   controls 是否显示默认播放控件（播放/暂停按钮、播放进度、时间）    show-fullscreen-btn   是否显示全屏按钮      -->
-  <video id="myVideo" enable-progress-gesture="false" src="{{record.course.file}}" binderror="videoErrorCallback" 
-    bindfullscreenchange="bindFullscreenchange"  bindtimeupdate="bindTimeupdate"
-     bindplay="bindPlay" controls="false" show-fullscreen-btn="true"></video>
+  <video id="myVideo" enable-progress-gesture="false" src="{{record.course.file}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{record.course.thumbnail}}" show-fullscreen-btn="true"></video>
 </view>
 <text class='titinfo'>{{record.course.name}}</text>
 <view class='js'>

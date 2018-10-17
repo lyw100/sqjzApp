@@ -29,16 +29,25 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    this.setData({
-      courseid:options.courseid,
-      type:options.type
-    })
+    var data={};
+    var url='';
+    if(options.record=='sign'){//选课播放记录
+      data.id=options.id;
+      url = 'http://47.92.224.59:8080/SQJZ/course/getSignRecord';
+      // url = 'http://localhost:8081/SQJZ/course/getSignRecord';
+    }else if(options.record=='scan'){//浏览播放记录
+      data.id = options.id;
+      url = 'http://47.92.224.59:8080/SQJZ/course/getScanRecord';
+      // url = 'http://localhost:8081/SQJZ/course/getScanRecord';
+    }else if(options.record=='record'){//播放记录
+      data.courseid=options.courseid;
+      url = 'http://47.92.224.59:8080/SQJZ/course/getRecord';
+      // url = 'http://localhost:8081/SQJZ/course/getRecord';
+    }
 
     wx.request({
-      url: 'http://47.92.224.59:8080/SQJZ/course/getRecord', //请求当月已选课程地址
-      data: {
-        courseid: options.courseid,
-        type: options.type},
+      url: url, //获取视频播放信息
+      data: data,
       header: {
         'content-type': 'application/json' // 默认值
       },
