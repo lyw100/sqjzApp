@@ -13,8 +13,8 @@
     "pages/shualiandenglu/shualiandenglu",
     "pages/shouyebofang/shouyebofang",
     "pages/xinwenxiangqing/xinwenxiangqing",
-    "pages/kechengku/kechengku"
-   
+    "pages/kechengku/kechengku",
+    "pages/zhihuibaodian/zhihuibaodian"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",
@@ -39,7 +39,7 @@
         "selectedIconPath": "img/kechengkuxuanzhong.png"
       },
       {
-        "pagePath": "pages/zhuye/zhuye",
+        "pagePath": "pages/zhihuibaodian/zhihuibaodian",
         "text": "智慧宝典",
         "iconPath": "img/zhihuibaodian.png",
         "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
