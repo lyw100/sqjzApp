@@ -1,19 +1,14 @@
 <!--pages/xinwenxiangqing/xinwenxiangqing.wxml-->
+<import src="../../wxParse/wxParse.wxml"/> 
 <view class='xwxq'>
   <view class='tit'>
-    <text>新时代社区矫正模式构建研讨会召开</text>
+    <text>{{title}}</text>
   </view>
   <view class='ribao'>
-    <text>法制日报 2018-10-22</text>
-  </view>
-  <image class='tupian' src='/img/yiyuan.png'></image>
-  <view class='jizhe'>
-    <text>法制日报</text>
-    <text>北京8月21日讯</text>
-    <text>记者:黄杰 </text>
-    <text>见习记者:张淑芬</text>
+    <text>{{laiyuan}}</text>
   </view>
   <view class='xwxq_nr'>
-    <text>a手动阀士大夫阿斯蒂芬阿斯蒂芬士大夫士大夫阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发生发斯蒂芬士大夫撒地方阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬啊是打发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬啊是打发斯蒂芬问题热一热太湖源铁道飞虎图教育厅涂鸦跳跃如荣誉天天有后台人员今天愚人节体育局我客户瑞特让他博尔特</text>
+    <!-- <text>{{content}}</text> -->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
   </view>
 </view>
