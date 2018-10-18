@@ -15,6 +15,7 @@
 <view>
   <text class='xueshi'>学时:{{record.course.hours}}</text>
   <text class="wcjd">完成进度:{{record.courseProgress}}%</text>
+  <image class='duigou' src='/img/xzdg.png' wx:if="{{duigouxz}}"></image>
   <image class='fenxiang' src="/img/fenxiang.png"></image>
 </view>
 <view class='xgkc'>
@@ -38,8 +39,8 @@
       <text class='yiwancheng'>01:30:10</text>
       <text class='lscksm'>请珍惜</text>
        <view class='xuank'>
-        <text class='xuanke' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-        <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
+        <text class='xuanke' catchtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
+        <text class='yixuan' catchtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
       </view>
        <text class='bofangcishu'>播放500次</text>
       <text class='syxs'>1.5学时</text>

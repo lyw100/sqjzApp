@@ -9,10 +9,10 @@ Page({
    */
   data: {
     xuankeShow:true,
-    yixuanShow:false
-
+    yixuanShow:false,
+    duigouxz:false
   },
-  xzkc: function (event) {
+  xzkc: function (e) {
     this.setData({
       xuankeShow: false,
       yixuanShow: true
