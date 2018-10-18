@@ -1,12 +1,13 @@
 var page = 1;         // 初次加载页数
 var hadLastPage = false;  // 判断是否到最后一页
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rows:"10",
+    rows:"4",
     xxlist:[],
   },
   /**
@@ -22,8 +23,8 @@ Page({
   onPullDownRefresh: function () {
     page=1;
     hadLastPage=false;
-    var that =this;
-    that.setData({
+    
+    this.setData({
       xxlist: []
     })
     this.loadList();
@@ -42,11 +43,12 @@ Page({
       });
       return;
     }
+    wx.showNavigationBarLoading();
     var that = this;
     // 显示加载图标  
-    wx.showLoading({
-      title: '玩命加载中',
-    })
+    // wx.showLoading({
+    //   title: '玩命加载中',
+    // })
 
     wx.request({
       url: getApp().globalData.url + '/weChat/msg/getXTXXlist',
@@ -61,26 +63,39 @@ Page({
         page: page,
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.msg =="success") {
           // 回调函数  
           var xxlist_add = that.data.xxlist;
-
           for (var i = 0; i < res.data.list.length; i++) {
             xxlist_add.push(res.data.list[i]);
           }
-
+          //富文本循环替换html标签
+          for (var i = 0; i < xxlist_add.length; i++){
+            WxParse.wxParse('topic' + i, 'html', xxlist_add[i].content, that);
+            if (i === xxlist_add.length - 1) {
+              WxParse.wxParseTemArray("listArr", 'topic', xxlist_add.length, that)
+            }
+          }
+          let list = that.data.listArr;
+          list.map((item, index, arr) => {
+            arr[index][0].audittime = xxlist_add[index].audittime;
+          });
           // 页数+1  
           page++;
-
           // 设置数据  
           that.setData({
-            xxlist: xxlist_add
+            xxlist: xxlist_add,
+            list:list,
           })
         } else {
           hadLastPage = true;
+          wx.showToast({
+            title: '到底啦',
+          });
         }
-        wx.hideLoading();
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
       }
     })
 
