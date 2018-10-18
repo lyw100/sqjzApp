@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username:"15555555551",
-    password:"073327",
+    username:"",
+    password:"",
   },
   userNameInput:function(e){
     this.setData({
@@ -22,6 +22,7 @@ Page({
   },
   scanQRCode: function () {
    // var header = getApp().globalData.header; //获取app.js中的请求头
+    let passwd = this.data.password;
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(empoent, module), this.data.password)
     let usernm = this.data.username;
     wx.request({
@@ -38,6 +39,7 @@ Page({
         if(res.data.msg=="OK"){
           wx.setStorageSync("username", usernm);
           wx.setStorageSync("password", pw)
+          wx.setStorageSync("passwd", passwd)
             getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.sessionId;
           wx.navigateTo({
             url: '../shualiandenglu/shualiandenglu',
@@ -51,7 +53,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      username: wx.getStorageSync("username"),
+      password: wx.getStorageSync("passwd"),
+    })
   },
 
   /**
