@@ -1,22 +1,22 @@
 {
-  "pages":[
-    "pages/xinwenxiaoxi/xinwenxiaoxi",
-    "pages/denglu/denglu",
-   "pages/zhuye/zhuye",
+  "pages": [
     "pages/shouye/shouye",
-    "pages/xitongxiaoxi/xitongxiaoxi",
-     "pages/sousuo/sousuo",
+    "pages/sousuo/sousuo",
+    "pages/denglu/denglu",
+    "pages/zhuye/zhuye",
     "pages/index/index",
-    "pages/logs/logs" ,
+    "pages/logs/logs",
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
     "pages/shouyebofang/shouyebofang",
+    "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/xiaoxi/xiaoxi",
+    "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
     "pages/kechengku/kechengku",
     "pages/zhihuibaodian/zhihuibaodian"
   ],
-  "window":{
+  "window": {
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
   },
@@ -49,7 +49,7 @@
         "text": "我的",
         "iconPath": "img/wode.png",
         "selectedIconPath": "img/wodexuanzhong.png"
-      } 
+      }
     ]
   }
 }
