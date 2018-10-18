@@ -15,6 +15,7 @@
     "pages/xinwenxiangqing/xinwenxiangqing",
     "pages/kechengku/kechengku",
     "pages/zhihuibaodian/zhihuibaodian"
+   
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",

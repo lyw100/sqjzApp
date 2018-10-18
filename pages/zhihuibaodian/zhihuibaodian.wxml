@@ -1,31 +1,135 @@
 <!--智慧宝典页面 -->
 <view class='kck'>
     <view class='tit'>
-      <image class='img' src="/img/logo.png" bindtap="onCancelImgTap"></image>
-      <text class='xuanke yanse'>法律法规</text>
-      <text class='xuanxiuke'>心灵鸡汤</text>
-      <text class='xuanxiuke'>生活帮助</text>
+      <image class='img' src="/img/logo.png"></image>
+      <text class='xuanke yanse' catchtap='falcfg'>法律法规</text>
+      <text class='xuanxiuke' catchtap='xinljt'>心灵鸡汤</text>
+      <text class='xuanxiuke' catchtap='shenghbz'>生活帮助</text>
     </view>
     <!--法律法规页面 -->
-    <view class='flfg'>
+    <view class='flfg' wx:if='{{falvfagui}}'>
       <view class='redain'>
         <text>热点</text>
         <image class='flfg_img' src='/img/redian.png'></image>
       </view>
 
-      <view class='flfg_nr'>
+      <view class='flfg_nr' catchtap='tzxinwenye'>
         <text>公安部 ,司法部国家卫生和计划生育委员会关于印发《强制隔离戒毒诊断评估办法》的通知</text>
-        <view>
-          <text>置顶</text>
+        <view class='zhidingsz'>
+          <text class='zd'>置顶</text>
           <text>河北省司法厅</text>
         </view>
+      </view>
+      <view class='flfg_nr' catchtap='tzxinwenye'>
+        <text>公安部 ,司法部国家卫生和计划生育委员会关于印发《强制隔离戒毒诊断评估办法》的通知</text>
+        <view class='zhidingsz'>
+          <text class='zd'>置顶</text>
+          <text>河北省司法厅</text>
+        </view>
+      </view>
+
+      <view class='flfg_xinxi' catchtap='tzxinwenye'>
+        <text class='xx_tm'>中华人民共和国律师法打发斯蒂 </text>
+        <text class='flfg_riqi'>2018-09-20</text>
+      </view>
+      <view class='flfg_xinxi' catchtap='tzxinwenye'>
+        <text class='xx_tm'>中华人民共和国律师</text>
+        <text class='flfg_riqi'>2018-09-20</text>
+      </view>
+      <view class='flfg_xinxi' catchtap='tzxinwenye'>
+        <text class='xx_tm'>中华人民共和国律师法打发</text>
+        <text class='flfg_riqi'>2018-09-20</text>
       </view>
     </view>
 
     <!--心灵鸡汤-->
+      <view class='xljt' wx:if="{{xinlingjitang}}">
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_left'>
+            <text class='xljt_bt'>世界上所有的流浪,都是让心强大，质感</text>
+            <view  class='zhidingsz'>
+              <text class='zd'>置顶</text>
+              <text class='zdsz_sft'>河北省农业科技园</text>
+            </view>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_img'></image>
+        </view>
+
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_left'>
+            <text class='xljt_bt'>世界上所有的流浪</text>
+            <view  class='zhidingsz'>
+              <text class='zd'>置顶</text>
+              <text class='zdsz_sft'>河北省农业科技园</text>
+            </view>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_img'></image>
+        </view>
+
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_tt'>
+            <text class='xljt_bt'>世界上所有的流浪大事发生的法第三</text>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <view  class='zhidingsz'>
+              <text class='ztsz_tit'>河北省农业科技园</text>
+              <text class='xiaoshi'>22小时前</text>
+            </view>
+        </view>
+
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_left'>
+            <text class='xljt_bt'>世界上所有的流浪</text>
+            <view  class='zhidingsz'>
+              <text class='zdsz_sft'>河北省农业科技园</text>
+              <text class='xiaoshi'>22小时前</text>
+            </view>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_img'></image>
+        </view>
+      </view>
     <!--心灵鸡汤 完-->
 
     <!--生活帮助-->
+     <view class='shbz' wx:if="{{shenghuobangzhu}}">
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_tt'>
+            <text class='xljt_bt'>世界上所有的流浪大事发生的法第三</text>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <view  class='zhidingsz'>
+              <text class='zd'>置顶</text>
+              <text class='ztsz_tit'>河北省农业科技园</text>
+              <text class='xiaoshi'>22小时前</text>
+            </view>
+        </view>
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_tt'>
+            <text class='xljt_bt'>世界上所有的流浪大事发生的法第三</text>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <image src='/img/yiyuan.png' class='xljt_tupian'></image>
+          <view  class='zhidingsz'>
+              <text class='zd'>置顶</text>
+              <text class='ztsz_tit'>河北省农业科技园</text>
+              <text class='xiaoshi'>22小时前</text>
+            </view>
+        </view>
+        <view class='xljt_tit' catchtap='tzxinwenye'>
+          <view class='xljt_left'>
+            <text class='xljt_bt'>世界上所有的流浪</text>
+            <view  class='zhidingsz'>
+              <text class='zdsz_sft'>河北省农业科技园</text>
+              <text class='xiaoshi'>22小时前</text>
+            </view>
+          </view>
+          <image src='/img/yiyuan.png' class='xljt_img'></image>
+        </view>
+     </view>
     <!--生活帮助 完-->
-
   </view>
