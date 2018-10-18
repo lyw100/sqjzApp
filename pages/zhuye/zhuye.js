@@ -25,7 +25,7 @@ Page({
     var that=this;
     // console.log(that.globalData.header.Cookie);
     wx.request({
-      url: 'http://47.92.224.59:8080/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
       data: { },
       header: {
@@ -43,7 +43,7 @@ Page({
     })
    
     wx.request({
-      url: 'http://47.92.224.59:8080/SQJZ/sign/historySignList', //请求历史已选课程地址
+      url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: { 'page': that.data.page, 'rows': that.data.rows},
       header: {
@@ -65,7 +65,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://47.92.224.59:8080/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
+      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       // url: 'http://localhost:8081/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
       header: {
@@ -128,7 +128,7 @@ Page({
     var page = this.data.page;
     var rows = this.data.rows;
     wx.request({
-      url: 'http://47.92.224.59:8080/SQJZ/sign/historySignList', //请求历史已选课程地址
+      url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: {page:page,rows:rows},
       header: {
