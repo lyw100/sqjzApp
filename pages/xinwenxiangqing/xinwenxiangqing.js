@@ -1,16 +1,53 @@
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    title:"",
+    laiyuan:"",
+    content:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.id)
+    var that =this;
+    wx.request({
+      url: getApp().globalData.url + '/weChat/msg/getXWXXById',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        id: options.id,
+      },
+      success: function (res) {
+        console.log(res);
+        var data=res.data;
+        that.setData({
+          title: data.title,
+          laiyuan: data.source + " " + data.audittime.substring(0, 10),
+          //content: data.content,
+        })
+        var article = data.content;
+        /**
+        * WxParse.wxParse(bindName , type, data, target,imagePadding)
+        * 1.bindName绑定的数据名(必填)
+        * 2.type可以为html或者md(必填)
+        * 3.data为传入的具体数据(必填)
+        * 4.target为Page对象,一般为this(必填)
+        * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+        */
+       
+        WxParse.wxParse('article', 'html', article, that, 5);
+      }
+    })
     
   },
 
