@@ -1,3 +1,4 @@
+@import "../../wxParse/wxParse.wxss";
 page{
   height: 100%;
   width: 100%;
@@ -10,9 +11,6 @@ page{
 }
 .xtxx:nth-child(1){
   margin-top: 20rpx;
-}
-.xtxx:last-child{
- margin-bottom: 100rpx;
 }
 .shijian{
   width: 100%;

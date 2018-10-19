@@ -1,12 +1,44 @@
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    
+  tzxinwenye:function(){
+    wx.navigateTo({
+      url: '../xinwenxiangqing/xinwenxiangqing',
+    })
   },
 
+  /**
+  * 页面的初始数据
+  */
+  data: {
+    falvfagui: true,
+    xinlingjitang: false,
+    shenghuobangzhu: false,
+  },
+
+  /**法律法规 心灵鸡汤 生活 */
+  falcfg:function(){
+    this.setData({
+      falvfagui: true,
+      xinlingjitang: false,
+      shenghuobangzhu: false,
+    })
+  },
+
+  xinljt: function(){
+    this.setData({
+      falvfagui: false,
+      xinlingjitang: true,
+      shenghuobangzhu: false,
+    })
+  },
+  shenghbz: function () {
+    this.setData({
+      falvfagui: false,
+      xinlingjitang: false,
+      shenghuobangzhu: true,
+    })
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */

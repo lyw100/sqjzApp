@@ -1,4 +1,5 @@
 /* pages/xinwenxiangqing/xinwenxiangqing.wxss */
+@import "../../wxParse/wxParse.wxss";
 .xwxq{
   width: 90%;
   height: auto;
