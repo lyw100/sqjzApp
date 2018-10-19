@@ -33,15 +33,15 @@ Page({
     var url='';
     if(options.record=='sign'){//选课播放记录
       data.id=options.id;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getSignRecord';
+      url = getApp().globalData.url+'/course/getSignRecord';
       // url = 'http://localhost:8081/SQJZ/course/getSignRecord';
     }else if(options.record=='scan'){//浏览播放记录
       data.id = options.id;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getScanRecord';
+      url = getApp().globalData.url +'/course/getScanRecord';
       // url = 'http://localhost:8081/SQJZ/course/getScanRecord';
     }else if(options.record=='record'){//播放记录
       data.courseid=options.courseid;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getRecord';
+      url = getApp().globalData.url +'/course/getRecord';
       // url = 'http://localhost:8081/SQJZ/course/getRecord';
     }
 
@@ -175,5 +175,33 @@ Page({
       });
     }
     //console.log(currentTime+'==='+lastTime);
+  },
+
+  /**
+   * 获取推荐课程列表
+   */
+  moreCourse:function( courseid){
+    if(courseid!=null&&courseid>0){
+      url = getApp().globalData.url + '/course/getMoreCourse';
+      // url: 'http://localhost:8081/SQJZ/course/getMoreCourse', //请求当月已选课程地址
+      var jzid=this.data.record.jzid;
+      wx.request({
+        url: url, //请求当月已选课程地址
+        data: {id:courseid,page:1,rows:4,jzid:jzid},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
+          var list = res.data;
+          that.setData({
+            moreList: list
+          })
+        }
+      })
+
+    }
   }
+
+
 })
