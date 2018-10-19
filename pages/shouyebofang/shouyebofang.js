@@ -1,7 +1,9 @@
 Page({
   gengduotj: function () {
+    var courseid=this.data.record.course.id;
+    var jzid = this.data.record.jzid;
     wx.navigateTo({
-      url: '../gengduotuijian/gengduotuijian',
+      url: '../gengduotuijian/gengduotuijian?id='+courseid+'&jzid='+jzid,
     });
   },
   /**
