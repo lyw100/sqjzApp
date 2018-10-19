@@ -154,9 +154,6 @@ Page({
           })
         } else {
           hadLastPage = true;
-          wx.showToast({
-            title: '到底啦',
-          });
         }
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
