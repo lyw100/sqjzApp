@@ -20,21 +20,21 @@
 </view>
 <view class='xgkc'>
   <text>相关课程</text>
-  <text class='gdtj' bindtap="gengduotj">更多推荐</text>
+  <text class='gdtj' catchtap="gengduotj">更多推荐</text>
 </view>
     <view class='lskcnr'>
 
       <view  class='lishikc' wx:for="{{moreList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
 
-        <image data-id="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='moreCourse' src='{{course.thumbnail}}'></image>
+        <image data-id="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='moreCourseTap' src='{{course.thumbnail}}'></image>
         <text class='yiwancheng'>{{course.courseTime}}</text>
          <text class='lscksm'>{{course.name}}</text>
          <view class='xuank' >
           <block wx:if="{{course.isSign==0}}">
-            <text data-index="{{index}}" class='xuanke' bindtap='xzkc'>选课</text>
+            <text data-id="{{course.id}}" data-index="{{index}}" class='xuanke' catchtap='chooseCourse'>选课</text>
           </block>
           <block wx:else>
-            <text class='yixuan' bindtap='yiyuankecheng'>已选</text>
+            <text data-id="{{course.id}}" class='yixuan' catchtap='moreCourseTap'>已选</text>
           </block>
         </view>
         <text class='bofangcishu'>播放{{course.playnumber}}次</text>

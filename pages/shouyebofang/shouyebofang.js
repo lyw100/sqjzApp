@@ -8,22 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xuankeShow:true,
-    yixuanShow:false,
-    duigouxz:false
+      duigouxz:false
   },
-  xzkc: function (e) {
-    this.setData({
-      xuankeShow: false,
-      yixuanShow: true
-    })
-  },
-  yiyuankecheng: function (event) {
-    this.setData({
-      xuankeShow: true,
-      yixuanShow: false
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -57,7 +44,8 @@ Page({
           record: res.data,
           progress:res.data.progress
         })
-        
+        that.moreCourse();
+       
       }
     })
 
@@ -84,14 +72,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.saveProgress();//保存视频进度
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.saveProgress();//保存视频进度
   },
 
   /**
@@ -180,13 +168,17 @@ Page({
   /**
    * 获取推荐课程列表
    */
-  moreCourse:function( courseid){
+  moreCourse:function( ){
+    var that=this;
+    // console.log(this.data.record);
+    var courseid=this.data.record.course.id;
     if(courseid!=null&&courseid>0){
-      url = getApp().globalData.url + '/course/getMoreCourse';
-      // url: 'http://localhost:8081/SQJZ/course/getMoreCourse', //请求当月已选课程地址
+      var url = getApp().globalData.url + '/course/getMoreCourse';
+      // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
       var jzid=this.data.record.jzid;
+      // console.log(jzid);
       wx.request({
-        url: url, //请求当月已选课程地址
+        url: url, //获取推荐课程列表地址
         data: {id:courseid,page:1,rows:4,jzid:jzid},
         header: {
           'content-type': 'application/json' // 默认值
@@ -201,7 +193,91 @@ Page({
       })
 
     }
-  }
+  },
 
+  /**
+   * 保存视频进度
+   */
+  saveProgress:function(){
+    var that = this;
+    // console.log(this.data.record);
+    var courseid = this.data.record.course.id;//课程id
+    var progress=parseInt(this.data.progress);//进度
+    if (courseid != null && courseid > 0) {
+      var url = getApp().globalData.url + '/course/saveProgress';
+      // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
+      var jzid = this.data.record.jzid;
+      // console.log(jzid);
+      wx.request({
+        url: url, 
+        data: { id: courseid, progress: progress, jzid: jzid },
+        dataType :'text',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
+          
+        }
+      })
+
+    }
+  },
+
+  /**
+   * 点击更多视频进行播放
+   */
+  moreCourseTap:function(e){
+    var courseid = e.currentTarget.dataset.id;
+    var url = getApp().globalData.url + '/course/getRecord';
+    var that=this;
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid, courseid},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data);
+        that.setData({
+          record: res.data,
+          progress: res.data.progress
+        })
+        
+      }
+    })
+
+  },
+  /**
+   * 添加选课记录
+   */
+  chooseCourse:function(e){
+    var that=this;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+  
+    var url = getApp().globalData.url + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid,jzid:jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if(res.data=="ok"){//选课成功
+          var moreList=that.data.moreList;
+          moreList[index].isSign=1;
+          that.setData({
+            moreList: moreList,
+          })
+          that.moreCourseTap(e);
+        }
+      }
+    })
+
+
+  }
 
 })
