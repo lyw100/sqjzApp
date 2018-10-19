@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/shouye/shouye",
+    "pages/zhihuibaodian/zhihuibaodian",
+    "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/sousuo/sousuo",
     "pages/denglu/denglu",
     "pages/zhuye/zhuye",
@@ -9,13 +11,10 @@
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
     "pages/shouyebofang/shouyebofang",
-    "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/xiaoxi/xiaoxi",
     "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
-    "pages/kechengku/kechengku",
-    "pages/zhihuibaodian/zhihuibaodian"
-   
+    "pages/kechengku/kechengku"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
