@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/zhuye/zhuye",
     "pages/shouye/shouye",
     "pages/zhihuibaodian/zhihuibaodian",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/sousuo/sousuo",
     "pages/denglu/denglu",
-    "pages/zhuye/zhuye",
     "pages/index/index",
     "pages/logs/logs",
     "pages/gengduotuijian/gengduotuijian",
