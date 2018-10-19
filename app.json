@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/shouye/shouye",
     "pages/zhihuibaodian/zhihuibaodian",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
-    "pages/shouye/shouye",
     "pages/sousuo/sousuo",
     "pages/denglu/denglu",
     "pages/zhuye/zhuye",
