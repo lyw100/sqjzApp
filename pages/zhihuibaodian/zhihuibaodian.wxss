@@ -1,0 +1,166 @@
+.tit {
+  width: 100%;
+  height: 90rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  z-index: 99;
+}
+
+.img {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 10rpx 0 30rpx;
+  vertical-align: middle;
+}
+
+.xuanke {
+  margin-left: 20rpx;
+  font-size: 34rpx;
+  color: #7e7c87;
+  font-weight: bold;
+}
+
+.xuanxiuke {
+  margin-left: 40rpx;
+  font-size: 34rpx;
+  color: #7e7c87;
+  font-weight: bold;
+}
+
+.yanse {
+  font-size: 40rpx;
+  color: #2499f9;
+  font-weight: bold;
+}
+
+.flfg, .xljt, .shbz {
+  margin-top: 110rpx;
+  height: auto;
+  padding: 0 20rpx;
+}
+
+.redain {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.flfg_img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 15rpx;
+  vertical-align: middle;
+}
+
+.flfg_nr {
+  width: 100%;
+  height: auto;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+}
+
+.zhidingsz {
+  margin-top: 15rpx;
+  font-size: 30rpx;
+  color: #b8b8b8;
+}
+
+.zd {
+  color: #2499f9;
+  border: 1px solid #2499f9;
+  border-radius: 12rpx;
+  padding: 0rpx 15rpx;
+  font-size: 24rpx;
+  margin-right: 30rpx;
+}
+
+.flfg_xinxi {
+  padding: 20rpx 0;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  font-size: 34rpx;
+}
+
+.xx_tm {
+  width: 65%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.flfg_riqi {
+  font-size: 30rpx;
+  color: #b8b8b8;
+  vertical-align: middle;
+  margin-left: 50rpx;
+}
+
+.xljt_tit {
+  width: 100%;
+  height: auto;
+  padding: 25rpx 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+}
+
+.xljt_tit:nth-child(1) {
+  padding-top: 5rpx;
+}
+
+.xljt_left {
+  display: inline-block;
+  width: 61.8%;
+  margin-right: 20rpx;
+  vertical-align: top;
+}
+
+.xljt_img {
+  width: 250rpx;
+  height: 140rpx;
+}
+
+.xljt_bt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.zdsz_sft {
+  width: 70%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.xljt_tt {
+  margin-bottom: 20rpx;
+}
+
+.xljt_tupian {
+  width: 230rpx;
+  height: 130rpx;
+  margin-right: 10rpx;
+}
+
+.xljt_tupian:nth-child(4) {
+  margin-right: 0rpx;
+}
+
+.ztsz_tit {
+  width: 65%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.xiaoshi {
+  float: right;
+  margin-top: 5rpx;
+}

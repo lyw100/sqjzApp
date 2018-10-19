@@ -1,34 +1,28 @@
+<import src="../../wxParse/wxParse.wxml"/> 
 <view class="nr">
-  <view class='xtxx'>
-    <view class='shijian'>
-      <text>2018-12-30  19:50:00</text>
+  <!-- <view wx:for="{{xxlist}}" wx:for-index="idx" wx:for-item="item">
+    <view class='xtxx'>
+      <view class='shijian'>
+        <text>{{item.audittime}}</text>
+      </view>
+      <view class='neirong'>
+        <text>{{item.content}}</text>
+      </view>
     </view>
-    <view class='neirong'>
-      <text>大师法士大夫就鲁大师咖啡机拉克丝的积分啊拉克丝的积分离开事件雷克萨大姐夫了卡世纪</text>
-    </view>
-  </view>
-  <view class='xtxx'>
-    <view class='shijian'>
-      <text>2018-12-30  19:50:00</text>
-    </view>
-    <view class='neirong'>
-      <text>大师法士大夫就鲁大师咖啡机拉克丝的积分啊拉克丝的积分</text>
-    </view>
-  </view>
-  <view class='xtxx'>
-    <view class='shijian'>
-      <text>2018-12-30  19:50:00</text>
-    </view>
-    <view class='neirong'>
-      <text>大师法士大夫就鲁大师咖啡机</text>
+  </view> -->
+  <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item">
+    <view class='xtxx'>
+      <view class='shijian'>
+        <text>{{item[0].audittime}}</text>
+      </view>
+      <view class='neirong'>
+        <template is="wxParse" data="{{wxParseData:item}}"/>
+      </view>
     </view>
   </view>
-  <view class='xtxx'>
-    <view class='shijian'>
-      <text>2018-12-30  19:50:00</text>
-    </view>
-    <view class='neirong'>
-      <text>大师法士大夫就大师法士大夫就鲁大师咖啡机拉克丝的积分啊拉</text>
-    </view>
-  </view>
+  <!-- <view wx:key="{{item.id}}" wx:for="{{list}}">
+    <text >ID:{{item[0].id}</text>
+    <text >姓名：{{item[0].name}}</text>
+    <template is="wxParse" data="{{wxParseData:item}}"/>
+</view> -->
 </view>
