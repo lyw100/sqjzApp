@@ -1,3 +1,5 @@
+
+var page = 2;
 Page({
    /**
    * 页面的初始数据
@@ -20,7 +22,12 @@ Page({
     topList:[],//搜索框查询list
     relateList:[],//相关资料
     listAll:[],//查询返回的所有数据
+<<<<<<< HEAD
     sercherStorage: [],
+=======
+    sercherStorage: [],//搜索历史列表
+    sercherList:[],//用于倒序展示搜索历史
+>>>>>>> master
     StorageFlag: false, //显示搜索记录标志位
     height:64,
     choiceId:0//查询结果顶部标签选中id
@@ -176,16 +183,26 @@ Page({
   search:function(){
       var path=this.data.path;
       var self=this;
+<<<<<<< HEAD
+=======
+      page=2;
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+>>>>>>> master
       wx.request({
         url: path+'/search/list',
         data:{
           name:this.data.inputText,
           page:1,
+<<<<<<< HEAD
           rows:10
+=======
+          rows:5
+>>>>>>> master
           },
         method:'POST',
         header: { 'content-type': 'application/x-www-form-urlencoded'},
         success(res){
+<<<<<<< HEAD
           //console.log(res.data)
           self.setData({
             djjg:true,
@@ -194,6 +211,47 @@ Page({
             listAll: res.data.listAll,
             choiceId:res.data.listAll[0].subjectId
           })
+=======
+          if(res.data.msg=="OK"){
+            if(res.data.listAll.length>0){
+              var choiceId = self.data.choiceId;
+              if (choiceId == 0) {
+                self.setData({
+                  djjg: true,
+                  topList: res.data.top,
+                  relateList: res.data.relate,
+                  listAll: res.data.listAll,
+                  choiceId: res.data.listAll[0].subjectId
+                })
+              } else {
+                var listAll = res.data.listAll;
+                for (var i = 0; i < listAll.length; i++) {
+                  if (choiceId == listAll[i].subjectId) {
+                    self.setData({
+                      djjg: true,
+                      topList: listAll[i].top,
+                      relateList: listAll[i].relate,
+                      listAll: res.data.listAll,
+                      choiceId: listAll[i].subjectId
+                    })
+                  }
+                }
+              }
+            }else{
+              self.setData({
+                djjg: true,
+                topList: [],
+                relateList: [],
+                listAll: [],
+                choiceId: 0
+              })
+            }
+          }
+        },
+        complete:function(){
+          wx.hideNavigationBarLoading() //完成停止加载
+          wx.stopPullDownRefresh() //停止下拉刷新
+>>>>>>> master
         }
       })
   },
@@ -224,9 +282,23 @@ Page({
   },
   //打开搜索历史
   openLocationsercher: function () {
+<<<<<<< HEAD
     this.setData({
       sercherStorage: wx.getStorageSync('searchData') || [],
       StorageFlag: true,
+=======
+    var list=wx.getStorageSync('searchData')||[];
+    var history=[];
+    if(list.length>0){
+        for(var i=list.length-1;i>=0;i--){
+          history.push(list[i]);
+        }
+    }
+    this.setData({
+      sercherStorage: wx.getStorageSync('searchData') || [],
+      StorageFlag: true,
+      sercherList:history
+>>>>>>> master
       //listFlag: true,
     })
   },
@@ -293,6 +365,55 @@ Page({
     this.search();
     
   },
+<<<<<<< HEAD
+=======
+  /**
+   * 上拉加载更多
+   */
+  loadMore:function(){
+      var name=this.data.inputText;//搜索框内容
+      var subjectId=this.data.choiceId;//科目id
+      var path=this.data.path;
+      var self=this;
+    wx.showLoading({
+      title: '加载中'
+    })
+      wx.request({
+        url: path+'/search/loadMore',
+        data:{
+          name:name,
+          subjectId:subjectId,
+          page:page,
+          rows:5
+        },
+        method:'POST',
+        header:{
+          'content-type':'application/x-www-form-urlencoded'
+        },
+        success(res){
+          var relateList=self.data.relateList;
+          if(res.data.msg=="OK"){
+            var list=res.data.list;
+            if(list.length>0){
+              for (var i = 0; i < list.length; i++) {
+                relateList.push(list[i])
+              }
+              self.setData({
+                relateList: relateList
+              })
+              page++;
+              
+            }
+          }
+        },
+        complete:function(){
+          setTimeout(function(){
+            wx.hideLoading()
+          },1000)
+        }
+      })
+  },
+>>>>>>> master
   /**
    * 生命周期函数--监听页面加载
    */
@@ -350,14 +471,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+      this.search();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMore()
   },
 
   /**

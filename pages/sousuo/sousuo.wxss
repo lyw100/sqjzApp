@@ -76,7 +76,7 @@
 
 .sslsnr {
   width: 95%;
-  height: 150rpx;
+  height: 150rpx; 
   margin: 20rpx auto 0rpx;
   overflow-y: hidden;
 }
@@ -170,6 +170,9 @@
   background: #fff;
   z-index: 99;
   line-height: 80rpx;
+  /* 这两行是左右滑动效果加的 */
+  display: flex;
+  white-space: nowrap;
 }
 
 .djjg_tit text {

@@ -16,7 +16,11 @@
         <image class='qingkong' src='/img/qingkong.png' bindtap='clearSearchStorage'></image>
       </view>
       <view class='sslsnr' style="height:{{height}}">
+<<<<<<< HEAD
         <view wx:for="{{sercherStorage}}" wx:key="item.id" style='display:inline-block'  data-name='{{item.name}}' bindtap='tapSercherStorage'>
+=======
+        <view wx:for="{{sercherList}}" wx:key="item.id" style='display:inline-block'  data-name='{{item.name}}' bindtap='tapSercherStorage'>
+>>>>>>> master
             <text id='{{item.id}}'>{{item.name}}</text>
         </view>
       </view>
@@ -42,14 +46,22 @@
   </view>
   <!-- 点击搜索出来内容页索页 -->
   <view class='dianjijieguo' wx:if="{{djjg}}">
+<<<<<<< HEAD
     <view class='djjg_tit'>
+=======
+    <scroll-view scroll-x  class='djjg_tit'>
+>>>>>>> master
       <view wx:for="{{listAll}}" wx:key="{{index}}" style='display:inline-block'>
         <text class="{{item.subjectId==choiceId?'yanse':'zcfg'}}" catchtap='zcfganniu' id='{{item.subjectId}}'>{{item.subjectName}}</text>
       </view>
       <!-- <text class='zcfg yanse' catchtap='zcfganniu'>政策法规</text>
       <text class='zcfg' catchtap='ddwhanniu'>道德文化教育</text>
       <text catchtap='sxjkjyanniu'>思想健康教育</text> -->
+<<<<<<< HEAD
     </view>
+=======
+    </scroll-view>
+>>>>>>> master
     <!-- 政策法规页面 -->
     <view class='djjg_nr' wx:if="{{zcfgym}}">
       <view class='djjg_baogao' catchtap='tzbfyemain' wx:for="{{topList}}" wx:key="{{index}}" id='{{item.id}}'>
