@@ -69,10 +69,8 @@ Page({
           for (var i = 0; i < res.data.list.length; i++) {
             xxlist_add.push(res.data.list[i]);
           }
-
           // 页数+1  
           page++;
-
           // 设置数据  
           that.setData({
             xxlist: xxlist_add
@@ -88,8 +86,24 @@ Page({
   /**跳转详情页 */
   tzxwxxinfo: function (e) {
     var id=e.currentTarget.dataset.index
-    wx.navigateTo({
-      url: '../xinwenxiangqing/xinwenxiangqing?id='+id,
-    });
+    wx.request({
+      url: getApp().globalData.url + '/weChat/msg/editXWXXyd',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        id: id,
+      },
+      success: function (res) {
+        if(res.data.msg=="ok"){
+          wx.navigateTo({
+            url: '../xinwenxiangqing/xinwenxiangqing?id=' + id,
+          });
+        }
+      }
+    })
   }
 })
