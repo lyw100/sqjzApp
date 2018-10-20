@@ -65,7 +65,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    wx.request({
+      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data;
+        // for(var i=0;i<list.length;i++){
+        //   if(i==0){
+        //     list[i].width="100%";
+        //   }else{
+        //     list[i].width = "80%";
+        //   }
+        // }
+        that.setData({
+          swiperCurrent: 0,
+          imgUrls: list
+        })
+      }
+    })
 
+    //获取科目
+    wx.request({
+      url: getApp().globalData.url + '/course/listKM', //获取科目列表
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var subList = res.data;
+        for (var i = 0; i < subList.length;i++){
+          var subid=subList[i].id;
+
+        }
+        that.setData({
+          swiperCurrent: 0,
+          imgUrls: list
+        })
+      }
+    })
   },
 
   /**
@@ -115,5 +158,7 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  
 })
