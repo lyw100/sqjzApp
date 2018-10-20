@@ -95,6 +95,5 @@ Page({
         wx.stopPullDownRefresh() //停止下拉刷新
       }
     })
-
   }
 })
