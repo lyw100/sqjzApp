@@ -1,0 +1,29 @@
+/* pages/paizhaoshangchuan/paizhaoshangchuan.wxss */
+pzsc{
+  width: 100%;
+  height: auto;
+}
+.wenben{
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+textarea{
+  height: 150rpx;
+  width: 100%;
+  padding: 20rpx;
+}
+.xztupian{
+  width: 84%;
+  height: auto;
+  padding: 20rpx 30rpx;
+  margin: 0 auto;
+}
+.tupian{
+  width: 196rpx;
+  height: 196rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+.tupian:nth-child(3n){
+   margin-right: 0rpx;
+}
