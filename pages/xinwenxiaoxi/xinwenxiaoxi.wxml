@@ -1,5 +1,5 @@
 <view class="nr">
-  <view wx:for="{{xxlist}}" wx:for-index="idx" wx:for-item="item">
+  <view wx:for="{{xxlist}}" wx:key="id" wx:for-index="idx" wx:for-item="item">
     <view class='xtxx' catchtap='tzxwxxinfo' data-index="{{item.id}}">
       <view class='shijian'>
         <text>{{item.audittime}}</text>
