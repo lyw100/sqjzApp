@@ -9,45 +9,35 @@
   </view>
   <view class='neirong'>
     <view class='shipineirong' wx:if="{{shipinShow}}">
-      <view class='titimg' bindtap="shouyebof">
-        <image class='biaotou' src="/img/yiyuan.png" catchtap="tzbfy"></image>
-        <text class="titxinxi">国务院新闻办公室会议</text>
-      </view>
-      <view>
-        <text class='dykctext'>正在热播</text>
-      </view>
+
+      <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" 
+        current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="30px" next-margin="30px"  
+        bindchange="imgCHange">
+        <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
+          <swiper-item class="titimg"> 
+            <image  data-index='{{index}}' data-courseid='{{course.id}}' src="{{course.thumbnail}}"
+              class="biaotou" bindtap="bofang" />
+            <text class="titxinxi">{{course.name}}</text>
+          </swiper-item>
+        </block> 
+      </swiper>
+
       <view class='lskcnr'>
-        <view class='lishikc' catchtap="tzbfy">
-        <image class='lskcimg' src='/img/ceshi.jpg'></image>
-        <text class='yiwancheng'>01:26:30</text>
-        <text class='lscksm'>请珍惜高墙外的 "自由"打发阿斯蒂芬阿斯蒂芬阿斯蒂芬</text>
-        <text class='bofang'>播放:500次</text>
-        <text class='xueshi'>1.5学时</text>
-      </view>
-        
+      
        
         <view>
           <text class='dykctext'>相关推荐</text>
         </view>
         <view class="dykcsp">
-          <view class='left' catchtap="tzbfy">
-            <image class='dykctupian' src='/img/yiyuan.png'></image>
-            <text class="xueshi">学时:1.2</text>
-            <text class="shijian">01:26:30</text>
-            <text class="shuoming">中华人民共和国教育法撒地方</text>
+
+          <view  class='lishikc' wx:for="{{moreList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
+
+            <image data-courseid="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+            <text class="xueshi">学时:{{course.hours}}</text>
+            <text class="shijian">{{course.courseTime}}</text>
+            <text class="shuoming">{{course.name}}</text>
           </view>
-          <view class='left' catchtap="tzbfy">
-            <image class='dykctupian' src='/img/yiyuan.png'></image>
-            <text class="xueshi">学时:1.2</text>
-            <text class="shijian">01:10:36</text>
-            <text class="shuoming">政策法规解读</text>
-          </view>
-          <view class='left' catchtap="tzbfy">
-            <image class='dykctupian' src='/img/yiyuan.png'></image>
-            <text class="xueshi">学时:1.2</text>
-            <text class="shijian">01:10:36</text>
-            <text class="shuoming">政策法规解读</text>
-          </view>
+         
         </view>
       </view>
     </view>
