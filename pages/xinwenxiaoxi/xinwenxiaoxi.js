@@ -98,7 +98,7 @@ Page({
         id: id,
       },
       success: function (res) {
-        if(res.msg=="ok"){
+        if(res.data.msg=="ok"){
           wx.navigateTo({
             url: '../xinwenxiangqing/xinwenxiangqing?id=' + id,
           });
