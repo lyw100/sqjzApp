@@ -69,8 +69,8 @@
             <text class='djjg_bfcs'>{{item.playnumber}}次播放</text>
           </view>
           <view class='xuank'>
-            <text class='xuanke' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
+            <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}">选课</text>
+            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
         </view>
       </view>

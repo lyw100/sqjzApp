@@ -5,6 +5,7 @@ Page({
   data: {
     searchList: [],
     path:'https://www.tksqjz.com/SQJZ',
+    //path: 'http://localhost:8080/SQJZ',
     qkch:false,//清空
     zhuyesousuo:true,
     ssnrjieguo:false,
@@ -77,16 +78,16 @@ Page({
     })
   },
   xzkc:function(){
-    this.setData({
-      xuankeShow: false,
-      yixuanShow: true
-    })
+    // this.setData({
+    //   xuankeShow: false,
+    //   yixuanShow: true
+    // })
   },
   yiyuankecheng: function () {
-    this.setData({
-      xuankeShow: true,
-      yixuanShow: false
-    })
+    // this.setData({
+    //   xuankeShow: true,
+    //   yixuanShow: false
+    // })
   },
 
    /**
@@ -185,7 +186,7 @@ Page({
         method:'POST',
         header: { 'content-type': 'application/x-www-form-urlencoded'},
         success(res){
-          console.log(res.data)
+          //console.log(res.data)
           self.setData({
             djjg:true,
             topList: res.data.topList,
