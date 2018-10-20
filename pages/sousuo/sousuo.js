@@ -21,7 +21,8 @@ Page({
     listAll:[],//查询返回的所有数据
     sercherStorage: [],
     StorageFlag: false, //显示搜索记录标志位
-    height:64
+    height:64,
+    choiceId:0//查询结果顶部标签选中id
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -96,10 +97,12 @@ Page({
     var list=this.data.listAll;
     var top=[];
     var relate=[];
+    var subjectId;
     for(var i=0;i<list.length;i++){
       if(id==list[i].subjectId){
         top=list[i].top;
-        relate=list[i].relate
+        relate=list[i].relate;
+        subjectId=list[i].subjectId;
       }
     }
     this.setData({
@@ -107,7 +110,8 @@ Page({
       ddjy: false,
       sxjkjyym: false,
       topList: top,//搜索框查询list
-      relateList: relate//相关资料
+      relateList: relate,//相关资料
+      choiceId:subjectId
     })
   },
   ddwhanniu: function () {
@@ -129,8 +133,9 @@ Page({
    * 跳转到播放页面
    */
   tzbfyemain:function(e){
+    var id=e.currentTarget.id;
     wx.navigateTo({
-      url: '../shouyebofang/shouyebofang',
+      url: '/pages/shouyebofang/shouyebofang?record=record&courseid='+id,
     });
   },
 
@@ -185,7 +190,8 @@ Page({
             djjg:true,
             topList: res.data.topList,
             relateList: res.data.relate,
-            listAll: res.data.listAll
+            listAll: res.data.listAll,
+            choiceId:res.data.listAll[0].subjectId
           })
         }
       })
@@ -225,7 +231,7 @@ Page({
   },
   //点击缓存搜索列表
   tapSercherStorage: function (e) {
-    var name = parseInt(e.currentTarget.dataset.name);
+    var name = e.currentTarget.dataset.name;
         //将所选的搜索历史加到搜素框
         this.setData({
           inputText: name,

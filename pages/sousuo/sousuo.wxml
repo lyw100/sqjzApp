@@ -44,8 +44,7 @@
   <view class='dianjijieguo' wx:if="{{djjg}}">
     <view class='djjg_tit'>
       <view wx:for="{{listAll}}" wx:key="{{index}}" style='display:inline-block'>
-        <text class='zcfg yanse' catchtap='zcfganniu' wx:if="{{index==0}}" id='{{item.subjectId}}'>{{item.subjectName}}</text>
-         <text class='zcfg' catchtap='zcfganniu' id='{{item.subjectId}}' wx:else>{{item.subjectName}}</text>
+        <text class="{{item.subjectId==choiceId?'yanse':'zcfg'}}" catchtap='zcfganniu' id='{{item.subjectId}}'>{{item.subjectName}}</text>
       </view>
       <!-- <text class='zcfg yanse' catchtap='zcfganniu'>政策法规</text>
       <text class='zcfg' catchtap='ddwhanniu'>道德文化教育</text>
