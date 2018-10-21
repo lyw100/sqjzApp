@@ -18,7 +18,8 @@
     "pages/paizhaoshangchuan/paizhaoshangchuan",
     "pages/xinlipinggu/xinlipinggu",
     "pages/wode/wode",
-    "pages/ceshijieguo/ceshijieguo"
+    "pages/ceshijieguo/ceshijieguo",
+    "pages/kaoshixiangqing/kaoshixiangqing"
 
   ],
   "window": {

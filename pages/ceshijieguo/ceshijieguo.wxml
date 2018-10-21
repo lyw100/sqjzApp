@@ -1,0 +1,317 @@
+<view class="csjg">
+  <view class='tit'>
+    <view class='tit_sj'>
+      <text>编号:1024578</text>
+    </view>
+    <view class='tit_sj'>
+      <text>工具:90项症状清单(SCL-90)</text>
+    </view>
+    <view class='tit_sj'>
+      <text>姓名:灰太狼</text>
+    </view>
+    <view class='tit_sj'>
+      <text>日期:2018-10-20 12:00:00</text>
+    </view>
+    <view class='tit_sj'>
+      <text>总分:<text class='fenshu'>208</text></text>
+    </view>
+    <view class='tit_sj'>
+      <text>总均分:2.3</text>
+      <text class='jieguo'>结果: <text class='fenshu'>阴性</text></text>
+    </view>
+  </view>
+  <view class='csjg_nr'>
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>躯体化</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试目前经常感到身体上的不适，应该弄清这种身体上不适到底是生理因素还是心理因素引起。如果是由于心理上的不愉快或压力过大造成，建议加强体育锻炼，可以掌握一些简便易行的放松和调节方法，以防躯体症状加重。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>强迫症</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>人际关系敏感</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试人际交往范围较窄。建议尽力去学习一些人际交往的技巧，改善与朋友交往的质量，程度重着建议尽快走出自己的内心世界，尝试着去结交更多的朋友。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>抑郁</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试偶尔有些郁闷，压抑。要学会倾诉和宣泄</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>焦虑</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>敌对</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>恐怖</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>偏执</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>精神病</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>其他</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>总分</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+
+    <view class='csjg_pj'>
+      <view class='csjg_tt'>
+        <view class='qth'>
+          <image class='yuanquan' src='/img/dian.png'></image>
+          <text class='qutihua'>总均分</text>
+        </view>
+        <text class='lh'>略号:<text class='hongcolor'>A</text></text>
+        <text>分值:<text class='hongcolor'>1.92</text></text>
+      </view>
+      <view class='csjg_sm'>
+        <text>通过测试得知被试有时因苛求细节和追求完美，造成了行为和思想上的一些困扰。可以了解一些必要的心理知识，不要过分克制和自我关注，做事不要过分疑虑，太追求细节和完美，思想老得不到松弛，会陷入焦虑，紧张和痛苦中。</text>
+      </view>
+    </view>
+  </view>
+</view>
