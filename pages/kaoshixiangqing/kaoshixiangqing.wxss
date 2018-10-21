@@ -1,0 +1,103 @@
+page {
+  height: 100%;
+  background: #f3f4f6;
+}
+.ksxq{
+  height: 100%;
+}
+.tit{
+  height: 8%;
+  border-top: 1px solid #e5e5e5;
+  background: #fff;
+  padding: 0 30rpx;
+  font-size: 34rpx;
+  color: #929292;
+  line-height: 90rpx;
+   box-sizing: border-box;
+}
+.timu{
+  color: #2499f9;
+}
+.djt{
+  float: right;
+}
+.dqs{
+  color: #2499f9;
+}
+.center{
+  height: 83%;
+  border: 1px solid green;
+  box-sizing: border-box;
+  padding: 30rpx;
+  overflow-y: scroll;
+}
+.xx{
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  color: #656565;
+  line-height: 60rpx;
+}
+.xuanxiang{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  border: 1px solid #2499f9;
+  color: #2499f9;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height:50rpx;
+  font-weight: normal;
+  margin-right: 30rpx;
+}
+.xzyanse{
+  background: #2499f9;
+  color: #fff;
+}
+.kaoti{
+  color: #656565;
+  letter-spacing: 3rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+}
+.daan_xiangjie{
+  display: inline-block;
+  width:86%;
+  vertical-align: top;
+}
+
+.footer{
+  height: 9%;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+.dtk_sz{
+  display: inline-block;
+  margin-left: 35%;
+}
+.dtk_img{
+  width: 80rpx;
+  height: 90rpx;
+}
+.shijian_dumiao{
+  width: 80rpx;
+  height: auto;
+  display: inline-block;
+  margin-left: 90rpx;
+  text-align: center;
+}
+.shijiant{
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: -10rpx;
+  padding-top: 5rpx;
+}
+.shijian{
+  font-size: 30rpx;
+  color: #2499f9;
+}
+@media  screen and (min-width:750px){
+  .tit{
+  line-height: 70rpx;
+}
+}
+  
