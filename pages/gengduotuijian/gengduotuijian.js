@@ -6,7 +6,7 @@ Page({
   },
   onSousuo:function(){
     wx.navigateTo({
-      url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.subid,
+      url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.data.subid,
     })
   },
   /**
