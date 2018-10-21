@@ -41,12 +41,56 @@
           <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
         </view>
       </view> -->
-
+    <block  wx:for="{{subList}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
       <view>
-        <text class='dykctext'>政策法规教育</text>
-        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
+        <text class='dykctext'>{{sub.name}}</text>
+        <text class='genduotuijian' data-subid="{{sub.id}}" catchtap='moreSubCourse'>查看更多</text>
       </view>
       <view class="dykcsp">
+        <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
+
+            <block wx:if="{{subIndex==1&&index==0}}">
+              <image data-id="{{course.id}}" data-index='{{index}}'  class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+              <view class='ddwhjy_jianju'>
+                <text class='ddwjjy_bt'>{{course.name}}</text>
+                <view class='ddjy_xuanke'>
+                  <block wx:if="{{course.isSign==0}}">
+                    <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
+                  </block>
+                  <block wx:else>
+                    <text data-id="{{course.id}}" class='yixuan' catchtap='moreCourseTap'>已选</text>
+                  </block>
+                  
+                </view>
+              </view>
+            </block>
+
+            <view  class='left'  wx:else>
+              <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+              <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
+              <text class="xueshi">学时:{{course.hours}}</text>
+              <text class="shijian">{{courseTime}}</text>
+              <text class="shuoming">{{course.name}}</text>
+              <view class='zcfgjy_xz'>
+                <block wx:if="{{course.isSign==0}}">
+                  <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
+                </block>
+                <block wx:else>
+                  <text data-id="{{course.id}}" class='yixuan' catchtap='moreCourseTap'>已选</text>
+                </block>
+              </view>
+            </view>
+
+        </block>  
+        <view style='clear:both;'></view>
+      </view>  
+    </block>
+
+      <!-- <view>
+        <text class='dykctext'>政策法规教育</text>
+        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
+      </view> -->
+      <!-- <view class="dykcsp">
         <view class='left' catchtap="tzbfy">
           <image class='dykctupian' src='/img/ceshi.jpg'></image>
           <text class="xueshi">学时:1.2</text>
@@ -86,15 +130,15 @@
             <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
           </view>
-        </view>
-      </view>
+        </view> 
+      </view>-->
 
       <!--道德文化节教育-->
-      <view>
+      <!-- <view>
         <text class='dykctext'>道德文化教育</text>
         <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view>
-      <view class='dykcsp'>
+      </view> -->
+      <!-- <view class='dykcsp'>
         <image class="ddwhjy_img" src='/img/yiyuan.png'></image>
         <view class='ddwhjy_jianju'>
           <text class='ddwjjy_bt'>请珍惜高外的红墙阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发生发生阿萨德发斯蒂芬大师法爱迪生发斯蒂芬阿萨德发</text>
@@ -123,12 +167,12 @@
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
           </view>
         </view>
-      </view>
-      <view>
+      </view> -->
+      <!-- <view>
         <text class='dykctext'>心理健康教育</text>
         <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view>
-       <view class="dykcsp">
+      </view> -->
+       <!-- <view class="dykcsp">
         <view class='left' catchtap="tzbfy">
           <image class='dykctupian' src='/img/ceshi.jpg'></image>
           <text class="xueshi">学时:1.2</text>
@@ -169,12 +213,12 @@
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
           </view>
         </view>
-      </view>
-      <view>
+      </view> -->
+      <!-- <view>
         <text class='dykctext'>心理健康教育</text>
         <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view>
-       <view class="dykcsp">
+      </view> -->
+       <!-- <view class="dykcsp">
         <view class='left' catchtap="tzbfy">
           <image class='dykctupian' src='/img/ceshi.jpg'></image>
           <text class="xueshi">学时:1.2</text>
@@ -215,7 +259,7 @@
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
     <!--视频内容 完-->
 
