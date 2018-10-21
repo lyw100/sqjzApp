@@ -297,10 +297,10 @@ Page({
   /**
    * 正在播放的视频添加选课
    */
-  tianjiaxuanke: function () {
+  tianjiaxuanke: function (e) {
     var that = this;
     var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    var jzid = getApp().globalData.jiaozhengid;
 
     var url = getApp().globalData.url + '/course/saveSign';
     wx.request({
