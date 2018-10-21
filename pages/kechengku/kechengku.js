@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    shipin:'xzzhangtai',
     xuankeShow: true,
     yixuanShow: false,
     shipinShow:true,
@@ -27,23 +28,23 @@ Page({
    */
   shipin:function(){
     this.setData({
-      shipinShow: true,
-      tuwenShow: false,
-      yuyinShow: false,
+      shipin: 'xzzhangtai',
+      tuwen: '',
+      yuyin: '',
     })
   },
   tuwen: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: true,
-      yuyinShow: false,
+      shipin: '',
+      tuwen: 'xzzhangtai',
+      yuyin: '',
     })
   },
   yuyin: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: false,
-      yuyinShow: true,
+      shipin: '',
+      tuwen: '',
+      yuyin: 'xzzhangtai',
     })
   },
   /**
@@ -143,6 +144,17 @@ Page({
    * 获取所有科目   subType 0  必修   1选修
    */
   getKMList:function(subType){
+    if(subType==0){
+      this.setData({
+        bixiuyanse:'yanse',
+        xuanxiuyanse:''
+      })
+    }else if(subType==1){
+      this.setData({
+        bixiuyanse: '',
+        xuanxiuyanse: 'yanse'
+      })
+    }
     var that=this;
     //获取科目
     wx.request({
@@ -249,9 +261,19 @@ Page({
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
       url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
     })
+  },
+  /**
+   * 获取必修科目
+   */
+  bixiuke:function(){
+    this.getKMList(0);
+  },
+  /**
+   * 获取选修科目
+   */
+  xuanxiuke:function(){
+    this.getKMList(1);
   }
-
-
 
 
 })
