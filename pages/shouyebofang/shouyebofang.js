@@ -1,9 +1,8 @@
 Page({
   gengduotj: function () {
     var subid=this.data.record.course.subject.id;
-    var jzid = this.data.record.jzid;
     wx.redirectTo({
-      url: '../gengduotuijian/gengduotuijian?subid=' + subid+'&jzid='+jzid,
+      url: '../gengduotuijian/gengduotuijian?subid=' + subid,
     });
   },
   /**
@@ -20,6 +19,8 @@ Page({
     var that=this;
     var data={};
     var url='';
+    var jzid = getApp().globalData.jiaozhengid;
+    data.jzid=jzid;
     if(options.record=='sign'){//选课播放记录
       data.id=options.id;
       url = getApp().globalData.url+'/course/getSignRecord';
@@ -42,9 +43,14 @@ Page({
       },
       success(res) {
         console.log(res.data);
+        var isSign=0//标识是选课 0为浏览
+        if (res.data.operator!=null){
+          isSign = 1;//播放课程为选课课程
+        }
         that.setData({
           record: res.data,
-          progress:res.data.progress
+          progress:res.data.progress,
+          isSign:isSign
         })
         that.moreCourse();
        
@@ -60,7 +66,9 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
-    wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    if(this.data.progress>0){//播放进度大于0秒
+      wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    }
   },
 
   /**
@@ -234,17 +242,22 @@ Page({
     var courseid = e.currentTarget.dataset.id;
     var url = getApp().globalData.url + '/course/getRecord';
     var that=this;
+    var jzid = getApp().globalData.jiaozhengid;
     wx.request({
       url: url, //获取视频播放信息
-      data: { courseid, courseid},
+      data: {jzid:jzid, courseid: courseid},
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data);
+         var isSign=0//标识是选课 0为浏览
+        if (res.data.operator!=null){
+          isSign = 1;//播放课程为选课课程
+        }
         that.setData({
           record: res.data,
-          progress: res.data.progress
+          progress:res.data.progress,
+          isSign:isSign
         })
         
       }
@@ -275,12 +288,38 @@ Page({
           that.setData({
             moreList: moreList,
           })
-          that.moreCourseTap(e);
+          // that.moreCourseTap(e);
         }
       }
     })
 
 
+  },
+  /**
+   * 正在播放的视频添加选课
+   */
+  tianjiaxuanke:function(){
+    var that = this;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+
+    var url = getApp().globalData.url + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//选课成功
+          that.setData({
+            isSign: 1,
+          })
+          // that.moreCourseTap(e);
+        }
+      }
+    })
   }
 
 })
