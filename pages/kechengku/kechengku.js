@@ -67,7 +67,6 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.request({
-      // url: 'http://localhost:8081/SQJZ' + '/sign/topCourseList', //获取点击量最多的3个课程
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
       header: {
@@ -92,6 +91,7 @@ Page({
 
     //获取必修科目
     this.getKMList(0);
+
   },
 
   /**

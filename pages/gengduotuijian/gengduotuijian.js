@@ -145,22 +145,4 @@ Page({
     var courseid = e.currentTarget.dataset.courseid;
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
       url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
-    })
-  },
-
-  // imgCHange:function(e){
-  //   var detail=e.detail;
-  //   var index=e.detail.current;
-  //   var imgUrls=this.data.imgUrls;
-  //   imgUrls[index].width="100%";
-  //   var pre=index-1;
-  //   if(pre<0){
-  //     pre=imgUrls.length-1;
-  //   }
-  //   imgUrls[pre].width = "80%";
-  //   this.setData({
-  //     imgUrls:imgUrls
-  //   })
-  //   // console.log(detail);
-  // }
-})
+  
