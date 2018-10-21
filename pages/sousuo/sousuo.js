@@ -27,10 +27,14 @@ Page({
     StorageFlag: false, //显示搜索记录标志位
     height: 64,
 <<<<<<< HEAD
+<<<<<<< HEAD
     choiceId: 0,//查询结果顶部标签选中id
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
     subjectId:''//课程id,课程库传参
+=======
+    choiceId: 0//查询结果顶部标签选中id
+>>>>>>> master
 =======
     choiceId: 0//查询结果顶部标签选中id
 >>>>>>> master
@@ -52,6 +56,10 @@ Page({
         djjg: false
       })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
@@ -65,6 +73,10 @@ Page({
       })
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
@@ -82,6 +94,10 @@ Page({
 
         })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
@@ -96,6 +112,7 @@ Page({
       djjg: true,
     })
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   xzkc: function (e) {
     var path=this.data.path;
@@ -133,6 +150,9 @@ Page({
 =======
   xzkc: function () {
 >>>>>>> master
+=======
+  xzkc: function () {
+>>>>>>> master
     // this.setData({
     //   xuankeShow: false,
     //   yixuanShow: true
@@ -147,6 +167,9 @@ Page({
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
   /**
   * 政策法规 tab 页切换
@@ -194,6 +217,7 @@ Page({
   tzbfyemain: function (e) {
     var id = e.currentTarget.id;
 <<<<<<< HEAD
+<<<<<<< HEAD
     var type=e.currentTarget.dataset.type;
     if(type=='0'){
       wx.navigateTo({
@@ -201,6 +225,8 @@ Page({
       });
     }
 =======
+=======
+>>>>>>> master
     wx.navigateTo({
       url: '/pages/shouyebofang/shouyebofang?record=record&courseid=' + id,
     });
@@ -243,9 +269,12 @@ Page({
   search: function () {
     var path = this.data.path;
 <<<<<<< HEAD
+<<<<<<< HEAD
     var subjectType= this.data.subjectType;
     var courseType= this.data.courseType;
     var subjectId= this.data.subjectId;
+=======
+>>>>>>> master
 =======
 >>>>>>> master
     var self = this;
@@ -256,9 +285,12 @@ Page({
       data: {
         name: this.data.inputText,
 <<<<<<< HEAD
+<<<<<<< HEAD
         subjectType: subjectType,
         courseType: courseType,
         subjectId: subjectId,
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         page: 1,
@@ -412,6 +444,10 @@ Page({
     })
     this.search();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
@@ -423,8 +459,11 @@ Page({
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
 <<<<<<< HEAD
+<<<<<<< HEAD
     var subjectType=this.data.subjectType;
     var courseType=this.data.courseType;
+=======
+>>>>>>> master
 =======
 >>>>>>> master
     var path = this.data.path;
@@ -438,8 +477,11 @@ Page({
         name: name,
         subjectId: subjectId,
 <<<<<<< HEAD
+<<<<<<< HEAD
         subjectType: subjectType,
         courseType: courseType,
+=======
+>>>>>>> master
 =======
 >>>>>>> master
         page: page,
@@ -503,6 +545,10 @@ Page({
       }
     })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 =======
 
 >>>>>>> master
