@@ -14,15 +14,12 @@
     "pages/xiaoxi/xiaoxi",
     "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
-<<<<<<< HEAD
     "pages/kechengku/kechengku",
     "pages/paizhaoshangchuan/paizhaoshangchuan",
     "pages/xinlipinggu/xinlipinggu",
     "pages/wode/wode",
     "pages/ceshijieguo/ceshijieguo"
-=======
-    "pages/kechengku/kechengku"
->>>>>>> master
+
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
