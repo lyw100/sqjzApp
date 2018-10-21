@@ -73,6 +73,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // this.loadList();
+  },
+  /**
+* 生命周期函数--监听页面显示
+*/
+  onShow: function () {
+    page = 1;
+    hadLastPage = false;
+
+    this.setData({
+      list: []
+    })
     this.loadList();
   },
   /**
@@ -180,14 +192,6 @@ Page({
   onReady: function () {
     
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
