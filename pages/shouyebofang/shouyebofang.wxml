@@ -15,7 +15,7 @@
 <view>
   <text class='xueshi'>学时:{{record.course.hours}}</text>
   <text class="wcjd">完成进度:{{record.courseProgress}}%</text>
-  <image class='duigou' catchtap='tianjiaxuanke' src='/img/tianjiaxuanke.png' wx:if="{{isSign==0}}"></image>
+  <image data-id="{{record.course.id}}" class='duigou' catchtap='tianjiaxuanke' src='/img/tianjiaxuanke.png' wx:if="{{isSign==0}}"></image>
   <image class='duigou' src='/img/xzdg.png' wx:if="{{isSign==1}}"></image>
   <image class='fenxiang' src="/img/fenxiang.png"></image>
 </view>
