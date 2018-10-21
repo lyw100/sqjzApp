@@ -3,14 +3,14 @@
   <view class='dingwei'>
     <view class='tit'>
       <image class='img' src="/img/logo.png" bindtap="onCancelImgTap"></image>
-      <text class='xuanke yanse'>必修课</text>
-      <text class='xuanxiuke'>选修课</text>
+      <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
+      <text catchtap='xuanxiuke' class='xuanxiuke {{xuanxiuyanse}}'>选修课</text>
     </view>
     <view class='tit2'>
       <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-      <text class='sp xzzhangtai' catchtap='shipin'>视频</text>
-      <text class='sp' catchtap='tuwen'>图文</text>
-      <text class='sp' catchtap='yuyin'>语音</text>
+      <text class='sp {{shipin}}' catchtap='shipin'>视频</text>
+      <text class='sp {{tuwen}}' catchtap='tuwen'>图文</text>
+      <text class='sp {{yuyin}}' catchtap='yuyin'>语音</text>
     </view>
   </view>
   <view class='neirong'>
