@@ -6,8 +6,8 @@ Page({
   */
   data: {
     searchList: [],
-    path: 'https://www.tksqjz.com/SQJZ',
-    //path: 'http://localhost:8080/SQJZ',
+    //path: 'https://www.tksqjz.com/SQJZ',
+    path: 'http://localhost:8080/SQJZ',
     qkch: false,//清空
     zhuyesousuo: true,
     ssnrjieguo: false,
@@ -83,6 +83,14 @@ Page({
       djjg: true,
     })
   },
+  quxiao: function () {
+    var menu=this.data.menu;
+    if(menu=='index'){
+      wx.navigateTo({
+        url: '/pages/zhuye/zhuye',
+      })
+    }
+  },
   xzkc: function () {
     var path = this.data.path;
     var that = this;
@@ -119,7 +127,6 @@ Page({
     //   yixuanShow: false
     // })
   },
-
   /**
   * 政策法规 tab 页切换
   */
@@ -429,7 +436,8 @@ Page({
       this.setData({
         subjectType: options.subjectType,
         courseType: options.courseType,
-        subjectId: options.subjectId
+        subjectId: options.subjectId,
+        menu: menu
       })
     }
     //搜索历史
