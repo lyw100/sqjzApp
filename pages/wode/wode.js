@@ -96,17 +96,30 @@ Page({
   },
   /**
    * 心理评估 开始测试页面
+   * 点击查看 跳转结果页面
    */
   tzxinlipinggu:function(){
     wx.navigateTo({
       url: '../xinlipinggu/xinlipinggu',
     })
   },
+  tzceshijieguo:function(){
+    wx.navigateTo({
+      url: '../ceshijieguo/ceshijieguo',
+    })
+  },
+
   /**点击拍照确定 跳转拍照页面 现在把链接做到拍照汇报标题上
    */
   tzpaizhaoyemian:function(){
     wx.navigateTo({
       url: '../paizhaoshangchuan/paizhaoshangchuan',
+    })
+  },
+  /**点击在线考试编辑跳转详情页 */
+  tzzkhsxqym:function(){
+    wx.navigateTo({
+      url: '../kaoshixiangqing/kaoshixiangqing',
     })
   },
   /**
