@@ -3,6 +3,10 @@
   width: 100%;
   height: auto;
 }
+.xlpg_nrks{
+  margin-bottom: 150rpx;
+  padding: 0 0 150rpx 0;
+}
 .nr{
   width: 100%;
   height: auto;
@@ -20,9 +24,6 @@
   font-weight: bold;
   height: 80rpx;
   line-height: 80rpx;
-}
-.zuihou{
-  margin-bottom: 100rpx;
 }
 .xuanxiang{
   display: inline-block;

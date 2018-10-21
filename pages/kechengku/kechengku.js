@@ -56,13 +56,7 @@ Page({
       url: '../sousuo/sousuo?subjectType=""&courseType=0&menu=course&subjectId=""',
     })
   },
-  /**点击更多推荐  查看更多 跳转到gengduotuijian */
-  tzgdtj:function(){
-    wx.navigateTo({
-      url: '../gengduotuijian/gengduotuijian',
-    })
-  },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -180,14 +174,15 @@ Page({
   /**
    * 根据课程id获取课程
    */
-  getCourseBysubid:function(index,rows){
+  getCourseBysubid: function (index, rows) {
+    var jzid = getApp().globalData.jiaozhengid;
     var that=this;
     var subList=that.data.subList;
     var subid=subList[index].id;
     wx.request({
       // url: 'http://localhost:8081/SQJZ' + '/course/getCourseBySubid', //根据课程id获取课程
       url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
-      data: {subid:subid,page:1,rows:rows},
+      data: {jzid:jzid,subid:subid,page:1,rows:rows},
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -225,8 +220,7 @@ Page({
     var subindex = e.currentTarget.dataset.subindex;
     var index = e.currentTarget.dataset.index;
 
-    var jzid = this.data.jzid;
-    jzid=7;
+    var jzid = getApp().globalData.jiaozhengid;
     var url = getApp().globalData.url + '/course/saveSign';
     wx.request({
       url: url, //获取视频播放信息
