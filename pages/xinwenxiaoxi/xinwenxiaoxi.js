@@ -13,8 +13,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadList();
+    // this.loadList();
 
+  },
+  /**
+  * 生命周期函数--监听页面显示
+  */
+  onShow: function () {
+    page = 1;
+    hadLastPage = false;
+    var that = this;
+    that.setData({
+      xxlist: []
+    })
+    this.loadList();
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -44,9 +56,7 @@ Page({
     }
     var that = this;
     // 显示加载图标  
-    wx.showLoading({
-      title: '玩命加载中',
-    })
+    wx.showNavigationBarLoading();
 
     wx.request({
       url: getApp().globalData.url + '/weChat/msg/getXWXXlist',
@@ -78,7 +88,8 @@ Page({
         } else {
           hadLastPage = true;
         }
-        wx.hideLoading();
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
       }
     })
 
