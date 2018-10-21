@@ -337,6 +337,17 @@ Page({
     })
     this.search();
   },
+  hotTap:function(e){
+    console.log(e)
+    var text=e.currentTarget.dataset.name;
+    this.setData({
+      inputText: text,
+      StorageFlag: false,
+      zhuyesousuo: false,
+      qkch: true
+    })
+    this.search();
+  },
   //添加搜索历史
   setSercherStorage: function (e) {
     this.setData({
@@ -509,6 +520,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    if(this.data.inputText==''){
+      return;
+    }
     this.search();
   },
 
