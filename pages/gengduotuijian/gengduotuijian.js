@@ -44,7 +44,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    var subid=options.subid;
+    var courseid=options.id;
     var jzid=options.jzid;
 
     wx.request({
@@ -76,7 +76,7 @@ Page({
   
     wx.request({
       url: url, //获取推荐课程列表地址
-      data: { subid: subid, page: 1, rows: 6 },
+      data: { id: courseid, page: 1, rows: 6, jzid: jzid },
       header: {
         'content-type': 'application/json' // 默认值
       },

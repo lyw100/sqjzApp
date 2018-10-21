@@ -1,9 +1,9 @@
 Page({
   gengduotj: function () {
-    var subid=this.data.record.course.subject.id;
+    var courseid=this.data.record.course.id;
     var jzid = this.data.record.jzid;
     wx.redirectTo({
-      url: '../gengduotuijian/gengduotuijian?subid=' + subid+'&jzid='+jzid,
+      url: '../gengduotuijian/gengduotuijian?id='+courseid+'&jzid='+jzid,
     });
   },
   /**
@@ -174,7 +174,6 @@ Page({
     var that=this;
     // console.log(this.data.record);
     var courseid=this.data.record.course.id;
-    var subid=this.data.record.course.subject.id;
     if(courseid!=null&&courseid>0){
       var url = getApp().globalData.url + '/course/getMoreCourse';
       // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
@@ -182,7 +181,7 @@ Page({
       // console.log(jzid);
       wx.request({
         url: url, //获取推荐课程列表地址
-        data: {subid:subid,courseid:courseid,page:1,rows:4,jzid:jzid},
+        data: {id:courseid,page:1,rows:4,jzid:jzid},
         header: {
           'content-type': 'application/json' // 默认值
         },
