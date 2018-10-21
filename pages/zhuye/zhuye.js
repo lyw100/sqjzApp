@@ -61,15 +61,9 @@ Page({
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
     // wx.showNavigationBarLoading();
-    this.setData({
-      swiperCurrent: 0,
-      imgUrls: [],
-      hours: 0,
-      nowList: [],
-      historyList: [],
-      page:1
-    })
+    this.data.page=1;
     this.reLoad();
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
 
   /**

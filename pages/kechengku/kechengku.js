@@ -5,6 +5,7 @@ Page({
    */
   data: {
     shipin:'xzzhangtai',
+    bixiuke:'yanse',
     xuankeShow: true,
     yixuanShow: false,
     shipinShow:true,
@@ -87,7 +88,7 @@ Page({
     })
 
     //获取必修科目
-    this.getKMList(0);
+    // this.getKMList(0);
 
   },
 
@@ -102,7 +103,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   if(this.data.bixiuke.length>0){
+      this.bixiuke();
+    }else{
+      this.xuanxiu();
+    }
   },
 
   /**
