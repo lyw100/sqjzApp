@@ -6,7 +6,7 @@ Page({
   },
   onSousuo:function(){
     wx.navigateTo({
-      url: '../sousuo/sousuo',
+      url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.subid,
     })
   },
   /**
@@ -46,7 +46,9 @@ Page({
     var that=this;
     var subid=options.subid;
     var jzid = getApp().globalData.jiaozhengid;
-
+    this.setData({
+      subid:subid
+    })
     wx.request({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
