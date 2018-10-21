@@ -81,6 +81,10 @@ Page({
     })
   },
   xzkc: function () {
+    // this.setData({
+    //   xuankeShow: false,
+    //   yixuanShow: true
+    // })
   },
   yiyuankecheng: function () {
     // this.setData({
