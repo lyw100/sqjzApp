@@ -26,7 +26,10 @@ Page({
     sercherList: [],//用于倒序展示搜索历史
     StorageFlag: false, //显示搜索记录标志位
     height: 64,
-    choiceId: 0//查询结果顶部标签选中id
+    choiceId: 0,//查询结果顶部标签选中id
+    subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
+    courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
+    subjectId: ''//课程id,课程库传参
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -81,10 +84,34 @@ Page({
     })
   },
   xzkc: function () {
-    // this.setData({
-    //   xuankeShow: false,
-    //   yixuanShow: true
-    // })
+    var path = this.data.path;
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = 7;
+    var url = path + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//选课成功
+          var topList = that.data.topList;
+          topList[index].isSign = 1;
+          that.setData({
+            topList: topList,
+          })
+          wx.showToast({
+            title: '选课成功',
+            icon: 'success',
+            duration: '500'
+          })
+        }
+      }
+    })
   },
   yiyuankecheng: function () {
     // this.setData({
@@ -178,6 +205,9 @@ Page({
   //搜索功能
   search: function () {
     var path = this.data.path;
+    var subjectType = this.data.subjectType;
+    var courseType = this.data.courseType;
+    var subjectId = this.data.subjectId;
     var self = this;
     page = 2;
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -185,6 +215,9 @@ Page({
       url: path + '/search/list',
       data: {
         name: this.data.inputText,
+        subjectType: subjectType,
+        courseType: courseType,
+        subjectId: subjectId,
         page: 1,
         rows: 5
       },
@@ -343,6 +376,8 @@ Page({
   loadMore: function () {
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
+    var subjectType = this.data.subjectType;
+    var courseType = this.data.courseType;
     var path = this.data.path;
     var self = this;
     wx.showLoading({
@@ -353,6 +388,8 @@ Page({
       data: {
         name: name,
         subjectId: subjectId,
+        subjectType: subjectType,
+        courseType: courseType,
         page: page,
         rows: 5
       },
@@ -387,6 +424,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var menu = options.menu;
+    if (menu == 'course') {
+      this.setData({
+        subjectType: options.subjectType,
+        courseType: options.courseType,
+        subjectId: options.subjectId
+      })
+    }
     //搜索历史
     this.openLocationsercher();
     //热点搜索list
