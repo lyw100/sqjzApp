@@ -51,7 +51,7 @@ Page({
    */
   onSousuo:function(){
     wx.navigateTo({
-      url: '../ sousuo / sousuo ? subjectType = "" & courseType=0& menu=course& subjectId=""',
+      url: '../sousuo/sousuo?subjectType=""&courseType=0&menu=course&subjectId=""',
     })
   },
   /**点击更多推荐  查看更多 跳转到gengduotuijian */
