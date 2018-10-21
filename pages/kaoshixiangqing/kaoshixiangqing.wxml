@@ -1,0 +1,36 @@
+<view class="ksxq">
+  <view class='tit'>
+    <text class='timu'>判断题</text>
+    <text class='djt'><text class='dqs'>10</text>/70</text>
+  </view>
+  <view class='center'>
+    <view class='kaoti'>社区矫正人员应当自人民撒旦法师打阿斯蒂芬阿斯蒂芬大师法打算发生发（ ）</view>
+    <view class='daan'>
+      <view class='xx'>
+        <text class='xuanxiang xzyanse'>A</text>
+        <text class='daan_xiangjie'>阿斯蒂芬大师法阿斯蒂芬大师法大师法萨芬</text>
+      </view>
+      <view class='xx'>
+        <text class='xuanxiang'>B</text>
+        <text class='daan_xiangjie'>阿斯蒂芬大师法阿斯蒂芬大师法大师法萨芬阿斯蒂芬安抚阿萨德发多少发生发顺丰按时发发生大法师</text>
+      </view>
+      <view class='xx'>
+        <text class='xuanxiang'>C</text>
+        <text class='daan_xiangjie'>阿斯蒂芬大师法</text>
+      </view>
+      <view class='xx'>
+        <text class='xuanxiang'>D</text>
+        <text class='daan_xiangjie'>法师</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='footer'>
+      <view class='dtk_sz'><image src='/img/datika.png' class='dtk_img'></image></view>
+      <view class='shijian_dumiao'>
+        <image src='/img/shijian.png' class='shijiant'></image>
+        <text class='shijian'>0:00</text>
+      </view>
+  </view>
+</view>

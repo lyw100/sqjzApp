@@ -23,11 +23,12 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    var jzid = getApp().globalData.jiaozhengid;
     // console.log(that.globalData.header.Cookie);
     wx.request({
       url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
-      data: { },
+      data: {jzid:jzid },
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -45,7 +46,7 @@ Page({
     wx.request({
       url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
-      data: { 'page': that.data.page, 'rows': that.data.rows},
+      data: { jzid:jzid,'page': that.data.page, 'rows': that.data.rows},
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -127,10 +128,11 @@ Page({
     var that=this;
     var page = this.data.page;
     var rows = this.data.rows;
+    var jzid = getApp().globalData.jiaozhengid;
     wx.request({
       url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
-      data: {page:page,rows:rows},
+      data: {jzid:jzid,page:page,rows:rows},
       header: {
         'content-type': 'application/json' // 默认值
       },
