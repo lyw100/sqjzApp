@@ -29,7 +29,7 @@ Page({
     choiceId: 0,//查询结果顶部标签选中id
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
-    subjectId: ''//课程id,课程库传参
+    subjectId: '',//课程id,课程库传参
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -83,6 +83,25 @@ Page({
       djjg: true,
     })
   },
+  quxiao: function () {
+    var menu=this.data.menu;
+    if(menu=='index'){
+      console.log("y")
+      wx.switchTab({
+        url: '../zhuye/zhuye',
+      })
+    }else if(this.data.subjectId!=''){
+      //相关课程
+      wx.navigateTo({
+        url: '../gengduotuijian/gengduotuijian?subid=' + this.data.subjectId,
+      });
+    }else{
+      //课程库
+      wx.switchTab({
+        url: '../kechengku/kechengku',
+      })
+    }
+  },
   xzkc: function () {
     var path = this.data.path;
     var that = this;
@@ -119,7 +138,6 @@ Page({
     //   yixuanShow: false
     // })
   },
-
   /**
   * 政策法规 tab 页切换
   */
@@ -424,12 +442,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var menu = options.menu;
     if (menu == 'course') {
       this.setData({
         subjectType: options.subjectType,
         courseType: options.courseType,
-        subjectId: options.subjectId
+        subjectId: options.subjectId,
+        menu:'course'
+      })
+    }else{
+      this.setData({
+        menu: 'index'
       })
     }
     //搜索历史
