@@ -50,8 +50,10 @@ Page({
    * 搜索页面跳转
    */
   onSousuo:function(){
+    // courseType = 0 视频
+    // subjectType = 0 必修
     wx.navigateTo({
-      url: '../sousuo/sousuo',
+      url: '../sousuo/sousuo?subjectType=""&courseType=0&menu=course&subjectId=""',
     })
   },
   /**点击更多推荐  查看更多 跳转到gengduotuijian */
