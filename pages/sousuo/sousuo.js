@@ -26,18 +26,7 @@ Page({
     sercherList: [],//用于倒序展示搜索历史
     StorageFlag: false, //显示搜索记录标志位
     height: 64,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    choiceId: 0,//查询结果顶部标签选中id
-    subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
-    courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
-    subjectId:''//课程id,课程库传参
-=======
     choiceId: 0//查询结果顶部标签选中id
->>>>>>> master
-=======
-    choiceId: 0//查询结果顶部标签选中id
->>>>>>> master
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -55,14 +44,7 @@ Page({
         zhuyesousuo: true,
         djjg: false
       })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-=======
-
->>>>>>> master
     } else {
       this.setData({
         qkch: true,
@@ -72,14 +54,7 @@ Page({
         inputText: e.detail.value
       })
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-=======
-
->>>>>>> master
     wx.request({
       url: this.data.path + '/search/searchByName',
       data: { name: e.detail.value },
@@ -93,14 +68,7 @@ Page({
           searchList: list
 
         })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-=======
-
->>>>>>> master
       }
     })
   },
@@ -112,47 +80,7 @@ Page({
       djjg: true,
     })
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
-  xzkc: function (e) {
-    var path=this.data.path;
-    var that = this;
-    var index = e.currentTarget.dataset.index;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid =7;
-
-    var url = path + '/course/saveSign';
-    setTimeout(function(){
-      
-    },400);
-    wx.request({
-      url: url, //获取视频播放信息
-      data: { courseid: courseid, jzid: jzid },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      dataType: 'text',
-      success(res) {
-        if (res.data == "ok") {//选课成功
-          var topList = that.data.topList;
-          topList[index].isSign = 1;
-          that.setData({
-            topList: topList,
-          })
-          wx.showToast({
-            title: '选课成功',
-            icon: 'success',
-            duration: '500'
-          })
-        }
-      }
-    })
-=======
   xzkc: function () {
->>>>>>> master
-=======
-  xzkc: function () {
->>>>>>> master
     // this.setData({
     //   xuankeShow: false,
     //   yixuanShow: true
@@ -164,13 +92,7 @@ Page({
     //   yixuanShow: false
     // })
   },
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
   /**
   * 政策法规 tab 页切换
   */
@@ -191,7 +113,7 @@ Page({
       zcfgym: true,
       ddjy: false,
       sxjkjyym: false,
-      topList: top,//顶部两条
+      topList: top,//搜索框查询list
       relateList: relate,//相关资料
       choiceId: subjectId
     })
@@ -216,21 +138,9 @@ Page({
    */
   tzbfyemain: function (e) {
     var id = e.currentTarget.id;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var type=e.currentTarget.dataset.type;
-    if(type=='0'){
-      wx.navigateTo({
-        url: '/pages/shouyebofang/shouyebofang?record=record&courseid=' + id,
-      });
-    }
-=======
-=======
->>>>>>> master
     wx.navigateTo({
       url: '/pages/shouyebofang/shouyebofang?record=record&courseid=' + id,
     });
->>>>>>> master
   },
 
   /**
@@ -268,15 +178,6 @@ Page({
   //搜索功能
   search: function () {
     var path = this.data.path;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var subjectType= this.data.subjectType;
-    var courseType= this.data.courseType;
-    var subjectId= this.data.subjectId;
-=======
->>>>>>> master
-=======
->>>>>>> master
     var self = this;
     page = 2;
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -284,15 +185,6 @@ Page({
       url: path + '/search/list',
       data: {
         name: this.data.inputText,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        subjectType: subjectType,
-        courseType: courseType,
-        subjectId: subjectId,
-=======
->>>>>>> master
-=======
->>>>>>> master
         page: 1,
         rows: 5
       },
@@ -443,14 +335,7 @@ Page({
       }
     })
     this.search();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-=======
-
->>>>>>> master
   },
   /**
    * 上拉加载更多
@@ -458,14 +343,6 @@ Page({
   loadMore: function () {
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var subjectType=this.data.subjectType;
-    var courseType=this.data.courseType;
-=======
->>>>>>> master
-=======
->>>>>>> master
     var path = this.data.path;
     var self = this;
     wx.showLoading({
@@ -476,14 +353,6 @@ Page({
       data: {
         name: name,
         subjectId: subjectId,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        subjectType: subjectType,
-        courseType: courseType,
-=======
->>>>>>> master
-=======
->>>>>>> master
         page: page,
         rows: 5
       },
@@ -518,14 +387,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var menu=options.menu;
-    if(menu=='course'){
-      this.setData({
-        subjectType: options.subjectType,
-        courseType: options.courseType,
-        subjectId: options.subjectId
-      })
-    }
     //搜索历史
     this.openLocationsercher();
     //热点搜索list
@@ -544,14 +405,7 @@ Page({
         })
       }
     })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-=======
-
->>>>>>> master
   },
 
   /**
