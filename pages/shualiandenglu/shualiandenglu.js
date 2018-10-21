@@ -44,7 +44,7 @@ Page({
             } else {
               wx.showModal({
                 title: '提示',
-                content: data,
+                content: data.msg,
                 showCancel: false
               })
             }
