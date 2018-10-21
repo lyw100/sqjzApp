@@ -26,10 +26,14 @@ Page({
     sercherList: [],//用于倒序展示搜索历史
     StorageFlag: false, //显示搜索记录标志位
     height: 64,
+<<<<<<< HEAD
     choiceId: 0,//查询结果顶部标签选中id
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
     subjectId:''//课程id,课程库传参
+=======
+    choiceId: 0//查询结果顶部标签选中id
+>>>>>>> master
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -47,6 +51,10 @@ Page({
         zhuyesousuo: true,
         djjg: false
       })
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     } else {
       this.setData({
         qkch: true,
@@ -56,6 +64,10 @@ Page({
         inputText: e.detail.value
       })
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     wx.request({
       url: this.data.path + '/search/searchByName',
       data: { name: e.detail.value },
@@ -69,6 +81,10 @@ Page({
           searchList: list
 
         })
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
       }
     })
   },
@@ -80,6 +96,7 @@ Page({
       djjg: true,
     })
   },
+<<<<<<< HEAD
   xzkc: function (e) {
     var path=this.data.path;
     var that = this;
@@ -113,6 +130,9 @@ Page({
         }
       }
     })
+=======
+  xzkc: function () {
+>>>>>>> master
     // this.setData({
     //   xuankeShow: false,
     //   yixuanShow: true
@@ -124,6 +144,10 @@ Page({
     //   yixuanShow: false
     // })
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   /**
   * 政策法规 tab 页切换
   */
@@ -169,12 +193,18 @@ Page({
    */
   tzbfyemain: function (e) {
     var id = e.currentTarget.id;
+<<<<<<< HEAD
     var type=e.currentTarget.dataset.type;
     if(type=='0'){
       wx.navigateTo({
         url: '/pages/shouyebofang/shouyebofang?record=record&courseid=' + id,
       });
     }
+=======
+    wx.navigateTo({
+      url: '/pages/shouyebofang/shouyebofang?record=record&courseid=' + id,
+    });
+>>>>>>> master
   },
 
   /**
@@ -212,9 +242,12 @@ Page({
   //搜索功能
   search: function () {
     var path = this.data.path;
+<<<<<<< HEAD
     var subjectType= this.data.subjectType;
     var courseType= this.data.courseType;
     var subjectId= this.data.subjectId;
+=======
+>>>>>>> master
     var self = this;
     page = 2;
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -222,9 +255,12 @@ Page({
       url: path + '/search/list',
       data: {
         name: this.data.inputText,
+<<<<<<< HEAD
         subjectType: subjectType,
         courseType: courseType,
         subjectId: subjectId,
+=======
+>>>>>>> master
         page: 1,
         rows: 5
       },
@@ -375,6 +411,10 @@ Page({
       }
     })
     this.search();
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   },
   /**
    * 上拉加载更多
@@ -382,8 +422,11 @@ Page({
   loadMore: function () {
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
+<<<<<<< HEAD
     var subjectType=this.data.subjectType;
     var courseType=this.data.courseType;
+=======
+>>>>>>> master
     var path = this.data.path;
     var self = this;
     wx.showLoading({
@@ -394,8 +437,11 @@ Page({
       data: {
         name: name,
         subjectId: subjectId,
+<<<<<<< HEAD
         subjectType: subjectType,
         courseType: courseType,
+=======
+>>>>>>> master
         page: page,
         rows: 5
       },
@@ -456,6 +502,10 @@ Page({
         })
       }
     })
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   },
 
   /**

@@ -35,8 +35,9 @@ Page({
           name: 'file',
           success: (res) => {
             wx.hideLoading();
-            var data = res.data;
-            if (data == "OK") {
+            var data = JSON.parse(res.data);
+            if (data.msg == "OK") {
+              getApp().globalData.header.jiaozhengid =  res.data.jzid;
               wx.switchTab({
                 url: '../zhuye/zhuye',
               })
