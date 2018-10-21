@@ -231,7 +231,6 @@ Page({
       method: 'POST',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
-        console.log(res.data)
         if (res.data.msg == "OK") {
           if (res.data.listAll.length > 0) {
             var choiceId = self.data.choiceId;
