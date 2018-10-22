@@ -10,4 +10,5 @@
       <image src='/img/yiyuan.png' class='tupian'></image>
       <image src='/img/tianjian.png' class='tupian' catchtap='dianji'></image>
     </view>
+    <view class='fabiao'><text>发表</text></view>
 </view>
