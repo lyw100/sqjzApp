@@ -65,8 +65,11 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
+    
     if (this.data.progress > 0) {//播放进度大于0秒
       wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    }else{
+      wx.setStorageSync('lastTime', 0)
     }
   },
 
