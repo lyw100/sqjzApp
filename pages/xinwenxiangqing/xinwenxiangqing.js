@@ -29,6 +29,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
+        wx.setNavigationBarTitle({ title: res.data.channelname})
         var data=res.data;
         that.setData({
           title: data.title,

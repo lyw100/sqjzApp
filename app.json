@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/zhuye/zhuye",
     "pages/shouye/shouye",
+    "pages/zhuye/zhuye",
     "pages/zhihuibaodian/zhihuibaodian",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/sousuo/sousuo",
@@ -14,7 +14,13 @@
     "pages/xiaoxi/xiaoxi",
     "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
-    "pages/kechengku/kechengku"
+    "pages/kechengku/kechengku",
+    "pages/paizhaoshangchuan/paizhaoshangchuan",
+    "pages/xinlipinggu/xinlipinggu",
+    "pages/wode/wode",
+    "pages/ceshijieguo/ceshijieguo",
+    "pages/kaoshixiangqing/kaoshixiangqing"
+
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -45,7 +51,7 @@
         "selectedIconPath": "img/zhihuibaodianxuanzhong.png"
       },
       {
-        "pagePath": "pages/zhuye/zhuye",
+        "pagePath": "pages/wode/wode",
         "text": "我的",
         "iconPath": "img/wode.png",
         "selectedIconPath": "img/wodexuanzhong.png"

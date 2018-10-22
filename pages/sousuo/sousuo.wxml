@@ -16,7 +16,7 @@
         <image class='qingkong' src='/img/qingkong.png' bindtap='clearSearchStorage'></image>
       </view>
       <view class='sslsnr' style="height:{{height}}">
-        <view wx:for="{{sercherStorage}}" wx:key="item.id" style='display:inline-block'  data-name='{{item.name}}' bindtap='tapSercherStorage'>
+        <view wx:for="{{sercherList}}" wx:key="item.id" style='display:inline-block'  data-name='{{item.name}}' bindtap='tapSercherStorage'>
             <text id='{{item.id}}'>{{item.name}}</text>
         </view>
       </view>
@@ -24,7 +24,7 @@
     </view>
     <view class='lishi'>热门搜索</view>
     <view class='remensou' wx:if='{{hotList.length>0}}'>
-      <view class='rmss' atchtap='tzsouzuojieguoym' wx:for="{{hotList}}" wx:key="{{index}}">
+      <view class='rmss' atchtap='tzsouzuojieguoym' wx:for="{{hotList}}" wx:key="{{index}}" bindtap='hotTap' data-name='{{item.name}}'>
         <text class='one' wx:if="{{index==0}}">{{index+1}}</text>
         <text class='two' wx:elif="{{index==1}}">{{index+1}}</text>
         <text class='tree' wx:elif="{{index==2}}">{{index+1}}</text>
@@ -42,18 +42,17 @@
   </view>
   <!-- 点击搜索出来内容页索页 -->
   <view class='dianjijieguo' wx:if="{{djjg}}">
-    <view class='djjg_tit'>
+    <scroll-view scroll-x  class='djjg_tit'>
       <view wx:for="{{listAll}}" wx:key="{{index}}" style='display:inline-block'>
-        <text class='zcfg yanse' catchtap='zcfganniu' wx:if="{{index==0}}" id='{{item.subjectId}}'>{{item.subjectName}}</text>
-         <text class='zcfg' catchtap='zcfganniu' id='{{item.subjectId}}' wx:else>{{item.subjectName}}</text>
+        <text class="{{item.subjectId==choiceId?'yanse':'zcfg'}}" catchtap='zcfganniu' id='{{item.subjectId}}'>{{item.subjectName}}</text>
       </view>
       <!-- <text class='zcfg yanse' catchtap='zcfganniu'>政策法规</text>
       <text class='zcfg' catchtap='ddwhanniu'>道德文化教育</text>
       <text catchtap='sxjkjyanniu'>思想健康教育</text> -->
-    </view>
+    </scroll-view>
     <!-- 政策法规页面 -->
     <view class='djjg_nr' wx:if="{{zcfgym}}">
-      <view class='djjg_baogao' catchtap='tzbfyemain' wx:for="{{topList}}" wx:key="{{index}}" id='{{item.id}}'>
+      <view class='djjg_baogao' catchtap='tzbfyemain' wx:for="{{topList}}" wx:key="{{index}}" id='{{item.id}}' data-type='{{item.type}}'>
         <image class='djjg_img' src='{{item.thumbnail}}'></image>
         <view class='djjg_sm'>
           <view class='djjg_bg'>
@@ -70,10 +69,13 @@
             <text class='djjg_bfcs'>{{item.playnumber}}次播放</text>
           </view>
           <view class='xuank'>
-            <text class='xuanke' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
+            <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}" data-index='{{index}}' data-id='{{item.id}}'>选课</text>
+            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
         </view>
+      </view>
+      <view style='text-align:center' hidden='{{listAll.length>0}}'>
+        <text>未搜索到相关课程</text>
       </view>
       <!-- <view class='djjg_baogao' catchtap='tzbfyemain'>
         <image class='djjg_img' src='/img/yiyuan.png'></image>

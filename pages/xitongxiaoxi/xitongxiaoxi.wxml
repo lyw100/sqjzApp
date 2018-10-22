@@ -10,7 +10,7 @@
       </view>
     </view>
   </view> -->
-  <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item">
+  <view wx:for="{{list}}" wx:key="id" wx:for-index="idx" wx:for-item="item">
     <view class='xtxx'>
       <view class='shijian'>
         <text>{{item[0].audittime}}</text>

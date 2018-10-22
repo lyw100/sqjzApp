@@ -1,47 +1,36 @@
 Page({
   gengduotj: function () {
-    wx.navigateTo({
-      url: '../gengduotuijian/gengduotuijian',
+    var subid = this.data.record.course.subject.id;
+    wx.redirectTo({
+      url: '../gengduotuijian/gengduotuijian?subid=' + subid,
     });
   },
   /**
    * 页面的初始数据
    */
   data: {
-    xuankeShow:true,
-    yixuanShow:false,
-    duigouxz:false
-  },
-  xzkc: function (e) {
-    this.setData({
-      xuankeShow: false,
-      yixuanShow: true
-    })
-  },
-  yiyuankecheng: function (event) {
-    this.setData({
-      xuankeShow: true,
-      yixuanShow: false
-    })
+    duigouxz: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    var data={};
-    var url='';
-    if(options.record=='sign'){//选课播放记录
-      data.id=options.id;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getSignRecord';
-      // url = 'http://localhost:8081/SQJZ/course/getSignRecord';
-    }else if(options.record=='scan'){//浏览播放记录
+    var that = this;
+    var data = {};
+    var url = '';
+    var jzid = getApp().globalData.jiaozhengid;
+    data.jzid = jzid;
+    if (options.record == 'sign') {//选课播放记录
       data.id = options.id;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getScanRecord';
+      url = getApp().globalData.url + '/course/getSignRecord';
+      // url = 'http://localhost:8081/SQJZ/course/getSignRecord';
+    } else if (options.record == 'scan') {//浏览播放记录
+      data.id = options.id;
+      url = getApp().globalData.url + '/course/getScanRecord';
       // url = 'http://localhost:8081/SQJZ/course/getScanRecord';
-    }else if(options.record=='record'){//播放记录
-      data.courseid=options.courseid;
-      url = 'http://47.92.224.59:8080/SQJZ/course/getRecord';
+    } else if (options.record == 'record') {//播放记录
+      data.courseid = options.courseid;
+      url = getApp().globalData.url + '/course/getRecord';
       // url = 'http://localhost:8081/SQJZ/course/getRecord';
     }
 
@@ -53,11 +42,17 @@ Page({
       },
       success(res) {
         console.log(res.data);
+        var isSign = 0//标识是选课 0为浏览
+        if (res.data.operator != null) {
+          isSign = 1;//播放课程为选课课程
+        }
         that.setData({
           record: res.data,
-          progress:res.data.progress
+          progress: res.data.progress,
+          isSign: isSign
         })
-        
+        that.moreCourse();
+
       }
     })
 
@@ -70,7 +65,9 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
-    wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    if (this.data.progress > 0) {//播放进度大于0秒
+      wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    }
   },
 
   /**
@@ -84,14 +81,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.saveProgress();//保存视频进度
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.saveProgress();//保存视频进度
   },
 
   /**
@@ -117,9 +114,9 @@ Page({
 
 
 
- /**
- * 开始播放时执行的方法
- */
+  /**
+  * 开始播放时执行的方法
+  */
   bindPlay: function () {
     this.videoContext.requestFullScreen();//执行全屏方法
   },
@@ -146,25 +143,25 @@ Page({
   //防拖拽方法
   bindTimeupdate: function (e) {
     //console.log(e.detail)
-    var currentTime =  e.detail.currentTime;//当前时间
+    var currentTime = e.detail.currentTime;//当前时间
     var lastTime = wx.getStorageSync('lastTime');//上一个节点的时间
-    var progress=this.data.progress;//播放进度  最大的播放时间
-    
+    var progress = this.data.progress;//播放进度  最大的播放时间
+
 
     // console.log("progress:" + progress);
     // console.log("currentTime:" + currentTime);
     // console.log("lastTime:" + lastTime);
 
-      //当前播放时间与上次播放节点时间差大于2秒
-    if (lastTime - currentTime > 3 || currentTime - lastTime > 3 ) {
-      if(currentTime<progress){//当前播放时间小于播放进度
+    //当前播放时间与上次播放节点时间差大于2秒
+    if (lastTime - currentTime > 3 || currentTime - lastTime > 3) {
+      if (currentTime < progress) {//当前播放时间小于播放进度
         this.videoContext.seek(currentTime);
         wx.setStorageSync('lastTime', currentTime)
         return;
       } else {
         this.videoContext.seek(lastTime);
         return;
-      }  
+      }
     }
 
     wx.setStorageSync('lastTime', currentTime);
@@ -175,5 +172,153 @@ Page({
       });
     }
     //console.log(currentTime+'==='+lastTime);
+  },
+
+  /**
+   * 获取推荐课程列表
+   */
+  moreCourse: function () {
+    var that = this;
+    // console.log(this.data.record);
+    var courseid = this.data.record.course.id;
+    var subid = this.data.record.course.subject.id;
+    if (courseid != null && courseid > 0) {
+      var url = getApp().globalData.url + '/course/getMoreCourse';
+      // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
+      var jzid = this.data.record.jzid;
+      // console.log(jzid);
+      wx.request({
+        url: url, //获取推荐课程列表地址
+        data: { subid: subid, courseid: courseid, page: 1, rows: 4, jzid: jzid },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
+          var list = res.data;
+          that.setData({
+            moreList: list
+          })
+        }
+      })
+
+    }
+  },
+
+  /**
+   * 保存视频进度
+   */
+  saveProgress: function () {
+    var that = this;
+    // console.log(this.data.record);
+    var courseid = this.data.record.course.id;//课程id
+    var progress = parseInt(this.data.progress);//进度
+    if (courseid != null && courseid > 0) {
+      var url = getApp().globalData.url + '/course/saveProgress';
+      // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
+      var jzid = this.data.record.jzid;
+      // console.log(jzid);
+      wx.request({
+        url: url,
+        data: { id: courseid, progress: progress, jzid: jzid },
+        dataType: 'text',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
+
+        }
+      })
+
+    }
+  },
+
+  /**
+   * 点击更多视频进行播放
+   */
+  moreCourseTap: function (e) {
+    var courseid = e.currentTarget.dataset.id;
+    var url = getApp().globalData.url + '/course/getRecord';
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { jzid: jzid, courseid: courseid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var isSign = 0//标识是选课 0为浏览
+        if (res.data.operator != null) {
+          isSign = 1;//播放课程为选课课程
+        }
+        that.setData({
+          record: res.data,
+          progress: res.data.progress,
+          isSign: isSign
+        })
+
+      }
+    })
+
+  },
+  /**
+   * 添加选课记录
+   */
+  chooseCourse: function (e) {
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+
+    var url = getApp().globalData.url + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//选课成功
+          var moreList = that.data.moreList;
+          moreList[index].isSign = 1;
+          that.setData({
+            moreList: moreList,
+          })
+          // that.moreCourseTap(e);
+        }
+      }
+    })
+
+
+  },
+  /**
+   * 正在播放的视频添加选课
+   */
+  tianjiaxuanke: function (e) {
+    var that = this;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = getApp().globalData.jiaozhengid;
+
+    var url = getApp().globalData.url + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//选课成功
+          that.setData({
+            isSign: 1,
+          })
+          // that.moreCourseTap(e);
+        }
+      }
+    })
   }
+
 })

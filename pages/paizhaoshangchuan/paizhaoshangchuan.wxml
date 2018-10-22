@@ -1,0 +1,13 @@
+<!--拍照上传页面-->
+<view class='pzsc'>
+    <view class='wenben'>
+       <textarea placeholder="请输入第几年汇报" adjust-position="false"/>
+    </view>
+    <view class='xztupian'>
+      <image src='/img/yiyuan.png' class='tupian'></image>
+      <image src='/img/yiyuan.png' class='tupian'></image>
+      <image src='/img/yiyuan.png' class='tupian'></image>
+      <image src='/img/yiyuan.png' class='tupian'></image>
+      <image src='/img/tianjian.png' class='tupian' catchtap='dianji'></image>
+    </view>
+</view>
