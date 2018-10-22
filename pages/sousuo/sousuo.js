@@ -86,7 +86,6 @@ Page({
   quxiao: function () {
     var menu=this.data.menu;
     if(menu=='index'){
-      console.log("y")
       wx.switchTab({
         url: '../zhuye/zhuye',
       })
@@ -338,7 +337,6 @@ Page({
     this.search();
   },
   hotTap:function(e){
-    console.log(e)
     var text=e.currentTarget.dataset.name;
     this.setData({
       inputText: text,
@@ -351,7 +349,7 @@ Page({
   //添加搜索历史
   setSercherStorage: function (e) {
     this.setData({
-      qkch: false,
+      qkch: true,
       zhuyesousuo: false,
       ssnrjieguo: false,
       djjg: true,
