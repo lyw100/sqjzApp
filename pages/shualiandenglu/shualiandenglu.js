@@ -37,14 +37,14 @@ Page({
             wx.hideLoading();
             var data = JSON.parse(res.data);
             if (data.msg == "OK") {
-              getApp().globalData.header.jiaozhengid =  res.data.jzid;
+              getApp().globalData.jiaozhengid =  data.jzid;
               wx.switchTab({
                 url: '../zhuye/zhuye',
               })
             } else {
               wx.showModal({
                 title: '提示',
-                content: data,
+                content: data.msg,
                 showCancel: false
               })
             }

@@ -6,7 +6,7 @@ Page({
   },
   onSousuo:function(){
     wx.navigateTo({
-      url: '../sousuo/sousuo',
+      url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.data.subid,
     })
   },
   /**
@@ -45,8 +45,10 @@ Page({
   onLoad: function (options) {
     var that=this;
     var subid=options.subid;
-    var jzid=options.jzid;
-
+    var jzid = getApp().globalData.jiaozhengid;
+    this.setData({
+      subid:subid
+    })
     wx.request({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
@@ -76,7 +78,7 @@ Page({
   
     wx.request({
       url: url, //获取推荐课程列表地址
-      data: { subid: subid, page: 1, rows: 6 },
+      data: {jzid:jzid, subid: subid, page: 1, rows: 6 },
       header: {
         'content-type': 'application/json' // 默认值
       },

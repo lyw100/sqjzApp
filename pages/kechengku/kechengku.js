@@ -4,6 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    shipin:'xzzhangtai',
+    bixiuke:'yanse',
     xuankeShow: true,
     yixuanShow: false,
     shipinShow:true,
@@ -27,23 +29,23 @@ Page({
    */
   shipin:function(){
     this.setData({
-      shipinShow: true,
-      tuwenShow: false,
-      yuyinShow: false,
+      shipin: 'xzzhangtai',
+      tuwen: '',
+      yuyin: '',
     })
   },
   tuwen: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: true,
-      yuyinShow: false,
+      shipin: '',
+      tuwen: 'xzzhangtai',
+      yuyin: '',
     })
   },
   yuyin: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: false,
-      yuyinShow: true,
+      shipin: '',
+      tuwen: '',
+      yuyin: 'xzzhangtai',
     })
   },
   /**
@@ -53,16 +55,10 @@ Page({
     // courseType = 0 视频
     // subjectType = 0 必修
     wx.navigateTo({
-      url: '../sousuo/sousuo?subjectType=""&courseType=0&menu=course&subjectId=""',
+      url: '../sousuo/sousuo?subjectType=&courseType=0&menu=course&subjectId=',
     })
   },
-  /**点击更多推荐  查看更多 跳转到gengduotuijian */
-  tzgdtj:function(){
-    wx.navigateTo({
-      url: '../gengduotuijian/gengduotuijian',
-    })
-  },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -92,7 +88,7 @@ Page({
     })
 
     //获取必修科目
-    this.getKMList(0);
+    // this.getKMList(0);
 
   },
 
@@ -107,7 +103,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   if(this.data.bixiuke.length>0){
+      this.bixiuke();
+    }else{
+      this.xuanxiu();
+    }
   },
 
   /**
@@ -149,6 +149,17 @@ Page({
    * 获取所有科目   subType 0  必修   1选修
    */
   getKMList:function(subType){
+    if(subType==0){
+      this.setData({
+        bixiuyanse:'yanse',
+        xuanxiuyanse:''
+      })
+    }else if(subType==1){
+      this.setData({
+        bixiuyanse: '',
+        xuanxiuyanse: 'yanse'
+      })
+    }
     var that=this;
     //获取科目
     wx.request({
@@ -180,14 +191,15 @@ Page({
   /**
    * 根据课程id获取课程
    */
-  getCourseBysubid:function(index,rows){
+  getCourseBysubid: function (index, rows) {
+    var jzid = getApp().globalData.jiaozhengid;
     var that=this;
     var subList=that.data.subList;
     var subid=subList[index].id;
     wx.request({
       // url: 'http://localhost:8081/SQJZ' + '/course/getCourseBySubid', //根据课程id获取课程
       url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
-      data: {subid:subid,page:1,rows:rows},
+      data: {jzid:jzid,subid:subid,page:1,rows:rows},
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -225,8 +237,7 @@ Page({
     var subindex = e.currentTarget.dataset.subindex;
     var index = e.currentTarget.dataset.index;
 
-    var jzid = this.data.jzid;
-    jzid=7;
+    var jzid = getApp().globalData.jiaozhengid;
     var url = getApp().globalData.url + '/course/saveSign';
     wx.request({
       url: url, //获取视频播放信息
@@ -255,9 +266,19 @@ Page({
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
       url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
     })
+  },
+  /**
+   * 获取必修科目
+   */
+  bixiuke:function(){
+    this.getKMList(0);
+  },
+  /**
+   * 获取选修科目
+   */
+  xuanxiuke:function(){
+    this.getKMList(1);
   }
-
-
 
 
 })
