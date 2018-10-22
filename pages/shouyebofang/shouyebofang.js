@@ -292,6 +292,12 @@ Page({
             moreList: moreList,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
@@ -320,6 +326,12 @@ Page({
             isSign: 1,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })

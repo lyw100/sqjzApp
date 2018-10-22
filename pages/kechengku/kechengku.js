@@ -255,6 +255,12 @@ Page({
             subList: subList,
           })
           
+        }else if(res.data=="more"){
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
