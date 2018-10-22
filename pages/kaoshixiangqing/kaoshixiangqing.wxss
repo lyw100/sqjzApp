@@ -1,9 +1,10 @@
 page {
   height: 100%;
-  background: #f3f4f6;
+
 }
 .ksxq{
   height: 100%;
+  background: #f3f4f6;
 }
 .tit{
   height: 8%;
@@ -26,7 +27,6 @@ page {
 }
 .center{
   height: 83%;
-  border: 1px solid green;
   box-sizing: border-box;
   padding: 30rpx;
   overflow-y: scroll;
@@ -67,7 +67,7 @@ page {
 
 .footer{
   height: 9%;
-  border: 1px solid red;
+  border-top: 1px solid #e5e5e5;
   box-sizing: border-box;
 }
 .dtk_sz{
@@ -95,9 +95,74 @@ page {
   font-size: 30rpx;
   color: #2499f9;
 }
+.spr{
+  height: 100%;
+}
+.spr_gd{
+  overflow-y: scroll;
+}
+/***
+  答题卡样式
+*/
+.dtk{
+  height: 100%;
+  background: #fff;
+}
+.dtk_tit{
+  height: 8%;
+  border-top: 1px solid #e5e5e5;
+  padding: 20rpx 30rpx 0;
+  font-size: 34rpx;
+  color: #2499f9;
+  box-sizing: border-box;
+}
+.dtk_center{
+  height: 83%;
+  box-sizing: border-box;
+  padding: 30rpx;
+  overflow-y: scroll;
+}
+.dtk_center text{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border: 1px solid #cbcbcb;
+  color: #2499f9;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  margin: 0 60rpx 60rpx 0;
+}
+.dtk_center text:nth-child(6n){
+  margin-right: 0;
+}
+.dtk_center .dtk_yanse{
+  background: #2499f9;
+  color: #fff;
+  border: 1px solid #2499f9;
+}
+.dtk_ft{
+  height: 9%;
+  background: #cbcbcb;
+  font-size: 34rpx;
+  vertical-align: middle;
+  letter-spacing: 2rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+.dtk_color{
+  background: #2499f9;
+  color: #fff;
+}
+
+
 @media  screen and (min-width:750px){
   .tit{
   line-height: 70rpx;
+}
+.dtk_ft{
+  line-height: 80rpx;
 }
 }
   

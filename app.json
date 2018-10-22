@@ -19,7 +19,9 @@
     "pages/xinlipinggu/xinlipinggu",
     "pages/wode/wode",
     "pages/ceshijieguo/ceshijieguo",
+    "pages/kaoshijieguo/kaoshijieguo",
     "pages/kaoshixiangqing/kaoshixiangqing"
+
 
   ],
   "window": {

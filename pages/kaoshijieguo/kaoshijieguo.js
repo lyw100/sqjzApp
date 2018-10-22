@@ -4,39 +4,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    indicatorDots: false,
-    autoplay: false,
-    ksxq_timu:true,
-    ksxq_datk:false,
+    
   },
 
-  datika_dj:function(){
-    this.setData({
-      ksxq_timu: false,
-      ksxq_datk: true,
-    })
-  },
-  /**点击未选的答案返回主页面 */
-  fhdtk_dt:function(){
-    this.setData({
-      ksxq_timu: true,
-      ksxq_datk: false,
-    })
-  },
-  jiaojjieguo:function(){
-      wx.showModal({
-        content: '确定要交卷吗',
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../kaoshijieguo/kaoshijieguo',
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
