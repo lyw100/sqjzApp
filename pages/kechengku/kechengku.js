@@ -88,7 +88,7 @@ Page({
     })
 
     //获取必修科目
-    // this.getKMList(0);
+    this.getKMList(0);
 
   },
 
@@ -104,9 +104,9 @@ Page({
    */
   onShow: function () {
    if(this.data.bixiuke.length>0){
-      this.bixiuke();
+      // this.bixiuke();
     }else{
-      this.xuanxiu();
+      // this.xuanxiu();
     }
   },
 

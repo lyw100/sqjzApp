@@ -49,7 +49,8 @@ Page({
         that.setData({
           record: res.data,
           progress: res.data.progress,
-          isSign: isSign
+          isSign: isSign,
+          subType:res.data.course.subject.type
         })
         that.moreCourse();
 
