@@ -284,7 +284,47 @@ Page({
    */
   xuanxiuke:function(){
     this.getKMList(1);
+  },
+
+  /**
+   * 取消选课  判断播放进度是否为0  不是0不可以取消
+   */
+  cancleSign: function (e) {
+    var courseid = e.currentTarget.dataset.id;
+    var that = this;
+    var subindex = e.currentTarget.dataset.subindex;
+    var index = e.currentTarget.dataset.index;
+
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          var subList = that.data.subList;
+          var courseList = subList[subindex].courseList;
+          courseList[index].isSign = 0;
+          that.setData({
+            subList: subList,
+          })
+          wx.showToast({
+            title: '取消课程成功',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
-
-
 })

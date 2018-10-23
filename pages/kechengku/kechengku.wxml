@@ -58,7 +58,7 @@
                       <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
                     </block>
                     <block wx:else>
-                      <text data-id="{{course.id}}" class='yixuan' catchtap='moreCourseTap'>已选</text>
+                      <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                     </block>
                   </block>
                   
@@ -78,7 +78,7 @@
                     <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
                   </block>
                   <block wx:else>
-                    <text data-id="{{course.id}}" class='yixuan' catchtap='moreCourseTap'>已选</text>
+                    <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                   </block>
                 </block>
               </view>
