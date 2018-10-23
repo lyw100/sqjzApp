@@ -119,6 +119,9 @@ line-height:60rpx;
   vertical-align: top;
   margin-bottom: 30rpx;
 }
+.lishikc:nth-child(even){
+  float: right;
+}
 .lskcimg{
   width: 362rpx;
   height:210rpx;
