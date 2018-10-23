@@ -11,7 +11,7 @@ height:80rpx;
 line-height:60rpx;
 }
 .sousuo{
-  width: 360rpx;
+  width: 500rpx;
   height: 60rpx;
   vertical-align:middle;
   margin-left:20rpx;
@@ -118,6 +118,9 @@ line-height:60rpx;
   position: relative;
   vertical-align: top;
   margin-bottom: 30rpx;
+}
+.lishikc:nth-child(even){
+  float: right;
 }
 .lskcimg{
   width: 362rpx;

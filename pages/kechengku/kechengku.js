@@ -5,6 +5,7 @@ Page({
    */
   data: {
     shipin:'xzzhangtai',
+    bixiuke:'yanse',
     xuankeShow: true,
     yixuanShow: false,
     shipinShow:true,
@@ -102,7 +103,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+   if(this.data.bixiuke.length>0){
+      // this.bixiuke();
+    }else{
+      // this.xuanxiu();
+    }
   },
 
   /**
@@ -250,6 +255,12 @@ Page({
             subList: subList,
           })
           
+        }else if(res.data=="more"){
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })

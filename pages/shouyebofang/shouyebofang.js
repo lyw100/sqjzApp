@@ -49,7 +49,8 @@ Page({
         that.setData({
           record: res.data,
           progress: res.data.progress,
-          isSign: isSign
+          isSign: isSign,
+          subType:res.data.course.subject.type
         })
         that.moreCourse();
 
@@ -65,8 +66,11 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
+    
     if (this.data.progress > 0) {//播放进度大于0秒
       wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
+    }else{
+      wx.setStorageSync('lastTime', 0)
     }
   },
 
@@ -288,6 +292,12 @@ Page({
             moreList: moreList,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
@@ -297,10 +307,10 @@ Page({
   /**
    * 正在播放的视频添加选课
    */
-  tianjiaxuanke: function () {
+  tianjiaxuanke: function (e) {
     var that = this;
     var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    var jzid = getApp().globalData.jiaozhengid;
 
     var url = getApp().globalData.url + '/course/saveSign';
     wx.request({
@@ -316,6 +326,12 @@ Page({
             isSign: 1,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })

@@ -27,3 +27,15 @@ textarea{
 .tupian:nth-child(3n){
    margin-right: 0rpx;
 }
+.fabiao{
+  width: 85%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #2499f9;
+  color: #fff;
+  margin: 50rpx auto 0;
+  text-align: center; 
+  border-radius: 40rpx;
+
+
+}
