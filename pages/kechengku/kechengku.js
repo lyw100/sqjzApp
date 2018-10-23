@@ -128,13 +128,41 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data;
+        // for(var i=0;i<list.length;i++){
+        //   if(i==0){
+        //     list[i].width="100%";
+        //   }else{
+        //     list[i].width = "80%";
+        //   }
+        // }
+        that.setData({
+          swiperCurrent: 0,
+          imgUrls: list
+        })
+      }
+    })
 
+    //获取必修科目
+    this.getKMList(0);
+
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    
 
   },
 
