@@ -125,7 +125,7 @@ Page({
   */
   bindPlay: function () {
     // this.videoContext.play();
-    console.log("点击播放");
+    // console.log("点击播放");
     this.videoContext.requestFullScreen();//执行全屏方法
   },
   /**
@@ -140,7 +140,7 @@ Page({
   bindFullscreenchange: function (e) {
     var isfull = e.detail.fullScreen;
     if (!isfull) {
-      console.log("非全屏暂停");
+      // console.log("非全屏暂停");
       this.videoContext.pause();//视频暂停
     }
   },
@@ -158,8 +158,8 @@ Page({
 
 
     // console.log("progress:" + progress);
-    console.log("currentTime:" + currentTime);
-    console.log("lastTime:" + lastTime);
+    // console.log("currentTime:" + currentTime);
+    // console.log("lastTime:" + lastTime);
 
     //当前播放时间与上次播放节点时间差大于2秒
     if (lastTime - currentTime > 10 || currentTime - lastTime > 10) {
