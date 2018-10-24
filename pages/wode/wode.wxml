@@ -154,21 +154,30 @@
         <text>思想汇报记录</text>
       </view>
       <view class='sxhbjl_zong'>
-        <view class='sxhbjl_fst'>
+        <view class='sxhbjl_fst' wx:for='{{reportList}}' wx:key='{{index}}'>
           <view class='sxhb_biaoti'>
-            <text>2018第二次h</text>
-            <text class='weishenhe'>未审核</text>
+            <text>{{item.title}}</text>
+            <text class='weishenhe' wx:if='{{item.state=="0"}}'>未审核</text>
+            <text class='yishenhe' wx:if='{{item.state=="1"}}'>已审核</text>
           </view>
           <view class='sxhb_img'>
+            <view wx:for='{{item.images}}' wx:for-item='image' wx:key='id' style='display:inline-block'>
+              <image src='{{image}}' class='img_xuantu' bindtap='imgPreview' data-list='{{item.images}}' data-src='{{image}}'></image>
+            </view>
+            <!-- <image src='/img/ceshi.jpg' class='img_xuantu'></image>
             <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
+            <image src='/img/ceshi.jpg' class='img_xuantu'></image> -->
           </view> 
-          <view class='sxhb_hbsj'><text>汇报时间:2018-10-26</text></view>
+          <view class='sxhb_hbsj' wx:if='{{item.state=="0"}}'>
+            <text>汇报时间:{{item.reporttime}}</text>
+          </view>
+          <view class='sxhb_hbsj' wx:if='{{item.state=="1"}}'>
+            <text>审核人:{{item.auditor}}</text>
+            <text class='sxhb_shsj'>审核时间:{{item.audittime}}</text>
+          </view>
         </view>
 
-        <view class='sxhbjl_fst'>
+        <!-- <view class='sxhbjl_fst'>
           <view class='sxhb_biaoti'>
             <text>2018第一次h</text>
             <text class='yishenhe'>已审核</text>
@@ -187,7 +196,7 @@
             <text>审核人:管理员</text>
             <text class='sxhb_shsj'>审核时间:2018-10-26</text>
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
   <!--思想汇报页面 完-->

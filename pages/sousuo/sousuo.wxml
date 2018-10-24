@@ -6,7 +6,8 @@
       <input type='text' placeholder="搜索信息" adjust-position="false" bindinput="iptchufa" value='{{inputText}}' bindconfirm='inputConfirm'></input>
       <icon type='clear' size='20' class='chahao' wx:if="{{qkch}}" bindtap='clearInput'></icon>
     </view>
-    <text class='quxiao' catchtap='quxiao'>取消</text>
+    <text class='quxiao' catchtap='quxiao' hidden='{{inputText!=""}}'>取消</text>
+    <text class='quxiao' catchtap='inputConfirm' hidden='{{inputText==""}}'>搜索</text>
   </view>
   <!-- 主页搜索页 -->
   <view class='sousuonr' wx:if="{{zhuyesousuo}}">
