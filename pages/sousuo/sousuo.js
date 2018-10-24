@@ -6,8 +6,8 @@ Page({
   */
   data: {
     searchList: [],
-    //path: 'https://www.tksqjz.com/SQJZ',
-    path: 'http://localhost:8080/SQJZ',
+    path: 'https://www.tksqjz.com/SQJZ',
+    //path: 'http://localhost:8080/SQJZ',
     qkch: false,//清空
     zhuyesousuo: true,
     ssnrjieguo: false,
