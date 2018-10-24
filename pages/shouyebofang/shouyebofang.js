@@ -373,6 +373,12 @@ Page({
             icon: 'none',
             duration: 2000
           })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
@@ -404,6 +410,12 @@ Page({
         } else if (res.data == "progress") {
           wx.showToast({
             title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
             icon: 'none',
             duration: 2000
           })
