@@ -16,7 +16,100 @@ Page({
     zaixiankaoshixs:false,
     sixianghbxianshi:false,
     xinlipgxianshi:false,
-    reportList:[]//思想汇报列表
+    reportList: [],//思想汇报列表
+    hours:0,//已完成学时
+    page:1,
+    rows:6
+  },
+  /**
+   * 获取矫正人员信息
+   */
+  rectifyPeople:function(){
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/getRectifyPeopleById', //请求当月已选课程地址
+      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      data: { jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var jzry = res.data;
+        
+        that.setData({
+          jzry: jzry
+        })
+      }
+    })
+  },
+  /**
+   * 获取当月课程列表
+   */
+  currentCourse:function(){
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
+      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      data: { jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var hours = res.data.hours;
+        var list = res.data.list;
+        that.setData({
+          hours: hours,
+          nowList: list
+        })
+      }
+    })
+  },
+  /**
+   * 历史课程
+   */
+  historyCourse:function(){
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    wx.request({
+      url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
+      // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
+      data: { jzid: jzid, 'page': that.data.page, 'rows': that.data.rows },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data;
+        if (list.length > 0) {
+          var page = that.data.page + 1;
+          that.setData({
+            page: page
+          });
+        }
+        if(that.data.historyList!=null){
+          list = that.data.historyList.concat(list);
+        }
+        that.setData({
+          historyList: list
+        })
+      }
+    })
+  },
+  /**
+   * 视频播放触发事件
+   */
+  coursePlay:function(e){
+    var id = e.currentTarget.dataset.id;
+    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
+    wx.navigateTo({ 
+      url: "/pages/shouyebofang/shouyebofang?record=sign&id=" + id
+    })
   },
   /** 课程学习*/
   kechengxuexi:function(){
@@ -235,6 +328,10 @@ Page({
   onLoad: function (options) {
     this.loadReport();
     pageReport = 2;
+
+    this.rectifyPeople();//矫正人员信息
+    this.currentCourse();//当月课程
+    this.historyCourse();//历史课程
   },
 
   /**
@@ -279,6 +376,9 @@ Page({
     var sxhb=this.data.sixhb_xz;
     if (sxhb){
       this.loadMoreReport()
+    }
+    if (this.data.kechxz_xz){//是否选择是课程学习
+      this.historyCourse();//历史课程
     }
   },
 
