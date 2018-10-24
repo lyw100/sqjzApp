@@ -16,6 +16,8 @@ Page({
     shipinShow: true,
     tuwenShow:false,
     yuyinShow: false,
+    page:1,
+    moreList:[]
   },
 
   shipin:function(){
@@ -47,7 +49,8 @@ Page({
     var subid=options.subid;
     var jzid = getApp().globalData.jiaozhengid;
     this.setData({
-      subid:subid
+      subid:subid,
+      jzid:jzid
     })
     wx.request({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
@@ -71,25 +74,9 @@ Page({
         })
       }
     })
+    //获取更多推荐
+    this.moreCourseList();
 
-
-
-    var url = getApp().globalData.url + '/course/getMoreCourse';//获取推荐课程列表地址
-  
-    wx.request({
-      url: url, //获取推荐课程列表地址
-      data: {jzid:jzid, subid: subid, page: 1, rows: 6 },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var list = res.data;
-        that.setData({
-          moreList: list
-        })
-      }
-    })
 
 
   },
@@ -133,7 +120,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    //获取更多推荐
+    this.moreCourseList();
   },
 
   /**
@@ -150,19 +138,32 @@ Page({
     })
   },
 
-  // imgCHange:function(e){
-  //   var detail=e.detail;
-  //   var index=e.detail.current;
-  //   var imgUrls=this.data.imgUrls;
-  //   imgUrls[index].width="100%";
-  //   var pre=index-1;
-  //   if(pre<0){
-  //     pre=imgUrls.length-1;
-  //   }
-  //   imgUrls[pre].width = "80%";
-  //   this.setData({
-  //     imgUrls:imgUrls
-  //   })
-  //   // console.log(detail);
-  // }
+  moreCourseList:function(){
+    var that=this;
+    var page=this.data.page;
+    var url = getApp().globalData.url + '/course/getMoreCourse';//获取推荐课程列表地址
+    var subid=this.data.subid;
+    var jzid=this.data.jzid;
+    wx.request({
+      url: url, //获取推荐课程列表地址
+      data: { jzid: jzid, subid: subid, page: page, rows: 6 },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);        
+        var list = res.data;
+        if(list.length>0){
+          var moreList = that.data.moreList.concat(list);
+          page+=1;
+          that.setData({
+            page:page,
+            moreList: moreList
+          })
+        }
+
+      }
+    })
+
+  }
 })

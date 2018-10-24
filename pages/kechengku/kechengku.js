@@ -88,7 +88,7 @@ Page({
     })
 
     //获取必修科目
-    // this.getKMList(0);
+    this.getKMList(0);
 
   },
 
@@ -103,11 +103,46 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   if(this.data.bixiuke.length>0){
-      this.bixiuke();
-    }else{
-      this.xuanxiu();
-    }
+    // let jzid = getApp().globalData.jiaozhengid;
+    // var that=this;
+    // //获取所有已选课程的ids
+    // wx.request({
+    //   url: getApp().globalData.url + '/course/getSignIds', //获取所有已选课程的ids
+    //   data: {  jzid: jzid },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success(res) {
+    //     var ids=res.data;
+    //     var subList=that.data.subList;
+    //     console.log(subList);  
+    //     for(var i=0;i<subList.length;i++){
+    //       var sub=subList[i];
+          // console.log(sub.name);
+          // console.log(sub);
+          // console.log(subList[i].courseList);
+          // console.log(sub[courseList]); 
+          // var courseList = sub.courseList;
+          // for(let j=0;j<courseList;j++){
+          //     let course=courseList[j];
+          //     let courseid=course.id;
+          //   if(j==0){
+          //     console.log(ids.indexOf(courseid));
+          //     console.log(ids.toLocalString().indexOf(courseid));
+
+          //   }  
+          //   if (ids.indexOf(courseid)>-1){
+          //     course.isSign=1;
+          //   }
+          // }
+        // }
+        // that.setData({
+        //   subList:subList
+        // })
+    //   }
+    // })
+
+
   },
 
   /**
@@ -128,13 +163,41 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data;
+        // for(var i=0;i<list.length;i++){
+        //   if(i==0){
+        //     list[i].width="100%";
+        //   }else{
+        //     list[i].width = "80%";
+        //   }
+        // }
+        that.setData({
+          swiperCurrent: 0,
+          imgUrls: list
+        })
+      }
+    })
 
+    //获取必修科目
+    this.getKMList(0);
+
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    
 
   },
 
@@ -255,6 +318,12 @@ Page({
             subList: subList,
           })
           
+        }else if(res.data=="more"){
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
@@ -278,7 +347,53 @@ Page({
    */
   xuanxiuke:function(){
     this.getKMList(1);
+  },
+
+  /**
+   * 取消选课  判断播放进度是否为0  不是0不可以取消
+   */
+  cancleSign: function (e) {
+    var courseid = e.currentTarget.dataset.id;
+    var that = this;
+    var subindex = e.currentTarget.dataset.subindex;
+    var index = e.currentTarget.dataset.index;
+
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          var subList = that.data.subList;
+          var courseList = subList[subindex].courseList;
+          courseList[index].isSign = 0;
+          that.setData({
+            subList: subList,
+          })
+          wx.showToast({
+            title: '取消课程成功',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
-
-
 })

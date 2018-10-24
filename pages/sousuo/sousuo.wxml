@@ -68,7 +68,7 @@
             <text class='djjg_xs'>学时 : {{item.hours}}</text>
             <text class='djjg_bfcs'>{{item.playnumber}}次播放</text>
           </view>
-          <view class='xuank'>
+          <view class='xuank' wx:if='{{item.subject.type=="0"}}'>
             <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}" data-index='{{index}}' data-id='{{item.id}}'>选课</text>
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
@@ -103,7 +103,7 @@
         <text>相关资料</text>
       </view>
       <view class='xgzl_nr'>
-        <view class='djjg_baogao' catchtap='tzbfyemain' wx:for="{{relateList}}" wx:key="{{index}}">
+        <view class='djjg_baogao' catchtap='tzbfyemain' wx:for="{{relateList}}" wx:key="{{index}}" id='{{item.id}}'>
           <image class='djjg_img' src='{{item.thumbnail}}'></image>
           <view class='djjg_sm'>
             <view class='xgzl_bg'>
