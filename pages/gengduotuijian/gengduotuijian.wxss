@@ -39,18 +39,18 @@ line-height:60rpx;
 
 .shipineirong swiper{
   width:100%;
-  height:310rpx;
+  height:370rpx;
 }
 
 .titimg{
   width:100%;
-  height:310rpx;
+  height:370rpx;
   position: relative;
   margin-bottom: 20rpx;
 }
 .titimg .biaotou{
   width:100%;
-  height:100%;
+  height:370rpx;
 }
 .titxinxi{
   position: absolute;
@@ -118,6 +118,9 @@ line-height:60rpx;
   position: relative;
   vertical-align: top;
   margin-bottom: 30rpx;
+}
+.lishikc:nth-child(even){
+  float: right;
 }
 .lskcimg{
   width: 362rpx;

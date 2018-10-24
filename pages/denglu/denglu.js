@@ -44,6 +44,12 @@ Page({
           wx.navigateTo({
             url: '../shualiandenglu/shualiandenglu',
           })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
         }
       }
     })

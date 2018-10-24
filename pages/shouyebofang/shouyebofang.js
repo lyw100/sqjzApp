@@ -49,7 +49,8 @@ Page({
         that.setData({
           record: res.data,
           progress: res.data.progress,
-          isSign: isSign
+          isSign: isSign,
+          subType:res.data.course.subject.type
         })
         that.moreCourse();
 
@@ -291,6 +292,12 @@ Page({
             moreList: moreList,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
@@ -319,9 +326,101 @@ Page({
             isSign: 1,
           })
           // that.moreCourseTap(e);
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     })
-  }
+  },
 
+  /**
+   * 取消选课  判断播放进度是否为0  不是0不可以取消
+   */
+  cancleSign:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          var moreList = that.data.moreList;
+          moreList[index].isSign = 0;
+          that.setData({
+            moreList: moreList,
+          })
+          wx.showToast({
+            title: '取消课程成功',
+            icon: 'none',
+            duration: 2000
+          })
+          // that.moreCourseTap(e);
+        } else if (res.data == "progress") {//进度不为空
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+
+
+  /**
+   * 取消正在播放的视频添加选课
+   */
+  quxiaoxuanke: function (e) {
+    var that = this;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = getApp().globalData.jiaozhengid;
+
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          that.setData({
+            isSign: 0,
+          })
+          // that.moreCourseTap(e);
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
 })
