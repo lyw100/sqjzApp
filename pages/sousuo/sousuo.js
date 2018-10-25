@@ -45,9 +45,9 @@ Page({
         qkch: false,
         ssnrjieguo: false,
         zhuyesousuo: true,
-        djjg: false
+        djjg: false,
+        inputText: text
       })
-
     } else {
       this.setData({
         qkch: true,
@@ -199,8 +199,8 @@ Page({
     })
   },
   //搜索框回车
-  inputConfirm: function (e) {
-    var text = e.detail.value;
+  inputConfirm: function () {
+    var text = this.data.inputText
     this.setData({
       inputText: text,
       ssnrjieguo: false
@@ -518,10 +518,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if(this.data.inputText==''){
-      return;
-    }
-    this.search();
+    
   },
 
   /**

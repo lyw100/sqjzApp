@@ -1,18 +1,18 @@
 <view class='wode'>
   <view class='wd_tit'>
-    <image class='wd_img' src='/img/yiyuan.png'></image>
+    <image class='wd_img' src='{{jzry.photo}}'></image>
     <view class='tit_sm'>
       <view class='wd_name'>
-        <text>张学明</text>
-        <text>男</text>
-        <text>35</text>
+        <text>{{jzry.name}}</text>
+        <text>{{jzry.sex==0?'女':'男'}}</text>
+        <text>{{jzry.age}}</text>
       </view>
       <view class='tit_dizhi'>
-        <text>石家庄桥西区司法局</text>
+        <text>{{jzry.jzdwName}}</text>
       </view>
       <view class='tit_guiding'>
         <text>规定学时:8</text>
-        <text>完成学时:4.5</text>
+        <text>完成学时:{{hours}}</text>
       </view>
       <image class='tit_ling' src='/img/wuxiaoxi.png'></image>
       <image class='tit_shezhi' src='/img/shezhi.png'></image>
@@ -46,21 +46,14 @@
     </view>
 
     <view class="dykcsp">
-      <view class='left' catchtap='tzbofangym'>
-        <image class='dykctupian' src='/img/yiyuan.png'></image>
-        <text class="xueshi">学时:1.2</text>
-        <text class="shijian">01：20：30</text>
-        <text class="shuoming">中华人民共和国教育法</text>
-        <text class='xuexijindu'>学习进度</text>
-        <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3" />
-      </view>
-      <view class='left' catchtap='tzbofangym'>
-        <image class='dykctupian' src='/img/yiyuan.png'></image>
-        <text class="xueshi">学时:1.2</text>
-        <text class="shijian">01：20：30</text>
-        <text class="shuoming">中华人民共和国教育法</text>
-        <text class='xuexijindu'>学习进度</text>
-        <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3" />
+      <view  class='left' wx:for="{{nowList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
+        <image data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' catchtap='coursePlay' src='{{sign.course.thumbnail}}'></image>
+        <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
+        <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
+        <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
+        <text data-index='{{index}}' class="shuoming">{{sign.course.name}}</text>
+        <text data-index='{{index}}' class='xuexijindu'>学习进度</text>
+        <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3"/>
       </view>
     </view>
 
@@ -68,21 +61,13 @@
       <text>历史课程</text>
     </view>
     <view class="dykcsp">
-      <view class='left' catchtap='tzbofangym'>
-        <image class='dykctupian' src='/img/yiyuan.png'></image>
-        <text class="shijian">已完成</text>
-        <text class="shuoming">中华人民共和国教育法阿斯蒂芬</text>
+      <view  class='left' wx:for="{{historyList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
+        <image catchtap='coursePlay' data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
+        <!-- <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
+        <text class='shijian'>{{sign.state==1?'已完成':'未完成'}}</text>
+        <text class='shuoming'>{{sign.course.name}}</text>
       </view>
-      <view class='left' catchtap='tzbofangym'>
-        <image class='dykctupian' src='/img/yiyuan.png'></image>
-        <text class="shijian">已完成</text>
-        <text class="shuoming">中华人民共和国教育法</text>
-      </view>
-      <view class='left' catchtap='tzbofangym'>
-        <image class='dykctupian' src='/img/yiyuan.png'></image>
-        <text class="shijian">已完成</text>
-        <text class="shuoming">中华人民共和国教育法</text>
-      </view>
+
     </view>
   </view>
   <!--课程学习页面完-->
@@ -154,21 +139,30 @@
         <text>思想汇报记录</text>
       </view>
       <view class='sxhbjl_zong'>
-        <view class='sxhbjl_fst'>
+        <view class='sxhbjl_fst' wx:for='{{reportList}}' wx:key='{{index}}'>
           <view class='sxhb_biaoti'>
-            <text>2018第二次h</text>
-            <text class='weishenhe'>未审核</text>
+            <text>{{item.title}}</text>
+            <text class='weishenhe' wx:if='{{item.state=="0"}}'>未审核</text>
+            <text class='yishenhe' wx:if='{{item.state=="1"}}'>已审核</text>
           </view>
           <view class='sxhb_img'>
+            <view wx:for='{{item.images}}' wx:for-item='image' wx:key='id' style='display:inline-block'>
+              <image src='{{image}}' class='img_xuantu' bindtap='imgPreview' data-list='{{item.images}}' data-src='{{image}}'></image>
+            </view>
+            <!-- <image src='/img/ceshi.jpg' class='img_xuantu'></image>
             <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
-            <image src='/img/ceshi.jpg' class='img_xuantu'></image>
+            <image src='/img/ceshi.jpg' class='img_xuantu'></image> -->
           </view> 
-          <view class='sxhb_hbsj'><text>汇报时间:2018-10-26</text></view>
+          <view class='sxhb_hbsj' wx:if='{{item.state=="0"}}'>
+            <text>汇报时间:{{item.reporttime}}</text>
+          </view>
+          <view class='sxhb_hbsj' wx:if='{{item.state=="1"}}'>
+            <text>审核人:{{item.auditor}}</text>
+            <text class='sxhb_shsj'>审核时间:{{item.audittime}}</text>
+          </view>
         </view>
 
-        <view class='sxhbjl_fst'>
+        <!-- <view class='sxhbjl_fst'>
           <view class='sxhb_biaoti'>
             <text>2018第一次h</text>
             <text class='yishenhe'>已审核</text>
@@ -187,7 +181,7 @@
             <text>审核人:管理员</text>
             <text class='sxhb_shsj'>审核时间:2018-10-26</text>
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
   <!--思想汇报页面 完-->
