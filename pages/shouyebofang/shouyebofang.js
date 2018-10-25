@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    duigouxz: false
+    duigouxz: false,
+    lastTime:0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,6 +53,8 @@ Page({
           isSign: isSign,
           subType:res.data.course.subject.type
         })
+
+        
         that.moreCourse();
 
       }
@@ -66,11 +69,10 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
-    
     if (this.data.progress > 0) {//播放进度大于0秒
-      wx.setStorageSync('lastTime', this.data.progress) //小程序全局同步存储  key   object
-    }else{
-      wx.setStorageSync('lastTime', 0)
+      this.setData({
+        lastTime: this.data.progress
+      })
     }
   },
 
@@ -122,6 +124,8 @@ Page({
   * 开始播放时执行的方法
   */
   bindPlay: function () {
+    // this.videoContext.play();
+    // console.log("点击播放");
     this.videoContext.requestFullScreen();//执行全屏方法
   },
   /**
@@ -136,6 +140,7 @@ Page({
   bindFullscreenchange: function (e) {
     var isfull = e.detail.fullScreen;
     if (!isfull) {
+      // console.log("非全屏暂停");
       this.videoContext.pause();//视频暂停
     }
   },
@@ -148,7 +153,7 @@ Page({
   bindTimeupdate: function (e) {
     //console.log(e.detail)
     var currentTime = e.detail.currentTime;//当前时间
-    var lastTime = wx.getStorageSync('lastTime');//上一个节点的时间
+    var lastTime = this.data.lastTime;//上一个节点的时间
     var progress = this.data.progress;//播放进度  最大的播放时间
 
 
@@ -157,18 +162,21 @@ Page({
     // console.log("lastTime:" + lastTime);
 
     //当前播放时间与上次播放节点时间差大于2秒
-    if (lastTime - currentTime > 3 || currentTime - lastTime > 3) {
+    if (lastTime - currentTime > 10 || currentTime - lastTime > 10) {
       if (currentTime < progress) {//当前播放时间小于播放进度
         this.videoContext.seek(currentTime);
-        wx.setStorageSync('lastTime', currentTime)
+        this.setData({
+          lastTime: currentTime
+        })
         return;
       } else {
         this.videoContext.seek(lastTime);
         return;
       }
     }
-
-    wx.setStorageSync('lastTime', currentTime);
+    this.setData({
+      lastTime:currentTime
+    })
     //正常播放
     if (currentTime > progress) {
       this.setData({
