@@ -1,11 +1,11 @@
 <view class='wode'>
   <view class='wd_tit'>
-    <image class='wd_img' src='/img/yiyuan.png'></image>
+    <image class='wd_img' src='{{jzry.photo}}'></image>
     <view class='tit_sm'>
       <view class='wd_name'>
         <text>{{jzry.name}}</text>
         <text>{{jzry.sex==0?'女':'男'}}</text>
-        <text>35</text>
+        <text>{{jzry.age}}</text>
       </view>
       <view class='tit_dizhi'>
         <text>{{jzry.jzdwName}}</text>
