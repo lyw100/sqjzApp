@@ -238,20 +238,33 @@ Page({
   },
   /** 心理评估*/
   xinlipiggu: function () {
-    this.setData({
-      xinlpg_wxz: false,
-      xinlpg_xz: true,
-      kechxz_wxz: true,
-      kechxz_xz: false,
-      zaixks_wxz: true,
-      zaixks_xz: false,
-      sixhb_wxz: true,
-      sixhb_xz: false,
-      kechengxuexixs: false,
-      zaixiankaoshixs: false,
-      sixianghbxianshi: false,
-      xinlipgxianshi: true,
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var list = res.data;
+        that.setData({
+          xinlpg_wxz: false,
+          xinlpg_xz: true,
+          kechxz_wxz: true,
+          kechxz_xz: false,
+          zaixks_wxz: true,
+          zaixks_xz: false,
+          sixhb_wxz: true,
+          sixhb_xz: false,
+          kechengxuexixs: false,
+          zaixiankaoshixs: false,
+          sixianghbxianshi: false,
+          xinlipgxianshi: true,
+          psyReportList: list
+        })
+      }
     })
+
   },
  
   /**
@@ -271,9 +284,10 @@ Page({
       url: '../xinlipinggu/xinlipinggu',
     })
   },
-  tzceshijieguo:function(){
+  tzceshijieguo: function (e) {
+    var psyreportid = e.currentTarget.dataset.psyreportid;
     wx.navigateTo({
-      url: '../ceshijieguo/ceshijieguo',
+      url: '../ceshijieguo/ceshijieguo?psyrepid=' + psyreportid,
     })
   },
 
