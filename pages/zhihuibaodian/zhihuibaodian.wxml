@@ -21,7 +21,7 @@
           </view>
         </view>
         <view class='flfg_xinxi' catchtap='tzxinwenye' wx:elif="{{item.isTop ==0}}" data-index="{{item.id}}">
-          <text class='xx_tm'>{{item.title}} </text>
+          <text class='xx_tm'>{{item.title}}</text>
           <text class='flfg_riqi'>{{item.audittime}}</text>
         </view>
       </view>
@@ -37,7 +37,7 @@
        <view class='xljt_tit' catchtap='tzxinwenye' wx:if="{{item.isTop ==1}}" data-index="{{item.id}}">
           <view class='xljt_left'>
             <text class='xljt_bt'>{{item.title}}</text>
-            <view  class='zhidingsz'>
+            <view  class='zhidingsz zhidingjianju'>
               <text class='zd'>置顶</text>
               <text class='zdsz_sft'>{{item.source}}</text>
             </view>
@@ -79,7 +79,7 @@
          <view class='xljt_tit' catchtap='tzxinwenye' wx:elif="{{item.isTop ==0}}" data-index="{{item.id}}">
           <view class='xljt_left'>
             <text class='xljt_bt'>{{item.title}}</text>
-            <view  class='zhidingsz'>
+            <view  class='zhidingsz zhidingjianju'>
               <text class='zdsz_sft'>{{item.source}}</text>
               <text class='xiaoshi'>{{item.audittime}}</text>
             </view>
