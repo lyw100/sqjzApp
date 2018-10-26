@@ -253,6 +253,10 @@ Page({
       sixianghbxianshi: false,
       xinlipgxianshi: true,
     })
+  },
+  //加载心理评估页面的历史考试
+  loadPsyReportList: function () {
+    var that = this;
     wx.request({
       url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
       data: {},
@@ -266,9 +270,7 @@ Page({
         })
       }
     })
-
   },
- 
   /**
    * 跳转播放页面
    */
@@ -348,6 +350,7 @@ Page({
     this.rectifyPeople();//矫正人员信息
     this.currentCourse();//当月课程
     this.historyCourse();//历史课程
+    this.loadPsyReportList();//心理评估历史考试
   },
 
   /**
