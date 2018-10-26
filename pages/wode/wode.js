@@ -238,8 +238,7 @@ Page({
   },
   /** 心理评估*/
   xinlipiggu: function () {
-    var that = this;
-    that.setData({
+    this.setData({
       xinlpg_wxz: false,
       xinlpg_xz: true,
       kechxz_wxz: true,
