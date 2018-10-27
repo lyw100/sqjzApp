@@ -171,6 +171,7 @@ Page({
     wx.request({
       url: path + '/report/list',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         page: 1,
         rows: 5
       },
@@ -206,6 +207,7 @@ Page({
     wx.request({
       url: path+'/report/list',
       data:{
+        jzid: getApp().globalData.jiaozhengid,
         page: pageReport,
         rows:5
       },
