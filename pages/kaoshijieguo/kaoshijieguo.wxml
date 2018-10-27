@@ -6,16 +6,16 @@
         <text>生成试卷结果时间:</text>
       </view>
       <view>
-        <text>2018-10-12/15:30</text>
+        <text>{{pPaperObj.endTime}}</text>
       </view>
     </view>
     <view class='right'>
       <image class='xiaolian' src='/img/xiaolian.png'></image>
       <view class='fenshu'>
-        <text>99</text>
+        <text>{{pPaperObj.hasScore}}</text>
       </view>
       <view class='zf'>
-        <text>总分  100 </text>
+        <text>总分  {{pPaperObj.totalScore}}</text>
       </view>
     </view>
   </view>
@@ -25,109 +25,11 @@
       <text>答题卡</text>
     </view>
     <view class='dtk_center'>
-      <text class='dtk_yanselan'>1</text>
-      <text class='dtk_yansered'>2</text>
-      <text class='dtk_yansered'>3</text>
-      <text>4</text>
-      <text class='dtk_yanselan '>5</text>
-      <text>6</text>
-      <text>7</text>
-      <text class='dtk_yanselan '>8</text>
-      <text>9</text>
-      <text>10</text>
-      <text>11</text>
-      <text>12</text>
-      <text class='dtk_yanselan '>13</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
-      <text>14</text>
+      <block wx:for="{{pQuestionArr}}" wx:key="qid" wx:for-item="item" wx:for-index="qid">
+        <text wx:if="{{item.isRight=='1'}}" class='dtk_yanselan'>{{qid+1}}</text>
+        <text wx:if="{{item.isRight=='0'}}" class='dtk_yansered'>{{qid+1}}</text>
+        <text wx:if="{{item.isRight==''}}">{{qid+1}}</text>
+      </block>
     </view>
   </view>
 </view>

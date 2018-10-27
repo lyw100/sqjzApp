@@ -1,5 +1,6 @@
+var WxParse = require('../../wxParse/wxParse.js');
+var timer = require('../../utils/wxTimer.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -8,8 +9,9 @@ Page({
     autoplay: false,
     ksxq_timu:true,
     ksxq_datk:false,
+    wxTimerList: {}
   },
-
+  // 点击答题卡跳转答题卡页面
   datika_dj:function(){
     this.setData({
       ksxq_timu: false,
@@ -17,31 +19,195 @@ Page({
     })
   },
   /**点击未选的答案返回主页面 */
-  fhdtk_dt:function(){
+  fhdtk_dt:function(e){
+    // 轮播跳转指定页
+    var index = e.currentTarget.dataset.index
     this.setData({
       ksxq_timu: true,
       ksxq_datk: false,
+      sequence: index+1,
+      curIndex: index
     })
   },
+  // 点击交卷
   jiaojjieguo:function(){
-      wx.showModal({
-        content: '确定要交卷吗',
-        success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../kaoshijieguo/kaoshijieguo',
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+    var ppid = this.data.ppid
+    var pQuestionArr = this.data.pQuestionArr
+    var that = this
+
+    // 自动评卷
+    var jsonarray = JSON.stringify(pQuestionArr)
+    // console.log(jsonarray)
+    wx.request({
+      url: 'http://localhost:8080/SQJZ' + '/minipro/zxks/savePPaper',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        ppid: ppid,
+        jsonarray: jsonarray
+      },
+      success: function (res) {
+        if (res.data.msg == "success") {
+          wx.navigateTo({
+            url: '../kaoshijieguo/kaoshijieguo?ppid=' + ppid,
+          })
+          wx.showToast({
+            title: '交卷成功！',
+            icon: 'success'
+          })
+        } else {
+          wx.showToast({
+            title: '交卷失败！',
+            icon: 'none'
+          })
+        }
+      }
+    })
+
+    // wx.showModal({
+    //   content: '确定要交卷吗',
+    //   success: function (res) {
+    //     if (res.confirm) {
+          
+    //     } else if (res.cancel) {
+    //       console.log('取消交卷')
+    //     }
+    //   }
+    // })
+  },
+  // 选择对应选项
+  menuClick: function(e){
+    var index = e.currentTarget.dataset.index
+    var key = e.currentTarget.dataset.key
+    // 点击改变选项样式，存储选项
+    var pQuestionArr = this.data.pQuestionArr;
+    for (var i = 0; i < pQuestionArr.length; i++) {
+      let qtype = pQuestionArr[i].question.type
+      if (i == index) {
+        // 单选题
+        if (qtype == '0') {
+          pQuestionArr[i].hasChoose = key
+        }
+        // 多选题
+        if (qtype == '1') {
+          let isChoose = true
+          let hasChoose = pQuestionArr[i].hasChoose;
+          if (hasChoose != ""){
+            let chooseArr = hasChoose.split(",")
+            for (var j = 0; j <chooseArr.length; j++){
+              if (chooseArr[j]==key){
+                chooseArr.splice(j, 1);
+                isChoose = false
+              }
+            }
+            if (isChoose){
+              pQuestionArr[i].hasChoose = hasChoose + "," + key
+            }else{
+              pQuestionArr[i].hasChoose = chooseArr.join(",")
+            }
+          }else{
+            pQuestionArr[i].hasChoose = hasChoose + key
+          }
+        }else{//单选和判断
+          pQuestionArr[i].hasChoose = key
+        }
+        // 判断题
+        if (qtype == '2') {
+          if('A' == key){
+            pQuestionArr[i].hasChoose = '1'
+          } else if('B' == key){
+            pQuestionArr[i].hasChoose = '0'
           }
         }
-      })
+      }
+    }
+    this.setData({
+      pQuestionArr: pQuestionArr
+    })
   },
+  // 查询试卷题目
+  getPPaper: function(ppid){
+    // 生成试卷
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/SQJZ' + '/minipro/zxks/getQuestionList',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        ppid: ppid
+      },
+      success: function (res) {
+        if (res.data.msg == "success") {
+          var pQuestionArr = res.data.pQuestionArr
+          //富文本循环替换html标签
+          for (var i = 0; i < pQuestionArr.length; i++) {
+            WxParse.wxParse('topic' + i, 'html', pQuestionArr[i].question.content, that)
+            if (i === pQuestionArr.length - 1) {
+              WxParse.wxParseTemArray("qcontentArr", 'topic', pQuestionArr.length, that)
+            }
+          }
+          let qcontentArr = that.data.qcontentArr;
+          for (var j = 0; j < qcontentArr.length; j++) {
+            pQuestionArr[j].question.content = qcontentArr[j][0].nodes[0].text
+          }
+          var tfngNum = res.data.tfngNum
+          var singleNum = res.data.singleNum
+          var multipleNum = res.data.multipleNum
+          that.setData({
+            pQuestionArr: pQuestionArr,//查询结果
+            qcount: pQuestionArr.length,//题目数量
+            tfngNum: tfngNum,
+            singleNum: singleNum,
+            multipleNum: multipleNum,
+            sequence: 1,//第一题序号
+            curIndex: 0
+          })
+          // console.log(pQuestionArr)
+        } else {
+          wx.showToast({
+            title: '查询试卷失败！',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+  // 题目滑动触发事件
+  changeQuestion: function (e) {
+    this.setData({
+      sequence: e.detail.current + 1
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this
+    var ppid = options.ppid
+    var timeStr = options.timeStr
+    this.setData({
+      ppid: ppid
+    })
+    // 查询试卷内容
+    this.getPPaper(ppid)
+    // 定时器
+    var wxTimer = new timer({
+      beginTime: timeStr,
+      name: 'wxTimer',
+      complete: function () {
+        that.jiaojjieguo()
+      }
+    })
+    wxTimer.start(this)
   },
 
   /**
