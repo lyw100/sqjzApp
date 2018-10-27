@@ -51,6 +51,38 @@
   margin-right: 20rpx;
   margin-top: 5rpx;
 }
+.kcxz_zhangjie{
+  width: 100%;
+  height: 118rpx;
+  overflow-x:scroll;
+  overflow-y: hidden;
+  margin-top: 10px;
+}
+.ul{
+  width: 10000px;
+}
+.kcxz_zhangjie text{
+  float:left;
+  width: 240rpx;
+  height: 90rpx;
+  font-size: 30rpx;
+  display: inline-block;
+  padding:10rpx;
+  margin-left: 15rpx;
+  overflow:hidden;
+ line-height:46rpx;
+  word-break:break-all;
+ display:-webkit-box;
+ -webkit-line-clamp:2;
+ -webkit-box-orient:vertical;
+  box-shadow: 2px 1px 5px #e5e5e5;
+  -moz-box-shadow:  2px 1px 5px #e5e5e5; /* 老的 Firefox */
+}
+.kcxz_zhangjie text:last-child{
+  margin-right: 15rpx;
+}
+
+
 .xgkc{
   margin-top: 20rpx;
   width: 100%;

@@ -13,11 +13,11 @@
 
 .titipt {
   width: 70%;
-  height: 74rpx;
+  height: 60rpx;
   background: #f2f2f2;
   display: inline-block;
   border-radius: 40rpx;
-  margin-top: 10rpx;
+  margin-top: 18rpx;
   margin-left: 40rpx;
   position: relative;
 }
@@ -30,18 +30,18 @@
 
 .titipt input {
   width: 360rpx;
-  height: 50rpx;
+  height: 40rpx;
   display: inline-block;
   font-size: 32rpx;
   color: #7a7883;
-  margin-top: 10rpx;
+  margin-top: 4rpx;
   margin-left: 80rpx;
 }
 
 .chahao {
   margin-left: 15rpx;
   position: absolute;
-  top: 15rpx;
+  top: 10rpx;
   right: 25rpx;
 }
 
@@ -49,7 +49,7 @@
   float: right;
   margin-right: 60rpx;
   font-size: 38rpx;
-  margin-top: 25rpx;
+  margin-top: 20rpx;
   color: #7a7883;
 }
 

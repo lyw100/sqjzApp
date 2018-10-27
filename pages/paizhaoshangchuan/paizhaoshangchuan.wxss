@@ -18,10 +18,13 @@ textarea{
   padding: 20rpx 30rpx;
   margin: 0 auto;
 }
+.tupianview{
+  display: inline-block;
+}
 .tupian{
   width: 196rpx;
   height: 196rpx;
-  margin-right: 20rpx;
+  margin-right: 15rpx;
   margin-bottom: 20rpx;
 }
 .tupian:nth-child(3n){

@@ -20,31 +20,29 @@
   margin-left: 20rpx;
   font-size: 34rpx;
   color: #7e7c87;
-  font-weight: bold;
 }
 
 .xuanxiuke {
   margin-left: 40rpx;
   font-size: 34rpx;
-  color: #7e7c87;
-  font-weight: bold;
+  color:#7e7c87;
 }
 
 .yanse {
   font-size: 40rpx;
   color: #2499f9;
-  font-weight: bold;
 }
 
 .flfg, .xljt, .shbz {
-  margin-top: 110rpx;
+  margin-top: 92rpx;
   height: auto;
-  padding: 0 20rpx;
+  padding:0 20rpx;
 }
 
 .redain {
   font-size: 34rpx;
   font-weight: bold;
+  padding-top:10px;
 }
 
 .flfg_img {
@@ -61,13 +59,13 @@
   border-bottom: 1px solid #e5e5e5;
   font-size: 34rpx;
 }
-
 .zhidingsz {
-  margin-top: 15rpx;
   font-size: 30rpx;
   color: #b8b8b8;
 }
-
+.zhidingjianju{
+  margin-top: 65rpx;
+}
 .zd {
   color: #2499f9;
   border: 1px solid #2499f9;
@@ -100,15 +98,10 @@
 .xljt_tit {
   width: 100%;
   height: auto;
-  padding: 25rpx 0;
+  padding:20rpx 0 17rpx;
   border-bottom: 1px solid #e5e5e5;
   font-size: 34rpx;
 }
-
-.xljt_tit:nth-child(1) {
-  padding-top: 5rpx;
-}
-
 .xljt_left {
   display: inline-block;
   width: 61.8%;
@@ -119,13 +112,16 @@
 .xljt_img {
   width: 250rpx;
   height: 140rpx;
+  padding-top:3px;
+
 }
 
 .xljt_bt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
+  height: 44rpx;
 }
 
 .zdsz_sft {

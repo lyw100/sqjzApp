@@ -1,14 +1,16 @@
 <!--拍照上传页面-->
 <view class='pzsc'>
     <view class='wenben'>
-       <textarea placeholder="请输入第几年汇报" adjust-position="false"/>
+       <textarea placeholder="请输入第几年汇报" adjust-position="false" bindinput='inputBind'/>
     </view>
     <view class='xztupian'>
+      <view class='tupianview' wx:for='{{imgList}}' wx:key='{{index}}' wx:for-item='img' data-index='{{index}}' bindlongpress='deleteImg'>
+        <image src='{{img}}' class='tupian' bindtap='imgPreview' data-src='{{img}}' data-list='{{imgList}}'></image>
+      </view>
+      <!-- <image src='/img/yiyuan.png' class='tupian'></image>
       <image src='/img/yiyuan.png' class='tupian'></image>
-      <image src='/img/yiyuan.png' class='tupian'></image>
-      <image src='/img/yiyuan.png' class='tupian'></image>
-      <image src='/img/yiyuan.png' class='tupian'></image>
+      <image src='/img/yiyuan.png' class='tupian'></image> -->
       <image src='/img/tianjian.png' class='tupian' catchtap='dianji'></image>
     </view>
-    <view class='fabiao'><text>发表</text></view>
+    <view class='fabiao' bindtap='fabiao'><text>发表</text></view>
 </view>

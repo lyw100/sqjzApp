@@ -1,6 +1,6 @@
 <!--shouye.wxml-->
 <view class='nr'>
-<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 200px; height: 200px;border-radius:50%;margin-top:50rpx"></camera> 
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;border-radius:165px"></camera> 
 <view class="anniu" catchtap="takePhoto" >
        <text>登录</text>
    </view>
