@@ -238,6 +238,23 @@ Page({
   },
   /** 心理评估*/
   xinlipiggu: function () {
+    this.setData({
+      xinlpg_wxz: false,
+      xinlpg_xz: true,
+      kechxz_wxz: true,
+      kechxz_xz: false,
+      zaixks_wxz: true,
+      zaixks_xz: false,
+      sixhb_wxz: true,
+      sixhb_xz: false,
+      kechengxuexixs: false,
+      zaixiankaoshixs: false,
+      sixianghbxianshi: false,
+      xinlipgxianshi: true,
+    })
+  },
+  //加载心理评估页面的历史考试
+  loadPsyReportList: function () {
     var that = this;
     wx.request({
       url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
@@ -248,25 +265,11 @@ Page({
       success(res) {
         var list = res.data;
         that.setData({
-          xinlpg_wxz: false,
-          xinlpg_xz: true,
-          kechxz_wxz: true,
-          kechxz_xz: false,
-          zaixks_wxz: true,
-          zaixks_xz: false,
-          sixhb_wxz: true,
-          sixhb_xz: false,
-          kechengxuexixs: false,
-          zaixiankaoshixs: false,
-          sixianghbxianshi: false,
-          xinlipgxianshi: true,
           psyReportList: list
         })
       }
     })
-
   },
- 
   /**
    * 跳转播放页面
    */
@@ -346,6 +349,7 @@ Page({
     this.rectifyPeople();//矫正人员信息
     this.currentCourse();//当月课程
     this.historyCourse();//历史课程
+    this.loadPsyReportList();//心理评估历史考试
   },
 
   /**

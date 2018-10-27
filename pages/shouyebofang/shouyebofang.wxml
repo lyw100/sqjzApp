@@ -21,6 +21,17 @@
   </block>
   <image class='fenxiang' src="/img/fenxiang.png"></image>
 </view>
+<view class='kcxz_zhangjie'>
+  <view class='ul'>
+     <text>第一章节第一节热打发第三方大范甘迪</text>
+  <text>第一章节第一节</text>
+  <text>第二章节第一节</text>
+  <text>第三章节第一节</text>
+  <text>第四章节第一节</text>
+  <text>第四章节第一节</text>
+  <text>第四章节第10节</text>
+  </view>
+</view>
 <view class='xgkc'>
   <text>相关课程</text>
   <text class='gdtj' catchtap="gengduotj">更多推荐</text>
