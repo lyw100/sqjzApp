@@ -14,7 +14,7 @@ Page({
     var ppid = options.ppid
     var that = this
     wx.request({
-      url: 'http://localhost:8080/SQJZ' + '/minipro/zxks/getPPaper',
+      url: getApp().globalData.url + '/minipro/zxks/getPPaper',
       method: "POST",
       // 请求头部  
       header: {

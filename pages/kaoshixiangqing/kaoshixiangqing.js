@@ -39,7 +39,7 @@ Page({
     var jsonarray = JSON.stringify(pQuestionArr)
     // console.log(jsonarray)
     wx.request({
-      url: 'http://localhost:8080/SQJZ' + '/minipro/zxks/savePPaper',
+      url: getApp().globalData.url + '/minipro/zxks/savePPaper',
       method: "POST",
       // 请求头部  
       header: {
@@ -134,7 +134,7 @@ Page({
     // 生成试卷
     var that = this
     wx.request({
-      url: 'http://localhost:8080/SQJZ' + '/minipro/zxks/getQuestionList',
+      url: getApp().globalData.url + '/minipro/zxks/getQuestionList',
       method: "POST",
       // 请求头部  
       header: {
