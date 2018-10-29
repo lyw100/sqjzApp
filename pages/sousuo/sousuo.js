@@ -344,6 +344,18 @@ Page({
       zhuyesousuo: false,
       qkch: true
     })
+    //搜索次数加1
+    var path = this.data.path;
+    wx.request({
+      url: path + '/search/editClicks',
+      data: { courseId: e.currentTarget.id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success(res) {
+      }
+    })
     this.search();
   },
   //添加搜索历史
