@@ -73,57 +73,38 @@
   <!--课程学习页面完-->
 
   <!--在线考试页面-->
-  <view class='zcks' wx:if="{{zaixiankaoshixs}}">
+  <view class='zcks' wx:if='{{zaixiankaoshixs}}'>
     <view class='zcks_biaoti'>
       <text>新增考试</text>
     </view>
-    <view class='zcks_xzks' catchtap='tzzkhsxqym'>
-      <view>
-        <text class='zcks_new'>NEW</text>
-        <text class='zcks_ksbt'>2018第一季度考试</text>
-        <image class='bianji' src='/img/kaoshi.png'></image>
-      </view>
-      <view class='zcks_zongfen'>
-        <text>总分:100</text>
-        <text>时长:1小时</text>
-        <text>考试时间:2018-10-20</text>
-      </view>
-    </view>
-    <view class='zcks_xzks' catchtap='tzzkhsxqym'>
-      <view>
-        <text class='zcks_new'>NEW</text>
-        <text class='zcks_ksbt'>2018第一季度考试</text>
-        <image class='bianji' src='/img/kaoshi.png'></image>
-      </view>
-      <view class='zcks_zongfen'>
-        <text>总分:100</text>
-        <text>时长:1小时</text>
-        <text>考试时间:2018-10-20</text>
+    <view wx:for='{{xzkslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
+      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}'>
+        <view>
+          <text class='zcks_new'>NEW</text>
+          <text class='zcks_ksbt'>{{item.title}}</text>
+          <image class='bianji' src='/img/kaoshi.png'></image>
+        </view>
+        <view class='zcks_zongfen'>
+          <text>总分:{{item.totalScore}}</text>
+          <text>时长:{{item.minutes}}分钟</text>
+          <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+        </view>
       </view>
     </view>
     <view class='zcks_biaoti'>
       <text>历史考试</text>
     </view>
-    <view class='zcks_xzks' catchtap='tzzkhsxqym'>
-      <view>
-        <text class='zcks_ksbt'>2018第一季度考试</text>
-        <image class='bianji' src='/img/kaoshi.png'></image>
-      </view>
-      <view class='zcks_zongfen'>
-        <text>总分:100</text>
-        <text>时长:1小时</text>
-        <text>考试时间:2018-10-20</text>
-      </view>
-    </view>
-    <view class='zcks_xzks' catchtap='tzzkhsxqym'>
-      <view>
-        <text class='zcks_ksbt'>2018第一季度考试</text>
-        <image class='bianji' src='/img/kaoshi.png'></image>
-      </view>
-      <view class='zcks_zongfen'>
-        <text>总分:100</text>
-        <text>时长:1小时</text>
-        <text>考试时间:2018-10-20</text>
+    <view wx:for='{{lskslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
+      <view class='zcks_xzks' catchtap='tzzkhsxqym'>
+        <view>
+          <text class='zcks_ksbt'>{{item.title}}</text>
+          <image class='bianji' src='/img/kaoshi.png'></image>
+        </view>
+        <view class='zcks_zongfen'>
+          <text>总分:{{item.totalScore}}</text>
+          <text>时长:{{item.minutes}}分钟</text>
+          <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+        </view>
       </view>
     </view>
   </view>

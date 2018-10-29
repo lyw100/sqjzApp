@@ -11,7 +11,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var ppid = options.ppid
+    var that = this
+    wx.request({
+      url: getApp().globalData.url + '/minipro/zxks/getPPaper',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        ppid: ppid
+      },
+      success: function (res) {
+        if (res.data.msg == "success") {
+          var pPaperObj = res.data.pPaperObj
+          var pQuestionArr = res.data.pQuestionArr
+          that.setData({
+            pPaperObj: pPaperObj,//个人试卷
+            pQuestionArr: pQuestionArr//个人试卷试题
+          })
+          // console.log(pQuestionArr)
+        } else {
+          wx.showToast({
+            title: '查询试卷失败！',
+            icon: 'none'
+          })
+        }
+      }
+    })
   },
 
   /**
