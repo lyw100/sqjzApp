@@ -50,13 +50,20 @@
   </view>
   <!-- 答题卡、时间按钮 -->
   <view class='footer'>
-    <view class='dtk_sz' catchtap='datika_dj'>
-      <image src='/img/datika.png' class='dtk_img'></image>
-    </view>
-    <view class='shijian_dumiao'>
-      <image src='/img/shijian.png' class='shijiant'></image>
-      <text class='shijian'>{{wxTimer}}</text>
-    </view>
+    <block wx:if='{{type=="0"}}'>
+      <view class='dtk_sz' catchtap='datika_dj'>
+        <image src='/img/datika.png' class='dtk_img'></image>
+      </view>
+      <view class='shijian_dumiao'>
+        <image src='/img/shijian.png' class='shijiant'></image>
+        <text class='shijian'>{{wxTimer}}</text>
+      </view>
+    </block>
+    <block wx:if='{{type=="1"}}'>
+      <view class='dtk_sz' catchtap='datika_dj'>
+        <image src='/img/datika.png' class='dtk_img'></image>
+      </view>
+    </block>
   </view>
 </view>
 
@@ -70,7 +77,10 @@
       <text class='{{item.hasChoose!=""?"dtk_yanse":""}}' catchtap='fhdtk_dt' data-index='{{qid}}'>{{qid+1}}</text>
     </block>
   </view>
-  <view class='dtk_ft dtk_color' catchtap='jiaojjieguo'>
+  <view wx:if='{{type=="0"}}' class='dtk_ft dtk_color' catchtap='jiaojjieguo'  data-index='{{qid}}'>
     <text>交卷并查看结果</text>
+  </view>
+  <view wx:if='{{type=="1"}}' class='dtk_ft dtk_color' catchtap='ckjieguo'  data-index='{{qid}}'>
+    <text>查看结果</text>
   </view>
 </view>

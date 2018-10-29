@@ -62,6 +62,8 @@
 .zhidingsz {
   font-size: 30rpx;
   color: #b8b8b8;
+  margin-top:10rpx;
+
 }
 .zhidingjianju{
   margin-top: 65rpx;
@@ -76,10 +78,10 @@
 }
 
 .flfg_xinxi {
-  padding: 20rpx 0;
-  border-bottom: 1px solid #e5e5e5;
-  width: 100%;
-  font-size: 34rpx;
+  padding:15rpx 0 20rpx 0;
+  border-bottom:1px solid #e5e5e5;
+  width:100%;
+  font-size:34rpx;
 }
 
 .xx_tm {
@@ -125,7 +127,7 @@
 }
 
 .zdsz_sft {
-  width: 70%;
+  width: 65%;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;

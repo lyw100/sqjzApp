@@ -14,7 +14,6 @@
         <text>规定学时:8</text>
         <text>完成学时:{{hours}}</text>
       </view>
-      <image class='tit_ling' src='/img/wuxiaoxi.png'></image>
       <image class='tit_shezhi' src='/img/shezhi.png'></image>
     </view>
   </view>
@@ -78,7 +77,7 @@
       <text>新增考试</text>
     </view>
     <view wx:for='{{xzkslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
-      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}'>
+      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='{{item.type}}'>
         <view>
           <text class='zcks_new'>NEW</text>
           <text class='zcks_ksbt'>{{item.title}}</text>
@@ -95,7 +94,7 @@
       <text>历史考试</text>
     </view>
     <view wx:for='{{lskslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
-      <view class='zcks_xzks' catchtap='tzzkhsxqym'>
+      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='{{item.type}}'>
         <view>
           <text class='zcks_ksbt'>{{item.title}}</text>
           <image class='bianji' src='/img/kaoshi.png'></image>

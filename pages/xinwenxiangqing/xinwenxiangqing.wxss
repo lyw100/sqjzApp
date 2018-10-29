@@ -37,3 +37,12 @@
   margin-top: 30rpx;
   text-indent: 40rpx;
 }
+.wxParse-p{
+  width: 100%;
+  height: auto;
+  
+}
+.wxParse-img {
+  width:100% !important;
+  float:left;
+}
