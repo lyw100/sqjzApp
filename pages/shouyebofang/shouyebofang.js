@@ -156,28 +156,36 @@ Page({
     // console.log("currentTime:" + currentTime);
     // console.log("lastTime:" + lastTime);
 
-    //当前播放时间与上次播放节点时间差大于2秒
-    if (lastTime - currentTime > 10 || currentTime - lastTime > 10) {
-      if (currentTime < progress) {//当前播放时间小于播放进度
-        this.videoContext.seek(currentTime);
-        this.setData({
-          lastTime: currentTime
-        })
-        return;
-      } else {
-        this.videoContext.seek(lastTime);
-        return;
+    if (this.data.isSign==1){//课程为选课课程
+      //当前播放时间与上次播放节点时间差大于2秒
+      if (lastTime - currentTime > 10 || currentTime - lastTime > 10) {
+        if (currentTime < progress) {//当前播放时间小于播放进度
+          this.videoContext.seek(currentTime);
+          this.setData({
+            lastTime: currentTime
+          })
+          return;
+        } else {
+          this.videoContext.seek(lastTime);
+          return;
+        }
       }
-    }
-    this.setData({
-      lastTime:currentTime
-    })
-    //正常播放
-    if (currentTime > progress) {
+      //正常播放
+      if (currentTime > progress) {
+        this.setData({
+          progress: currentTime
+        });
+      }
+    }else{//课程为非选课课程
+      //非选课正常播放
       this.setData({
         progress: currentTime
       });
     }
+    this.setData({
+      lastTime:currentTime
+    })
+    
     //console.log(currentTime+'==='+lastTime);
   },
 
@@ -331,7 +339,11 @@ Page({
         if (res.data == "ok") {//选课成功
           that.setData({
             isSign: 1,
+            progress:0,
+            lastTime:0
           })
+
+          this.videoContext.seek(0);
           // that.moreCourseTap(e);
         } else if (res.data == "more") {
           wx.showToast({
