@@ -6,6 +6,20 @@
       <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
       <text catchtap='xuanxiuke' class='xuanxiuke {{xuanxiuyanse}}'>选修课</text>
     </view>
+
+    <view class='xuanze'>
+      <view class='xz_nr'>
+        <text class='xz_sm'>法律法规</text>
+        <text class='xz_sm'>法律</text>
+        <text class='xz_sm'>法律法规</text>
+        <text class='xz_sm'>法律法规</text>
+        <text class='xz_sm'>法律法</text>
+        <text class='xz_sm'>法律法规</text>
+        <text class='xz_sm'>路</text>
+        <text class='xz_sm'>惹着神龟</text>
+      </view>
+    </view>
+
     <view class='tit2'>
       <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
       <text class='sp {{shipin}}' catchtap='shipin'>视频</text>
@@ -70,7 +84,7 @@
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
               <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
               <text class="xueshi" wx:if="{{course.subject.type==0}}">学时:{{course.hours}}</text>
-              <text class="shijian">{{courseTime}}</text>
+              <text class="shijian">{{course.courseTime}}</text>
               <text class="shuoming">{{course.name}}</text>
               <view class='zcfgjy_xz'>
                 <block wx:if="{{course.subject.type==0}}">
