@@ -40,8 +40,8 @@
 }
 
 .tit_shezhi{
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
   position: absolute;
   right: 0rpx;
   top: -25rpx;

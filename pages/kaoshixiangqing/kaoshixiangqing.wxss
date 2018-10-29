@@ -80,6 +80,9 @@ page {
   width: 80rpx;
   height: 90rpx;
 }
+.dtkonly_img{
+  margin-left:45%;
+}
 .shijian_dumiao{
   width: 125rpx;
   height: auto;
