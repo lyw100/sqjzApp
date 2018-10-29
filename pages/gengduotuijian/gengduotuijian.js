@@ -47,6 +47,12 @@ Page({
   onLoad: function (options) {
     var that=this;
     var subid=options.subid;
+    var title=options.title;
+    if(title!=null&&title!=""){
+      wx.setNavigationBarTitle({
+        title: title,
+      })
+    }
     var jzid = getApp().globalData.jiaozhengid;
     this.setData({
       subid:subid,
