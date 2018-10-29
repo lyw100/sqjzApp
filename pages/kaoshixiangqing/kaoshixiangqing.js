@@ -52,7 +52,7 @@ Page({
       },
       success: function (res) {
         if (res.data.msg == "success") {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../kaoshijieguo/kaoshijieguo?ppid=' + ppid,
           })
           wx.showToast({
@@ -79,6 +79,14 @@ Page({
     //   }
     // })
   },
+  // 查看结果
+  ckjieguo: function(){
+    var ppid = this.data.ppid
+    wx.navigateTo({
+      url: '../kaoshijieguo/kaoshijieguo?ppid=' + ppid,
+    })
+  },
+
   // 选择对应选项
   menuClick: function(e){
     var index = e.currentTarget.dataset.index
@@ -194,20 +202,26 @@ Page({
     var that = this
     var ppid = options.ppid
     var timeStr = options.timeStr
-    this.setData({
-      ppid: ppid
-    })
+    var type = options.type
     // 查询试卷内容
-    this.getPPaper(ppid)
+    this.getPPaper(ppid,type)
     // 定时器
-    var wxTimer = new timer({
-      beginTime: timeStr,
-      name: 'wxTimer',
-      complete: function () {
-        that.jiaojjieguo()
-      }
+    // 0 未考 1已考
+    if(type == '0'){
+      var wxTimer = new timer({
+        beginTime: timeStr,
+        name: 'wxTimer',
+        complete: function () {
+          that.jiaojjieguo()
+        }
+      })
+      wxTimer.start(this)
+    }
+    // ppid个人试卷id type是否已考
+    this.setData({
+      ppid: ppid,
+      type: type
     })
-    wxTimer.start(this)
   },
 
   /**

@@ -87,49 +87,87 @@ Page({
       })
     }
   },
+
   /**点击在线考试跳转考试详情页 */
   tzzkhsxqym: function (e) {
     var tpid = e.currentTarget.dataset.tpid
-    wx.showModal({
-      content: '考试开始后不能停止，确定开始考试吗？',
-      success: function (res) {
-        if (res.confirm) {
-          // 跳转到考试页面
-          // wx.navigateTo({
-          //   url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + 1 + '&timeStr='+"00:00:10"
-          // })
-          // 生成试卷
-          wx.request({
-            url: getApp().globalData.url + '/minipro/zxks/createTestpaper',
-            method: "POST",
-            // 请求头部  
-            header: {
-              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-              jzid: getApp().globalData.jiaozhengid,
-              tpid: tpid
-            },
-            success: function (res) {
-              if (res.data.msg == "success") {
-                var ppid = res.data.ppid
-                var timeStr = res.data.timeStr
-                // 跳转到考试页面
-                wx.navigateTo({
-                  url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr
-                })
-              } else {
-                wx.showToast({
-                  title: '生成试卷失败！',
-                  icon: 'none'
-                })
+    var type = e.currentTarget.dataset.type
+    // 0 未考 1已考
+    if (type == '0') {
+      wx.showModal({
+        content: '考试开始后不能停止，确定开始考试吗？',
+        success: function (res) {
+          if (res.confirm) {
+            // 生成试卷
+            wx.request({
+              url: getApp().globalData.url + '/minipro/zxks/createTestpaper',
+              method: "POST",
+              // 请求头部  
+              header: {
+                'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                jzid: getApp().globalData.jiaozhengid,
+                tpid: tpid
+              },
+              success: function (res) {
+                if (res.data.msg == "success") {
+                  var ppid = res.data.ppid
+                  var timeStr = res.data.timeStr
+                  // 跳转到考试页面
+                  wx.navigateTo({
+                    url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type
+                  })
+                } else {
+                  wx.showToast({
+                    title: '生成试卷失败！',
+                    icon: 'none'
+                  })
+                }
               }
-            }
-          })
+            })
+          }
         }
-      }
-    })
+      })
+    }else {
+      // 查询试卷
+      wx.request({
+        url: getApp().globalData.url + '/minipro/zxks/getHisPPaper',
+        method: "POST",
+        // 请求头部  
+        header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          jzid: getApp().globalData.jiaozhengid,
+          tpid: tpid
+        },
+        success: function (res) {
+          if (res.data.msg == "success") {
+            var ppid = res.data.ppid
+            var timeStr = res.data.timeStr
+            if(ppid != ""){
+              // 跳转到考试页面
+              wx.navigateTo({
+                url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type
+              })
+            }else{
+              wx.showToast({
+                title: '您没有参加此次考试！',
+                icon: 'none'
+              })
+            }
+          } else {
+            wx.showToast({
+              title: '查询试卷失败！',
+              icon: 'none'
+            })
+          }
+        }
+      })
+    }
   },
 
   /**
