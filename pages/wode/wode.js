@@ -115,9 +115,10 @@ Page({
                 if (res.data.msg == "success") {
                   var ppid = res.data.ppid
                   var timeStr = res.data.timeStr
+                  var title = res.data.title
                   // 跳转到考试页面
                   wx.navigateTo({
-                    url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type
+                    url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type +'&title=' + title
                   })
                 } else {
                   wx.showToast({
@@ -148,10 +149,11 @@ Page({
           if (res.data.msg == "success") {
             var ppid = res.data.ppid
             var timeStr = res.data.timeStr
+            var title = res.data.title
             if(ppid != ""){
               // 跳转到考试页面
               wx.navigateTo({
-                url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type
+                url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type + '&title=' + title
               })
             }else{
               wx.showToast({
