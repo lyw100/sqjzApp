@@ -1,8 +1,7 @@
 {
   "pages": [
-        "pages/zhuye/zhuye",
     "pages/shouye/shouye",
-
+    "pages/zhuye/zhuye",
     "pages/zhihuibaodian/zhihuibaodian",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/sousuo/sousuo",
