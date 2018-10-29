@@ -30,8 +30,7 @@
           current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="30px" next-margin="30px">
           <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
             <swiper-item class="titimg"> 
-              <image  data-index='{{index}}' data-courseid='{{course.id}}' src="{{course.thumbnail}}"
-                class="biaotou" bindtap="bofang" />
+              <image  data-index='{{index}}' data-id='{{course.id}}' src="{{course.thumbnail}}" class="biaotou" bindtap="bofang" />
               <text class="titxinxi">{{course.name}}</text>
             </swiper-item>
           </block> 
