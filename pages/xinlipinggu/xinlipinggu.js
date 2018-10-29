@@ -63,7 +63,7 @@ Page({
         success(res) {
           if (res.data.msg == "OK"){
             var psyrepid = res.data.psyrepid;
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../ceshijieguo/ceshijieguo?psyrepid=' + psyrepid,
             })
           }else{
