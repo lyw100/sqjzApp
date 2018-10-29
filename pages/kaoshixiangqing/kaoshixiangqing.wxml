@@ -60,7 +60,7 @@
       </view>
     </block>
     <block wx:if='{{type=="1"}}'>
-      <view class='dtk_sz' catchtap='datika_dj'>
+      <view class='dtkonly_img' catchtap='datika_dj'>
         <image src='/img/datika.png' class='dtk_img'></image>
       </view>
     </block>

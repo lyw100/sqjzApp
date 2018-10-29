@@ -18,7 +18,7 @@
 }
 view{
     word-break:break-all;
-    width: 100%;
+    /* width: 100%; */
 }
 .wxParse-inline{
     display: inline;
