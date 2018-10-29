@@ -288,8 +288,9 @@ Page({
    */
   moreSubCourse:function(e){
     var subid = e.currentTarget.dataset.subid;
+    var subname = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../gengduotuijian/gengduotuijian?subid=' + subid ,
+      url: '../gengduotuijian/gengduotuijian?subid=' + subid+'&title='+subname ,
     });
   },
   /**
