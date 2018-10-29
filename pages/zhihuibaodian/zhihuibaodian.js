@@ -26,6 +26,7 @@ Page({
 
   /**法律法规 心灵鸡汤 生活 */
   falcfg:function(){
+    hadLastPage = false;
     lmtype="0";
     page = 1;
     this.setData({
@@ -41,6 +42,7 @@ Page({
   },
 
   xinljt: function(){
+    hadLastPage = false;
     lmtype = "1";
     page = 1;
     this.setData({
@@ -55,6 +57,7 @@ Page({
     this.loadList();
   },
   shenghbz: function () {
+    hadLastPage = false;
     lmtype = "2";
     page = 1;
     this.setData({
@@ -112,7 +115,6 @@ Page({
     // wx.showLoading({
     //   title: '玩命加载中',
     // })
-
     wx.request({
       url: getApp().globalData.url + '/weChat/zhbd/list',
       method: "POST",
