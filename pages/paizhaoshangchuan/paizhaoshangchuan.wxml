@@ -1,7 +1,7 @@
 <!--拍照上传页面-->
 <view class='pzsc'>
     <view class='wenben'>
-       <textarea placeholder="请输入第几年汇报" adjust-position="false" bindinput='inputBind'/>
+       <textarea placeholder="请输入标题" adjust-position="false" bindinput='inputBind'/>
     </view>
     <view class='xztupian'>
       <view class='tupianview' wx:for='{{imgList}}' wx:key='{{index}}' wx:for-item='img' data-index='{{index}}' bindlongpress='deleteImg'>
