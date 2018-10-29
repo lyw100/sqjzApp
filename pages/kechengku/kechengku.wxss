@@ -30,7 +30,7 @@
   color: #7e7c87;
 }
 .xuanxiuke{
-  margin-left: 120rpx;
+  margin-left: 40rpx;
   font-size: 34rpx;
   color: #7e7c87;
 }
