@@ -27,8 +27,9 @@ page{
   border: 1px solid #ccc;
   line-height: 80rpx;
   text-align: center;
-  color: #2499f9;
+  color: #fff;
   border-radius: 40rpx;
   font-size: 32rpx;
   margin-top: 40rpx;
+  background: #2499f9;
 }
