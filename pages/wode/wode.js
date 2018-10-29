@@ -438,6 +438,7 @@ Page({
         data: {
           rows: this.data.rows,
           page: page,
+          jzid: getApp().globalData.jiaozhengid
         },
         success: function (res) {
           if (res.data.msg == "success") {
