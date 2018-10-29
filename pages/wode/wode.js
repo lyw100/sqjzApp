@@ -440,7 +440,6 @@ Page({
           page: page,
         },
         success: function (res) {
-          console.log(res);
           if (res.data.msg == "success") {
             var list = res.data.maplist
             // 设置数据  
