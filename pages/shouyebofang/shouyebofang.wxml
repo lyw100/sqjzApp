@@ -15,7 +15,7 @@
 <view>
   <block wx:if="{{subType==0}}">
     <text class='xueshi'>学时:{{sectionRecord.section.hours}}</text>
-    <text class="wcjd">上次完成进度:{{sectionRecord.sectionProgress}}%</text>
+    <text class="wcjd" wx:if="{{isSign==1}}">上次完成进度:{{sectionRecord.sectionProgress}}%</text>
     <image data-id="{{record.course.id}}" class='duigou' catchtap='tianjiaxuanke' src='/img/tianjiaxuanke.png' wx:if="{{isSign==0}}"></image>
     <image class='duigou' data-id="{{record.course.id}}" catchtap='quxiaoxuanke' src='/img/xzdg.png' wx:if="{{isSign==1}}"></image>
   </block>
