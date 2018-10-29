@@ -161,7 +161,14 @@ width: 90%;
   height: 40rpx;
   vertical-align: middle;
   float: right;
+  margin-top:10rpx;
+}
+.chankan{
+  vertical-align: middle;
+  float: right;
   margin-top:15rpx;
+  font-size: 32rpx;
+  color: #2499f9;
 }
 .zcks_zongfen{
   margin-top: 20rpx;
