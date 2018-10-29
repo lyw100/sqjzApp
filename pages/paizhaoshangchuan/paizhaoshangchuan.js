@@ -75,13 +75,16 @@ Page({
     var count = 0
     for (var i = 0; i < imgList.length; i++) {
       wx.uploadFile({
-        url: path + '/report/upload', //仅为示例，非真实的接口地址
+        url: path + '/report/upload',
         filePath: imgList[i],
         name: 'file',
         header: {
           'content-type': 'multipart/form-data'
         },
-        formData: { index: i },
+        formData: { 
+          jzid: getApp().globalData.jiaozhengid,
+          index: i 
+          },
         success(res) {
           var data = JSON.parse(res.data)
           if (data.msg == "OK") {
@@ -95,6 +98,7 @@ Page({
               wx.request({
                 url: path+'/report/add',
                 data:{
+                  jzid: getApp().globalData.jiaozhengid,
                   title:title,
                   pathes: JSON.stringify(imgUrls)
                 },

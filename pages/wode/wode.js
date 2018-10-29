@@ -21,6 +21,117 @@ Page({
     page:1,
     rows:6
   },
+
+  // 在线考试方法分页加载
+  ksloadList: function () {
+    var that = this
+    var page = this.data.page
+    var kshadLastPage = this.data.kshadLastPage
+    if (kshadLastPage) {
+      wx.showToast({
+        title: '到底啦',
+      })
+      return
+    }
+    if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
+      if (page <= 1) {
+        wx.request({
+          url: getApp().globalData.url + '/minipro/zxks/getXzkslist',
+          method: "POST",
+          // 请求头部  
+          header: {
+            'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {},
+          success: function (res) {
+            if (res.data.msg == "success") {
+              var xzkslist = res.data.xzkslist
+              // 设置数据  
+              that.setData({
+                xzkslist: xzkslist
+              })
+            }
+          }
+        })
+      }
+      wx.request({
+        url: getApp().globalData.url + '/minipro/zxks/getLskslist',
+        method: "POST",
+        // 请求头部  
+        header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          rows: this.data.rows,
+          page: page,
+        },
+        success: function (res) {
+          if (res.data.msg == "success") {
+            var lskslist = res.data.lskslist
+            // 设置数据  
+            that.setData({
+              lskslist: that.data.lskslist.concat(lskslist),
+              page: page + 1
+            })
+          } else {
+            that.setData({
+              kshadLastPage: true
+            })
+            wx.showToast({
+              title: '到底啦',
+            })
+          }
+        }
+      })
+    }
+  },
+  /**点击在线考试跳转考试详情页 */
+  tzzkhsxqym: function (e) {
+    var tpid = e.currentTarget.dataset.tpid
+    wx.showModal({
+      content: '考试开始后不能停止，确定开始考试吗？',
+      success: function (res) {
+        if (res.confirm) {
+          // 跳转到考试页面
+          // wx.navigateTo({
+          //   url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + 1 + '&timeStr='+"00:00:10"
+          // })
+          // 生成试卷
+          wx.request({
+            url: getApp().globalData.url + '/minipro/zxks/createTestpaper',
+            method: "POST",
+            // 请求头部  
+            header: {
+              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              jzid: getApp().globalData.jiaozhengid,
+              tpid: tpid
+            },
+            success: function (res) {
+              if (res.data.msg == "success") {
+                var ppid = res.data.ppid
+                var timeStr = res.data.timeStr
+                // 跳转到考试页面
+                wx.navigateTo({
+                  url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr
+                })
+              } else {
+                wx.showToast({
+                  title: '生成试卷失败！',
+                  icon: 'none'
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+
   /**
    * 获取矫正人员信息
    */
@@ -143,7 +254,12 @@ Page({
       zaixiankaoshixs: true,
       sixianghbxianshi: false,
       xinlipgxianshi: false,
+      page: 1,
+      xzkslist: [],
+      lskslist: [],
+      kshadLastPage: false
     })
+    this.ksloadList()
   },
   /** 思想汇报*/
   sixianghuibao: function () {
@@ -171,6 +287,7 @@ Page({
     wx.request({
       url: path + '/report/list',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         page: 1,
         rows: 5
       },
@@ -206,6 +323,7 @@ Page({
     wx.request({
       url: path+'/report/list',
       data:{
+        jzid: getApp().globalData.jiaozhengid,
         page: pageReport,
         rows:5
       },
@@ -302,12 +420,6 @@ Page({
       url: '../paizhaoshangchuan/paizhaoshangchuan?imgList='+JSON.stringify(imgList),
     })
   },
-  /**点击在线考试编辑跳转详情页 */
-  tzzkhsxqym:function(){
-    wx.navigateTo({
-      url: '../kaoshixiangqing/kaoshixiangqing',
-    })
-  },
   /**
    * 思想汇报，点击选择图片
    */
@@ -397,6 +509,11 @@ Page({
     }
     if (this.data.kechxz_xz){//是否选择是课程学习
       this.historyCourse();//历史课程
+    }
+
+    // 在线考试上拉触底
+    if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
+      this.ksloadList();
     }
   },
 

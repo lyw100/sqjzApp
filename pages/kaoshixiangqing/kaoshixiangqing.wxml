@@ -1,54 +1,46 @@
+<import src="../../wxParse/wxParse.wxml"/> 
+<wxs src="../../wxs/indexOfUtil.wxs" module="tools"/>
 <view class="ksxq" wx:if="{{ksxq_timu}}">
   <view class='tit'>
-    <text class='timu'>判断题</text>
-    <text class='djt'><text class='dqs'>10</text>/70</text>
+    <text class='timu' wx:if="{{sequence>=1 && sequence<=tfngNum}}">判断题</text>
+    <text class='timu' wx:if="{{sequence>tfngNum && sequence<=(tfngNum+singleNum)}}">单选题</text>
+    <text class='timu' wx:if="{{sequence>(tfngNum+singleNum) && (tfngNum+singleNum)<=qcount}}">多选题</text>
+    <text class='djt'><text class='dqs'>{{sequence}}</text>/{{qcount}}</text>
   </view>
   <view class='center'>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class='spr'>
-      <block>
+    <swiper current="{{curIndex}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class='spr' bindchange="changeQuestion">
+      <block wx:for="{{pQuestionArr}}" wx:key="qid" wx:for-item="item" wx:for-index="qid">
         <swiper-item class="spr_gd">
           <view class='fst'>
-            <view class='kaoti'>社区矫正人员应当自人民撒旦法师打阿斯蒂芬阿斯蒂芬大师法打算发生发（ ）</view>
-            <view class='daan'>
-              <view class='xx'>
-                <text class='xuanxiang xzyanse'>A</text>
-                <text class='daan_xiangjie'>阿斯蒂芬大师法阿斯蒂芬大师法大师法萨芬</text>
-              </view>
-              <view class='xx'>
-                <text class='xuanxiang'>B</text>
-                <text class='daan_xiangjie'>阿斯蒂芬大师法阿斯蒂芬大师法大师法萨芬阿斯蒂芬安抚阿萨德发多少发生发顺丰按时发发生大法师</text>
-              </view>
-              <view class='xx'>
-                <text class='xuanxiang'>C</text>
-                <text class='daan_xiangjie'>阿斯蒂芬大师法阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师</text>
-              </view>
-              <view class='xx'>
-                <text class='xuanxiang'>D</text>
-                <text class='daan_xiangjie'>法师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师阿斯蒂芬大师法阿斯蒂芬大师</text>
-              </view>
+            <!-- 题目 -->
+            <view class='kaoti'>{{qid+1+'.'+item.question.content}}</view>
+            <!-- 单选题选项 -->
+            <view class='daan' wx:if="{{item.question.type==0}}">
+              <block wx:for="{{item.question.xuanxiangArr}}" wx:key="xxid" wx:for-item="itemsub">
+                <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='{{itemsub.key}}'>
+                  <text class='xuanxiang {{item.hasChoose==itemsub.key?"xzyanse":""}}'>{{itemsub.key}}</text>
+                  <text class='daan_xiangjie'>{{itemsub.value}}</text>
+                </view>
+              </block>
             </view>
-          </view>
-        </swiper-item>
-
-        <swiper-item>
-          <view class='fst'>
-            <view class='kaoti'>社区矫正人员法打算发生发（ ）</view>
-            <view class='daan'>
-              <view class='xx'>
-                <text class='xuanxiang xzyanse'>A</text>
-                <text class='daan_xiangjie'>阿斯蒂芬大师法萨芬</text>
+            <!-- 多选题选项 -->
+            <view class='daan' wx:if="{{item.question.type==1}}">
+              <block wx:for="{{item.question.xuanxiangArr}}" wx:key="xxid" wx:for-item="itemsub">
+                <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='{{itemsub.key}}'>
+                  <text class='xuanxiang {{tools.indexOfTF(item.hasChoose,itemsub.key)?"xzyanse":""}}'>{{itemsub.key}}</text>
+                  <text class='daan_xiangjie'>{{itemsub.value}}</text>
+                </view>
+              </block>
+            </view>
+            <!-- 判断题选项 -->
+            <view class='daan' wx:if="{{item.question.type==2}}">
+              <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='A'>
+                <text class='xuanxiang {{item.hasChoose=="1"?"xzyanse":""}}'>A</text>
+                <text class='daan_xiangjie'>正确</text>
               </view>
-              <view class='xx'>
-                <text class='xuanxiang'>B</text>
-                <text class='daan_xiangjie'>阿斯蒂师</text>
-              </view>
-              <view class='xx'>
-                <text class='xuanxiang'>C</text>
-                <text class='daan_xiangjie'>阿斯蒂芬大师法</text>
-              </view>
-              <view class='xx'>
-                <text class='xuanxiang'>D</text>
-                <text class='daan_xiangjie'>法师</text>
+              <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='B'>
+                <text class='xuanxiang {{item.hasChoose=="0"?"xzyanse":""}}'>B</text>
+                <text class='daan_xiangjie'>错误</text>
               </view>
             </view>
           </view>
@@ -56,15 +48,14 @@
       </block>
     </swiper>
   </view>
-
-
+  <!-- 答题卡、时间按钮 -->
   <view class='footer'>
     <view class='dtk_sz' catchtap='datika_dj'>
       <image src='/img/datika.png' class='dtk_img'></image>
     </view>
     <view class='shijian_dumiao'>
       <image src='/img/shijian.png' class='shijiant'></image>
-      <text class='shijian'>0:00</text>
+      <text class='shijian'>{{wxTimer}}</text>
     </view>
   </view>
 </view>
@@ -75,109 +66,9 @@
     <text>答题卡</text>
   </view>
   <view class='dtk_center'>
-    <text class='dtk_yanse'>1</text>
-    <text catchtap='fhdtk_dt'>2</text>
-    <text>3</text>
-    <text>4</text>
-    <text class='dtk_yanse'>5</text>
-    <text>6</text>
-    <text>7</text>
-    <text class='dtk_yanse'>8</text>
-    <text>9</text>
-    <text>10</text>
-    <text>11</text>
-    <text>12</text>
-    <text class='dtk_yanse'>13</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
-    <text>14</text>
+    <block wx:for="{{pQuestionArr}}" wx:key="qid" wx:for-item="item" wx:for-index="qid">
+      <text class='{{item.hasChoose!=""?"dtk_yanse":""}}' catchtap='fhdtk_dt' data-index='{{qid}}'>{{qid+1}}</text>
+    </block>
   </view>
   <view class='dtk_ft dtk_color' catchtap='jiaojjieguo'>
     <text>交卷并查看结果</text>

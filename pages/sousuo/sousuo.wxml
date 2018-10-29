@@ -2,9 +2,9 @@
 <view class='nr'>
   <view class='tit'>
     <view class='titipt'>
-      <icon type='search' size='20' color='#2499f9' class='sousuotb'></icon>
+      <icon type='search' size='16' color='#2499f9' class='sousuotb'></icon>
       <input type='text' placeholder="搜索信息" adjust-position="false" bindinput="iptchufa" value='{{inputText}}' bindconfirm='inputConfirm'></input>
-      <icon type='clear' size='20' class='chahao' wx:if="{{qkch}}" bindtap='clearInput'></icon>
+      <icon type='clear' size='16' class='chahao' wx:if="{{qkch}}" bindtap='clearInput'></icon>
     </view>
     <text class='quxiao' catchtap='quxiao' hidden='{{inputText!=""}}'>取消</text>
     <text class='quxiao' catchtap='inputConfirm' hidden='{{inputText==""}}'>搜索</text>

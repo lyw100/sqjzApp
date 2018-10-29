@@ -24,17 +24,16 @@ Page({
     if (options.record == 'sign') {//选课播放记录
       data.id = options.id;
       url = getApp().globalData.url + '/course/getSignRecord';
-      // url = 'http://localhost:8081/SQJZ/course/getSignRecord';
     } else if (options.record == 'scan') {//浏览播放记录
       data.id = options.id;
       url = getApp().globalData.url + '/course/getScanRecord';
-      // url = 'http://localhost:8081/SQJZ/course/getScanRecord';
     } else if (options.record == 'record') {//播放记录
       data.courseid = options.courseid;
       url = getApp().globalData.url + '/course/getRecord';
-      // url = 'http://localhost:8081/SQJZ/course/getRecord';
     }
 
+    // data.courseid = 42;
+    // url = 'http://localhost:8081/SQJZ/course/getRecord';
     wx.request({
       url: url, //获取视频播放信息
       data: data,
@@ -49,11 +48,11 @@ Page({
         }
         that.setData({
           record: res.data,
-          progress: res.data.progress,
           isSign: isSign,
-          subType:res.data.course.subject.type
+          subType:res.data.course.subject.type,
+          sections:res.data.course.sections
         })
-
+        that.getVideoSection(res.data.course.id,res.data.course.sections[0].id);
         
         that.moreCourse();
 
@@ -69,11 +68,7 @@ Page({
    */
   onReady: function () {
     this.videoContext = wx.createVideoContext('myVideo')
-    if (this.data.progress > 0) {//播放进度大于0秒
-      this.setData({
-        lastTime: this.data.progress
-      })
-    }
+    
   },
 
   /**
@@ -224,7 +219,12 @@ Page({
     var that = this;
     // console.log(this.data.record);
     var courseid = this.data.record.course.id;//课程id
+    var sectionid = this.data.sectionRecord.section.id;//课程章节id
     var progress = parseInt(this.data.progress);//进度
+
+    if (this.data.sectionRecord.section.duration - this.data.progress<3){
+      progress = this.data.sectionRecord.section.duration;
+    }
     if (courseid != null && courseid > 0) {
       var url = getApp().globalData.url + '/course/saveProgress';
       // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
@@ -232,7 +232,7 @@ Page({
       // console.log(jzid);
       wx.request({
         url: url,
-        data: { id: courseid, progress: progress, jzid: jzid },
+        data: { id: courseid, progress: progress, jzid: jzid ,sectionid:sectionid},
         dataType: 'text',
         header: {
           'content-type': 'application/json' // 默认值
@@ -267,10 +267,9 @@ Page({
         }
         that.setData({
           record: res.data,
-          progress: res.data.progress,
           isSign: isSign
         })
-
+        that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
       }
     })
 
@@ -431,4 +430,40 @@ Page({
       }
     })
   },
+
+  /**
+   * 获取正在播放的章节信息
+   */
+  getVideoSection:function(courseid,sectionid){
+    var jzid = getApp().globalData.jiaozhengid;
+    var that=this;
+    wx.request({
+      // url:'http://localhost:8081/SQJZ/course/getVideoSection', //获取正在播放的章节信息
+      url: getApp().globalData.url + '/course/getVideoSection', //获取正在播放的章节信息
+      data: { courseid: courseid, jzid: jzid, sectionid: sectionid},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          sectionRecord:res.data,
+          progress: res.data.progress,
+          lastTime: res.data.progress
+        });
+        
+      }
+    })
+
+  },
+
+  /**
+   * 点击章节播放事件
+   */
+  sectionTap:function(e){
+    this.saveProgress();
+    var courseid = e.currentTarget.dataset.courseid;
+    var sectionid = e.currentTarget.dataset.sectionid;
+    this.getVideoSection(courseid, sectionid);
+
+  }
 })

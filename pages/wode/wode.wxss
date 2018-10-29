@@ -61,8 +61,8 @@
   display: inline-block;
 }
 .kcwxz{
-  width: 100rpx;
-  height: 100rpx;
+ width:95rpx;
+height:86rpx;
   margin: 0 67rpx 0 25rpx;
 }
 .nr_mokuan:last-child .kcwxz{
@@ -235,7 +235,7 @@ width: 90%;
 .img_xuantu{
   width: 165rpx;
   height: 166rpx;
-  margin-right: 11rpx;
+  margin-right: 9rpx;
   margin-bottom: 20rpx;
 }
 .img_xuantu:nth-child(4n){

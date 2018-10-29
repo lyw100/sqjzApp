@@ -1,3 +1,4 @@
+@import "../../wxParse/wxParse.wxss";
 page {
   height: 100%;
 
@@ -69,17 +70,18 @@ page {
   height: 9%;
   border-top: 1px solid #e5e5e5;
   box-sizing: border-box;
+  overflow:hidden;
 }
 .dtk_sz{
   display: inline-block;
-  margin-left: 35%;
+  margin-left: 32%;
 }
 .dtk_img{
   width: 80rpx;
   height: 90rpx;
 }
 .shijian_dumiao{
-  width: 80rpx;
+  width: 125rpx;
   height: auto;
   display: inline-block;
   margin-left: 90rpx;
@@ -94,6 +96,8 @@ page {
 .shijian{
   font-size: 30rpx;
   color: #2499f9;
+  display:inline-block;
+
 }
 .spr{
   height: 100%;

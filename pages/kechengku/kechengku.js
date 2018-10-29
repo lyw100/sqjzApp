@@ -215,12 +215,14 @@ Page({
     if(subType==0){
       this.setData({
         bixiuyanse:'yanse',
-        xuanxiuyanse:''
+        xuanxiuyanse:'',
+        subType:subType
       })
     }else if(subType==1){
       this.setData({
         bixiuyanse: '',
-        xuanxiuyanse: 'yanse'
+        xuanxiuyanse: 'yanse',
+        subType: subType
       })
     }
     var that=this;

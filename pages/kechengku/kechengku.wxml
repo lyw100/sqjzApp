@@ -69,7 +69,7 @@
             <view  class='left'  wx:else>
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
               <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
-              <text class="xueshi">学时:{{course.hours}}</text>
+              <text class="xueshi" wx:if="{{course.subject.type==0}}">学时:{{course.hours}}</text>
               <text class="shijian">{{courseTime}}</text>
               <text class="shuoming">{{course.name}}</text>
               <view class='zcfgjy_xz'>
