@@ -9,14 +9,9 @@
 
     <view class='xuanze'>
       <view class='xz_nr'>
-        <text class='xz_sm'>法律法规</text>
-        <text class='xz_sm'>法律</text>
-        <text class='xz_sm'>法律法规</text>
-        <text class='xz_sm'>法律法规</text>
-        <text class='xz_sm'>法律法</text>
-        <text class='xz_sm'>法律法规</text>
-        <text class='xz_sm'>路</text>
-        <text class='xz_sm'>惹着神龟</text>
+        <block wx:for="{{subTabList}}"  wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
+          <text data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}</text>
+        </block>
       </view>
     </view>
 
