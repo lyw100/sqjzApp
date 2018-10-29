@@ -94,7 +94,7 @@ Page({
     * 页面相关事件处理函数--监听用户下拉动作
     */
   onPullDownRefresh: function () {
-    //page = 1;
+    page = 1;
     hadLastPage = false;
 
     this.setData({
@@ -103,7 +103,6 @@ Page({
     this.loadList();
   },
   loadList: function (event) {
-    console.log(hadLastPage);
     if (hadLastPage != false) {
       wx.showToast({
         title: '到底啦',
@@ -116,7 +115,6 @@ Page({
     // wx.showLoading({
     //   title: '玩命加载中',
     // })
-
     wx.request({
       url: getApp().globalData.url + '/weChat/zhbd/list',
       method: "POST",

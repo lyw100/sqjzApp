@@ -5,6 +5,8 @@ Page({
    */
   data: {
     shipin:'xzzhangtai',
+    tuwen:'',
+    yuyin:'',
     bixiuke:'yanse',
     xuankeShow: true,
     yixuanShow: false,
@@ -54,8 +56,9 @@ Page({
   onSousuo:function(){
     // courseType = 0 视频
     // subjectType = 0 必修
+    var subType=this.data.subType;
     wx.navigateTo({
-      url: '../sousuo/sousuo?subjectType=&courseType=0&menu=course&subjectId=',
+      url: '../sousuo/sousuo?subjectType=&courseType='+subType+'&menu=course&subjectId=',
     })
   },
   
@@ -237,9 +240,11 @@ Page({
         // console.log(res.data);
         var subList = res.data;
         that.setData({
-          subList: subList
+          subList: subList,
+          subTabList:subList
         })
         for (var i = 0; i < subList.length; i++) {
+          that.data.subTabList[i].tabClass ="";
           var subid = subList[i].id;
           if (i == 1) {
             that.getCourseBysubid(i, 3);
@@ -251,6 +256,32 @@ Page({
 
       }
     })
+  },
+
+  /**
+   * 点击课程tab栏
+   */
+  subTap:function(e){
+    var subid = e.currentTarget.dataset.subid;
+    var index = e.currentTarget.dataset.index;
+    var subTabList = this.data.subTabList;
+    this.data.subList = [];
+    this.data.subList[0]=subTabList[index];
+    this.getCourseBysubid(0,4);
+    for (var i = 0; i < subTabList.length;i++){
+      if(i==index){
+        subTabList[i].tabClass = "xzzhangtai";
+      }else{
+        subTabList[i].tabClass="";
+      }
+    }
+    this.setData({
+      subTabList: subTabList
+    });
+
+
+
+
   },
 
   /**

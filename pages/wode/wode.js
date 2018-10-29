@@ -19,7 +19,7 @@ Page({
     reportList: [],//思想汇报列表
     hours:0,//已完成学时
     page:1,
-    rows:6
+    rows:6,
   },
 
   // 在线考试方法分页加载
@@ -416,24 +416,56 @@ Page({
       zaixiankaoshixs: false,
       sixianghbxianshi: false,
       xinlipgxianshi: true,
+      xlhadLastPage: false,
+      psyReportList:[],
+      xinlipage: 1,
     })
+    this.loadPsyReportList();
   },
   //加载心理评估页面的历史考试
   loadPsyReportList: function () {
     var that = this;
-    wx.request({
-      url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        var list = res.data;
-        that.setData({
-          psyReportList: list
-        })
-      }
-    })
+    var page = this.data.xinlipage
+    var xlhadLastPage = this.data.xlhadLastPage
+    if (xlhadLastPage) {
+      wx.showToast({
+        title: '到底啦',
+      })
+      return
+    }
+    if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
+      wx.request({
+        url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
+        method: "POST",
+        // 请求头部  
+        header: {
+          //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          rows: this.data.rows,
+          page: page,
+          jzid: getApp().globalData.jiaozhengid
+        },
+        success: function (res) {
+          if (res.data.msg == "success") {
+            var list = res.data.maplist
+            // 设置数据  
+            that.setData({
+              psyReportList: that.data.psyReportList.concat(list),
+              xinlipage: page + 1
+            })
+          } else {
+            that.setData({
+              xlhadLastPage: true
+            })
+            wx.showToast({
+              title: '到底啦',
+            })
+          }
+        }
+      })
+    }
   },
   /**
    * 跳转播放页面
@@ -508,7 +540,6 @@ Page({
     this.rectifyPeople();//矫正人员信息
     this.currentCourse();//当月课程
     this.historyCourse();//历史课程
-    this.loadPsyReportList();//心理评估历史考试
   },
 
   /**
@@ -561,6 +592,10 @@ Page({
     // 在线考试上拉触底
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
       this.ksloadList();
+    }
+      // 心理评估上拉触底 
+    if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
+      this.loadPsyReportList();
     }
   },
 
