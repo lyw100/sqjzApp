@@ -14,7 +14,6 @@
         <text>规定学时:8</text>
         <text>完成学时:{{hours}}</text>
       </view>
-      <image class='tit_ling' src='/img/wuxiaoxi.png'></image>
       <image class='tit_shezhi' src='/img/shezhi.png'></image>
     </view>
   </view>
