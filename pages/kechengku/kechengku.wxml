@@ -15,7 +15,7 @@
   </view>
   <view class='neirong'>
     <!--视频内容 -->
-    <view class='shipineirong'  wx:if="{{shipinShow}}" >
+    <view class='shipineirong'  wx:if="{{shipin!=''}}" >
       <view class='lskcnr'>
         <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" 
           current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="30px" next-margin="30px">
@@ -43,7 +43,7 @@
     <block  wx:for="{{subList}}" wx:if="{{subList[subIndex].courseList!=null}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
       <view>
         <text class='dykctext'>{{sub.name}}</text>
-        <text class='genduotuijian' data-subid="{{sub.id}}" catchtap='moreSubCourse'>查看更多</text>
+        <text class='genduotuijian' data-name="{{sub.name}}" data-subid="{{sub.id}}" catchtap='moreSubCourse'>查看更多</text>
       </view>
       <view class="dykcsp">
         <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
@@ -267,11 +267,11 @@
     <!--视频内容 完-->
 
     <!--图文页面 -->
-     <view class='tuweneirong' wx:if="{{tuwenShow}}">图文</view>
+     <view class='tuweneirong' wx:if="{{tuwen!=''}}">图文暂无信息</view>
     <!--图文页面  完-->
 
     <!--语音页面 -->
-      <view class='yuyinneirong' wx:if="{{yuyinShow}}">语音</view>
+      <view class='yuyinneirong' wx:if="{{yuyin!=''}}">语音暂无信息</view>
     <!--语音页面  完-->
   </view>
 </view>
