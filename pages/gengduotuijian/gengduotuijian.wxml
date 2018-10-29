@@ -33,7 +33,7 @@
           <view  class='lishikc' wx:for="{{moreList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
 
             <image data-courseid="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
-            <text class="xueshi">学时:{{course.hours}}</text>
+            <text wx:if="{{course.subject.type==0}}" class="xueshi">学时:{{course.hours}}</text>
             <text class="shijian">{{course.courseTime}}</text>
             <text class="shuoming">{{course.name}}</text>
           </view>

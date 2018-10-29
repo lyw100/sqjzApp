@@ -13,9 +13,9 @@
   <text class='bixiuke'>{{record.course.subName}}</text>
 </view>
 <view>
-  <text class='xueshi'>学时:{{sectionRecord.section.hours}}</text>
-  <text class="wcjd">上次完成进度:{{sectionRecord.sectionProgress}}%</text>
   <block wx:if="{{subType==0}}">
+    <text class='xueshi'>学时:{{sectionRecord.section.hours}}</text>
+    <text class="wcjd">上次完成进度:{{sectionRecord.sectionProgress}}%</text>
     <image data-id="{{record.course.id}}" class='duigou' catchtap='tianjiaxuanke' src='/img/tianjiaxuanke.png' wx:if="{{isSign==0}}"></image>
     <image class='duigou' data-id="{{record.course.id}}" catchtap='quxiaoxuanke' src='/img/xzdg.png' wx:if="{{isSign==1}}"></image>
   </block>
@@ -39,7 +39,7 @@
       <view  class='lishikc' wx:for="{{moreList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
 
         <image data-id="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='moreCourseTap' src='{{course.thumbnail}}'></image>
-        <text class='yiwancheng'>{{course.courseTime}}</text>
+        <text class='yiwancheng' >{{course.courseTime}}</text>
          <text class='lscksm'>{{course.name}}</text>
          <view class='xuank' >
           <block wx:if="{{subType==0}}">
@@ -52,7 +52,7 @@
           </block>  
         </view>
         <text class='bofangcishu'>播放{{course.playnumber}}次</text>
-        <text class='syxs'>{{course.hours}}学时</text>
+        <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text>
       
       </view>
 
