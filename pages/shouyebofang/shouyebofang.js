@@ -52,6 +52,10 @@ Page({
           subType:res.data.course.subject.type,
           sections:res.data.course.sections
         })
+        wx.setNavigationBarTitle({
+          title: res.data.course.name,
+        })
+
         that.getVideoSection(res.data.course.id,res.data.course.sections[0].id);
         
         that.moreCourse();
@@ -276,6 +280,9 @@ Page({
         that.setData({
           record: res.data,
           isSign: isSign
+        })
+        wx.setNavigationBarTitle({
+          title: res.data.course.name,
         })
         that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
       }

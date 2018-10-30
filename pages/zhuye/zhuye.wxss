@@ -95,7 +95,7 @@ line-height:60rpx;
   margin-bottom: 15rpx;
 }
 .left:nth-child(even){
-  margin-left: 20rpx;
+  text-align:right;
   float: right;
 }
 .dykctupian{

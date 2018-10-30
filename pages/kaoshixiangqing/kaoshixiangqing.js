@@ -203,6 +203,12 @@ Page({
     var ppid = options.ppid
     var timeStr = options.timeStr
     var type = options.type
+    var title = options.title;
+    if (title != null && title != "") {
+      wx.setNavigationBarTitle({
+        title: title,
+      })
+    }
     // 查询试卷内容
     this.getPPaper(ppid,type)
     // 定时器
