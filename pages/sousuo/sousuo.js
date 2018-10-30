@@ -231,6 +231,7 @@ Page({
     wx.request({
       url: path + '/search/list',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         name: this.data.inputText,
         subjectType: subjectType,
         courseType: courseType,
@@ -242,6 +243,7 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
         if (res.data.msg == "OK") {
+          console.log(res.data.listAll)
           if (res.data.listAll.length > 0) {
             var choiceId = self.data.choiceId;
             if (choiceId == 0) {
@@ -425,6 +427,7 @@ Page({
     wx.request({
       url: path + '/search/loadMore',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         name: name,
         subjectId: subjectId,
         subjectType: subjectType,
