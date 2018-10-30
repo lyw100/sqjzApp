@@ -27,6 +27,7 @@ Page({
     var that = this
     var page = this.data.page
     var kshadLastPage = this.data.kshadLastPage
+    var jzid = getApp().globalData.jiaozhengid
     if (kshadLastPage) {
       wx.showToast({
         title: '到底啦',
@@ -43,7 +44,7 @@ Page({
             'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
             'content-type': 'application/x-www-form-urlencoded'
           },
-          data: {},
+          data: { jzid: jzid},
           success: function (res) {
             if (res.data.msg == "success") {
               var xzkslist = res.data.xzkslist
@@ -66,6 +67,7 @@ Page({
         data: {
           rows: this.data.rows,
           page: page,
+          jzid: jzid
         },
         success: function (res) {
           if (res.data.msg == "success") {
@@ -120,7 +122,12 @@ Page({
                   wx.navigateTo({
                     url: '../kaoshixiangqing/kaoshixiangqing?ppid=' + ppid + '&timeStr=' + timeStr + '&type=' + type +'&title=' + title
                   })
-                } else {
+                } else if (res.data.msg == "notstart"){
+                  wx.showToast({
+                    title: '考试尚未开放！',
+                    icon: 'none'
+                  })
+                }else {
                   wx.showToast({
                     title: '生成试卷失败！',
                     icon: 'none'
