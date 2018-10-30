@@ -243,7 +243,6 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
         if (res.data.msg == "OK") {
-          console.log(res.data.listAll)
           if (res.data.listAll.length > 0) {
             var choiceId = self.data.choiceId;
             if (choiceId == 0) {
