@@ -35,34 +35,6 @@
         <text>{{map.msg}}</text>
       </view>
     </view> 
-</block>
-
-    <view class='csjg_pj'>
-      <view class='csjg_tt'>
-        <view class='qth'>
-          <image class='yuanquan' src='/img/dian.png'></image>
-          <text class='qutihua'>总分</text>
-        </view>
-        <text class='lh'>略号:<text class='hongcolor'>{{zongfenluehao}}</text></text>
-        <text>分值:<text class='hongcolor'>{{zongfen}}</text></text>
-      </view>
-      <view class='csjg_sm'>
-        <text>{{zongfenmsg}}</text>
-      </view>
-    </view>
-
-    <view class='csjg_pj'>
-      <view class='csjg_tt'>
-        <view class='qth'>
-          <image class='yuanquan' src='/img/dian.png'></image>
-          <text class='qutihua'>总均分</text>
-        </view>
-        <text class='lh'>略号:<text class='hongcolor'>{{zongjunfenluehao}}</text></text>
-        <text>分值:<text class='hongcolor'>{{zongjunfen}}</text></text>
-      </view>
-      <view class='csjg_sm'>
-        <text>{{zongjunfenmsg}}</text>
-      </view>
-    </view>
+</block>  
   </view>
 </view>

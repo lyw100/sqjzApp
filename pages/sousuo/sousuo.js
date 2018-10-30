@@ -231,6 +231,7 @@ Page({
     wx.request({
       url: path + '/search/list',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         name: this.data.inputText,
         subjectType: subjectType,
         courseType: courseType,
@@ -425,6 +426,7 @@ Page({
     wx.request({
       url: path + '/search/loadMore',
       data: {
+        jzid: getApp().globalData.jiaozhengid,
         name: name,
         subjectId: subjectId,
         subjectType: subjectType,
