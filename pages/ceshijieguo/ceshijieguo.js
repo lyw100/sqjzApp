@@ -33,6 +33,8 @@ Page({
            jieguo:data.jieguo,
            jzname: data.jzname,
            time: data.time,
+           zongfen: data.zongfen,
+           zongjunfen: data.zongjunfen,
            yinzilist: data.yinzilist,
          })
       }
