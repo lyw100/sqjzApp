@@ -76,36 +76,46 @@
     <view class='zcks_biaoti'>
       <text>新增考试</text>
     </view>
-    <view wx:for='{{xzkslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
-      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='0'>
-        <view>
-          <text class='zcks_new'>NEW</text>
-          <text class='zcks_ksbt'>{{item.title}}</text>
-          <image class='bianji' src='/img/kaoshi.png'></image>
-        </view>
-        <view class='zcks_zongfen'>
-          <text>总分:{{item.totalScore}}</text>
-          <text>时长:{{item.minutes}}分钟</text>
-          <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+    <block wx:if='{{xzkslen>0}}'>
+      <view wx:for='{{xzkslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
+        <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='0'>
+          <view>
+            <text class='zcks_new'>NEW</text>
+            <text class='zcks_ksbt'>{{item.title}}</text>
+            <image class='bianji' src='/img/kaoshi.png'></image>
+          </view>
+          <view class='zcks_zongfen'>
+            <text>总分:{{item.totalScore}}</text>
+            <text>时长:{{item.minutes}}分钟</text>
+            <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+          </view>
         </view>
       </view>
-    </view>
+    </block>
+    <block wx:if='{{xzkslen<=0}}'>
+      <text class="zcks_zwks">暂无新增考试</text>
+    </block>
     <view class='zcks_biaoti'>
       <text>历史考试</text>
     </view>
-    <view wx:for='{{lskslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
-      <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='1'>
-        <view>
-          <text class='zcks_ksbt'>{{item.title}}</text>
-          <text class='chankan' >查看</text>
-        </view>
-        <view class='zcks_zongfen'>
-          <text>总分:{{item.totalScore}}</text>
-          <text>时长:{{item.minutes}}分钟</text>
-          <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+    <block wx:if='{{lskslen>0}}'>
+      <view wx:for='{{lskslist}}' wx:key='id' wx:for-index='idx' wx:for-item='item'>
+        <view class='zcks_xzks' catchtap='tzzkhsxqym' data-tpid='{{item.id}}' data-type='1'>
+          <view>
+            <text class='zcks_ksbt'>{{item.title}}</text>
+            <text class='chankan' >查看</text>
+          </view>
+          <view class='zcks_zongfen'>
+            <text>总分:{{item.totalScore}}</text>
+            <text>时长:{{item.minutes}}分钟</text>
+            <text>考试时间:{{item.startTime+"至"+item.endTime}}</text>
+          </view>
         </view>
       </view>
-    </view>
+    </block>
+    <block wx:if='{{lskslen<=0}}'>
+      <text class="zcks_zwks">暂无历史考试</text>
+    </block>
   </view>
   <!--在线考试页面 完-->
 

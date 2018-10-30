@@ -48,9 +48,11 @@ Page({
           success: function (res) {
             if (res.data.msg == "success") {
               var xzkslist = res.data.xzkslist
+              var xzkslen = xzkslist.length
               // 设置数据  
               that.setData({
-                xzkslist: xzkslist
+                xzkslist: xzkslist,
+                xzkslen: xzkslen
               })
             }
           }
@@ -75,11 +77,14 @@ Page({
             // 设置数据  
             that.setData({
               lskslist: that.data.lskslist.concat(lskslist),
-              page: page + 1
+              page: page + 1,
+              lskslen: that.data.lskslist.length + lskslist.length
             })
           } else {
+            var lskslen = that.data.lskslist.length
             that.setData({
-              kshadLastPage: true
+              kshadLastPage: true,
+              lskslen: lskslen
             })
             wx.showToast({
               title: '到底啦',
@@ -554,6 +559,11 @@ Page({
    */
   onShow: function () {
     this.onLoad();
+
+    // 在线考试刷新
+    if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
+      this.zaixiankaoshi()
+    }
   },
 
   /**
