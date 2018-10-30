@@ -126,6 +126,24 @@ Page({
     // this.videoContext.play();
     // console.log("点击播放");
     this.videoContext.requestFullScreen();//执行全屏方法
+
+    var courseid = this.data.record.course.id;//课程id
+    var jzid = this.data.record.jzid;
+    var url = getApp().globalData.url + '/course/addPlayNum';
+    wx.request({
+      url: url,
+      data: { courseid: courseid,jzid: jzid },
+      dataType: 'text',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+
+      }
+    })
+
+    
   },
   /**
    * 暂停的方法
