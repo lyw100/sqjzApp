@@ -60,7 +60,7 @@ Page({
     })
     wx.request({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
-      data: {},
+      data: { subid: subid},
       header: {
         'content-type': 'application/json' // 默认值
       },
