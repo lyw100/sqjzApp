@@ -178,6 +178,12 @@ width: 90%;
 .zcks_zongfen text{
   margin-right: 20rpx;
 }
+.zcks_zwks{
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  color: #8c8c8c;
+}
 .bianxian{
   border-bottom: 1px solid #e5e5e5;
 }

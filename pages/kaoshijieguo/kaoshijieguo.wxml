@@ -10,7 +10,8 @@
       </view>
     </view>
     <view class='right'>
-      <image class='xiaolian' src='/img/xiaolian.png'></image>
+      <image wx:if='{{isAccess=="1"}}' class='xiaolian' src='/img/xiaolian.png'></image>
+      <image wx:if='{{isAccess=="0"}}' class='xiaolian' src='/img/kuqi.png'></image>
       <view class='fenshu'>
         <text>{{pPaperObj.hasScore}}</text>
       </view>
