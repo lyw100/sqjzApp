@@ -28,9 +28,11 @@ Page({
         if (res.data.msg == "success") {
           var pPaperObj = res.data.pPaperObj
           var pQuestionArr = res.data.pQuestionArr
+          var isAccess = res.data.isAccess
           that.setData({
             pPaperObj: pPaperObj,//个人试卷
-            pQuestionArr: pQuestionArr//个人试卷试题
+            pQuestionArr: pQuestionArr,//个人试卷试题
+            isAccess: isAccess
           })
           // console.log(pQuestionArr)
         } else {
