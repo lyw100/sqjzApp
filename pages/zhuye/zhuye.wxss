@@ -98,6 +98,12 @@ line-height:60rpx;
   text-align:right;
   float: right;
 }
+.left:nth-child(even) .xuexijindu {
+  position:absolute;
+  bottom:30rpx;
+  left: 0rpx;
+}
+
 .dykctupian{
   width:362rpx;
   height:210rpx;
