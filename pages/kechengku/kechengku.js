@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    jingxuan: 'xzzhangtai',
     shipin:'xzzhangtai',
     tuwen:'',
     yuyin:'',
@@ -13,6 +14,7 @@ Page({
     shipinShow:true,
     tuwenShow:false,
     yuyinShow:false,
+    page:1
   },
   xzkc: function (event) {
     this.setData({
@@ -200,7 +202,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+    var jingxuan=this.data.jingxuan;
+    if(jingxuan==""){//选择的tab不是精选 可以继续加载
+      var page=this.data.page+1;
+      this.setData({
+        page:page,
+      });
+      this.getCourseBysubid(0, 4, page);
+    }
 
   },
 
@@ -217,15 +226,19 @@ Page({
   getKMList:function(subType){
     if(subType==0){
       this.setData({
+        jingxuan:'xzzhangtai',
         bixiuyanse:'yanse',
         xuanxiuyanse:'',
-        subType:subType
+        subType:subType,
+        page:1
       })
     }else if(subType==1){
       this.setData({
+        jingxuan: 'xzzhangtai',
         bixiuyanse: '',
         xuanxiuyanse: 'yanse',
-        subType: subType
+        subType: subType,
+        page: 1
       })
     }
     var that=this;
@@ -247,9 +260,9 @@ Page({
           that.data.subTabList[i].tabClass ="";
           var subid = subList[i].id;
           if (i == 1) {
-            that.getCourseBysubid(i, 3);
+            that.getCourseBysubid(i, 3,1);
           } else {
-            that.getCourseBysubid(i, 4);
+            that.getCourseBysubid(i, 4,1);
           }
 
         }
@@ -266,14 +279,38 @@ Page({
     var index = e.currentTarget.dataset.index;
     var subTabList = this.data.subTabList;
     this.data.subList = [];
-    this.data.subList[0]=subTabList[index];
-    this.getCourseBysubid(0,4);
-    for (var i = 0; i < subTabList.length;i++){
-      if(i==index){
-        subTabList[i].tabClass = "xzzhangtai";
-      }else{
-        subTabList[i].tabClass="";
+    if(index!=null){//点击非精选科目
+      // this.data.jingxuan="";
+      this.setData({
+        jingxuan:'',
+        page:1
+      });
+      this.data.subList[0]=subTabList[index];
+      this.getCourseBysubid(0,4,1);
+      for (var i = 0; i < subTabList.length;i++){
+        if(i==index){
+          subTabList[i].tabClass = "xzzhangtai";
+        }else{
+          subTabList[i].tabClass="";
+        }
       }
+    }else{//点击精选tab
+      // this.data.jingxuan = "jingxuan";
+      this.setData({
+        jingxuan: 'xzzhangtai',
+        page:1
+      });
+      this.data.subList = subTabList;
+      for (var i = 0; i < subTabList.length; i++) {
+        subTabList[i].tabClass = "";
+        if (i == 1) {
+          this.getCourseBysubid(i, 3,1);
+        } else {
+          this.getCourseBysubid(i, 4,1);
+        }
+      }
+
+
     }
     this.setData({
       subTabList: subTabList
@@ -287,7 +324,7 @@ Page({
   /**
    * 根据课程id获取课程
    */
-  getCourseBysubid: function (index, rows) {
+  getCourseBysubid: function (index, rows,page) {
     var jzid = getApp().globalData.jiaozhengid;
     var that=this;
     var subList=that.data.subList;
@@ -295,16 +332,20 @@ Page({
     wx.request({
       // url: 'http://localhost:8081/SQJZ' + '/course/getCourseBySubid', //根据课程id获取课程
       url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
-      data: {jzid:jzid,subid:subid,page:1,rows:rows},
+      data: {jzid:jzid,subid:subid,page:page,rows:rows},
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
         // console.log(res.data);
         var courseList = res.data;
-
-        subList[index].courseList = courseList;
-        
+        if(page==1){
+          subList[index].courseList = courseList;
+        }else{
+          courseList= subList[index].courseList.concat(courseList);
+          subList[index].courseList = courseList;
+        }
+        console.log(subList);
         that.setData({
           subList: subList
         })

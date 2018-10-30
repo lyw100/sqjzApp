@@ -29,10 +29,10 @@
   width: 100000px;
 }
 .xz_sm{
-  padding: 5rpx 25rpx;
+  padding: 5rpx 10rpx;
   /* border-right: 1px solid #e5e5e5; */
   float:left;
-  font-size: 34rpx;
+  font-size: 30rpx;
   color:#7e7c87;
 }
 .xz_sm:last-child{
@@ -63,6 +63,9 @@
   width:100%;
   height:80rpx;
   line-height:70rpx;
+}
+.subTitle{
+  height: 21px;
 }
 .tit2 .sp{
   font-size: 30rpx;
