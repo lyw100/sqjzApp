@@ -10,7 +10,8 @@ Page({
    */
   data: {
     duigouxz: false,
-    lastTime:0
+    lastTime:0,
+    page:1
   },
   /**
    * 生命周期函数--监听页面加载
@@ -107,7 +108,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.moreCourse();
   },
 
   /**
@@ -223,18 +224,23 @@ Page({
       var url = getApp().globalData.url + '/course/getMoreCourse';
       // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
       var jzid = this.data.record.jzid;
-      // console.log(jzid);
+      var page=this.data.page;
       wx.request({
         url: url, //获取推荐课程列表地址
-        data: { subid: subid, courseid: courseid, page: 1, rows: 4, jzid: jzid },
+        data: { subid: subid, courseid: courseid, page: page, rows: 4, jzid: jzid },
         header: {
           'content-type': 'application/json' // 默认值
         },
         success(res) {
           // console.log(res.data);
           var list = res.data;
+          if(page>1){
+            list=that.data.moreList.concat(list);
+          }
+          page=page+1;
           that.setData({
-            moreList: list
+            moreList: list,
+            page:page
           })
         }
       })
@@ -297,7 +303,8 @@ Page({
         }
         that.setData({
           record: res.data,
-          isSign: isSign
+          isSign: isSign,
+          sections: res.data.course.sections
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
