@@ -8,7 +8,7 @@ Page({
     shipin:'xzzhangtai',
     tuwen:'',
     yuyin:'',
-    bixiuke:'yanse',
+    bixiuyanse:'yanse',
     xuankeShow: true,
     yixuanShow: false,
     shipinShow:true,
@@ -68,30 +68,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    wx.request({
-      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var list = res.data;
-        // for(var i=0;i<list.length;i++){
-        //   if(i==0){
-        //     list[i].width="100%";
-        //   }else{
-        //     list[i].width = "80%";
-        //   }
-        // }
-        that.setData({
-          swiperCurrent: 0,
-          imgUrls: list
-        })
-      }
-    })
-
+    
+    //轮播图
+    this.topCourseList();
     //获取必修科目
     this.getKMList(0);
 
@@ -168,30 +147,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    var that = this;
-    wx.request({
-      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var list = res.data;
-        // for(var i=0;i<list.length;i++){
-        //   if(i==0){
-        //     list[i].width="100%";
-        //   }else{
-        //     list[i].width = "80%";
-        //   }
-        // }
-        that.setData({
-          swiperCurrent: 0,
-          imgUrls: list
-        })
-      }
-    })
-
+    //轮播图
+    this.topCourseList();
     //获取必修科目
     this.getKMList(0);
 
@@ -219,6 +176,45 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 获取点击量最多的5个课程
+   */
+  topCourseList:function(){
+    var that = this;
+    var query={};
+    if(this.data.jingxuan==""){
+      query.subid=this.data.subList[0].id;
+    }
+    if (this.data.bixiuyanse=="yanse"){
+      query.type=0;
+    }else{
+      query.type=1;
+    }
+    wx.request({
+      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+      data: query,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data;
+        // for(var i=0;i<list.length;i++){
+        //   if(i==0){
+        //     list[i].width="100%";
+        //   }else{
+        //     list[i].width = "80%";
+        //   }
+        // }
+        that.setData({
+          swiperCurrent: 0,
+          imgUrls: list
+        })
+      }
+    })
+
+  },
+
 
   /**
    * 获取所有科目   subType 0  必修   1选修
@@ -241,6 +237,7 @@ Page({
         page: 1
       })
     }
+    this.topCourseList();
     var that=this;
     //获取科目
     wx.request({
@@ -312,6 +309,10 @@ Page({
 
 
     }
+
+    //轮播图
+    this.topCourseList();
+
     this.setData({
       subTabList: subTabList
     });
