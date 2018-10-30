@@ -103,9 +103,9 @@
   margin-bottom: 25rpx;
 }
 .left:nth-child(even){
-  text-align:right;
   float: right;
 }
+
 .dykctupian{
   width:362rpx;
   height:210rpx;
