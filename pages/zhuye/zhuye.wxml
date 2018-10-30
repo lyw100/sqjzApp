@@ -45,7 +45,7 @@
         <image catchtap='signRecord' data-id="{{sign.id}}" class='lskcimg' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text class='yiwancheng'>{{sign.state==1?'已完成':'未完成'}}</text>
-        <text class='lscksm'>dfsdfsdafasfasdf撒打发斯蒂芬的撒地方阿萨德大阿萨德发送到</text>
+        <text class='lscksm'>{{sign.course.name}}</text>
       </view>
   </view>
 </view>
