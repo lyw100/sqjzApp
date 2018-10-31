@@ -164,7 +164,20 @@ Page({
           }
           let qcontentArr = that.data.qcontentArr;
           for (var j = 0; j < qcontentArr.length; j++) {
-            pQuestionArr[j].question.content = qcontentArr[j][0].nodes[0].text
+            let contentStr = ''
+            let imgArr = []
+            let imgLen = 0
+            for (var k = 0; k < qcontentArr[j].length;k++){
+              let node = qcontentArr[j][k].nodes[0]
+              if (node.tag == 'img'){
+                imgArr[imgLen] = getApp().globalData.url.substring(0, getApp().globalData.url.length-5) + node.attr.src
+                imgLen ++
+              }else{
+                contentStr = contentStr + node.text
+              }
+            }
+            pQuestionArr[j].question.content = contentStr
+            pQuestionArr[j].question.img = imgArr
           }
           var tfngNum = res.data.tfngNum
           var singleNum = res.data.singleNum
