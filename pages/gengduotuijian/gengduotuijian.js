@@ -62,6 +62,7 @@ Page({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: { subid: subid},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -154,6 +155,7 @@ Page({
       url: url, //获取推荐课程列表地址
       data: { jzid: jzid, subid: subid, page: page, rows: 6 },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {

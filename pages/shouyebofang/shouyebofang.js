@@ -39,6 +39,7 @@ Page({
       url: url, //获取视频播放信息
       data: data,
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -127,7 +128,7 @@ Page({
     // this.videoContext.play();
     // console.log("点击播放");
     // this.videoContext.requestFullScreen();//执行全屏方法
-
+    
     var courseid = this.data.record.course.id;//课程id
     var jzid = this.data.record.jzid;
     var url = getApp().globalData.url + '/course/addPlayNum';
@@ -136,6 +137,7 @@ Page({
       data: { courseid: courseid,jzid: jzid },
       dataType: 'text',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -152,6 +154,7 @@ Page({
   bindPause: function () {
     this.videoContext.pause()
   },
+  
   /**
    * 视频播放结束退出全屏
    */
@@ -235,6 +238,7 @@ Page({
         url: url, //获取推荐课程列表地址
         data: { subid: subid, courseid: courseid, page: page, rows: 4, jzid: jzid },
         header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'application/json' // 默认值
         },
         success(res) {
@@ -277,6 +281,7 @@ Page({
         data: { id: courseid, progress: progress, jzid: jzid ,sectionid:sectionid},
         dataType: 'text',
         header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'application/json' // 默认值
         },
         success(res) {
@@ -300,6 +305,7 @@ Page({
       url: url, //获取视频播放信息
       data: { jzid: jzid, courseid: courseid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -334,6 +340,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -370,6 +377,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -408,6 +416,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -455,6 +464,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -492,6 +502,7 @@ Page({
       url: getApp().globalData.url + '/course/getVideoSection', //获取正在播放的章节信息
       data: { courseid: courseid, jzid: jzid, sectionid: sectionid},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
