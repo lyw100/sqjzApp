@@ -27,10 +27,12 @@ Page({
       success: function (res) {
         if (res.data.msg == "success") {
           var pPaperObj = res.data.pPaperObj
+          var testPaper = res.data.testPaper
           var pQuestionArr = res.data.pQuestionArr
           var isAccess = res.data.isAccess
           that.setData({
             pPaperObj: pPaperObj,//个人试卷
+            testPaper: testPaper,
             pQuestionArr: pQuestionArr,//个人试卷试题
             isAccess: isAccess
           })
