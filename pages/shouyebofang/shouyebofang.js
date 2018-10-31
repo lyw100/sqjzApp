@@ -126,7 +126,7 @@ Page({
   bindPlay: function () {
     // this.videoContext.play();
     // console.log("点击播放");
-    this.videoContext.requestFullScreen();//执行全屏方法
+    // this.videoContext.requestFullScreen();//执行全屏方法
 
     var courseid = this.data.record.course.id;//课程id
     var jzid = this.data.record.jzid;
@@ -153,14 +153,20 @@ Page({
     this.videoContext.pause()
   },
   /**
+   * 视频播放结束退出全屏
+   */
+  bindended:function(){
+    this.videoContext.exitFullScreen();//执行全屏方法
+  },
+  /**
    * 全屏的方法
    */
   bindFullscreenchange: function (e) {
-    var isfull = e.detail.fullScreen;
-    if (!isfull) {
-      // console.log("非全屏暂停");
-      this.videoContext.pause();//视频暂停
-    }
+    // var isfull = e.detail.fullScreen;
+    // if (!isfull) {
+    //   // console.log("非全屏暂停");
+    //   this.videoContext.pause();//视频暂停
+    // }
   },
   //视频播放出错的方法
   videoErrorCallback: function (e) {
