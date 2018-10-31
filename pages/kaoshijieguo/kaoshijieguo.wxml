@@ -16,7 +16,7 @@
         <text>{{pPaperObj.hasScore}}</text>
       </view>
       <view class='zf'>
-        <text>总分  {{pPaperObj.totalScore}}</text>
+        <text>总分  {{testPaper.totalScore}}</text>
       </view>
     </view>
   </view>
