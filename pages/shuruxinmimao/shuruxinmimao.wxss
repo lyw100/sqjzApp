@@ -22,20 +22,15 @@ input{
 }
 .yzm{
   width: 60%;
-  margin: 0;
-  border-bottom: none;
 }
 .dingwei{
   position: relative;
-  border-bottom: 1px solid #e5e5e5;
-  margin: 60rpx 0;
 }
 .hqyzm{
   position: absolute;
   top: 20rpx;
   left: 70%;
   font-size: 32rpx;
-  color: #888;
 }
 .tijiaoanniu{
   width: 100%;

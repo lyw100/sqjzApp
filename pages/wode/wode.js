@@ -23,7 +23,7 @@ Page({
   },
   lianjie:function(){
     wx.showActionSheet({
-      itemList: ['修改密码', '返回登录'],
+      itemList: ['修改密码', '退出当前账号登录'],
       success(res) {
         wx.navigateTo({
           url: '../yanzheng/yanzheng'　

@@ -4,12 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
-  },
-  tj:function(){
-    wx.navigateTo({
-      url: '../shuruxinmimao/shuruxinmimao',
-    })
+    
   },
 
   /**
