@@ -33,9 +33,12 @@
   color: #2499f9;
   margin: 0 20rpx;
 }
+.zhangjie{
+  color: #2499f9;
+}
 .wcjd{
   font-size: 30rpx;
-  color: #f45a52;
+  color: #2499f9;
   margin-left: 60rpx;
 }
 .fenxiang{

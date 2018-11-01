@@ -26,7 +26,7 @@
 <view class='kcxz_zhangjie'>
   <view class='ul'>
     <block wx:for="{{sections}}"  wx:key="index" wx:for-item="section">
-    <text catchtap="sectionTap" data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
+    <text catchtap="sectionTap" class="{{section.yanse}}" data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
     </block>
   </view>
 </view>
