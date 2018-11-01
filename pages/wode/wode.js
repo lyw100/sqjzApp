@@ -23,7 +23,7 @@ Page({
   },
   lianjie:function(){
     wx.showActionSheet({
-      itemList: ['修改密码', '返回登录'],
+      itemList: ['修改密码', '退出当前账号登录'],
       success(res) {
         wx.navigateTo({
           url: '../yanzheng/yanzheng'　
@@ -570,7 +570,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
+    // this.onLoad();
 
     // 在线考试刷新
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {

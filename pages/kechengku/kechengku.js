@@ -318,8 +318,10 @@ Page({
     this.setData({
       subTabList: subTabList
     });
-
-
+    //跳转到顶部
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
 
 
   },
