@@ -461,6 +461,19 @@ Page({
       }
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: this.data.path + '/count/sousuo',
+      data: {},
+      method: "POST",
+      header: { 
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded' },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -497,7 +510,7 @@ Page({
         })
       }
     })
-
+    this.countInfo();
   },
 
   /**

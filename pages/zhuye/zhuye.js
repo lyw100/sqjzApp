@@ -9,7 +9,7 @@ Page({
    */
   data: {
      page:1,
-     rows:1
+     rows:4
   },
   /**跳转消息页面 */
   xiaoxiyemian:function(){
@@ -38,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.reLoad();
+    // this.reLoad();
   },
 
   /**
@@ -169,6 +169,9 @@ Page({
           that.setData({
             page: page
           });
+          if (that.data.historyList!=null){
+            list=that.data.historyList.concat(list);
+          }
         }
         that.setData({
           historyList: list
