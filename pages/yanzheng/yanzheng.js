@@ -4,7 +4,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    tjym:true,
+    bcym:false
+  },
+  tj:function(){
+    this.setData({
+      tjym: false,
+      bcym: true
+    })
   },
 
   /**
