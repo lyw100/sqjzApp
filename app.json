@@ -1,5 +1,5 @@
 {
-  "pages": [  
+  "pages": [
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
     "pages/zhihuibaodian/zhihuibaodian",
@@ -20,9 +20,9 @@
     "pages/wode/wode",
     "pages/ceshijieguo/ceshijieguo",
     "pages/kaoshijieguo/kaoshijieguo",
-    "pages/kaoshixiangqing/kaoshixiangqing"
-
-
+    "pages/kaoshixiangqing/kaoshixiangqing",
+    "pages/yanzheng/yanzheng"
+ 
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

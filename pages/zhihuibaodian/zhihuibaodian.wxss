@@ -150,7 +150,7 @@
 }
 
 .ztsz_tit {
-  width: 65%;
+  width: 55%;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
