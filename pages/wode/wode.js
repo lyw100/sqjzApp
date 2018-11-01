@@ -21,7 +21,19 @@ Page({
     page:1,
     rows:6,
   },
-
+  lianjie:function(){
+    wx.showActionSheet({
+      itemList: ['修改密码', '返回登录'],
+      success(res) {
+        wx.navigateTo({
+          url: '../yanzheng/yanzheng'　
+        })
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   // 在线考试方法分页加载
   ksloadList: function () {
     var that = this
