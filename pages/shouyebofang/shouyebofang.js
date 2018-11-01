@@ -48,11 +48,20 @@ Page({
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
+       
+        var sections = res.data.course.sections;
+        for (var i = 0; i < sections.length; i++) {
+          if (i == 0) {
+            sections[i].yanse = "zhangjie";
+          } else {
+            sections[i].yanse = "";
+          }
+        }
         that.setData({
           record: res.data,
           isSign: isSign,
-          subType:res.data.course.subject.type,
-          sections:res.data.course.sections
+          subType: res.data.course.subject.type,
+          sections: sections
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
@@ -313,10 +322,19 @@ Page({
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
+       
+        var sections = res.data.course.sections;
+        for (var i = 0; i < sections.length; i++) {
+          if(i==0){
+            sections[i].yanse = "zhangjie";
+          }else{
+            sections[i].yanse = "";
+          }
+        }
         that.setData({
           record: res.data,
           isSign: isSign,
-          sections: res.data.course.sections
+          sections: sections
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
@@ -524,6 +542,15 @@ Page({
     this.saveProgress();
     var courseid = e.currentTarget.dataset.courseid;
     var sectionid = e.currentTarget.dataset.sectionid;
+    var index = e.currentTarget.dataset.index;
+    var sections=this.data.sections;
+    for(var i=0;i<sections.length;i++){
+      sections[i].yanse="";
+    }
+    sections[index].yanse ="zhangjie";
+    this.setData({
+      sections:sections
+    });
     this.getVideoSection(courseid, sectionid);
 
   }
