@@ -21,7 +21,8 @@
     "pages/ceshijieguo/ceshijieguo",
     "pages/kaoshijieguo/kaoshijieguo",
     "pages/kaoshixiangqing/kaoshixiangqing",
-    "pages/yanzheng/yanzheng"
+    "pages/yanzheng/yanzheng",
+    "pages/shuruxinmimao/shuruxinmimao"
    
   ],
   "window": {
