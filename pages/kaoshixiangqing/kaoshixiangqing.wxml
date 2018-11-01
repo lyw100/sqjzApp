@@ -14,6 +14,12 @@
           <view class='fst'>
             <!-- 题目 -->
             <view class='kaoti'>{{qid+1+'.'+item.question.content}}</view>
+            <!-- 图片 -->
+            <view wx:if='{{item.question.img}}'>
+              <block wx:for='{{item.question.img}}' wx:key='imgid' wx:for-item='imgsrc'>
+                <image class='wxParse-img' src='{{imgsrc}}'></image>
+              </block>
+            </view>
             <!-- 单选题选项 -->
             <view class='daan' wx:if="{{item.question.type==0}}">
               <block wx:for="{{item.question.xuanxiangArr}}" wx:key="xxid" wx:for-item="itemsub">

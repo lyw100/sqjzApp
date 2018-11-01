@@ -194,6 +194,7 @@ Page({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: query,
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -244,6 +245,7 @@ Page({
       url: getApp().globalData.url + '/course/listKM', //获取科目列表
       data: { 'type': subType},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -335,6 +337,7 @@ Page({
       url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
       data: {jzid:jzid,subid:subid,page:page,rows:rows},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -382,6 +385,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -440,6 +444,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',

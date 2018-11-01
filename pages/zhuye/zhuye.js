@@ -79,6 +79,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: {jzid:jzid,page:page,rows:rows},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -138,6 +139,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
       data: { jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -156,6 +158,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: { jzid: jzid, 'page': that.data.page, 'rows': that.data.rows },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -178,6 +181,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
       data: {},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
