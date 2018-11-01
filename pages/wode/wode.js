@@ -570,7 +570,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
+    // this.onLoad();
 
     // 在线考试刷新
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
