@@ -164,14 +164,14 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
+        if(page>1){
+          list = that.data.historyList.concat(list);
+        }
         if (list.length > 0) {
           var page = that.data.page + 1;
           that.setData({
             page: page
           });
-          if (that.data.historyList!=null){
-            list=that.data.historyList.concat(list);
-          }
         }
         that.setData({
           historyList: list
