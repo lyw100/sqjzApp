@@ -11,8 +11,8 @@
     <view class='shipineirong' wx:if="{{shipinShow}}">
 
       <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" 
-        current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="30px" next-margin="30px"  
-        bindchange="imgCHange">
+        current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="25px" next-margin="40px"  
+        bindchange="imgCHange" bindanimationfinish="gaibian">
         <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
           <swiper-item class="titimg"> 
             <image  data-index='{{index}}' data-courseid='{{course.id}}' src="{{course.thumbnail}}"

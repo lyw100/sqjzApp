@@ -38,6 +38,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
+      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+      data: { jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var hours = res.data.hours;
+        var list = res.data.list;
+        that.setData({
+          hours: hours,
+          nowList: list
+        })
+      }
+    })
     // this.reLoad();
   },
 
@@ -133,25 +154,25 @@ Page({
   reLoad:function(){
     var that = this;
     var jzid = getApp().globalData.jiaozhengid;
-    // console.log(that.globalData.header.Cookie);
-    wx.request({
-      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
-      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
-      data: { jzid: jzid },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var hours = res.data.hours;
-        var list = res.data.list;
-        that.setData({
-          hours: hours,
-          nowList: list
-        })
-      }
-    })
+    // // console.log(that.globalData.header.Cookie);
+    // wx.request({
+    //   url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
+    //   // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
+    //   data: { jzid: jzid },
+    //   header: {
+    //     'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success(res) {
+    //     // console.log(res.data);
+    //     var hours = res.data.hours;
+    //     var list = res.data.list;
+    //     that.setData({
+    //       hours: hours,
+    //       nowList: list
+    //     })
+    //   }
+    // })
 
     wx.request({
       url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
@@ -164,14 +185,14 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
+        if(page>1){
+          list = that.data.historyList.concat(list);
+        }
         if (list.length > 0) {
           var page = that.data.page + 1;
           that.setData({
             page: page
           });
-          if (that.data.historyList!=null){
-            list=that.data.historyList.concat(list);
-          }
         }
         that.setData({
           historyList: list

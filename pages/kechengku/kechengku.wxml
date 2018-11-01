@@ -2,7 +2,6 @@
 <view class='kck'>
   <view class='dingwei'>
     <view class='tit'>
-      <image class='img' src="/img/logo.png" bindtap="onCancelImgTap"></image>
       <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
       <text catchtap='xuanxiuke' class='xuanxiuke {{xuanxiuyanse}}'>选修课</text>
     </view>
