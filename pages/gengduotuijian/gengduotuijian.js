@@ -9,6 +9,11 @@ Page({
       url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.data.subid,
     })
   },
+
+  gaibian:function(){
+
+  },
+
   /**
    * 页面的初始数据
    */
