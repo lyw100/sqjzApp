@@ -17,14 +17,27 @@ Page({
       url: '../xiaoxi/xiaoxi',
     }); 
   },
+  countInfo: function () {
+    wx.request({
+      url: this.data.path + '/count/zhuye',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     
     this.reLoad();
-
+    this.countInfo();
   },
 
   /**
