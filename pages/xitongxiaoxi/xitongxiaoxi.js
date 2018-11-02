@@ -12,7 +12,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/xitongxiaoxi',
+      url: getApp().globalData.url + '/count/xitongxiaoxi',
       data: {},
       method: "POST",
       header: {
