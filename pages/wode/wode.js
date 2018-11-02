@@ -364,6 +364,7 @@ Page({
       },
       method: 'POST',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
@@ -400,6 +401,7 @@ Page({
       },
       method:'POST',
       header:{
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res){

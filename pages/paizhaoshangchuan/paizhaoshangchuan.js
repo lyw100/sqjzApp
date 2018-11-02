@@ -79,6 +79,7 @@ Page({
         filePath: imgList[i],
         name: 'file',
         header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'multipart/form-data'
         },
         formData: { 
@@ -104,6 +105,7 @@ Page({
                 },
                 method:'POST',
                 header:{
+                  'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
                   'content-type': 'application/x-www-form-urlencoded'
                 },
                 success(res){
@@ -185,7 +187,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/paizhaoshangchuan',
+      url: getApp().globalData.url + '/count/paizhaoshangchuan',
       data: {},
       method: "POST",
       header: {
