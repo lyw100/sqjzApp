@@ -48,7 +48,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/gengduotuijian',
+      url: getApp().globalData.url + '/count/gengduotuijian',
       data: {},
       method: "POST",
       header: {

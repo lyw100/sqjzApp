@@ -81,7 +81,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/xinlipinggu',
+      url: getApp().globalData.url + '/count/xinlipinggu',
       data: {},
       method: "POST",
       header: {

@@ -8,7 +8,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/kaoshijieguo',
+      url: getApp().globalData.url + '/count/kaoshijieguo',
       data: {},
       method: "POST",
       header: {

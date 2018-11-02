@@ -209,7 +209,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/kaoshixiangqing',
+      url: getApp().globalData.url + '/count/kaoshixiangqing',
       data: {},
       method: "POST",
       header: {

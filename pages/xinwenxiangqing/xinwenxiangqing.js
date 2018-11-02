@@ -11,7 +11,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/xinwenxiangqing',
+      url: getApp().globalData.url + '/count/xinwenxiangqing',
       data: {},
       method: "POST",
       header: {

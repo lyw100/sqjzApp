@@ -65,7 +65,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/kechengku',
+      url: getApp().globalData.url + '/count/kechengku',
       data: {},
       method: "POST",
       header: {
