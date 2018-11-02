@@ -38,28 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    var jzid = getApp().globalData.jiaozhengid;
-    // console.log(that.globalData.header.Cookie);
-    wx.request({
-      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
-      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
-      data: { jzid: jzid },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var hours = res.data.hours;
-        var list = res.data.list;
-        that.setData({
-          hours: hours,
-          nowList: list
-        })
-      }
-    })
-    // this.reLoad();
+    this.cmonthSignList();
   },
 
   /**
@@ -83,6 +62,7 @@ Page({
     // 显示顶部刷新图标
     // wx.showNavigationBarLoading();
     this.data.page=1;
+    this.cmonthSignList();
     this.reLoad();
     wx.stopPullDownRefresh() //停止下拉刷新
   },
@@ -154,26 +134,7 @@ Page({
   reLoad:function(){
     var that = this;
     var jzid = getApp().globalData.jiaozhengid;
-    // // console.log(that.globalData.header.Cookie);
-    // wx.request({
-    //   url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
-    //   // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
-    //   data: { jzid: jzid },
-    //   header: {
-    //     'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-    //     // console.log(res.data);
-    //     var hours = res.data.hours;
-    //     var list = res.data.list;
-    //     that.setData({
-    //       hours: hours,
-    //       nowList: list
-    //     })
-    //   }
-    // })
-
+   
     wx.request({
       url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
@@ -218,7 +179,33 @@ Page({
       }
     })
 
+  },
+  /**
+   * 当月课程查询
+   */
+  cmonthSignList:function(){
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
+      data: { jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var hours = res.data.hours;
+        var list = res.data.list;
+        that.setData({
+          hours: parseFloat(hours).toFixed(1),
+          nowList: list
+        })
+      }
+    })
   }
+
 })
 
 
