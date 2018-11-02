@@ -11,6 +11,15 @@ Page({
      page:1,
      rows:4
   },
+  /**单击扫一扫图标 */
+  scanTap:function(){
+    // 允许从相机和相册扫码
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+      }
+    })
+  },
   /**跳转消息页面 */
   xiaoxiyemian:function(){
     wx.navigateTo({
