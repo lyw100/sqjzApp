@@ -547,6 +547,20 @@ Page({
       current: src
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: this.data.path + '/count/wode',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -557,6 +571,7 @@ Page({
     this.rectifyPeople();//矫正人员信息
     this.currentCourse();//当月课程
     this.historyCourse();//历史课程
+    this.countInfo();
   },
 
   /**
@@ -571,10 +586,15 @@ Page({
    */
   onShow: function () {
     // this.onLoad();
-
+    
     // 在线考试刷新
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
       this.zaixiankaoshi()
+    }
+    //思想汇报
+    if (this.data.sixhb_wxz == false && this.data.sixhb_xz == true) {
+      this.loadReport();
+      pageReport = 2;
     }
   },
 
