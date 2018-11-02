@@ -19,7 +19,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/zhuye',
+      url: getApp().globalData.url + '/count/zhuye',
       data: {},
       method: "POST",
       header: {
