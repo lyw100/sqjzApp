@@ -80,6 +80,8 @@
  -webkit-box-orient:vertical;
   box-shadow: 2px 1px 5px #e5e5e5;
   -moz-box-shadow:  2px 1px 5px #e5e5e5; /* 老的 Firefox */
+  background:#fafafa;
+  text-align:center; 
 }
 .kcxz_zhangjie text:last-child{
   margin-right: 15rpx;
