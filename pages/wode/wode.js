@@ -549,7 +549,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/wode',
+      url: getApp().globalData.url + '/count/wode',
       data: {},
       method: "POST",
       header: {
