@@ -73,7 +73,7 @@ Page({
   },
   countInfo: function () {
     wx.request({
-      url: this.data.path + '/count/zhihuibaodian',
+      url: getApp().globalData.url + '/count/zhihuibaodian',
       data: {},
       method: "POST",
       header: {
