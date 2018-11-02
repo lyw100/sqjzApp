@@ -239,7 +239,7 @@ Page({
         var hours = res.data.hours;
         var list = res.data.list;
         that.setData({
-          hours: hours,
+          hours: parseFloat(hours).toFixed(1),
           nowList: list
         })
       }
@@ -261,15 +261,18 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
-        if (list.length > 0) {
+        if (that.data.page > 1) {
+          if (that.data.historyList != null) {
+            list = that.data.historyList.concat(list);
+          }
+        }
+        if (res.data.length > 0) {
           var page = that.data.page + 1;
           that.setData({
             page: page
           });
         }
-        if(that.data.historyList!=null){
-          list = that.data.historyList.concat(list);
-        }
+        
         that.setData({
           historyList: list
         })
@@ -301,7 +304,11 @@ Page({
       zaixiankaoshixs: false,
       sixianghbxianshi: false,
       xinlipgxianshi: false,
+      page:1
     })
+    this.rectifyPeople();//矫正人员信息
+    this.currentCourse();//当月课程
+    this.historyCourse();//历史课程
   },
   /** 在线考试*/
   zaixiankaoshi: function () {
@@ -569,7 +576,7 @@ Page({
     pageReport = 2;
 
     this.rectifyPeople();//矫正人员信息
-    this.currentCourse();//当月课程
+    // this.currentCourse();//当月课程
     this.historyCourse();//历史课程
     this.countInfo();
   },
@@ -595,6 +602,9 @@ Page({
     if (this.data.sixhb_wxz == false && this.data.sixhb_xz == true) {
       this.loadReport();
       pageReport = 2;
+    }
+    if (this.data.kechxz_xz) {//是否选择是课程学习
+      this.currentCourse();//当月课程
     }
   },
 
