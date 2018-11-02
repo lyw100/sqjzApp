@@ -2,7 +2,7 @@
 <view class="contai">
   <view class='tit'>
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-    <image class="sis" src='/img/saoyisao.png'></image>
+    <image class="sis" src='/img/saoyisao.png' bindtap='scanTap'></image>
     <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
   </view>
   <view class='titimg'>
