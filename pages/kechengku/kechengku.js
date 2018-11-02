@@ -63,7 +63,20 @@ Page({
       url: '../sousuo/sousuo?subjectType=&courseType='+subType+'&menu=course&subjectId=',
     })
   },
-  
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kechengku',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,7 +86,7 @@ Page({
     this.topCourseList();
     //获取必修科目
     this.getKMList(0);
-
+    this.countInfo();
   },
 
   /**

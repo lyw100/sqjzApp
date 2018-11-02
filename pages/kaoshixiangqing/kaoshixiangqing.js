@@ -207,7 +207,20 @@ Page({
       sequence: e.detail.current + 1
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kaoshixiangqing',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -241,6 +254,7 @@ Page({
       ppid: ppid,
       type: type
     })
+    this.countInfo();
   },
 
   /**
