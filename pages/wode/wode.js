@@ -25,9 +25,18 @@ Page({
     wx.showActionSheet({
       itemList: ['修改密码', '退出当前账号登录'],
       success(res) {
-        wx.navigateTo({
-          url: '../yanzheng/yanzheng'　
-        })
+        if(res.tapIndex==0){
+          wx.navigateTo({
+            url: '../yanzheng/yanzheng'
+          })
+        }else if(res.tapIndex==1){
+          getApp().globalData.jiaozhengid = "";
+          getApp().globalData.header.Cookie = "";
+          wx.reLaunch({
+            url: '../denglu/denglu'
+          })
+        }
+        
       },
       fail(res) {
         console.log(res.errMsg)
@@ -607,6 +616,10 @@ Page({
     }
     if (this.data.kechxz_xz) {//是否选择是课程学习
       this.currentCourse();//当月课程
+    }
+    //心里评估刷新
+    if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
+      this.xinlipiggu();
     }
   },
 
