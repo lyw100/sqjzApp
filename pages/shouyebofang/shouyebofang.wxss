@@ -168,11 +168,16 @@
 }
 
 .nr{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 25%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:25%;
+  position:fixed;
+  top:0;
+  height:100%;
+  background:#fff;
+  z-index:9999;
 }
 .anniu{
   width:85%;
