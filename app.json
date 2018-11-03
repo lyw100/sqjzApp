@@ -1,6 +1,5 @@
 {
-  "pages": [  
-        "pages/kechengku/kechengku",
+  "pages": [     
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
     "pages/shouyebofang/shouyebofang",
@@ -15,7 +14,7 @@
     "pages/xiaoxi/xiaoxi",
     "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
-
+    "pages/kechengku/kechengku",
     "pages/paizhaoshangchuan/paizhaoshangchuan",
     "pages/xinlipinggu/xinlipinggu",
     "pages/wode/wode",
