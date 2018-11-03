@@ -339,6 +339,19 @@ Page({
       zhuyesousuo: false,
       qkch: true
     })
+    //搜索次数加1
+    var path = this.data.path;
+    wx.request({
+      url: path + '/search/editClicks',
+      data: { name: name},
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success(res) {
+      }
+    })
     this.search();
   },
   hotTap:function(e){
