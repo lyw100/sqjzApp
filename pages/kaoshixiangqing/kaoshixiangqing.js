@@ -139,6 +139,9 @@ Page({
   },
   // 查询试卷题目
   getPPaper: function(ppid){
+    wx.showLoading({
+      title: '加载中',
+    })
     // 生成试卷
     var that = this
     wx.request({
@@ -198,6 +201,7 @@ Page({
             icon: 'none'
           })
         }
+        wx.hideLoading()
       }
     })
   },
