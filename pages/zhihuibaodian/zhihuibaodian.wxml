@@ -1,7 +1,6 @@
 <!--智慧宝典页面 -->
 <view class='kck'>
     <view class='tit'>
-      <image class='img' src="/img/logo.png"></image>
       <text class='{{flfgtit}}' catchtap='falcfg'>法律法规</text>
       <text class='{{xljttit}}' catchtap='xinljt'>心灵鸡汤</text>
       <text class='{{shbztit}}' catchtap='shenghbz'>生活帮助</text>

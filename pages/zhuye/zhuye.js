@@ -11,20 +11,42 @@ Page({
      page:1,
      rows:4
   },
+  /**单击扫一扫图标 */
+  scanTap:function(){
+    // 允许从相机和相册扫码
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+      }
+    })
+  },
   /**跳转消息页面 */
   xiaoxiyemian:function(){
     wx.navigateTo({
       url: '../xiaoxi/xiaoxi',
     }); 
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/zhuye',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     
     this.reLoad();
-
+    this.countInfo();
   },
 
   /**
@@ -38,7 +60,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.reLoad();
+    this.cmonthSignList();
   },
 
   /**
@@ -62,6 +84,7 @@ Page({
     // 显示顶部刷新图标
     // wx.showNavigationBarLoading();
     this.data.page=1;
+    this.cmonthSignList();
     this.reLoad();
     wx.stopPullDownRefresh() //停止下拉刷新
   },
@@ -133,26 +156,7 @@ Page({
   reLoad:function(){
     var that = this;
     var jzid = getApp().globalData.jiaozhengid;
-    // console.log(that.globalData.header.Cookie);
-    wx.request({
-      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
-      // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
-      data: { jzid: jzid },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
-        var hours = res.data.hours;
-        var list = res.data.list;
-        that.setData({
-          hours: hours,
-          nowList: list
-        })
-      }
-    })
-
+   
     wx.request({
       url: getApp().globalData.url + '/sign/historySignList', //请求历史已选课程地址
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
@@ -164,14 +168,14 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
+        if(page>1){
+          list = that.data.historyList.concat(list);
+        }
         if (list.length > 0) {
           var page = that.data.page + 1;
           that.setData({
             page: page
           });
-          if (that.data.historyList!=null){
-            list=that.data.historyList.concat(list);
-          }
         }
         that.setData({
           historyList: list
@@ -197,7 +201,33 @@ Page({
       }
     })
 
+  },
+  /**
+   * 当月课程查询
+   */
+  cmonthSignList:function(){
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/cmonthSignList', //请求当月已选课程地址
+      data: { jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var hours = res.data.hours;
+        var list = res.data.list;
+        that.setData({
+          hours: parseFloat(hours).toFixed(1),
+          nowList: list
+        })
+      }
+    })
   }
+
 })
 
 

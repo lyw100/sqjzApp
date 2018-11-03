@@ -9,6 +9,11 @@ Page({
       url: '../sousuo/sousuo?subjectType=&courseType=&menu=course&subjectId='+this.data.subid,
     })
   },
+
+  gaibian:function(){
+
+  },
+
   /**
    * 页面的初始数据
    */
@@ -41,6 +46,20 @@ Page({
       yuyinShow: true,
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/gengduotuijian',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -68,13 +87,15 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
-        // for(var i=0;i<list.length;i++){
-        //   if(i==0){
-        //     list[i].width="100%";
-        //   }else{
-        //     list[i].width = "80%";
-        //   }
-        // }
+        for(var i=0;i<list.length;i++){
+          if(i==0){
+            list[i].img ="biaotou";
+            list[i].text ="titxinxi";
+          }else{
+            list[i].img = "gaibianchang";
+            list[i].text = "xiaotuzi";
+          }
+        }
         that.setData({
           swiperCurrent: 0,
           imgUrls: list
@@ -83,7 +104,7 @@ Page({
     })
     //获取更多推荐
     this.moreCourseList();
-
+    this.countInfo();
 
 
   },
@@ -173,5 +194,33 @@ Page({
       }
     })
 
+  },
+
+  /**
+   * 轮播图动画结束方法
+   */
+  gaibian:function(e){
+    // console.log("轮播图动画结束方法");
+    
+
+  },
+
+  imgChange:function(e){
+    // console.log("轮播图动画change方法");
+    var index = e.detail.current;
+    var imgUrls = this.data.imgUrls;
+    for (var i = 0; i < imgUrls.length; i++) {
+      if (i == index) {
+        imgUrls[i].img = "biaotou";
+        imgUrls[i].text = "titxinxi";
+      } else {
+        imgUrls[i].img = "gaibianchang";
+        imgUrls[i].text = "xiaotuzi";
+      }
+
+    }
+    this.setData({
+      imgUrls: imgUrls
+    })
   }
 })

@@ -63,6 +63,7 @@ Page({
       data: { name: e.detail.value },
       method: 'POST',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
@@ -112,6 +113,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -217,6 +219,19 @@ Page({
       searchData.push({ name: text })
       wx.setStorageSync('searchData', searchData)
     }
+    //搜索次数加1
+    var path = this.data.path;
+    wx.request({
+      url: path + '/search/editClicks',
+      data: { name: text },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success(res) {
+      }
+    })
     this.search();
   },
   //搜索功能
@@ -227,7 +242,6 @@ Page({
     var subjectId = this.data.subjectId;
     var self = this;
     page = 2;
-    wx.showNavigationBarLoading() //在标题栏中显示加载
     wx.request({
       url: path + '/search/list',
       data: {
@@ -240,7 +254,9 @@ Page({
         rows: 5
       },
       method: 'POST',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      header: { 
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
         if (res.data.msg == "OK") {
           if (res.data.listAll.length > 0) {
@@ -277,10 +293,6 @@ Page({
             })
           }
         }
-      },
-      complete: function () {
-        wx.hideNavigationBarLoading() //完成停止加载
-        wx.stopPullDownRefresh() //停止下拉刷新
       }
     })
   },
@@ -292,6 +304,24 @@ Page({
       ssnrjieguo: false,
       zhuyesousuo: true,
       djjg: false
+    })
+    this.openLocationsercher();
+    //热点搜索list
+    var self = this;
+    var path = this.data.path;
+    wx.request({
+      url: path + '/search/hotList',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        self.setData({
+          hotList: res.data.list
+        })
+      }
     })
   },
   //清除缓存历史
@@ -335,6 +365,19 @@ Page({
       zhuyesousuo: false,
       qkch: true
     })
+    //搜索次数加1
+    var path = this.data.path;
+    wx.request({
+      url: path + '/search/editClicks',
+      data: { name: name},
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success(res) {
+      }
+    })
     this.search();
   },
   hotTap:function(e){
@@ -351,12 +394,28 @@ Page({
       url: path + '/search/editClicks',
       data: { courseId: e.currentTarget.id },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       method: 'POST',
       success(res) {
       }
     })
+    var searchData = this.data.sercherStorage;
+    var flag = true;
+    for (var i = 0; i < searchData.length; i++) {
+      if (text == searchData[i].name) {
+        flag = false;
+      }
+    }
+    //将搜索记录更新到缓存
+    if (flag) {
+      searchData.push({
+        name: this.data.inputText
+      })
+      wx.setStorageSync('searchData', searchData);
+      this.setData({ StorageFlag: false, })
+    }
     this.search();
   },
   //添加搜索历史
@@ -401,6 +460,7 @@ Page({
       url: path + '/search/editClicks',
       data: { courseId: e.currentTarget.id },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       method: 'POST',
@@ -436,6 +496,7 @@ Page({
       },
       method: 'POST',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
@@ -502,6 +563,7 @@ Page({
       data: {},
       method: "POST",
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
