@@ -2,6 +2,7 @@
   "pages": [ 
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
+    "pages/shouyebofang/shouyebofang",
     "pages/zhihuibaodian/zhihuibaodian",
     "pages/xinwenxiaoxi/xinwenxiaoxi",
     "pages/sousuo/sousuo",
@@ -10,7 +11,6 @@
     "pages/logs/logs",
     "pages/gengduotuijian/gengduotuijian",
     "pages/shualiandenglu/shualiandenglu",
-    "pages/shouyebofang/shouyebofang",
     "pages/xiaoxi/xiaoxi",
     "pages/xitongxiaoxi/xitongxiaoxi",
     "pages/xinwenxiangqing/xinwenxiangqing",
@@ -22,7 +22,8 @@
     "pages/kaoshijieguo/kaoshijieguo",
     "pages/kaoshixiangqing/kaoshixiangqing",
     "pages/yanzheng/yanzheng",
-    "pages/shuruxinmimao/shuruxinmimao"
+    "pages/shuruxinmimao/shuruxinmimao",
+    "pages/zhezhao/zhezhao"
    
   ],
   "window": {

@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bofangyemian:true,
+    shualiandl:false,
     duigouxz: false,
     lastTime:0,
     page:1
