@@ -31,11 +31,23 @@ input{
   margin: 60rpx 0;
 }
 .hqyzm{
-  position: absolute;
-  top: 20rpx;
-  left: 70%;
-  font-size: 32rpx;
-  color: #888;
+  
+background-color: #fff;
+display: inline-block;
+font-size: 26rpx;
+color: rgb(136, 136, 136);
+border: 1px solid #888;
+border-radius: 10rpx;
+width: 160rpx;
+height: 70rpx;
+line-height: 70rpx;
+position: absolute;
+top: 0;
+right: 20rpx;
+z-index: 2;
+padding-right: 0;
+padding-left: 0;
+margin-top: 10rpx;
 }
 .tijiaoanniu{
   width: 100%;

@@ -1,5 +1,6 @@
 <!--课程库页面 -->
 <view class='kck'>
+  <!--弹出框结束-->
   <view class='dingwei'>
     <view class='tit'>
       <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
@@ -12,12 +13,14 @@
           <view catchtap='subTap' class='xz_sm {{jingxuan}}'>精选</view>
           <block wx:for="{{subTabList}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
             <view data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}
-           
+
             </view>
           </block>
         </view>
       </view>
-      <view class='xz_anniu'><image src='/img/er.png' class='anniu_img'></image></view>
+      <view class='xz_anniu' catchtap='denghaoanniu'>
+        <image src='/img/er.png' class='anniu_img'></image>
+      </view>
     </view>
 
     <view class='tit2'>
@@ -285,5 +288,39 @@
     <!--语音页面 -->
     <view class='yuyinneirong' wx:if="{{yuyin!=''}}">语音暂无信息</view>
     <!--语音页面  完-->
+  </view>
+</view>
+
+<!--弹出框开始-->
+<view class="zhezhao" hidden="{{flag}}" catchtap='conceal'>
+  <view class="tanchu_view">
+    <view class='zz_jj'>
+      <text class='zhezhao_color'>精选</text>
+      <image src='/img/hengxian.png' class='zz_img' ></image>
+    </view>
+    <view class='zz_jj'>
+      <text>政策法规教育</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
+    <view class='zz_jj'>
+      <text>心理健康教育</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
+    <view class='zz_jj'>
+      <text>就业帮扶教育就业帮扶教育</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
+    <view class='zz_jj'>
+      <text>政策法规教育</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
+    <view class='zz_jj'>
+      <text>政策法规</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
+    <view class='zz_jj'>
+      <text>政策法</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
+    </view>
   </view>
 </view>
