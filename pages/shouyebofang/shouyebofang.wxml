@@ -1,5 +1,5 @@
 <!--shouyebofang.wxml-->
-<view class='contai'>
+<view class='contai' wx:if="{{bofangyemian}}">
 <view class='tit tc'>
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
@@ -56,7 +56,14 @@
         <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text>
       
       </view>
-
-
   </view>
+</view>
+
+<!-- 刷脸登录-->
+
+<view class='nr' wx:if='{{shualiandl}}'>
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;border-radius:165px"></camera> 
+<view class="anniu" catchtap="takePhoto" >
+       <text>登录</text>
+   </view>
 </view>

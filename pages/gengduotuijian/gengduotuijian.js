@@ -87,13 +87,15 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
-        // for(var i=0;i<list.length;i++){
-        //   if(i==0){
-        //     list[i].width="100%";
-        //   }else{
-        //     list[i].width = "80%";
-        //   }
-        // }
+        for(var i=0;i<list.length;i++){
+          if(i==0){
+            list[i].img ="biaotou";
+            list[i].text ="titxinxi";
+          }else{
+            list[i].img = "gaibianchang";
+            list[i].text = "xiaotuzi";
+          }
+        }
         that.setData({
           swiperCurrent: 0,
           imgUrls: list
@@ -192,5 +194,33 @@ Page({
       }
     })
 
+  },
+
+  /**
+   * 轮播图动画结束方法
+   */
+  gaibian:function(e){
+    // console.log("轮播图动画结束方法");
+    
+
+  },
+
+  imgChange:function(e){
+    // console.log("轮播图动画change方法");
+    var index = e.detail.current;
+    var imgUrls = this.data.imgUrls;
+    for (var i = 0; i < imgUrls.length; i++) {
+      if (i == index) {
+        imgUrls[i].img = "biaotou";
+        imgUrls[i].text = "titxinxi";
+      } else {
+        imgUrls[i].img = "gaibianchang";
+        imgUrls[i].text = "xiaotuzi";
+      }
+
+    }
+    this.setData({
+      imgUrls: imgUrls
+    })
   }
 })

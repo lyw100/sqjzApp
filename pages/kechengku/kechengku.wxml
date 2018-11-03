@@ -7,12 +7,17 @@
     </view>
 
     <view class='xuanze'>
-      <view class='xz_nr'>
-      <text catchtap='subTap' class='xz_sm {{jingxuan}}'>精选</text>
-        <block wx:for="{{subTabList}}"  wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
-          <text data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}</text>
-        </block>
+      <view class='xuanzekuan'>
+        <view class='xz_nr'>
+          <view catchtap='subTap' class='xz_sm {{jingxuan}}'>精选</view>
+          <block wx:for="{{subTabList}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
+            <view data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}
+           
+            </view>
+          </block>
+        </view>
       </view>
+      <view class='xz_anniu'><image src='/img/er.png' class='anniu_img'></image></view>
     </view>
 
     <view class='tit2'>
@@ -24,16 +29,15 @@
   </view>
   <view class='neirong'>
     <!--视频内容 -->
-    <view class='shipineirong'  wx:if="{{shipin!=''}}" >
+    <view class='shipineirong' wx:if="{{shipin!=''}}">
       <view class='lskcnr'>
-        <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" 
-          current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="30px" next-margin="30px">
-          <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
-            <swiper-item class="titimg"> 
-              <image  data-index='{{index}}' data-id='{{course.id}}' src="{{course.thumbnail}}" class="biaotou" bindtap="bofang" />
-              <text class="titxinxi">{{course.name}}</text>
+        <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" bindchange="imgChange" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px">
+          <block wx:for="{{imgUrls}}" wx:for-item="course" wx:for-index="index" wx:key="index">
+            <swiper-item class="titimg">
+              <image data-index='{{index}}' data-id='{{course.id}}' src="{{course.thumbnail}}" class="{{course.img}}" bindtap="bofang" />
+              <text class="{{course.text}}">{{course.name}}</text>
             </swiper-item>
-          </block> 
+          </block>
         </swiper>
       </view>
       <!--正在热播 -->
@@ -48,16 +52,16 @@
           <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
         </view>
       </view> -->
-    <block  wx:for="{{subList}}" wx:if="{{subList[subIndex].courseList!=null}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
-      <view class="subTitle">
-        <text class='dykctext' wx:if="{{jingxuan!=''}}">{{sub.name}}</text>
-        <text class='genduotuijian' wx:if="{{jingxuan!=''}}" data-name="{{sub.name}}" data-subid="{{sub.id}}" catchtap='moreSubCourse'>查看更多</text>
-      </view>
-      <view class="dykcsp">
-        <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
+      <block wx:for="{{subList}}" wx:if="{{subList[subIndex].courseList!=null}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
+        <view class="subTitle">
+          <text class='dykctext' wx:if="{{jingxuan!=''}}">{{sub.name}}</text>
+          <text class='genduotuijian' wx:if="{{jingxuan!=''}}" data-name="{{sub.name}}" data-subid="{{sub.id}}" catchtap='moreSubCourse'>查看更多</text>
+        </view>
+        <view class="dykcsp">
+          <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
 
             <block wx:if="{{subIndex==1&&index==0}}">
-              <image data-id="{{course.id}}" data-index='{{index}}'  class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+              <image data-id="{{course.id}}" data-index='{{index}}' class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
               <view class='ddwhjy_jianju'>
                 <text class='ddwjjy_bt'>{{course.name}}</text>
                 <view class='ddjy_xuanke'>
@@ -69,12 +73,12 @@
                       <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                     </block>
                   </block>
-                  
+
                 </view>
               </view>
             </block>
 
-            <view  class='left'  wx:else>
+            <view class='left' wx:else>
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
               <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
               <text class="xueshi" wx:if="{{course.subject.type==0}}">学时:{{course.hours}}</text>
@@ -92,10 +96,10 @@
               </view>
             </view>
 
-        </block>  
-        <view style='clear:both;'></view>
-      </view>  
-    </block>
+          </block>
+          <view style='clear:both;'></view>
+        </view>
+      </block>
 
       <!-- <view>
         <text class='dykctext'>政策法规教育</text>
@@ -183,7 +187,7 @@
         <text class='dykctext'>心理健康教育</text>
         <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
       </view> -->
-       <!-- <view class="dykcsp">
+      <!-- <view class="dykcsp">
         <view class='left' catchtap="tzbfy">
           <image class='dykctupian' src='/img/ceshi.jpg'></image>
           <text class="xueshi">学时:1.2</text>
@@ -229,7 +233,7 @@
         <text class='dykctext'>心理健康教育</text>
         <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
       </view> -->
-       <!-- <view class="dykcsp">
+      <!-- <view class="dykcsp">
         <view class='left' catchtap="tzbfy">
           <image class='dykctupian' src='/img/ceshi.jpg'></image>
           <text class="xueshi">学时:1.2</text>
@@ -275,11 +279,11 @@
     <!--视频内容 完-->
 
     <!--图文页面 -->
-     <view class='tuweneirong' wx:if="{{tuwen!=''}}">图文暂无信息</view>
+    <view class='tuweneirong' wx:if="{{tuwen!=''}}">图文暂无信息</view>
     <!--图文页面  完-->
 
     <!--语音页面 -->
-      <view class='yuyinneirong' wx:if="{{yuyin!=''}}">语音暂无信息</view>
+    <view class='yuyinneirong' wx:if="{{yuyin!=''}}">语音暂无信息</view>
     <!--语音页面  完-->
   </view>
 </view>
