@@ -1,9 +1,4 @@
 Page({
-  scanQRCode: function () {
-    wx.switchTab({
-      url: '../zhuye/zhuye',
-    })
-  },
   /**
    * 页面的初始数据
    */

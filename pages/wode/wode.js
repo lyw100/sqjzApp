@@ -25,9 +25,18 @@ Page({
     wx.showActionSheet({
       itemList: ['修改密码', '退出当前账号登录'],
       success(res) {
-        wx.navigateTo({
-          url: '../yanzheng/yanzheng'　
-        })
+        if(res.tapIndex==0){
+          wx.navigateTo({
+            url: '../yanzheng/yanzheng'
+          })
+        }else if(res.tapIndex==1){
+          getApp().globalData.jiaozhengid = "";
+          getApp().globalData.header.Cookie = "";
+          wx.reLaunch({
+            url: '../denglu/denglu'
+          })
+        }
+        
       },
       fail(res) {
         console.log(res.errMsg)
