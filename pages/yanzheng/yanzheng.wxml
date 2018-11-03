@@ -5,7 +5,7 @@
     <input placeholder='请输入手机号' class='sjh' bindinput ="userNameInput" value="{{username}}"/>
     <view class='dingwei'>
       <input  placeholder='请输入验证码' class='yzm' bindinput ="yzmInput" value="{{yzm}}"/>
-      <text class='hqyzm' catchtap='getyzm'>获取验证码</text>
+      <button  disabled='{{disabled}}' class='hqyzm' bindtap='getyzm'>{{time}}</button >
     </view>
     <view class='tijiaoanniu' catchtap='tj'>
       <text>提交</text>

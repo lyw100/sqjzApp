@@ -1,11 +1,32 @@
+var interval = null //倒计时函数
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   username:"",
-   yzm:""
+    username:"",
+    yzm:"",
+    time: '获取验证码', //倒计时 
+    currentTime: 61
+  },
+  getCode: function (options) {
+    var that = this;
+    var currentTime = that.data.currentTime
+    interval = setInterval(function () {
+      currentTime--;
+      that.setData({
+        time: currentTime + '秒'
+      })
+      if (currentTime <= 0) {
+        clearInterval(interval)
+        that.setData({
+          time: '重新发送',
+          currentTime: 61,
+          disabled: false
+        })
+      }
+    }, 1000)
   },
   userNameInput: function (e) {
     this.setData({
@@ -67,6 +88,14 @@ Page({
   },
   getyzm:function(){
     var that = this;
+    if (that.data.username==""){
+      wx.showModal({
+        title: '提示',
+        content: "手机号不能为空",
+        showCancel: false
+      })
+      return
+    }
     wx.request({
       url: getApp().globalData.url + '/weChat/editPWD/getYZM',
       method: "POST",
@@ -79,14 +108,20 @@ Page({
         username: that.data.username,
       },
       success: function (res) {
-        console.log(res);
+        console.log(res.data)
         if(res.data.msg=="OK"){
-          //成功
+          that.getCode();
+          that.setData({
+            disabled: true
+          })
         }else{
           wx.showModal({
             title: '提示',
             content: res.data.msg,
             showCancel: false
+          })
+          that.setData({
+            disabled: false
           })
         }
       }
