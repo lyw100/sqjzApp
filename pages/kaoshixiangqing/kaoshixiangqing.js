@@ -139,6 +139,9 @@ Page({
   },
   // 查询试卷题目
   getPPaper: function(ppid){
+    wx.showLoading({
+      title: '加载中',
+    })
     // 生成试卷
     var that = this
     wx.request({
@@ -164,7 +167,20 @@ Page({
           }
           let qcontentArr = that.data.qcontentArr;
           for (var j = 0; j < qcontentArr.length; j++) {
-            pQuestionArr[j].question.content = qcontentArr[j][0].nodes[0].text
+            let contentStr = ''
+            let imgArr = []
+            let imgLen = 0
+            for (var k = 0; k < qcontentArr[j].length;k++){
+              let node = qcontentArr[j][k].nodes[0]
+              if (node.tag == 'img'){
+                imgArr[imgLen] = getApp().globalData.url.substring(0, getApp().globalData.url.length-5) + node.attr.src
+                imgLen ++
+              }else{
+                contentStr = contentStr + node.text
+              }
+            }
+            pQuestionArr[j].question.content = contentStr
+            pQuestionArr[j].question.img = imgArr
           }
           var tfngNum = res.data.tfngNum
           var singleNum = res.data.singleNum
@@ -185,6 +201,7 @@ Page({
             icon: 'none'
           })
         }
+        wx.hideLoading()
       }
     })
   },
@@ -194,7 +211,20 @@ Page({
       sequence: e.detail.current + 1
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kaoshixiangqing',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -228,6 +258,7 @@ Page({
       ppid: ppid,
       type: type
     })
+    this.countInfo();
   },
 
   /**

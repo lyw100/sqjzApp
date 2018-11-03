@@ -1,16 +1,16 @@
 <!--shouyebofang.wxml-->
-<view class='contai'>
+<view class='contai' wx:if="{{bofangyemian}}">
 <view class='tit tc'>
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->
   <!--bindplay 当开始/继续播放时触发play事件   controls 是否显示默认播放控件（播放/暂停按钮、播放进度、时间）    show-fullscreen-btn   是否显示全屏按钮   poster 视频播放切面图  initial-time  指定视频初始播放位置  -->
-  <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.file}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true" initial-time="{{sectionRecord.progress}}"></video>
+  <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.file}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true" initial-time="{{sectionRecord.progress}}" bindended="bindended" autoplay="true"></video>
 </view>
 <!-- {{record.course.name}}   -->
 <text class='titinfo'>{{sectionRecord.section.name}}</text>
 <view class='js'>
-  <text>讲师:{{record.course.speaker}}</text>
+  <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}">讲师:{{record.course.speaker}}</text>
   <text class='bixiuke'>{{record.course.subName}}</text>
 </view>
 <view>
@@ -26,7 +26,7 @@
 <view class='kcxz_zhangjie'>
   <view class='ul'>
     <block wx:for="{{sections}}"  wx:key="index" wx:for-item="section">
-    <text catchtap="sectionTap" data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
+    <text catchtap="sectionTap" class="{{section.yanse}}" data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
     </block>
   </view>
 </view>
@@ -56,7 +56,14 @@
         <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text>
       
       </view>
-
-
   </view>
+</view>
+
+<!-- 刷脸登录-->
+
+<view class='nr' wx:if='{{shualiandl}}'>
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;border-radius:165px"></camera> 
+<view class="anniu" catchtap="takePhoto" >
+       <text>登录</text>
+   </view>
 </view>

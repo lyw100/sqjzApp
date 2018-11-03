@@ -63,7 +63,20 @@ Page({
       url: '../sousuo/sousuo?subjectType=&courseType='+subType+'&menu=course&subjectId=',
     })
   },
-  
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kechengku',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,7 +86,7 @@ Page({
     this.topCourseList();
     //获取必修科目
     this.getKMList(0);
-
+    this.countInfo();
   },
 
   /**
@@ -194,18 +207,21 @@ Page({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: query,
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
         // console.log(res.data);
         var list = res.data;
-        // for(var i=0;i<list.length;i++){
-        //   if(i==0){
-        //     list[i].width="100%";
-        //   }else{
-        //     list[i].width = "80%";
-        //   }
-        // }
+        for(var i=0;i<list.length;i++){
+          if(i==0){
+            list[i].img = "biaotou";
+            list[i].text = "titxinxi";
+          } else {
+            list[i].img = "gaibianchang";
+            list[i].text = "xiaotuzi";
+          }
+        }
         that.setData({
           swiperCurrent: 0,
           imgUrls: list
@@ -244,6 +260,7 @@ Page({
       url: getApp().globalData.url + '/course/listKM', //获取科目列表
       data: { 'type': subType},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -316,8 +333,10 @@ Page({
     this.setData({
       subTabList: subTabList
     });
-
-
+    //跳转到顶部
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
 
 
   },
@@ -335,6 +354,7 @@ Page({
       url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
       data: {jzid:jzid,subid:subid,page:page,rows:rows},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -382,6 +402,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -440,6 +461,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -470,6 +492,27 @@ Page({
           })
         }
       }
+    })
+  },
+  /**
+   * 轮播图改变样式
+   */
+  imgChange:function(e){
+    // console.log("轮播图动画change方法");
+    var index = e.detail.current;
+    var imgUrls = this.data.imgUrls;
+    for (var i = 0; i < imgUrls.length; i++) {
+      if (i == index) {
+        imgUrls[i].img = "biaotou";
+        imgUrls[i].text = "titxinxi";
+      } else {
+        imgUrls[i].img = "gaibianchang";
+        imgUrls[i].text = "xiaotuzi";
+      }
+
+    }
+    this.setData({
+      imgUrls: imgUrls
     })
   }
 })

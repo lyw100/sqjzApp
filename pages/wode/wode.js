@@ -21,7 +21,19 @@ Page({
     page:1,
     rows:6,
   },
-
+  lianjie:function(){
+    wx.showActionSheet({
+      itemList: ['修改密码', '退出当前账号登录'],
+      success(res) {
+        wx.navigateTo({
+          url: '../yanzheng/yanzheng'　
+        })
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   // 在线考试方法分页加载
   ksloadList: function () {
     var that = this
@@ -227,7 +239,7 @@ Page({
         var hours = res.data.hours;
         var list = res.data.list;
         that.setData({
-          hours: hours,
+          hours: parseFloat(hours).toFixed(1),
           nowList: list
         })
       }
@@ -249,15 +261,18 @@ Page({
       success(res) {
         // console.log(res.data);
         var list = res.data;
-        if (list.length > 0) {
+        if (that.data.page > 1) {
+          if (that.data.historyList != null) {
+            list = that.data.historyList.concat(list);
+          }
+        }
+        if (res.data.length > 0) {
           var page = that.data.page + 1;
           that.setData({
             page: page
           });
         }
-        if(that.data.historyList!=null){
-          list = that.data.historyList.concat(list);
-        }
+        
         that.setData({
           historyList: list
         })
@@ -289,7 +304,11 @@ Page({
       zaixiankaoshixs: false,
       sixianghbxianshi: false,
       xinlipgxianshi: false,
+      page:1
     })
+    this.rectifyPeople();//矫正人员信息
+    this.currentCourse();//当月课程
+    this.historyCourse();//历史课程
   },
   /** 在线考试*/
   zaixiankaoshi: function () {
@@ -345,6 +364,7 @@ Page({
       },
       method: 'POST',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
@@ -381,6 +401,7 @@ Page({
       },
       method:'POST',
       header:{
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res){
@@ -535,6 +556,20 @@ Page({
       current: src
     })
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/wode',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -543,8 +578,9 @@ Page({
     pageReport = 2;
 
     this.rectifyPeople();//矫正人员信息
-    this.currentCourse();//当月课程
+    // this.currentCourse();//当月课程
     this.historyCourse();//历史课程
+    this.countInfo();
   },
 
   /**
@@ -558,11 +594,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
-
+    // this.onLoad();
+    
     // 在线考试刷新
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
       this.zaixiankaoshi()
+    }
+    //思想汇报
+    if (this.data.sixhb_wxz == false && this.data.sixhb_xz == true) {
+      this.loadReport();
+      pageReport = 2;
+    }
+    if (this.data.kechxz_xz) {//是否选择是课程学习
+      this.currentCourse();//当月课程
+    }
+    //心里评估刷新
+    if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
+      this.xinlipiggu();
     }
   },
 

@@ -6,7 +6,20 @@ Page({
   data: {
     
   },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kaoshijieguo',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
 
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -27,10 +40,12 @@ Page({
       success: function (res) {
         if (res.data.msg == "success") {
           var pPaperObj = res.data.pPaperObj
+          var testPaper = res.data.testPaper
           var pQuestionArr = res.data.pQuestionArr
           var isAccess = res.data.isAccess
           that.setData({
             pPaperObj: pPaperObj,//个人试卷
+            testPaper: testPaper,
             pQuestionArr: pQuestionArr,//个人试卷试题
             isAccess: isAccess
           })
@@ -43,6 +58,7 @@ Page({
         }
       }
     })
+    this.countInfo();
   },
 
   /**

@@ -1,8 +1,13 @@
+.wode{
+  width: 100%;
+  overflow-x: hidden;
+}
 .wd_tit{
   width: 100%;
   height: auto;
   padding: 30rpx 20rpx;
   border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
 }
 .wd_img{
   width: 200rpx;
@@ -37,14 +42,6 @@
 }
 .tit_guiding text{
   margin-right: 20rpx;
-}
-
-.tit_shezhi{
-  width: 40rpx;
-  height: 40rpx;
-  position: absolute;
-  right: 0rpx;
-  top: -25rpx;
 }
 .wode_nr{
   width: 100%;
@@ -88,7 +85,7 @@ height:86rpx;
   float: right;
 }
 .dykctupian{
-  width:362rpx;
+  width:100%;
   height:210rpx;
 }
 .xueshi{

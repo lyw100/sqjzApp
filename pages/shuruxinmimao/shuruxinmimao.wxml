@@ -1,0 +1,11 @@
+<view class="yanzheng">
+  <view class='tijiao'>
+    <view class='bt'><text>- 输入新密码 -</text></view>
+    <input placeholder='请输入新密码' class='sjh'></input>
+    <input placeholder='请确认新密码' class='sjh'></input>
+    <view class='tijiaoanniu' catchtap='bc'>
+      <text>保存</text>
+    </view>
+  </view>
+
+</view>

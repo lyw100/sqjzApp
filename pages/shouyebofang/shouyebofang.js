@@ -9,8 +9,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bofangyemian:true,
+    shualiandl:false,
     duigouxz: false,
-    lastTime:0
+    lastTime:0,
+    page:1
+  },
+  countInfo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/shouyebofang',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,6 +55,7 @@ Page({
       url: url, //获取视频播放信息
       data: data,
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -46,11 +64,20 @@ Page({
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
+       
+        var sections = res.data.course.sections;
+        for (var i = 0; i < sections.length; i++) {
+          if (i == 0) {
+            sections[i].yanse = "zhangjie";
+          } else {
+            sections[i].yanse = "";
+          }
+        }
         that.setData({
           record: res.data,
           isSign: isSign,
-          subType:res.data.course.subject.type,
-          sections:res.data.course.sections
+          subType: res.data.course.subject.type,
+          sections: sections
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
@@ -62,7 +89,7 @@ Page({
 
       }
     })
-
+    this.countInfo();
 
 
   },
@@ -107,7 +134,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.moreCourse();
   },
 
   /**
@@ -125,8 +152,8 @@ Page({
   bindPlay: function () {
     // this.videoContext.play();
     // console.log("点击播放");
-    this.videoContext.requestFullScreen();//执行全屏方法
-
+    // this.videoContext.requestFullScreen();//执行全屏方法
+    
     var courseid = this.data.record.course.id;//课程id
     var jzid = this.data.record.jzid;
     var url = getApp().globalData.url + '/course/addPlayNum';
@@ -135,6 +162,7 @@ Page({
       data: { courseid: courseid,jzid: jzid },
       dataType: 'text',
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -151,15 +179,22 @@ Page({
   bindPause: function () {
     this.videoContext.pause()
   },
+  
+  /**
+   * 视频播放结束退出全屏
+   */
+  bindended:function(){
+    this.videoContext.exitFullScreen();//执行全屏方法
+  },
   /**
    * 全屏的方法
    */
   bindFullscreenchange: function (e) {
-    var isfull = e.detail.fullScreen;
-    if (!isfull) {
-      // console.log("非全屏暂停");
-      this.videoContext.pause();//视频暂停
-    }
+    // var isfull = e.detail.fullScreen;
+    // if (!isfull) {
+    //   // console.log("非全屏暂停");
+    //   this.videoContext.pause();//视频暂停
+    // }
   },
   //视频播放出错的方法
   videoErrorCallback: function (e) {
@@ -223,18 +258,24 @@ Page({
       var url = getApp().globalData.url + '/course/getMoreCourse';
       // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
       var jzid = this.data.record.jzid;
-      // console.log(jzid);
+      var page=this.data.page;
       wx.request({
         url: url, //获取推荐课程列表地址
-        data: { subid: subid, courseid: courseid, page: 1, rows: 4, jzid: jzid },
+        data: { subid: subid, courseid: courseid, page: page, rows: 4, jzid: jzid },
         header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'application/json' // 默认值
         },
         success(res) {
           // console.log(res.data);
           var list = res.data;
+          if(page>1){
+            list=that.data.moreList.concat(list);
+          }
+          page=page+1;
           that.setData({
-            moreList: list
+            moreList: list,
+            page:page
           })
         }
       })
@@ -265,6 +306,7 @@ Page({
         data: { id: courseid, progress: progress, jzid: jzid ,sectionid:sectionid},
         dataType: 'text',
         header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'application/json' // 默认值
         },
         success(res) {
@@ -288,6 +330,7 @@ Page({
       url: url, //获取视频播放信息
       data: { jzid: jzid, courseid: courseid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -295,9 +338,19 @@ Page({
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
+       
+        var sections = res.data.course.sections;
+        for (var i = 0; i < sections.length; i++) {
+          if(i==0){
+            sections[i].yanse = "zhangjie";
+          }else{
+            sections[i].yanse = "";
+          }
+        }
         that.setData({
           record: res.data,
-          isSign: isSign
+          isSign: isSign,
+          sections: sections
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
@@ -321,6 +374,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -357,6 +411,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -395,6 +450,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -442,6 +498,7 @@ Page({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       dataType: 'text',
@@ -479,6 +536,7 @@ Page({
       url: getApp().globalData.url + '/course/getVideoSection', //获取正在播放的章节信息
       data: { courseid: courseid, jzid: jzid, sectionid: sectionid},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -500,6 +558,15 @@ Page({
     this.saveProgress();
     var courseid = e.currentTarget.dataset.courseid;
     var sectionid = e.currentTarget.dataset.sectionid;
+    var index = e.currentTarget.dataset.index;
+    var sections=this.data.sections;
+    for(var i=0;i<sections.length;i++){
+      sections[i].yanse="";
+    }
+    sections[index].yanse ="zhangjie";
+    this.setData({
+      sections:sections
+    });
     this.getVideoSection(courseid, sectionid);
 
   }
