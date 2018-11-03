@@ -71,7 +71,7 @@
   font-size: 30rpx;
   display: inline-block;
   padding:10rpx;
-  margin-left: 15rpx;
+  margin-left: 20rpx;
   overflow:hidden;
  line-height:46rpx;
   word-break:break-all;
