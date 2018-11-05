@@ -483,6 +483,12 @@ Page({
             lastTime:0
           })
 
+          var sections = that.data.sections;
+          for (var i = 0; i < sections.length; i++) {
+            if (sections[i].yanse == "zhangjie") {//判断正在播放的章节
+              that.getVideoSection(that.data.record.course.id, sections[i].id);
+            }
+          }
           this.videoContext.seek(0);
           // that.moreCourseTap(e);
         } else if (res.data == "more") {
