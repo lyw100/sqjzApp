@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bofangyemian:true,
     shualiandl:false,
     duigouxz: false,
     lastTime:0,
@@ -66,12 +65,23 @@ Page({
         }
        
         var sections = res.data.course.sections;
+        var flag=true;
         for (var i = 0; i < sections.length; i++) {
-          if (i == 0) {
-            sections[i].yanse = "zhangjie";
-          } else {
-            sections[i].yanse = "";
+          if(sections[i].state==1){//判断章节是否播放完
+            sections[i].yanse = "zhangjieend";
+          }else{
+            if (flag){//未播放的第一个视频进行播放
+              sections[i].yanse = "zhangjie"; 
+              that.getVideoSection(res.data.course.id, res.data.course.sections[i].id);
+              flag=false;
+            }else{
+              sections[i].yanse = ""; 
+            }
           }
+        }
+        // console.log(sections);
+        if(flag){//所有章节都播放完成
+          that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
         }
         that.setData({
           record: res.data,
@@ -83,7 +93,6 @@ Page({
           title: res.data.course.name,
         })
 
-        that.getVideoSection(res.data.course.id,res.data.course.sections[0].id);
         
         that.moreCourse();
 
@@ -106,7 +115,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -184,7 +193,26 @@ Page({
    * 视频播放结束退出全屏
    */
   bindended:function(){
+    this.saveProgress();//保存视频进度
     this.videoContext.exitFullScreen();//执行全屏方法
+
+    var sections = this.data.sections;
+    
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
+        sections[i].yanse = "zhangjieend";
+        if((i+1)<sections.length){//有下一个章节
+          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
+          if (sections[i + 1].yanse != "zhangjieend"){
+            sections[i + 1].yanse = "zhangjie";
+          }
+        }
+
+        this.setData({
+          sections:sections
+        })
+      }
+    }
   },
   /**
    * 全屏的方法
@@ -227,12 +255,28 @@ Page({
           return;
         }
       }
+      
+      //已选课程第一次播放该视频 播放到一半的时候弹出刷脸登录
+      //弹出刷脸登录
+      var totalTime = this.data.sectionRecord.section.duration;
+      var halfTime = parseInt(totalTime / 2);
+      //一半时间弹出刷脸登录 
+      if (parseInt(currentTime) == halfTime && progress < halfTime) {
+        this.videoContext.pause();//视频播放暂停
+        this.setData({
+          shualiandl: true,
+        });
+      }
+
       //正常播放
       if (currentTime > progress) {
         this.setData({
           progress: currentTime
         });
       }
+
+
+
     }else{//课程为非选课课程
       //非选课正常播放
       this.setData({
@@ -340,12 +384,22 @@ Page({
         }
        
         var sections = res.data.course.sections;
+        var flag = true;
         for (var i = 0; i < sections.length; i++) {
-          if(i==0){
-            sections[i].yanse = "zhangjie";
-          }else{
-            sections[i].yanse = "";
+          if (sections[i].state == 1) {//判断章节是否播放完
+            sections[i].yanse = "zhangjieend";
+          } else {
+            if (flag) {//未播放的第一个视频进行播放
+              sections[i].yanse = "zhangjie";
+              that.getVideoSection(res.data.course.id, res.data.course.sections[i].id);
+              flag = false;
+            } else {
+              sections[i].yanse = "";
+            }
           }
+        }
+        if (flag) {//所有章节都播放完成
+          that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
         }
         that.setData({
           record: res.data,
@@ -355,7 +409,6 @@ Page({
         wx.setNavigationBarTitle({
           title: res.data.course.name,
         })
-        that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
       }
     })
 
@@ -561,13 +614,62 @@ Page({
     var index = e.currentTarget.dataset.index;
     var sections=this.data.sections;
     for(var i=0;i<sections.length;i++){
-      sections[i].yanse="";
+      if(sections[i].state!=1){
+        sections[i].yanse="";
+      }
     }
-    sections[index].yanse ="zhangjie";
+    if (sections[index].state != 1){
+      sections[index].yanse ="zhangjie";
+    }
     this.setData({
       sections:sections
     });
     this.getVideoSection(courseid, sectionid);
 
+  },
+
+  /**
+   * 刷脸登录
+   */
+  takePhoto: function () {
+    const ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        wx.showLoading({
+          title: '正在核验身份.....',
+        })
+        // this.setData({ logindisabled: true });
+        var header = getApp().globalData.header; //获取app.js中的请求头
+        wx.uploadFile({
+          url: getApp().globalData.url + '/weChat/user/face',
+          filePath: res.tempImagePath,
+          header: header,
+          formData: {
+            telephone: wx.getStorageSync("username"),
+            password: wx.getStorageSync("password")
+          },
+          name: 'file',
+          success: (res) => {
+            wx.hideLoading();
+            var data = JSON.parse(res.data);
+            if (data.msg == "OK") {
+              this.setData({
+                shualiandl: false,
+              });
+              this.videoContext.play();//视频播放暂停
+              
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: data.msg,
+                showCancel: false
+              })
+            }
+
+          }
+        })
+      }
+    })
   }
 })

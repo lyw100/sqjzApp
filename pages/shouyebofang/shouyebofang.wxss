@@ -1,6 +1,7 @@
 .contai{
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 .tit{
   width: 100%;
@@ -71,7 +72,7 @@
   font-size: 30rpx;
   display: inline-block;
   padding:10rpx;
-  margin-left: 15rpx;
+  margin-left: 20rpx;
   overflow:hidden;
  line-height:46rpx;
   word-break:break-all;
@@ -137,7 +138,7 @@
 .xuank{
   font-size: 24rpx;
   position: absolute;
-  left: 25%;
+  left: 37%;
   bottom: 10rpx;
 }
 .xuanke{
@@ -168,11 +169,16 @@
 }
 
 .nr{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 25%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:25%;
+  position:fixed;
+  top:0;
+  height:100%;
+  background:#fff;
+  z-index:9999;
 }
 .anniu{
   width:85%;
@@ -185,4 +191,7 @@
   border-radius: 40rpx;
   font-size: 36rpx;
   margin-top: 100rpx;
+}
+.kcxz_zhangjie .zhangjieend{
+  background:#e9e9e9;
 }
