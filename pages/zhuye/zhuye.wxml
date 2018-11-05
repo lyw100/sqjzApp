@@ -47,5 +47,5 @@
         <text class='lscksm'>{{sign.course.name}}</text>
       </view>
   </view>
-  <!-- <view class='footer'>加载更多</view> -->
+  <!-- <view class='footer' hidden='{{footer}}'>加载更多</view> -->
 </view>
