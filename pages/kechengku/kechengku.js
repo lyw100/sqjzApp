@@ -10,6 +10,7 @@ Page({
     shipin:'xzzhangtai',
     tuwen:'',
     yuyin:'',
+    indicatorDots:false,
     bixiuyanse:'yanse',
     xuankeShow: true,
     yixuanShow: false,

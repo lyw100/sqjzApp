@@ -34,7 +34,7 @@
     <!--视频内容 -->
     <view class='shipineirong' wx:if="{{shipin!=''}}">
       <view class='lskcnr'>
-        <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" bindchange="imgChange" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="500" circular="true" bindchange="imgChange" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px">
           <block wx:for="{{imgUrls}}" wx:for-item="course" wx:for-index="index" wx:key="index">
             <swiper-item class="titimg">
               <image data-index='{{index}}' data-id='{{course.id}}' src="{{course.thumbnail}}" class="{{course.img}}" bindtap="bofang" />
