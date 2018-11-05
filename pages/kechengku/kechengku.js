@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    flag:true,
+    menuflag:true,
     photohidden:false,
     jingxuan: 'xzzhangtai',
     shipin:'xzzhangtai',
@@ -22,11 +22,11 @@ Page({
   /**遮罩层 */
   // 遮罩层显示
   denghaoanniu:function () {
-    this.setData({flag:false})
+    this.setData({ menuflag:false})
   },
   // 遮罩层隐藏
   conceal:function () {
-    this.setData({ flag: true })
+    this.setData({ menuflag: true })
   },
 
   xzkc: function (event) {
@@ -302,6 +302,8 @@ Page({
    * 点击课程tab栏
    */
   subTap:function(e){
+    this.setData({ menuflag: true })
+
     var subid = e.currentTarget.dataset.subid;
     var index = e.currentTarget.dataset.index;
     var subTabList = this.data.subTabList;
