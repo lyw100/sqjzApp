@@ -81,6 +81,7 @@ Page({
         }
         // console.log(sections);
         if(flag){//所有章节都播放完成
+          sections[0].yanse ="zhangjieend zhangjie";
           that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
         }
         that.setData({
@@ -205,6 +206,8 @@ Page({
           this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
           if (sections[i + 1].yanse != "zhangjieend"){
             sections[i + 1].yanse = "zhangjie";
+          }else{
+            sections[i + 1].yanse = "zhangjieend zhangjie";
           }
         }
 
@@ -399,16 +402,20 @@ Page({
           }
         }
         if (flag) {//所有章节都播放完成
+          sections[0].yanse = "zhangjieend zhangjie";
           that.getVideoSection(res.data.course.id, res.data.course.sections[0].id);
         }
         that.setData({
           record: res.data,
           isSign: isSign,
-          sections: sections
+          sections: sections,
+          page:1
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
         })
+
+        that.moreCourse();    
       }
     })
 
@@ -476,6 +483,12 @@ Page({
             lastTime:0
           })
 
+          var sections = that.data.sections;
+          for (var i = 0; i < sections.length; i++) {
+            if (sections[i].yanse == "zhangjie") {//判断正在播放的章节
+              that.getVideoSection(that.data.record.course.id, sections[i].id);
+            }
+          }
           this.videoContext.seek(0);
           // that.moreCourseTap(e);
         } else if (res.data == "more") {
@@ -616,10 +629,14 @@ Page({
     for(var i=0;i<sections.length;i++){
       if(sections[i].state!=1){
         sections[i].yanse="";
+      }else{
+        sections[i].yanse = "zhangjieend";
       }
     }
     if (sections[index].state != 1){
       sections[index].yanse ="zhangjie";
+    }else{
+      sections[index].yanse = "zhangjieend zhangjie";
     }
     this.setData({
       sections:sections
