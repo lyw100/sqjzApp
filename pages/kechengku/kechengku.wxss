@@ -146,8 +146,8 @@ margin-left:20px;
 }
 
 .lskcnr{
-  margin: 20rpx 0;
-  height: 370rpx;
+  margin: 20rpx 0 5px;
+  height: 340rpx;
   width: 100%;
 }
 .lishikc{
@@ -257,7 +257,7 @@ top:10rpx;
 .titxinxi{
   position: absolute;
   left: 40rpx;
-  bottom: 50rpx;
+  bottom: 30rpx;
   color: #fff;
   font-size: 36rpx;
   font-weight: bold;
@@ -265,7 +265,7 @@ top:10rpx;
 .xiaotuzi{
   position:absolute;
   left:40rpx;
-  bottom:70rpx;
+  bottom:50rpx;
   color:#fff;
   font-size:36rpx;
   font-weight:bold;

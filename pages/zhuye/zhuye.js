@@ -60,7 +60,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.cmonthSignList();
+    var that=this;
+    setTimeout(function () {
+     that.cmonthSignList();
+    }, 200)
   },
 
   /**
@@ -93,6 +96,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    // 显示加载图标
+    // wx.showLoading({
+    //   title: '玩命加载中',
+    // })
     var that=this;
     var page = this.data.page;
     var rows = this.data.rows;
@@ -115,7 +122,15 @@ Page({
             page:page,
             historyList: content
           });
+        }else{
+          // wx.showLoading({
+          //   title: '没有更多课程',
+          // })
         }
+        // 隐藏加载框
+        // setTimeout(function () {
+        //   wx.hideLoading()
+        // }, 500)
       }
     })
   },

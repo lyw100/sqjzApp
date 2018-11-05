@@ -615,7 +615,10 @@ Page({
       pageReport = 2;
     }
     if (this.data.kechxz_xz) {//是否选择是课程学习
-      this.currentCourse();//当月课程
+      var that = this;
+      setTimeout(function () {
+        that.currentCourse();
+      }, 200)
     }
     //心里评估刷新
     if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {

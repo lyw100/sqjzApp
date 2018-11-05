@@ -8,16 +8,16 @@
     </view>
 
     <view class='xuanze'>
-      <view class='xuanzekuan'>
+      <scroll-view scroll-x="true" scroll-into-view="{{subid}}" class='xuanzekuan'>
         <view class='xz_nr'>
-          <view catchtap='subTap' class='xz_sm {{jingxuan}}'>精选</view>
+          <view id="sub" catchtap='subTap' class='xz_sm {{jingxuan}}'>精选</view>
           <block wx:for="{{subTabList}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
-            <view data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}
+            <view id="{{'sub'+sub.id}}" data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap' class='xz_sm {{sub.tabClass}}'>{{sub.name}}
 
             </view>
           </block>
         </view>
-      </view>
+      </scroll-view>
       <view class='xz_anniu' catchtap='denghaoanniu'>
         <image src='/img/er.png' class='anniu_img'></image>
       </view>
@@ -122,7 +122,7 @@
 <view class="zhezhao" hidden="{{menuflag}}" catchtap='conceal'>
   <view class="tanchu_view">
     <view class='zz_jj'>
-      <text class='{{jingxuan=="xzzhangtai"?"zhezhao_color":""}}'>精选</text>
+      <text  catchtap='subTap' class='{{jingxuan=="xzzhangtai"?"zhezhao_color":""}}'>精选</text>
       <image src='/img/hengxian.png' class='zz_img' wx:if="{{jingxuan=='xzzhangtai'}}" ></image>
     </view>
 
