@@ -34,7 +34,7 @@
     <!--视频内容 -->
     <view class='shipineirong' wx:if="{{shipin!=''}}">
       <view class='lskcnr'>
-        <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" bindchange="imgChange" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="500" circular="true" bindchange="imgChange" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px">
           <block wx:for="{{imgUrls}}" wx:for-item="course" wx:for-index="index" wx:key="index">
             <swiper-item class="titimg">
               <image data-index='{{index}}' data-id='{{course.id}}' src="{{course.thumbnail}}" class="{{course.img}}" bindtap="bofang" />
@@ -104,180 +104,7 @@
         </view>
       </block>
 
-      <!-- <view>
-        <text class='dykctext'>政策法规教育</text>
-        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view> -->
-      <!-- <view class="dykcsp">
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:26:30</text>
-          <text class="shuoming">中华人民共和国教育法撒地方</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view> 
-      </view>-->
-
-      <!--道德文化节教育-->
-      <!-- <view>
-        <text class='dykctext'>道德文化教育</text>
-        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view> -->
-      <!-- <view class='dykcsp'>
-        <image class="ddwhjy_img" src='/img/yiyuan.png'></image>
-        <view class='ddwhjy_jianju'>
-          <text class='ddwjjy_bt'>请珍惜高外的红墙阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿萨德发生发生阿萨德发斯蒂芬大师法爱迪生发斯蒂芬阿萨德发</text>
-          <view class='ddjy_xuanke'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-      </view> -->
-      <!-- <view>
-        <text class='dykctext'>心理健康教育</text>
-        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view> -->
-      <!-- <view class="dykcsp">
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:26:30</text>
-          <text class="shuoming">中华人民共和国教育法撒地方</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-      </view> -->
-      <!-- <view>
-        <text class='dykctext'>心理健康教育</text>
-        <text class='genduotuijian' catchtap='tzgdtj'>查看更多</text>
-      </view> -->
-      <!-- <view class="dykcsp">
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:26:30</text>
-          <text class="shuoming">中华人民共和国教育法撒地方</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-        <view class='left' catchtap="tzbfy">
-          <image class='dykctupian' src='/img/ceshi.jpg'></image>
-          <text class="xueshi">学时:1.2</text>
-          <text class="shijian">01:10:36</text>
-          <text class="shuoming">政策法规解读</text>
-          <view class='zcfgjy_xz'>
-            <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-            <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-          </view>
-        </view>
-      </view> -->
+     
     </view>
     <!--视频内容 完-->
 
@@ -292,35 +119,21 @@
 </view>
 
 <!--弹出框开始-->
-<view class="zhezhao" hidden="{{flag}}" catchtap='conceal'>
+<view class="zhezhao" hidden="{{menuflag}}" catchtap='conceal'>
   <view class="tanchu_view">
     <view class='zz_jj'>
-      <text class='zhezhao_color'>精选</text>
-      <image src='/img/hengxian.png' class='zz_img' ></image>
+      <text class='{{jingxuan=="xzzhangtai"?"zhezhao_color":""}}'>精选</text>
+      <image src='/img/hengxian.png' class='zz_img' wx:if="{{jingxuan=='xzzhangtai'}}" ></image>
     </view>
-    <view class='zz_jj'>
-      <text>政策法规教育</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
-    <view class='zz_jj'>
-      <text>心理健康教育</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
-    <view class='zz_jj'>
-      <text>就业帮扶教育就业帮扶教育</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
-    <view class='zz_jj'>
-      <text>政策法规教育</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
-    <view class='zz_jj'>
-      <text>政策法规</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
-    <view class='zz_jj'>
-      <text>政策法</text>
-      <image src='/img/hengxian.png' class='zz_img' wx:if="{{photohidden}}"></image>
-    </view>
+
+    <block wx:for="{{subTabList}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
+      <view class='zz_jj'>
+        <text class='{{sub.tabClass=="xzzhangtai"?"zhezhao_color":""}}' data-index="{{subIndex}}" data-subid="{{sub.id}}" catchtap='subTap'>{{sub.name}}</text>
+        <image src='/img/hengxian.png' class='zz_img'  wx:if="{{sub.tabClass=='xzzhangtai'}}"></image>
+      </view>
+      <!-- <view  class='xz_sm {{sub.tabClass}}'>{{sub.name}} </view> -->
+    </block>
+
+    
   </view>
 </view>
