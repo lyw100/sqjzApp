@@ -1,5 +1,5 @@
 <!--shouyebofang.wxml-->
-<view class='contai' wx:if="{{bofangyemian}}">
+<view class='contai'>
 <view class='tit tc'>
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
