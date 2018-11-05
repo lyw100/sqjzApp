@@ -1,6 +1,7 @@
 .contai{
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 .tit{
   width: 100%;
@@ -137,7 +138,7 @@
 .xuank{
   font-size: 24rpx;
   position: absolute;
-  left: 25%;
+  left: 37%;
   bottom: 10rpx;
 }
 .xuanke{
