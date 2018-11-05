@@ -166,3 +166,22 @@ line-height:60rpx;
   font-size: 28rpx;
   margin-left: 15rpx;
 }
+.ddjy_xuanke{
+  font-size:24rpx;
+  display:inline-block;
+  position:absolute;
+  left:36%;
+  bottom:0;
+}
+ .xk{
+  border: 1px solid #2499f9;
+  color: #2499f9;
+  padding: 5rpx 20rpx;
+  border-radius: 17rpx;
+}
+ .yixuan{
+  border: 1px solid #b5b5b5;
+  color: #b5b5b5;
+  padding: 5rpx 20rpx;
+  border-radius: 17rpx;
+}
