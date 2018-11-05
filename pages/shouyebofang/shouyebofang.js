@@ -404,11 +404,14 @@ Page({
         that.setData({
           record: res.data,
           isSign: isSign,
-          sections: sections
+          sections: sections,
+          page:1
         })
         wx.setNavigationBarTitle({
           title: res.data.course.name,
         })
+
+        that.moreCourse();    
       }
     })
 
