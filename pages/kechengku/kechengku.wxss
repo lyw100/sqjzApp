@@ -85,6 +85,10 @@ margin-left:20px;
    border-bottom:4rpx solid #2499f9;
 
 }
+.lanse{
+   color: #2499f9 !important;
+
+}
 .neirong{
   width: 100%;
   height: auto;
