@@ -7,7 +7,7 @@ Page({
     menuflag:true,
     photohidden:false,
     jingxuan: 'xzzhangtai',
-    shipin:'xzzhangtai',
+    shipin:'lanse',
     tuwen:'',
     yuyin:'',
     indicatorDots:false,
@@ -47,7 +47,7 @@ Page({
    */
   shipin:function(){
     this.setData({
-      shipin: 'xzzhangtai',
+      shipin: 'lanse',
       tuwen: '',
       yuyin: '',
     })
@@ -55,7 +55,7 @@ Page({
   tuwen: function () {
     this.setData({
       shipin: '',
-      tuwen: 'xzzhangtai',
+      tuwen: 'lanse',
       yuyin: '',
     })
   },
@@ -63,7 +63,7 @@ Page({
     this.setData({
       shipin: '',
       tuwen: '',
-      yuyin: 'xzzhangtai',
+      yuyin: 'lanse',
     })
   },
   /**
