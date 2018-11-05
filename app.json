@@ -1,5 +1,5 @@
 {
-  "pages": [ 
+  "pages": [     
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
     "pages/shouyebofang/shouyebofang",
@@ -22,8 +22,8 @@
     "pages/kaoshijieguo/kaoshijieguo",
     "pages/kaoshixiangqing/kaoshixiangqing",
     "pages/yanzheng/yanzheng",
-    "pages/shuruxinmimao/shuruxinmimao",
-    "pages/zhezhao/zhezhao"
+    "pages/shuruxinmimao/shuruxinmimao"
+ 
    
   ],
   "window": {

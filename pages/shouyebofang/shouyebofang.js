@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bofangyemian:true,
     shualiandl:false,
     duigouxz: false,
     lastTime:0,
@@ -106,7 +105,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -227,12 +226,28 @@ Page({
           return;
         }
       }
+      
+      //已选课程第一次播放该视频 播放到一半的时候弹出刷脸登录
+      //弹出刷脸登录
+      var totalTime = this.data.sectionRecord.section.duration;
+      var halfTime = parseInt(totalTime / 2);
+      //一半时间弹出刷脸登录 
+      if (parseInt(currentTime) == halfTime && progress < halfTime) {
+        this.videoContext.pause();//视频播放暂停
+        this.setData({
+          shualiandl: true,
+        });
+      }
+
       //正常播放
       if (currentTime > progress) {
         this.setData({
           progress: currentTime
         });
       }
+
+
+
     }else{//课程为非选课课程
       //非选课正常播放
       this.setData({
@@ -569,5 +584,50 @@ Page({
     });
     this.getVideoSection(courseid, sectionid);
 
+  },
+
+  /**
+   * 刷脸登录
+   */
+  takePhoto: function () {
+    const ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        wx.showLoading({
+          title: '正在核验身份.....',
+        })
+        // this.setData({ logindisabled: true });
+        var header = getApp().globalData.header; //获取app.js中的请求头
+        wx.uploadFile({
+          url: getApp().globalData.url + '/weChat/user/face',
+          filePath: res.tempImagePath,
+          header: header,
+          formData: {
+            telephone: wx.getStorageSync("username"),
+            password: wx.getStorageSync("password")
+          },
+          name: 'file',
+          success: (res) => {
+            wx.hideLoading();
+            var data = JSON.parse(res.data);
+            if (data.msg == "OK") {
+              this.setData({
+                shualiandl: false,
+              });
+              this.videoContext.play();//视频播放暂停
+              
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: data.msg,
+                showCancel: false
+              })
+            }
+
+          }
+        })
+      }
+    })
   }
 })

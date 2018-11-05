@@ -1,9 +1,4 @@
 Page({
-  scanQRCode: function () {
-    wx.switchTab({
-      url: '../zhuye/zhuye',
-    })
-  },
   /**
    * 页面的初始数据
    */
@@ -20,7 +15,7 @@ Page({
           src: res.tempImagePath
         })
         wx.showLoading({
-          title: '正在核验身份.....',
+          title: '正在校验.....',
         })
         this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头

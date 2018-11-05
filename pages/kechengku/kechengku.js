@@ -4,6 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    flag:true,
+    photohidden:false,
     jingxuan: 'xzzhangtai',
     shipin:'xzzhangtai',
     tuwen:'',
@@ -16,6 +18,16 @@ Page({
     yuyinShow:false,
     page:1
   },
+  /**遮罩层 */
+  // 遮罩层显示
+  denghaoanniu:function () {
+    this.setData({flag:false})
+  },
+  // 遮罩层隐藏
+  conceal:function () {
+    this.setData({ flag: true })
+  },
+
   xzkc: function (event) {
     this.setData({
       xuankeShow: false,
