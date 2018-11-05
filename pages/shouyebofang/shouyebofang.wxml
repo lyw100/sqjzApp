@@ -5,7 +5,7 @@
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->
   <!--bindplay 当开始/继续播放时触发play事件   controls 是否显示默认播放控件（播放/暂停按钮、播放进度、时间）    show-fullscreen-btn   是否显示全屏按钮   poster 视频播放切面图  initial-time  指定视频初始播放位置  -->
-  <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.file}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true" initial-time="{{sectionRecord.progress}}" bindended="bindended" autoplay="true"></video>
+  <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.file}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true" initial-time="{{sectionRecord.progress==sectionRecord.section.duration?0:sectionRecord.progress}}" bindended="bindended" autoplay="true"></video>
 </view>
 <!-- {{record.course.name}}   -->
 <text class='titinfo'>{{sectionRecord.section.name}}</text>
