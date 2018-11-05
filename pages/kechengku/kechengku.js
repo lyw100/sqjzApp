@@ -17,7 +17,8 @@ Page({
     shipinShow:true,
     tuwenShow:false,
     yuyinShow:false,
-    page:1
+    page:1,
+    subid: 'sub'
   },
   /**遮罩层 */
   // 遮罩层显示
@@ -312,7 +313,8 @@ Page({
       // this.data.jingxuan="";
       this.setData({
         jingxuan:'',
-        page:1
+        page:1,
+        subid: 'sub' + subid
       });
       this.data.subList[0]=subTabList[index];
       this.getCourseBysubid(0,4,1);
@@ -327,7 +329,8 @@ Page({
       // this.data.jingxuan = "jingxuan";
       this.setData({
         jingxuan: 'xzzhangtai',
-        page:1
+        page:1,
+        subid: 'sub'
       });
       this.data.subList = subTabList;
       for (var i = 0; i < subTabList.length; i++) {
