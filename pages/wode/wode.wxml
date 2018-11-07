@@ -188,7 +188,7 @@
     <block wx:for="{{psyReportList}}"  wx:for-item="map" wx:for-index="index" wx:key="index">
     <view class='zcks_xzks'>
       <view>
-        <text class='zcks_ksbt'>90项症状清单(SCT-90)</text>
+        <text class='zcks_ksbt'>90项症状清单(SCL-90)</text>
         <text data-psyreportid="{{map.id}}" class='chakan' catchtap='tzceshijieguo'>查看</text>
       </view>
       <view class='zcks_zongfen'>
