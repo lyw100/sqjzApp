@@ -17,12 +17,12 @@
   <text class='bixiuke'>{{record.course.subName}}</text>
 </view>
 <view>
-  <block wx:if="{{subType==0}}">
+  <!-- <block wx:if="{{subType==0}}"> -->
     <text class='xueshi'>学时:{{sectionRecord.section.hours}}</text>
     <text class="wcjd" wx:if="{{isSign==1}}">上次完成进度:{{sectionRecord.sectionProgress}}%</text>
     <image data-id="{{record.course.id}}" class='duigou' catchtap='tianjiaxuanke' src='/img/tianjiaxuanke.png' wx:if="{{isSign==0}}"></image>
     <image class='duigou' data-id="{{record.course.id}}" catchtap='quxiaoxuanke' src='/img/xzdg.png' wx:if="{{isSign==1}}"></image>
-  </block>
+  <!-- </block> -->
   <image class='fenxiang' src="/img/fenxiang.png"></image>
 </view>
 
@@ -46,14 +46,14 @@
         <text class='yiwancheng' >{{course.courseTime}}</text>
          <text class='lscksm'>{{course.name}}</text>
          <view class='xuank' >
-          <block wx:if="{{subType==0}}">
+          <!-- <block wx:if="{{subType==0}}"> -->
             <block wx:if="{{course.isSign==0}}">
               <text data-id="{{course.id}}" data-index="{{index}}" class='xuanke' catchtap='chooseCourse'>选课</text>
             </block>
             <block wx:else>
               <text data-id="{{course.id}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
             </block>
-          </block>  
+          <!-- </block>   -->
         </view>
         <text class='bofangcishu'>播放{{course.playnumber}}次</text>
         <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text>
