@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    face:false,//作为是否刷脸的依据
     xianshi:false,
     shualiandl:false,
     duigouxz: false,
@@ -268,11 +269,13 @@ Page({
       var totalTime = this.data.sectionRecord.section.duration;
       var halfTime = parseInt(totalTime / 2);
       //一半时间弹出刷脸登录 
-      if (parseInt(currentTime) == halfTime && progress < halfTime) {
-        this.videoContext.pause();//视频播放暂停
-        this.setData({
-          shualiandl: true,
-        });
+      if (parseInt(currentTime) == halfTime || parseInt(progress)== halfTime) {
+        if(this.data.face==false){
+          this.videoContext.pause();//视频播放暂停
+          this.setData({
+            shualiandl: true,
+          });
+        }
       }
 
       //正常播放
@@ -677,6 +680,7 @@ Page({
             if (data.msg == "OK") {
               this.setData({
                 shualiandl: false,
+                face:true
               });
               this.videoContext.play();//视频播放暂停
               
