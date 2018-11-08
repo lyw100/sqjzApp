@@ -493,7 +493,7 @@ Page({
               that.getVideoSection(that.data.record.course.id, sections[i].id);
             }
           }
-          this.videoContext.seek(0);
+          that.videoContext.seek(0);
           // that.moreCourseTap(e);
         } else if (res.data == "more") {
           wx.showToast({
