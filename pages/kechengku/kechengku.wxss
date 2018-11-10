@@ -46,7 +46,6 @@ font-weight:bold;
 display: inline-block;
 margin-left:20px;
 }
-
 .sousuo{
    width: 480rpx;
   height: 60rpx;

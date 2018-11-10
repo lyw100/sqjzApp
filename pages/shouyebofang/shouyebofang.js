@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    face:false,//作为是否刷脸的依据
+    xianshi:false,
     shualiandl:false,
     duigouxz: false,
     lastTime:0,
@@ -163,23 +165,26 @@ Page({
     // this.videoContext.play();
     // console.log("点击播放");
     // this.videoContext.requestFullScreen();//执行全屏方法
-    
-    var courseid = this.data.record.course.id;//课程id
-    var jzid = this.data.record.jzid;
-    var url = getApp().globalData.url + '/course/addPlayNum';
-    wx.request({
-      url: url,
-      data: { courseid: courseid,jzid: jzid },
-      dataType: 'text',
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data);
+    if (this.data.shualiandl){
+      this.videoContext.pause()
+    }else{
+      var courseid = this.data.record.course.id;//课程id
+      var jzid = this.data.record.jzid;
+      var url = getApp().globalData.url + '/course/addPlayNum';
+      wx.request({
+        url: url,
+        data: { courseid: courseid,jzid: jzid },
+        dataType: 'text',
+        header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
 
-      }
-    })
+        }
+      })
+    }
 
     
   },
@@ -264,11 +269,13 @@ Page({
       var totalTime = this.data.sectionRecord.section.duration;
       var halfTime = parseInt(totalTime / 2);
       //一半时间弹出刷脸登录 
-      if (parseInt(currentTime) == halfTime && progress < halfTime) {
-        this.videoContext.pause();//视频播放暂停
-        this.setData({
-          shualiandl: true,
-        });
+      if (parseInt(currentTime) == halfTime || parseInt(progress)== halfTime) {
+        if(this.data.face==false){
+          this.videoContext.pause();//视频播放暂停
+          this.setData({
+            shualiandl: true,
+          });
+        }
       }
 
       //正常播放
@@ -489,7 +496,7 @@ Page({
               that.getVideoSection(that.data.record.course.id, sections[i].id);
             }
           }
-          this.videoContext.seek(0);
+          that.videoContext.seek(0);
           // that.moreCourseTap(e);
         } else if (res.data == "more") {
           wx.showToast({
@@ -673,6 +680,7 @@ Page({
             if (data.msg == "OK") {
               this.setData({
                 shualiandl: false,
+                face:true
               });
               this.videoContext.play();//视频播放暂停
               

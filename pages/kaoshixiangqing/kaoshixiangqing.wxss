@@ -27,6 +27,7 @@ page {
   color: #2499f9;
 }
 .center{
+  width: 100%;
   height: 83%;
   box-sizing: border-box;
   padding: 30rpx;
@@ -103,6 +104,7 @@ page {
 
 }
 .spr{
+   width: 100%;
   height: 100%;
 }
 .spr_gd{

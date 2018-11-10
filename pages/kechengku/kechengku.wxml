@@ -68,14 +68,14 @@
               <view class='ddwhjy_jianju'>
                 <text class='ddwjjy_bt'>{{course.name}}</text>
                 <view class='ddjy_xuanke'>
-                  <block wx:if="{{course.subject.type==0}}">
+                  <!-- <block wx:if="{{course.subject.type==0}}"> -->
                     <block wx:if="{{course.isSign==0}}">
                       <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
                     </block>
                     <block wx:else>
                       <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                     </block>
-                  </block>
+                  <!-- </block> -->
 
                 </view>
               </view>
@@ -88,14 +88,14 @@
               <text class="shijian">{{course.courseTime}}</text>
               <text class="shuoming">{{course.name}}</text>
               <view class='zcfgjy_xz'>
-                <block wx:if="{{course.subject.type==0}}">
+                <!-- <block wx:if="{{course.subject.type==0}}"> -->
                   <block wx:if="{{course.isSign==0}}">
                     <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
                   </block>
                   <block wx:else>
                     <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                   </block>
-                </block>
+                <!-- </block> -->
               </view>
             </view>
 
