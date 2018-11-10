@@ -1,5 +1,6 @@
 var WxParse = require('../../wxParse/wxParse.js');
 var timer = require('../../utils/wxTimer.js');
+var wxTimer = null;
 Page({
   /**
    * 页面的初始数据
@@ -244,7 +245,7 @@ Page({
     // 定时器
     // 0 未考 1已考
     if(type == '0'){
-      var wxTimer = new timer({
+      wxTimer = new timer({
         beginTime: timeStr,
         name: 'wxTimer',
         complete: function () {
@@ -286,7 +287,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    wxTimer.stop();
   },
 
   /**
