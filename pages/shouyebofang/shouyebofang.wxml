@@ -67,7 +67,10 @@
 
 <view class='nr' wx:if='{{shualiandl}}'>
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;border-radius:165px"></camera> 
-<view class="anniu" catchtap="takePhoto" >
-       <text>登录</text>
-   </view>
+  <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
+       <text>刷脸验证 {{countdown}}</text>
+  </view>
+  <view  class="anniu" catchtap="resetVideo"  wx:if="{{countdown==0}}">
+       <text>刷脸验证超时,本章节进度清空</text>
+  </view>
 </view>
