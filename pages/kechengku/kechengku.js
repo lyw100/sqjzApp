@@ -73,8 +73,9 @@ Page({
     // courseType = 0 视频
     // subjectType = 0 必修
     var subType=this.data.subType;
+    console.log("subType:"+subType);
     wx.navigateTo({
-      url: '../sousuo/sousuo?subjectType=&courseType='+subType+'&menu=course&subjectId=',
+      url: '../sousuo/sousuo?subjectType=' + subType +'&courseType=&menu=course&subjectId=',
     })
   },
   countInfo: function () {
