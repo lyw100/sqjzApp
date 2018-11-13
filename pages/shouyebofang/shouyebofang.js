@@ -136,6 +136,17 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    if (this.data.shualiandl==true){
+      //进度清零  并暂停
+      that.videoContext.seek(0);
+      that.videoContext.pause();//视频暂停
+      that.setData({
+        progress: 0,
+        lastTime: 0
+      });
+
+    }
+
     this.saveProgress();//保存视频进度
   },
 
@@ -282,6 +293,7 @@ Page({
           var flag=photoTimes[i].flag;
 
           if (cTime == time&&flag==false) {
+              this.videoContext.exitFullScreen();//退出全屏方法
               this.videoContext.pause();//视频播放暂停
               this.clearProgress();//重新加载定时器
               photoTimes[i].flag=true;
