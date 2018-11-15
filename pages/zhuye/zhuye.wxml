@@ -41,7 +41,7 @@
   </view>
   <view id="historyList" class='lskcnr'>
     <view  class='lishikc' wx:for="{{historyList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
-        <image catchtap='signRecord' data-id="{{sign.id}}" class='lskcimg' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
+        <image catchtap='swipclick' data-courseid="{{sign.course.id}}" data-id="{{sign.id}}" class='lskcimg' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text class='yiwancheng'>{{sign.state==1?'已完成':'未完成'}}</text>
         <text class='lscksm'>{{sign.course.name}}</text>
