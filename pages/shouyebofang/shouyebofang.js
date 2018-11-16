@@ -284,7 +284,7 @@ Page({
           var time=photoTimes[i].time;
           var flag=photoTimes[i].flag;
 
-          if (cTime == time&&flag==false) {
+          if (cTime == time && flag == false && currentTime>=progress) {
               this.videoContext.exitFullScreen();//退出全屏方法
               this.videoContext.pause();//视频播放暂停
               this.clearProgress();//重新加载定时器
