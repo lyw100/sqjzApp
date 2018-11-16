@@ -136,18 +136,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if (this.data.shualiandl==true){
-      //进度清零  并暂停
-      that.videoContext.seek(0);
-      that.videoContext.pause();//视频暂停
-      that.setData({
-        progress: 0,
-        lastTime: 0
-      });
-
-    }
-
+    
     this.saveProgress();//保存视频进度
+    
+
   },
 
   /**
@@ -374,6 +366,12 @@ Page({
     var courseid = this.data.record.course.id;//课程id
     var sectionid = this.data.sectionRecord.section.id;//课程章节id
     var progress = parseInt(this.data.progress);//进度
+    var shualian="";
+    if (this.data.shualiandl == true) {
+      shualian="1";//正在刷脸中退出
+    }else{
+      shualian = "0";//不是刷脸状态
+    }
 
     if (this.data.sectionRecord.section.duration - this.data.progress<3){
       progress = this.data.sectionRecord.section.duration;
@@ -385,7 +383,7 @@ Page({
       // console.log(jzid);
       wx.request({
         url: url,
-        data: { id: courseid, progress: progress, jzid: jzid ,sectionid:sectionid},
+        data: {shualian:shualian, id: courseid, progress: progress, jzid: jzid ,sectionid:sectionid},
         dataType: 'text',
         header: {
           'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
@@ -643,6 +641,7 @@ Page({
       success(res) {
         var progress = res.data.progress;
         var duration= res.data.section.duration;
+        var shualian=res.data.shualian;
         //视频弹出验证次数    10分钟以内 弹1-2次    大于10分钟弹 1-3次 
         //视频播放前10%不弹验证 
         var prefix = parseInt(duration * 0.1); 
@@ -655,11 +654,16 @@ Page({
         var photoTimes=[];//刷脸的时间集合
         //根据刷脸次数   循环添加刷脸时间
         for(var i=0;i<num;i++){
-          //随机刷脸时间      整个视频长度的10%进度之内不刷脸  
-          var photoTime=parseInt(Math.random() * (duration - prefix) + prefix);
           var map={};
-          map.flag=false;
-          map.time = photoTime;
+          if(i==0&&shualian==1){//上一次观看视频到验证时退出
+            map.flag = false;
+            map.time = progress;
+          }else{
+            //随机刷脸时间      整个视频长度的10%进度之内不刷脸  
+            var photoTime=parseInt(Math.random() * (duration - prefix) + prefix);
+            map.flag=false;
+            map.time = photoTime;
+          }
           photoTimes.push(map);
         }
         console.log("photoTimes");
@@ -708,6 +712,9 @@ Page({
    * 刷脸登录
    */
   takePhoto: function () {
+    var that=this;
+    clearTimeout(timer);//取消定时器
+    clearInterval(interval);//取消计时器
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
@@ -734,17 +741,17 @@ Page({
                 shualiandl: false,//是否展示刷脸窗口
                 face:true//验证通过
               });
-              clearTimeout(timer);//取消定时器
               this.videoContext.play();//视频播放暂停
               
             } else {
               wx.showModal({
                 title: '提示',
                 content: data.msg,
-                showCancel: false
+                showCancel: false,
+                success:function(){
+                  that.clearProgress();//重新加载定时器
+                }
               })
-              clearTimeout(timer);//取消定时器
-              this.clearProgress();//重新加载定时器
             }
 
           }
