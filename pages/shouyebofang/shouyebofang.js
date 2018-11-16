@@ -129,6 +129,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    clearTimeout(timer);//取消定时器
+    clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
   },
 
@@ -136,7 +138,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    clearTimeout(timer);//取消定时器
+    clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
     
 
