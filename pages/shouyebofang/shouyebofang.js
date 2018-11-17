@@ -370,7 +370,7 @@ Page({
     var sectionid = this.data.sectionRecord.section.id;//课程章节id
     var progress = parseInt(this.data.progress);//进度
     var shualian="";
-    if (this.data.shualiandl == true) {
+    if (this.data.shualiandl == true && progress!=0) {
       shualian="1";//正在刷脸中退出
     }else{
       shualian = "0";//不是刷脸状态
