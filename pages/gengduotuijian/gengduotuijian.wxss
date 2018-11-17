@@ -179,6 +179,9 @@ line-height:60rpx;
   padding: 5rpx 20rpx;
   border-radius: 17rpx;
 }
+ .lanse{
+  color: #2499f9 !important;
+}
  .yixuan{
   border: 1px solid #b5b5b5;
   color: #b5b5b5;

@@ -19,32 +19,32 @@ Page({
    */
   data: {
     indicatorDots: false,
-    shipinShow: true,
-    tuwenShow:false,
-    yuyinShow: false,
+    shipinShow: 'lanse',
+    tuwenShow:'',
+    yuyinShow: '',
     page:1,
     moreList:[]
   },
 
   shipin:function(){
    this.setData({
-      shipinShow: true,
-      tuwenShow : false,
-      yuyinShow : false,
+      shipinShow: 'lanse',
+      tuwenShow : '',
+      yuyinShow : '',
    })
   },
   tuwen: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: true,
-      yuyinShow: false,
+      shipinShow: '',
+      tuwenShow: 'lanse',
+      yuyinShow: '',
     })
   },
   yuyin: function () {
     this.setData({
-      shipinShow: false,
-      tuwenShow: false,
-      yuyinShow: true,
+      shipinShow: '',
+      tuwenShow: '',
+      yuyinShow: 'lanse',
     })
   },
   countInfo: function () {
