@@ -14,8 +14,8 @@ Page({
     photoTimes:[],//刷脸时间的集合
     face:true,//作为是否刷脸的依据
     countdown:60,//刷脸倒计时
-    xianshi:false,
-    shualiandl:false,//是否显示刷脸登录弹窗
+    xianshi: false,
+    shualiandl: false,//是否显示刷脸登录弹窗
     duigouxz: false,
     lastTime:0,
     page:1
@@ -295,6 +295,7 @@ Page({
               this.setData({
                 photoTimes: photoTimes,
                 shualiandl: true,
+                xianshi: true,
                 face:false
               });
           }
@@ -742,6 +743,7 @@ Page({
             if (data.msg == "OK") {
               this.setData({
                 shualiandl: false,//是否展示刷脸窗口
+                xianshi: false,
                 face:true//验证通过
               });
               this.videoContext.play();//视频播放暂停
@@ -800,6 +802,7 @@ Page({
   resetVideo:function(){
     this.setData({
       shualiandl: false,
+      xianshi: false,
       face: true
     });
     this.getVideoSection(this.data.record.course.id, this.data.sectionRecord.section.id);
