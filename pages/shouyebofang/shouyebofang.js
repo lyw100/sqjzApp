@@ -209,28 +209,33 @@ Page({
    * 视频播放结束退出全屏
    */
   bindended:function(){
-    this.saveProgress();//保存视频进度
-    this.videoContext.exitFullScreen();//执行全屏方法
+    var progress = parseInt(this.data.progress);
+    var duration = this.data.sectionRecord.section.duration;
+    if (duration - progress < 3) {
+      this.saveProgress();//保存视频进度
+      this.videoContext.exitFullScreen();//执行全屏方法
 
-    var sections = this.data.sections;
-    
-    for (var i = 0; i < sections.length; i++) {
-      if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
-        sections[i].yanse = "zhangjieend";
-        if((i+1)<sections.length){//有下一个章节
-          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
-          if (sections[i + 1].yanse != "zhangjieend"){
-            sections[i + 1].yanse = "zhangjie";
-          }else{
-            sections[i + 1].yanse = "zhangjieend zhangjie";
+      var sections = this.data.sections;
+      
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
+          sections[i].yanse = "zhangjieend";
+          if((i+1)<sections.length){//有下一个章节
+            this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
+            if (sections[i + 1].yanse != "zhangjieend"){
+              sections[i + 1].yanse = "zhangjie";
+            }else{
+              sections[i + 1].yanse = "zhangjieend zhangjie";
+            }
           }
-        }
 
-        this.setData({
-          sections:sections
-        })
+          this.setData({
+            sections:sections
+          })
+        }
       }
-    }
+
+    }  
   },
   /**
    * 全屏的方法
