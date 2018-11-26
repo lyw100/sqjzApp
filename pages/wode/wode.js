@@ -30,6 +30,18 @@ Page({
             url: '../yanzheng/yanzheng'
           })
         }else if(res.tapIndex==1){
+          wx.request({
+            url: getApp().globalData.url +'/weChat/user/logout',
+            method:"POST",
+            data:{},
+            header:{
+              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res){
+
+            }
+          })
           getApp().globalData.jiaozhengid = "";
           getApp().globalData.header.Cookie = "";
           wx.reLaunch({
