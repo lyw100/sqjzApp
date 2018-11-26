@@ -34,6 +34,47 @@ App({
     
 
   },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var jzid = this.globalData.jiaozhengid;
+    if(jzid!=""){
+      //var path ="http://localhost:8080/SQJZ";
+      var path = this.globalData.url;
+      wx.request({
+        url: path + '/wechat/zxtj/online',
+        data: {},
+        method: 'POST',
+        header: {
+          'Cookie': this.globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        success(res) {
+
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    //var path ="http://localhost:8080/SQJZ";
+    var path=getApp().globalData.url;
+    wx.request({
+      url: path +'/wechat/zxtj/offline',
+      data: {},
+      method:'POST',
+      header:{
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success(res){
+
+      }
+    })
+  },
   globalData: {
     userInfo: null,
     jiaozhengid:"",
