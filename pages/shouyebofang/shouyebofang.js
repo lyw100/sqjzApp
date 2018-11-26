@@ -14,8 +14,8 @@ Page({
     photoTimes:[],//刷脸时间的集合
     face:true,//作为是否刷脸的依据
     countdown:60,//刷脸倒计时
-    xianshi:false,
-    shualiandl:false,//是否显示刷脸登录弹窗
+    xianshi: false,
+    shualiandl: false,//是否显示刷脸登录弹窗
     duigouxz: false,
     lastTime:0,
     page:1
@@ -209,28 +209,33 @@ Page({
    * 视频播放结束退出全屏
    */
   bindended:function(){
-    this.saveProgress();//保存视频进度
-    this.videoContext.exitFullScreen();//执行全屏方法
+    var progress = parseInt(this.data.progress);
+    var duration = this.data.sectionRecord.section.duration;
+    if (duration - progress < 3) {
+      this.saveProgress();//保存视频进度
+      this.videoContext.exitFullScreen();//执行全屏方法
 
-    var sections = this.data.sections;
-    
-    for (var i = 0; i < sections.length; i++) {
-      if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
-        sections[i].yanse = "zhangjieend";
-        if((i+1)<sections.length){//有下一个章节
-          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
-          if (sections[i + 1].yanse != "zhangjieend"){
-            sections[i + 1].yanse = "zhangjie";
-          }else{
-            sections[i + 1].yanse = "zhangjieend zhangjie";
+      var sections = this.data.sections;
+      
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
+          sections[i].yanse = "zhangjieend";
+          if((i+1)<sections.length){//有下一个章节
+            this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
+            if (sections[i + 1].yanse != "zhangjieend"){
+              sections[i + 1].yanse = "zhangjie";
+            }else{
+              sections[i + 1].yanse = "zhangjieend zhangjie";
+            }
           }
-        }
 
-        this.setData({
-          sections:sections
-        })
+          this.setData({
+            sections:sections
+          })
+        }
       }
-    }
+
+    }  
   },
   /**
    * 全屏的方法
@@ -295,6 +300,7 @@ Page({
               this.setData({
                 photoTimes: photoTimes,
                 shualiandl: true,
+                xianshi: true,
                 face:false
               });
           }
@@ -742,6 +748,7 @@ Page({
             if (data.msg == "OK") {
               this.setData({
                 shualiandl: false,//是否展示刷脸窗口
+                xianshi: false,
                 face:true//验证通过
               });
               this.videoContext.play();//视频播放暂停
@@ -800,6 +807,7 @@ Page({
   resetVideo:function(){
     this.setData({
       shualiandl: false,
+      xianshi: false,
       face: true
     });
     this.getVideoSection(this.data.record.course.id, this.data.sectionRecord.section.id);

@@ -49,7 +49,7 @@ Page({
           laiyuan: data.source + " " + data.audittime.substring(0, 10),
           //content: data.content,
         })
-        var article = data.content;
+        var article = data.content.replace(/<o:p>/g,'').replace(/pt/g,'*2rpx');
         /**
         * WxParse.wxParse(bindName , type, data, target,imagePadding)
         * 1.bindName绑定的数据名(必填)
