@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    addPlayNum:false,//当前视频获取后是否添加播放次数
     photoTimes:[],//刷脸时间的集合
     face:true,//作为是否刷脸的依据
     countdown:60,//刷脸倒计时
@@ -178,22 +179,28 @@ Page({
     if (this.data.shualiandl){
       this.videoContext.pause()
     }else{
-      var courseid = this.data.record.course.id;//课程id
-      var jzid = this.data.record.jzid;
-      var url = getApp().globalData.url + '/course/addPlayNum';
-      wx.request({
-        url: url,
-        data: { courseid: courseid,jzid: jzid },
-        dataType: 'text',
-        header: {
-          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          // console.log(res.data);
+      if (this.data.addPlayNum==false){
+        var that=this;
+        var courseid = this.data.record.course.id;//课程id
+        var jzid = this.data.record.jzid;
+        var url = getApp().globalData.url + '/course/addPlayNum';
+        wx.request({
+          url: url,
+          data: { courseid: courseid,jzid: jzid },
+          dataType: 'text',
+          header: {
+            'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            // console.log(res.data);
+            that.setData({
+              addPlayNum:true
+            });
+          }
+        })
 
-        }
-      })
+      }
     }
 
     
