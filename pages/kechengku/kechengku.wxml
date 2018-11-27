@@ -64,7 +64,13 @@
           <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index">
 
             <block wx:if="{{subIndex==1&&index==0}}">
-              <image data-id="{{course.id}}" data-index='{{index}}' class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+              <view class='dykscsp_tupian'>
+                <image data-id="{{course.id}}" data-index='{{index}}' class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
+                <view  data-id="{{course.id}}" data-index='{{index}}' catchtap='bofang'  class='dykscsp_dingwei'  wx:if="{{course.isSign==0}}">
+                  <view class='dykscsp_jianju'><text>未选课</text></view>
+                  <view>观看不计课时</view>
+                </view>
+              </view>
               <view class='ddwhjy_jianju'>
                 <text class='ddwjjy_bt'>{{course.name}}</text>
                 <view class='ddjy_xuanke'>
@@ -80,7 +86,7 @@
                 </view>
               </view>
             </block>
-
+   
             <view class='left' wx:else>
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
               <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
@@ -96,6 +102,10 @@
                     <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
                   </block>
                 <!-- </block> -->
+              </view>
+              <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}' catchtap='bofang'   wx:if="{{course.isSign==0}}">
+                <view class='dwlfph_jianju'><text>未选课</text></view>
+                <view>观看不计课时</view>
               </view>
             </view>
 
