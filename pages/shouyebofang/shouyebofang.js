@@ -130,6 +130,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    this.videoContext.pause();
     clearTimeout(timer);//取消定时器
     clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
@@ -139,6 +140,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    this.videoContext.pause();
     clearTimeout(timer);//取消定时器
     clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
@@ -180,6 +182,8 @@ Page({
       this.videoContext.pause()
     }else{
       if (this.data.addPlayNum==false){
+        var progress=this.data.progress;
+        this.videoContext.seek(progress);
         var that=this;
         var courseid = this.data.record.course.id;//课程id
         var jzid = this.data.record.jzid;
@@ -741,12 +745,11 @@ Page({
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
-          url: getApp().globalData.url + '/weChat/user/face',
+          url: getApp().globalData.url + '/sqjz/face',
           filePath: res.tempImagePath,
           header: header,
           formData: {
-            telephone: wx.getStorageSync("username"),
-            password: wx.getStorageSync("password")
+            telephone: wx.getStorageSync("username")
           },
           name: 'file',
           success: (res) => {

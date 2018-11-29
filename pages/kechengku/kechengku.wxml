@@ -23,7 +23,7 @@
       </view>
     </view>
 
-    <view class='tit2'>
+    <view class='tit2' wx:if="{{false}}">
       <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
       <text class='sp {{shipin}}' catchtap='shipin'>视频</text>
       <text class='sp {{tuwen}}' catchtap='tuwen'>图文</text>

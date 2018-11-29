@@ -91,7 +91,8 @@ margin-left:20px;
 .neirong{
   width: 100%;
   height: auto;
-  margin-top:235rpx;
+  margin-top:180rpx;
+  /* margin-top:235rpx; */
 }
 .dykctext{
   font-size: 30rpx;
