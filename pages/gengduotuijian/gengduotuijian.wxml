@@ -47,6 +47,10 @@
               <!-- </block> -->
             </view>  
 
+            <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}' catchtap='bofang'   wx:if="{{course.isSign==0}}">
+                <view class='dwlfph_jianju'><text>未选课</text></view>
+                <view>观看不计课时</view>
+              </view>
           </view>
          
         </view>
