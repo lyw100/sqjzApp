@@ -689,6 +689,7 @@ Page({
         console.log("photoTimes");
         console.log(photoTimes);
         that.setData({
+          addPlayNum:false,
           sectionRecord:res.data,
           progress: progress,
           lastTime: progress,
