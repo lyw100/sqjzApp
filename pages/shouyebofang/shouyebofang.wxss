@@ -178,7 +178,7 @@
   top:0;
   left: 0;
   background-color:#fff;
-  z-index: 999999;
+  z-index: 999999999;
   height: 100%;
 }
 .anniu{
