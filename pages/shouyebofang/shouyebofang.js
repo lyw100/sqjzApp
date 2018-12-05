@@ -21,6 +21,10 @@ Page({
     lastTime:0,
     page:1
   },
+  myCatchTouch: function () {
+    console.log('stop user scroll it!');
+    return;
+  },
   countInfo: function () {
     wx.request({
       url: getApp().globalData.url + '/count/shouyebofang',

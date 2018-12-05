@@ -71,7 +71,7 @@
 </view>
 
 <!-- 刷脸登录-->
-<view class='nr' wx:if='{{shualiandl}}'>
+<view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;"></camera> 
   <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
        <text>请点击刷脸验证 {{countdown}}</text>
