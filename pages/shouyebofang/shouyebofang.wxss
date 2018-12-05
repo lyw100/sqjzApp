@@ -210,3 +210,10 @@
 .dwlfph_jianju{
   margin-top:65rpx;
 }
+camera {
+position:relative;
+top:0;
+left:0%;
+
+
+}
