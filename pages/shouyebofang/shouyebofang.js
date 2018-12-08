@@ -187,6 +187,7 @@ Page({
     }else{
       if (this.data.addPlayNum==false){
         var progress=this.data.progress;
+        console.log("progress:"+progress);
         this.videoContext.seek(progress);
         var that=this;
         var courseid = this.data.record.course.id;//课程id
@@ -426,6 +427,8 @@ Page({
    * 点击更多视频进行播放
    */
   moreCourseTap: function (e) {
+    this.saveProgress();  
+
     var courseid = e.currentTarget.dataset.id;
     var url = getApp().globalData.url + '/course/getRecord';
     var that = this;
@@ -700,6 +703,7 @@ Page({
           photoTimes: photoTimes
         });
         
+        that.videoContext = wx.createVideoContext('myVideo');
       }
     })
 

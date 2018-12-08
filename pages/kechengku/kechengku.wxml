@@ -66,9 +66,9 @@
             <block wx:if="{{subIndex==1&&index==0}}">
               <view class='dykscsp_tupian'>
                 <image data-id="{{course.id}}" data-index='{{index}}' class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
-                <view  data-id="{{course.id}}" data-index='{{index}}' catchtap='bofang'  class='dykscsp_dingwei'  wx:if="{{course.isSign==0}}">
+                <view  data-id="{{course.id}}" data-index='{{index}}'   class='dykscsp_dingwei'  wx:if="{{course.isSign==0}}">
                   <view class='dykscsp_jianju'><text>未选课</text></view>
-                  <view>观看不计课时</view>
+                  <view>不能观看</view>
                 </view>
               </view>
               <view class='ddwhjy_jianju'>
@@ -103,9 +103,9 @@
                   </block>
                 <!-- </block> -->
               </view>
-              <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}' catchtap='bofang'   wx:if="{{course.isSign==0}}">
+              <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}'    wx:if="{{course.isSign==0}}">
                 <view class='dwlfph_jianju'><text>未选课</text></view>
-                <view>观看不计课时</view>
+                <view>不能观看</view>
               </view>
             </view>
 
