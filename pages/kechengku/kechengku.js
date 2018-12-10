@@ -19,7 +19,8 @@ Page({
     tuwenShow:false,
     yuyinShow:false,
     page:1,
-    subid: 'sub'
+    subid: 'sub',
+    dingwei_yincang:false,
   },
   /**遮罩层 */
   // 遮罩层显示

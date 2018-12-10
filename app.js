@@ -1,6 +1,31 @@
 //app.js
 App({
   onLaunch: function () {
+    const updateManager = wx.getUpdateManager()
+
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res.hasUpdate)
+    })
+
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+
+    updateManager.onUpdateFailed(function () {
+      // 新版本下载失败
+    })
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -33,6 +58,47 @@ App({
     })
     
 
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var jzid = this.globalData.jiaozhengid;
+    if(jzid!=""){
+      //var path ="http://localhost:8080/SQJZ";
+      var path = this.globalData.url;
+      wx.request({
+        url: path + '/wechat/zxtj/online',
+        data: {},
+        method: 'POST',
+        header: {
+          'Cookie': this.globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        success(res) {
+
+        }
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    //var path ="http://localhost:8080/SQJZ";
+    var path=getApp().globalData.url;
+    wx.request({
+      url: path +'/wechat/zxtj/offline',
+      data: {},
+      method:'POST',
+      header:{
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success(res){
+
+      }
+    })
   },
   globalData: {
     userInfo: null,

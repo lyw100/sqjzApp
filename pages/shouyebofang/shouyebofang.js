@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    addPlayNum:false,//当前视频获取后是否添加播放次数
     photoTimes:[],//刷脸时间的集合
     face:true,//作为是否刷脸的依据
     countdown:60,//刷脸倒计时
@@ -19,6 +20,10 @@ Page({
     duigouxz: false,
     lastTime:0,
     page:1
+  },
+  myCatchTouch: function () {
+    console.log('stop user scroll it!');
+    return;
   },
   countInfo: function () {
     wx.request({
@@ -129,6 +134,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    this.videoContext.pause();
     clearTimeout(timer);//取消定时器
     clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
@@ -138,6 +144,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    this.videoContext.pause();
     clearTimeout(timer);//取消定时器
     clearInterval(interval);//取消计时器
     this.saveProgress();//保存视频进度
@@ -178,22 +185,31 @@ Page({
     if (this.data.shualiandl){
       this.videoContext.pause()
     }else{
-      var courseid = this.data.record.course.id;//课程id
-      var jzid = this.data.record.jzid;
-      var url = getApp().globalData.url + '/course/addPlayNum';
-      wx.request({
-        url: url,
-        data: { courseid: courseid,jzid: jzid },
-        dataType: 'text',
-        header: {
-          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          // console.log(res.data);
+      if (this.data.addPlayNum==false){
+        var progress=this.data.progress;
+        console.log("progress:"+progress);
+        this.videoContext.seek(progress);
+        var that=this;
+        var courseid = this.data.record.course.id;//课程id
+        var jzid = this.data.record.jzid;
+        var url = getApp().globalData.url + '/course/addPlayNum';
+        wx.request({
+          url: url,
+          data: { courseid: courseid,jzid: jzid },
+          dataType: 'text',
+          header: {
+            'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            // console.log(res.data);
+            that.setData({
+              addPlayNum:true
+            });
+          }
+        })
 
-        }
-      })
+      }
     }
 
     
@@ -209,28 +225,33 @@ Page({
    * 视频播放结束退出全屏
    */
   bindended:function(){
-    this.saveProgress();//保存视频进度
-    this.videoContext.exitFullScreen();//执行全屏方法
+    var progress = parseInt(this.data.progress);
+    var duration = this.data.sectionRecord.section.duration;
+    if (duration - progress < 3) {
+      this.saveProgress();//保存视频进度
+      this.videoContext.exitFullScreen();//执行全屏方法
 
-    var sections = this.data.sections;
-    
-    for (var i = 0; i < sections.length; i++) {
-      if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
-        sections[i].yanse = "zhangjieend";
-        if((i+1)<sections.length){//有下一个章节
-          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
-          if (sections[i + 1].yanse != "zhangjieend"){
-            sections[i + 1].yanse = "zhangjie";
-          }else{
-            sections[i + 1].yanse = "zhangjieend zhangjie";
+      var sections = this.data.sections;
+      
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
+          sections[i].yanse = "zhangjieend";
+          if((i+1)<sections.length){//有下一个章节
+            this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
+            if (sections[i + 1].yanse != "zhangjieend"){
+              sections[i + 1].yanse = "zhangjie";
+            }else{
+              sections[i + 1].yanse = "zhangjieend zhangjie";
+            }
           }
-        }
 
-        this.setData({
-          sections:sections
-        })
+          this.setData({
+            sections:sections
+          })
+        }
       }
-    }
+
+    }  
   },
   /**
    * 全屏的方法
@@ -406,6 +427,8 @@ Page({
    * 点击更多视频进行播放
    */
   moreCourseTap: function (e) {
+    this.saveProgress();  
+
     var courseid = e.currentTarget.dataset.id;
     var url = getApp().globalData.url + '/course/getRecord';
     var that = this;
@@ -673,12 +696,14 @@ Page({
         console.log("photoTimes");
         console.log(photoTimes);
         that.setData({
+          addPlayNum:false,
           sectionRecord:res.data,
           progress: progress,
           lastTime: progress,
           photoTimes: photoTimes
         });
         
+        that.videoContext = wx.createVideoContext('myVideo');
       }
     })
 
@@ -729,12 +754,11 @@ Page({
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
-          url: getApp().globalData.url + '/weChat/user/face',
+          url: getApp().globalData.url + '/sqjz/face',
           filePath: res.tempImagePath,
           header: header,
           formData: {
-            telephone: wx.getStorageSync("username"),
-            password: wx.getStorageSync("password")
+            telephone: wx.getStorageSync("username")
           },
           name: 'file',
           success: (res) => {

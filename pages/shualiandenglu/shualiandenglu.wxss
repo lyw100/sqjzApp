@@ -6,13 +6,14 @@
 }
 .anniu{
   width:85%;
-  height: 80rpx;
-  border: 1px solid #ccc;
-  line-height: 80rpx;
   text-align: center;
-  color: #fff;
-  background: #2499f9;
-  border-radius: 40rpx;
-  font-size: 36rpx;
-  margin-top: 100rpx;
+  font-size: 40rpx;
+  margin-top: 50rpx;
+}
+.lefttop{
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 500rpx;
+  height: 500rpx;
 }

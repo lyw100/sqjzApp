@@ -178,7 +178,9 @@
   top:0;
   left: 0;
   background-color:#fff;
-  z-index: 999999;
+  z-index: 999999999;
+  height: 100%;
+  overflow: hidden;
 }
 .anniu{
   width:85%;
@@ -194,4 +196,25 @@
 }
 .kcxz_zhangjie .zhangjieend{
   background:#e9e9e9;
+}
+.lfph_dw{
+  width: 100%;
+  height: 210rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color:rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  font-size:28rpx;
+}
+.dwlfph_jianju{
+  margin-top:65rpx;
+}
+camera {
+position:relative;
+top:0;
+left:0%;
+
+
 }

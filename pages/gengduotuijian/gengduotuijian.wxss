@@ -188,3 +188,17 @@ line-height:60rpx;
   padding: 5rpx 20rpx;
   border-radius: 17rpx;
 }
+.lfph_dw{
+  width: 100%;
+  height: 210rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color:rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  font-size:28rpx;
+}
+.dwlfph_jianju{
+  margin-top:65rpx;
+}

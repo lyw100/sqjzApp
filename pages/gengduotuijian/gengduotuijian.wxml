@@ -47,6 +47,10 @@
               <!-- </block> -->
             </view>  
 
+            <view class='lfph_dw' data-courseid="{{course.id}}" data-index='{{index}}'   wx:if="{{course.isSign==0}}">
+                <view class='dwlfph_jianju'><text>未选课</text></view>
+                <view>不能观看</view>
+            </view>
           </view>
          
         </view>
