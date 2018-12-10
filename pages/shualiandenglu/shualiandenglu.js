@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    msgData:"识别中,请稍后..."
   },
 
   takePhoto: function () {
@@ -15,11 +15,12 @@ Page({
       quality: 'high',
       success: (res) => {
         this.setData({
-          src: res.tempImagePath
+          src: res.tempImagePath,
+          msgData: "识别中,请稍后..."
         })
-        wx.showLoading({
-          title: '正在校验.....',
-        })
+        // wx.showLoading({
+        //   title: '正在校验.....',
+        // })
         this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
@@ -40,10 +41,8 @@ Page({
                 url: '../zhuye/zhuye',
               })
             } else {
-              wx.showModal({
-                title: '提示',
-                content: data.msg,
-                showCancel: false
+              this.setData({
+                msgData: data.msg
               })
               errorcishu1++;
               if ('未能识别到人脸' == data.msg){
