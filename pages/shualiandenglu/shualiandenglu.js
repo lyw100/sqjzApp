@@ -1,22 +1,26 @@
+var errorcishu=0;//未检测到人脸次数限制
+var errorcishu1=0;//多次刷脸未通过次数限制
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    msgData:"识别中,请稍后..."
   },
 
   takePhoto: function () {
+    var that = this;
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
         this.setData({
-          src: res.tempImagePath
+          src: res.tempImagePath,
+          msgData: "识别中,请稍后..."
         })
-        wx.showLoading({
-          title: '正在校验.....',
-        })
+        // wx.showLoading({
+        //   title: '正在校验.....',
+        // })
         this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
@@ -37,11 +41,44 @@ Page({
                 url: '../zhuye/zhuye',
               })
             } else {
-              wx.showModal({
-                title: '提示',
-                content: data.msg,
-                showCancel: false
+              this.setData({
+                msgData: data.msg
               })
+              errorcishu1++;
+              if ('未能识别到人脸' == data.msg){
+                errorcishu++;
+              }else{
+                errorcishu=0;
+                errorcishu1=0;
+              }
+              if (errorcishu>4){
+                wx.showModal({
+                  title: '操作超时',
+                  cancelText: '退出',
+                  confirmText: '再试一次',
+                  content: '正对手机更容易成功',
+                  success: function (sm) {
+                    if (sm.confirm) {
+                      errorcishu=0;
+                      errorcishu1 = 0;
+                      setTimeout(function () {
+                        that.takePhoto();
+                      }, 3000);
+                    } else if (sm.cancel) {
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    }
+                  }
+                })
+              }else{
+                setTimeout(function () {
+                  that.takePhoto();
+                }, 3000);
+              }
+              
+              
+             
             }
 
           }
@@ -64,6 +101,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    setTimeout(function () {
+      that.takePhoto();
+    }, 3000);
 
   },
 
