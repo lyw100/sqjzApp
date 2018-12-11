@@ -1,12 +1,12 @@
 var interval;
 var timer;
 Page({
-  gengduotj: function () {
-    var subid = this.data.record.course.subject.id;
-    wx.redirectTo({
-      url: '../gengduotuijian/gengduotuijian?subid=' + subid,
-    });
-  },
+  // gengduotj: function () {
+  //   var subid = this.data.record.course.subject.id;
+  //   wx.redirectTo({
+  //     url: '../gengduotuijian/gengduotuijian?subid=' + subid,
+  //   });
+  // },
   /**
    * 页面的初始数据
    */
@@ -18,8 +18,26 @@ Page({
     xianshi: false,
     shualiandl: false,//是否显示刷脸登录弹窗
     duigouxz: false,
+    wbf:false,
+    sc_xianshi:true,
+    sc_yingcang:false,
+    xk_xianshi: true,
+    xk_yingcang: false,
     lastTime:0,
     page:1
+  },
+  // 点击收藏 选课显示
+  shoucangdj:function(){
+    this.setData({
+      sc_xianshi: false,
+      sc_yingcang: true,
+    })
+  },
+  xuankedj: function () {
+    this.setData({
+      xk_xianshi: false,
+      xk_yingcang: true,
+    })
   },
   myCatchTouch: function () {
     console.log('stop user scroll it!');

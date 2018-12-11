@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msgData:"识别中,请稍后..."
+    msgData:"识别中,请稍后...",
+    num: 12, //初始值
+    imgurl: "", //图片路径
+    interval: "" //定时器
   },
 
   takePhoto: function () {
@@ -86,6 +89,27 @@ Page({
       }
     })
   },
+  progress: function () {
+    var that = this;
+    var num = that.data.num;
+    var interval = setInterval(function () {
+      that.setData({
+        imgurl: "../../img/" + (13 - num) + ".png"
+      })
+      num--;
+      if (num == 0) {
+        num = 12
+      }
+    }, 100)
+    that.setData({
+      interval: interval
+    })
+  },
+  //清除interval
+  clearTimeInterval: function (that) {
+    var interval = that.data.interval;
+    clearInterval(interval)
+  },
   error(e) {
     console.log(e.detail)
   },
@@ -105,7 +129,7 @@ Page({
     setTimeout(function () {
       that.takePhoto();
     }, 3000);
-
+    that.progress();
   },
 
   /**
@@ -133,7 +157,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    var that = this;
+    that.clearTimeInterval(that)
   },
 
   /**
