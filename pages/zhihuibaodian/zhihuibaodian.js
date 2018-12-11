@@ -71,38 +71,30 @@ Page({
     })
     this.loadList();
   },
-  countInfo: function () {
-    wx.request({
-      url: getApp().globalData.url + '/count/zhihuibaodian',
-      data: {},
-      method: "POST",
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success(res) {
-
-      }
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.loadList();
-    this.countInfo();
-  },
-  /**
-* 生命周期函数--监听页面显示
-*/
-  onShow: function () {
-    page = 1;
+      page = 1;
     hadLastPage = false;
 
     this.setData({
       list: []
     })
     this.loadList();
+    // this.countInfo();
+  },
+  /**
+* 生命周期函数--监听页面显示
+*/
+  onShow: function () {
+    // page = 1;
+    // hadLastPage = false;
+
+    // this.setData({
+    //   list: []
+    // })
+    // this.loadList();
   },
   /**
     * 页面相关事件处理函数--监听用户下拉动作

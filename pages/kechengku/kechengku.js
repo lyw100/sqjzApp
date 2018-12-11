@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    firstshow:true,//第一次加载页面内容
     menuflag:true,
     photohidden:false,
     jingxuan: 'xzzhangtai',
@@ -18,7 +19,8 @@ Page({
     tuwenShow:false,
     yuyinShow:false,
     page:1,
-    subid: 'sub'
+    subid: 'sub',
+    dingwei_yincang:false,
   },
   /**遮罩层 */
   // 遮罩层显示
@@ -73,8 +75,9 @@ Page({
     // courseType = 0 视频
     // subjectType = 0 必修
     var subType=this.data.subType;
+    console.log("subType:"+subType);
     wx.navigateTo({
-      url: '../sousuo/sousuo?subjectType=&courseType='+subType+'&menu=course&subjectId=',
+      url: '../sousuo/sousuo?subjectType=' + subType +'&courseType=&menu=course&subjectId=',
     })
   },
   countInfo: function () {
@@ -97,7 +100,7 @@ Page({
   onLoad: function (options) {
     
     //轮播图
-    this.topCourseList();
+    // this.topCourseList();
     //获取必修科目
     this.getKMList(0);
     this.countInfo();
@@ -114,45 +117,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // let jzid = getApp().globalData.jiaozhengid;
-    // var that=this;
-    // //获取所有已选课程的ids
-    // wx.request({
-    //   url: getApp().globalData.url + '/course/getSignIds', //获取所有已选课程的ids
-    //   data: {  jzid: jzid },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-    //     var ids=res.data;
-    //     var subList=that.data.subList;
-    //     console.log(subList);  
-    //     for(var i=0;i<subList.length;i++){
-    //       var sub=subList[i];
-          // console.log(sub.name);
-          // console.log(sub);
-          // console.log(subList[i].courseList);
-          // console.log(sub[courseList]); 
-          // var courseList = sub.courseList;
-          // for(let j=0;j<courseList;j++){
-          //     let course=courseList[j];
-          //     let courseid=course.id;
-          //   if(j==0){
-          //     console.log(ids.indexOf(courseid));
-          //     console.log(ids.toLocalString().indexOf(courseid));
+    console.log(this.data.firstshow);
+    if(this.data.firstshow==false){
+      var that=this;
+      let jzid = getApp().globalData.jiaozhengid;
+      let subList=this.data.subList;
+      for(let i=0;i<subList.length;i++){
+        let courseList=subList[i].courseList;
+        for(let j=0;j<courseList.length;j++){
+          wx.request({
+            url: getApp().globalData.url + '/course/isSign', //获取视频播放信息
+            data: { courseid: courseList[j].id, jzid: jzid },
+            header: {
+              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+              'content-type': 'application/json' // 默认值
+            },
+            dataType: 'text',
+            success(res) {
+              if (res.data == "true") {//是选课内容
+                subList[i].courseList[j].isSign=1;
+                that.setData({
+                  subList: subList,
+                })
 
-          //   }  
-          //   if (ids.indexOf(courseid)>-1){
-          //     course.isSign=1;
-          //   }
-          // }
-        // }
-        // that.setData({
-        //   subList:subList
-        // })
-    //   }
-    // })
+              }
+            }
+          })
+        }
+      }
 
+    }
+    //下一次不是第一次渲染
+    this.setData({
+      firstshow: false,
+    })
 
   },
 
@@ -175,7 +173,7 @@ Page({
    */
   onPullDownRefresh: function () {
     //轮播图
-    this.topCourseList();
+    // this.topCourseList();
     //获取必修科目
     this.getKMList(0);
 
@@ -317,7 +315,7 @@ Page({
         subid: 'sub' + subid
       });
       this.data.subList[0]=subTabList[index];
-      this.getCourseBysubid(0,4,1);
+      this.getCourseBysubid(0,6,1);
       for (var i = 0; i < subTabList.length;i++){
         if(i==index){
           subTabList[i].tabClass = "xzzhangtai";
@@ -391,7 +389,7 @@ Page({
         // console.log(that.data);
       }
     })
-
+    
   },
 
   /**

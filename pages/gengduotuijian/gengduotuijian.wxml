@@ -3,12 +3,12 @@
     <!-- <image class="sis" src='/img/saoyisao.png'></image>
     <image class="xinxi" src='/img/wuxiaoxi.png'></image> -->
     <image class="sousuo" src='/img/sousuokuang.png' bindtap='onSousuo'></image>
-    <text class='sp' catchtap='shipin'>视频</text>
-    <text class='tw' catchtap='tuwen'>图文</text>
-    <text class='yy' catchtap='yuyin'>语音</text>
+    <text class='sp  {{shipinShow}}' catchtap='shipin'>视频</text>
+    <text class='tw  {{tuwenShow}}' catchtap='tuwen'>图文</text>
+    <text class='yy  {{yuyinShow}}' catchtap='yuyin'>语音</text>
   </view>
   <view class='neirong'>
-    <view class='shipineirong' wx:if="{{shipinShow}}">
+    <view class='shipineirong' wx:if="{{shipinShow!=''}}">
 
       <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="500" circular="true" 
         current="{{swiperCurrent}}"  class="swiper lunbo" previous-margin="25px" next-margin="40px"  
@@ -47,14 +47,18 @@
               <!-- </block> -->
             </view>  
 
+            <view class='lfph_dw' data-courseid="{{course.id}}" data-index='{{index}}'   wx:if="{{course.isSign==0}}">
+                <view class='dwlfph_jianju'><text>未选课</text></view>
+                <view>不能观看</view>
+            </view>
           </view>
          
         </view>
       </view>
     </view>
 
-    <view class='tuweneirong' wx:if="{{tuwenShow}}">图文</view>
-    <view class='yuyinneirong' wx:if="{{yuyinShow}}">语音</view>
+    <view class='tuweneirong' wx:if="{{tuwenShow!=''}}">图文</view>
+    <view class='yuyinneirong' wx:if="{{yuyinShow!=''}}">语音</view>
 
 
   </view>
