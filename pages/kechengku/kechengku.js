@@ -315,7 +315,7 @@ Page({
         subid: 'sub' + subid
       });
       this.data.subList[0]=subTabList[index];
-      this.getCourseBysubid(0,4,1);
+      this.getCourseBysubid(0,6,1);
       for (var i = 0; i < subTabList.length;i++){
         if(i==index){
           subTabList[i].tabClass = "xzzhangtai";
