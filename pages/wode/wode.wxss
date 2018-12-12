@@ -8,6 +8,7 @@
   padding: 30rpx 20rpx;
   border-bottom: 1px solid #e5e5e5;
   box-sizing: border-box;
+  position: relative;
 }
 .wd_img{
   width: 200rpx;
@@ -15,6 +16,13 @@
   border-radius: 50px;
   vertical-align: middle;
   margin: 0 10rpx;
+}
+.wd_jiandao{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  width: 134rpx;
+  height: 50rpx;
 }
 .tit_sm{
   width: 61%;

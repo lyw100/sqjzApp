@@ -16,11 +16,22 @@ Page({
     zaixiankaoshixs:false,
     sixianghbxianshi:false,
     xinlipgxianshi:false,
+    qiandaoxs:true,
+    yiqiandaoxs: false,
     reportList: [],//思想汇报列表
     hours:0,//已完成学时
     page:1,
     rows:6,
   },
+  //签到  已签到
+  qiandao:function(){
+    this.setData({
+      qiandaoxs: false,
+      yiqiandaoxs: true
+    })
+   
+    },
+
   lianjie:function(){
     wx.showActionSheet({
       itemList: ['修改密码', '退出当前账号登录'],
