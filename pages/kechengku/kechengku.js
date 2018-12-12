@@ -361,6 +361,9 @@ Page({
    * 根据课程id获取课程
    */
   getCourseBysubid: function (index, rows,page) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var jzid = getApp().globalData.jiaozhengid;
     var that=this;
     var subList=that.data.subList;
@@ -374,6 +377,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        wx.hideLoading();
         // console.log(res.data);
         var courseList = res.data;
         if(page==1){
