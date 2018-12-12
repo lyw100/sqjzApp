@@ -235,7 +235,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("离开")
+    // console.log("离开")
     // wx.showModal({
     //   title: '提示',
     //   content: '确定要返回吗',
