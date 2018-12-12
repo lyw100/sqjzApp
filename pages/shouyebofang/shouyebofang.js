@@ -23,6 +23,8 @@ Page({
     sc_yingcang:false,
     xk_xianshi: true,
     xk_yingcang: false,
+    kcjj_yincang:false,
+    xianshiyemain:true,
     lastTime:0,
     page:1
   },
@@ -31,6 +33,20 @@ Page({
     this.setData({
       sc_xianshi: false,
       sc_yingcang: true,
+    })
+  },
+  // 课程简介点击
+  tiaozhuanjj:function(){
+    this.setData({
+      kcjj_yincang: true,
+      xianshiyemain: false,
+    })
+  },
+  // 详情页叉号
+  ch_tz: function () {
+    this.setData({
+      kcjj_yincang: false,
+      xianshiyemain: true,
     })
   },
   xuankedj: function () {
