@@ -19,7 +19,6 @@
 .titinfo{
   font-size: 38rpx;
   font-weight: bold;
-  margin-left: 20rpx;
 }
 .js{
 margin:20rpx 0 0rpx;
@@ -225,7 +224,6 @@ left:0%;
 }
 .shoucang,
 .dw_xuanke{
-  width: 78rpx;
   text-align:center;
   padding:10rpx 0;
   font-size:30rpx;
@@ -237,4 +235,42 @@ left:0%;
 .dw_xuanke image{
   width: 50rpx;
   height: 50rpx;
+}
+.tt_dingwei{
+  position: relative;
+}
+.tt_info{
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  width: 85%;
+}
+.tt_chahao{
+  position: absolute;
+  top: 12rpx;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.kcjj_js{
+font-size:30rpx;
+padding:0 20rpx;
+margin:40rpx 0;
+color:#525252;
+
+}
+.kechengjianjie{
+  padding: 0 20rpx;
+}
+.kcjj_timu{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.kcjj_nr{
+  font-size: 30rpx;
+  color: #535353;
 }

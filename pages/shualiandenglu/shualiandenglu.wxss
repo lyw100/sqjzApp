@@ -18,3 +18,7 @@ page{
   padding-top: 50rpx;
   color: #fff;
 }
+.lefttop{
+  width: 502rpx;
+  height: 502rpx;
+}
