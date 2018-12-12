@@ -16,7 +16,7 @@ Page({
     // 允许从相机和相册扫码
     wx.scanCode({
       success(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },

@@ -40,7 +40,7 @@ Page({
   },
   tj:function(){
     var that = this;
-    console.log(that.data)
+    // console.log(that.data)
     if(that.data.username==""){
       wx.showModal({
         title: '提示',
@@ -69,7 +69,7 @@ Page({
         yzm:that.data.yzm
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.msg == "OK") {
           wx.navigateTo({
             url: '../shuruxinmimao/shuruxinmimao',
@@ -108,7 +108,7 @@ Page({
         username: that.data.username,
       },
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.msg=="OK"){
           that.getCode();
           that.setData({

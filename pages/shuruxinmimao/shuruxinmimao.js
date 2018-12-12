@@ -46,7 +46,7 @@ Page({
         pwd: that.data.pwd,
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.msg == "OK") {
           wx.switchTab({
             url: '../zhuye/zhuye',

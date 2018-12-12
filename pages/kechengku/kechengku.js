@@ -75,7 +75,7 @@ Page({
     // courseType = 0 视频
     // subjectType = 0 必修
     var subType=this.data.subType;
-    console.log("subType:"+subType);
+    // console.log("subType:"+subType);
     wx.navigateTo({
       url: '../sousuo/sousuo?subjectType=' + subType +'&courseType=&menu=course&subjectId=',
     })
@@ -117,7 +117,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(this.data.firstshow);
+    // console.log(this.data.firstshow);
     if(this.data.firstshow==false){
       var that=this;
       let jzid = getApp().globalData.jiaozhengid;
@@ -382,7 +382,7 @@ Page({
           courseList= subList[index].courseList.concat(courseList);
           subList[index].courseList = courseList;
         }
-        console.log(subList);
+        // console.log(subList);
         that.setData({
           subList: subList
         })

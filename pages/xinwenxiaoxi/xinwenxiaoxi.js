@@ -85,7 +85,7 @@ Page({
         page: page,
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.msg == "success") {
           // 回调函数  
           var xxlist_add = that.data.xxlist;

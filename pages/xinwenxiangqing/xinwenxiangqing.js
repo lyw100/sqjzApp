@@ -27,7 +27,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id)
+    // console.log(options.id)
     var that =this;
     wx.request({
       url: getApp().globalData.url + '/weChat/msg/getXWXXById',
@@ -41,7 +41,7 @@ Page({
         id: options.id,
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         wx.setNavigationBarTitle({ title: res.data.channelname})
         var data=res.data;
         that.setData({

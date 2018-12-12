@@ -145,7 +145,7 @@ Page({
             }else{
               //图片
               for (var j = 0; j < res.data.list[i].attachment.length; j++){
-                console.log(res.data.list[i].attachment[j].fileUrl)
+                // console.log(res.data.list[i].attachment[j].fileUrl)
                 res.data.list[i].attachment[j].fileUrl = getApp().globalData.url + "/upload/nr/" + res.data.list[i].creater+"/"+res.data.list[i].attachment[j].fileUrl;
               }
 

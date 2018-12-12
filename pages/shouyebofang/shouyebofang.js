@@ -56,7 +56,7 @@ Page({
     })
   },
   myCatchTouch: function () {
-    console.log('stop user scroll it!');
+    // console.log('stop user scroll it!');
     return;
   },
   countInfo: function () {
@@ -103,7 +103,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         var isSign = 0//标识是选课 0为浏览
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
@@ -221,7 +221,7 @@ Page({
     }else{
       if (this.data.addPlayNum==false){
         var progress=this.data.progress;
-        console.log("progress:"+progress);
+        // console.log("progress:"+progress);
         this.videoContext.seek(progress);
         var that=this;
         var courseid = this.data.record.course.id;//课程id
@@ -299,8 +299,8 @@ Page({
   },
   //视频播放出错的方法
   videoErrorCallback: function (e) {
-    console.log('视频错误信息:')
-    console.log(e.detail.errMsg)
+    // console.log('视频错误信息:')
+    // console.log(e.detail.errMsg)
   },
   //防拖拽方法
   bindTimeupdate: function (e) {
@@ -727,8 +727,8 @@ Page({
           }
           photoTimes.push(map);
         }
-        console.log("photoTimes");
-        console.log(photoTimes);
+        // console.log("photoTimes");
+        // console.log(photoTimes);
         that.setData({
           addPlayNum:false,
           sectionRecord:res.data,
@@ -845,7 +845,7 @@ Page({
     });
 
     clearInterval(interval);
-    console.log("countdown:"+that.data.countdown);
+    // console.log("countdown:"+that.data.countdown);
     interval=setInterval(function(){
       that.setData({
         countdown: that.data.countdown-1
