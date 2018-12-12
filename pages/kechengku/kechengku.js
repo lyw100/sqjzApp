@@ -210,11 +210,11 @@ Page({
     if(this.data.jingxuan==""){
       query.subid=this.data.subList[0].id;
     }
-    if (this.data.bixiuyanse=="yanse"){
-      query.type=0;
-    }else{
-      query.type=1;
-    }
+    // if (this.data.bixiuyanse=="yanse"){
+    //   query.type=0;
+    // }else{
+    //   query.type=1;
+    // }
     wx.request({
       url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
       data: query,
@@ -248,34 +248,43 @@ Page({
    * 获取所有科目   subType 0  必修   1选修
    */
   getKMList:function(subType){
-    if(subType==0){
-      this.setData({
-        jingxuan:'xzzhangtai',
-        bixiuyanse:'yanse',
-        xuanxiuyanse:'',
-        subType:subType,
-        page:1
-      })
-    }else if(subType==1){
+   
+    // if(subType==0){
+    //   this.setData({
+    //     jingxuan:'xzzhangtai',
+    //     bixiuyanse:'yanse',
+    //     xuanxiuyanse:'',
+    //     subType:subType,
+    //     page:1
+    //   })
+    // }else if(subType==1){
+    //   this.setData({
+    //     jingxuan: 'xzzhangtai',
+    //     bixiuyanse: '',
+    //     xuanxiuyanse: 'yanse',
+    //     subType: subType,
+    //     page: 1
+    //   })
+    // }
       this.setData({
         jingxuan: 'xzzhangtai',
-        bixiuyanse: '',
-        xuanxiuyanse: 'yanse',
-        subType: subType,
+        // bixiuyanse: '',
+        // xuanxiuyanse: 'yanse',
+        // subType: subType,
         page: 1
       })
-    }
     this.topCourseList();
     var that=this;
     //获取科目
     wx.request({
       url: getApp().globalData.url + '/course/listKM', //获取科目列表
-      data: { 'type': subType},
+      data: { 'type': ''},
       header: {
         'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+       
         // console.log(res.data);
         var subList = res.data;
         that.setData({
@@ -302,7 +311,9 @@ Page({
    */
   subTap:function(e){
     this.setData({ menuflag: true })
-
+    wx.showLoading({
+      title: '加载中',
+    })
     var subid = e.currentTarget.dataset.subid;
     var index = e.currentTarget.dataset.index;
     var subTabList = this.data.subTabList;
@@ -354,16 +365,13 @@ Page({
       scrollTop: 0
     })
 
-
+    wx.hideLoading();
   },
 
   /**
    * 根据课程id获取课程
    */
   getCourseBysubid: function (index, rows,page) {
-    wx.showLoading({
-      title: '加载中',
-    })
     var jzid = getApp().globalData.jiaozhengid;
     var that=this;
     var subList=that.data.subList;
@@ -377,7 +385,6 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        wx.hideLoading();
         // console.log(res.data);
         var courseList = res.data;
         if(page==1){

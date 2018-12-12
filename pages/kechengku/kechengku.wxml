@@ -2,11 +2,6 @@
 <view class='kck'>
   <!--弹出框结束-->
   <view class='dingwei'>
-    <!-- <view class='tit'>
-      <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
-      <text catchtap='xuanxiuke' class='xuanxiuke {{xuanxiuyanse}}'>选修课</text>
-    </view> -->
-
     <view class='xuanze'>
       <scroll-view scroll-x="true" scroll-into-view="{{subid}}" class='xuanzekuan'>
         <view class='xz_nr'>
@@ -43,18 +38,7 @@
           </block>
         </swiper>
       </view>
-      <!--正在热播 -->
-      <!-- <view class='lishikc' catchtap="tzbfy">
-        <image class='lskcimg' src='/img/ceshi.jpg'></image>
-        <text class='yiwancheng'>01:26:30</text>
-        <text class='lscksm'>请珍惜高墙外的 "自由"</text>
-        <text class='bofang'>播放:500次</text>
-        <text class='xueshi'>1.5学时</text>
-        <view class='xuankxz'>
-          <text class='xk' bindtap='xzkc' wx:if="{{xuankeShow}}">选课</text>
-          <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{yixuanShow}}">已选</text>
-        </view>
-      </view> -->
+     
       <block wx:for="{{subList}}" wx:if="{{subList[subIndex].courseList!=null}}" wx:key="{{subIndex}}" wx:for-item="sub" wx:for-index="subIndex">
         <view class="subTitle">
           <text class='dykctext' wx:if="{{jingxuan!=''}}">{{sub.name}}</text>
@@ -70,6 +54,14 @@
                 <view  data-id="{{course.id}}" data-index='{{index}}'   class='dykscsp_dingwei'  wx:if="{{course.isSign==0}}">
                   <view class='dykscsp_jianju'><text>未选课</text></view>
                   <view>不能观看</view>
+                  <block wx:if="{{course.isNew==1}}">
+                    <image src='/img/new.png' class='new_dw'></image> 
+                  </block>
+                </view>
+                <view  wx:if="{{course.isSign==1}}">
+                <block wx:if="{{course.isNew==1}}">
+                  <image src='/img/new.png' class='new_dw'></image> 
+                </block>
                 </view>
               </view>
               <view class='ddwhjy_jianju'>
@@ -85,22 +77,12 @@
 
               </view>
 
-              <!--   <view class='ddjy_xuanke'>
-                  <block wx:if="{{course.subject.type==0}}"> 
-                    <block wx:if="{{course.isSign==0}}">
-                      <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
-                    </block>
-                    <block wx:else>
-                      <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
-                    </block>
-                  </block> 
-                </view>-->
              </view> 
             </block>
    
             <view class='left' wx:else>
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
-              <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
+             
               <text class="shuoming">{{course.name}}</text>
               <view class="xsshijian">
                 <text class="shijian">{{course.courseTime}}</text>
@@ -110,20 +92,19 @@
               <image  data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}"  catchtap='chooseCourse' class='xuketupian' src='/img/xuanke.png' wx:if='{{course.isSign==0}}'></image>
 
               </view>
-              <!-- <view class='zcfgjy_xz'> 
-                 <block wx:if="{{course.subject.type==0}}">
-                  <block wx:if="{{course.isSign==0}}">
-                    <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='xk' catchtap='chooseCourse'>选课</text>
-                  </block>
-                  <block wx:else>
-                    <text data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
-                  </block>
-                 </block>
-              </view> -->
+             
               <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}'    wx:if="{{course.isSign==0}}">
                 <view class='dwlfph_jianju'><text>未选课</text></view>
                 <view>不能观看</view>
-                <image src='/img/new.png' class='new_dw'></image>
+                <block wx:if="{{subIndex==1&&index==0}}"></block>
+                <block wx:if="{{course.isNew==1}}">
+                  <image src='/img/new.png' class='new_dw'></image> 
+                </block>
+              </view>
+               <view  wx:if="{{course.isSign==1}}">
+               <block wx:if="{{course.isNew==1}}">
+                <image src='/img/new.png' class='new_dw'></image> 
+               </block>
               </view>
             </view>
 
