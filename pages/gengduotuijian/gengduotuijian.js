@@ -19,34 +19,34 @@ Page({
    */
   data: {
     indicatorDots: false,
-    shipinShow: 'lanse',
-    tuwenShow:'',
-    yuyinShow: '',
+    // shipinShow: 'lanse',
+    // tuwenShow:'',
+    // yuyinShow: '',
     page:1,
     moreList:[]
   },
 
-  shipin:function(){
-   this.setData({
-      shipinShow: 'lanse',
-      tuwenShow : '',
-      yuyinShow : '',
-   })
-  },
-  tuwen: function () {
-    this.setData({
-      shipinShow: '',
-      tuwenShow: 'lanse',
-      yuyinShow: '',
-    })
-  },
-  yuyin: function () {
-    this.setData({
-      shipinShow: '',
-      tuwenShow: '',
-      yuyinShow: 'lanse',
-    })
-  },
+  // shipin:function(){
+  //  this.setData({
+  //     shipinShow: 'lanse',
+  //     tuwenShow : '',
+  //     yuyinShow : '',
+  //  })
+  // },
+  // tuwen: function () {
+  //   this.setData({
+  //     shipinShow: '',
+  //     tuwenShow: 'lanse',
+  //     yuyinShow: '',
+  //   })
+  // },
+  // yuyin: function () {
+  //   this.setData({
+  //     shipinShow: '',
+  //     tuwenShow: '',
+  //     yuyinShow: 'lanse',
+  //   })
+  // },
   countInfo: function () {
     wx.request({
       url: getApp().globalData.url + '/count/gengduotuijian',

@@ -27,11 +27,16 @@
     <view  class='left' wx:for="{{nowList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
         <image data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' catchtap='signRecord' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
-        <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
-        <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
         <text data-index='{{index}}' class="shuoming">{{sign.course.name}}</text>
+        <view class="xsshijian">
+               <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
+               <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
+               <text class='xssj_zdkc'>指定课程</text>
+        </view>
         <text data-index='{{index}}' class='xuexijindu'>学习进度</text>
         <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3"/>
+
+        
       </view>
    </view>
 
@@ -43,8 +48,8 @@
     <view  class='lishikc' wx:for="{{historyList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
         <image catchtap='swipclick' data-courseid="{{sign.course.id}}" data-id="{{sign.id}}" class='lskcimg' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
-        <text class='yiwancheng'>{{sign.state==1?'已完成':'未完成'}}</text>
         <text class='lscksm'>{{sign.course.name}}</text>
+        <text class='yiwancheng'>{{sign.state==1?'已完成':'未完成'}}</text>
       </view>
   </view>
   <!-- <view class='footer' hidden='{{footer}}'>加载更多</view> -->
