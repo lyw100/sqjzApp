@@ -1,8 +1,9 @@
-.wode{
+.wode {
   width: 100%;
   overflow-x: hidden;
 }
-.wd_tit{
+
+.wd_tit {
   width: 100%;
   height: auto;
   padding: 30rpx 20rpx;
@@ -10,107 +11,129 @@
   box-sizing: border-box;
   position: relative;
 }
-.wd_img{
+
+.wd_img {
   width: 200rpx;
   height: 200rpx;
   border-radius: 50px;
   vertical-align: middle;
   margin: 0 10rpx;
 }
-.wd_jiandao{
+
+.wd_jiandao {
   position: absolute;
   top: 30rpx;
   right: 30rpx;
   width: 134rpx;
   height: 50rpx;
 }
-.tit_sm{
+
+.tit_sm {
   width: 61%;
   height: auto;
   display: inline-block;
-  vertical-align: middle; 
+  vertical-align: middle;
   position: relative;
   margin-left: 20rpx;
 }
-.wd_name{
+
+.wd_name {
   font-size: 38rpx;
   font-weight: bold;
   margin-right: 20rpx;
 }
-.wd_name text{
+
+.wd_name text {
   margin-right: 20rpx;
 }
-.tit_dizhi{
+
+.tit_dizhi {
   font-size: 32rpx;
   margin: 20rpx 0;
 }
-.tit_guiding{
+
+.tit_guiding {
   font-size: 32rpx;
   color: #2499f9;
 }
-.tit_guiding text{
+
+.tit_guiding text {
   margin-right: 20rpx;
 }
-.wode_nr{
+
+.wode_nr {
   width: 100%;
   height: auto;
   padding: 20rpx;
 }
-.nr_mokuan{
+
+.nr_mokuan {
   display: inline-block;
 }
-.kcwxz{
- width:95rpx;
-height:86rpx;
+
+.kcwxz {
+  width: 95rpx;
+  height: 86rpx;
   margin: 0 67rpx 0 25rpx;
 }
-.nr_mokuan:last-child .kcwxz{
+
+.nr_mokuan:last-child .kcwxz {
   margin: 0 0rpx 0 20rpx;
 }
-.sekuan{
+
+.sekuan {
   width: 100%;
   height: 20rpx;
   background: #f5f5f5;
 }
-.dukc_tiaoshi{
-  margin:20px 0 0 30rpx;
+
+.dukc_tiaoshi {
+  margin: 20px 0 0 30rpx;
   font-size: 38rpx;
   color: #000;
   font-weight: bold;
 }
-.dykcsp{
-  margin-top:25rpx;
+
+.dykcsp {
+  margin-top: 25rpx;
+  padding: 0 20rpx;
 }
-.left{
-  display:inline-block;
-  width:48.5%;
+
+.left {
+  display: inline-block;
+  width: 48.5%;
   height: auto;
   position: relative;
-  margin-bottom: 20rpx;
+  margin-bottom: 25rpx;
+  box-shadow: 0px 0px 5px 1px #e5e5e5;
+  -moz-box-shadow: 0px 0px 5px 1px #e5e5e5;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
 }
-.left:nth-child(even){
-  margin-left: 20rpx;
+
+.left:nth-child(even) {
   float: right;
 }
-.dykctupian{
-  width:100%;
-  height:210rpx;
+
+.dykctupian {
+  width: 100%;
+  height: 210rpx;
+  border-radius: 20rpx;
 }
-.xueshi{
-  position: absolute;
-  right: 20rpx;
-  top: 10rpx;
+
+.xueshi {
   font-size: 24rpx;
-  color: #fff;
+  color: #969696;
+  margin-left: 35rpx;
 }
-.shijian{
-  position: absolute;
-  right: 20rpx;
-  top: 170rpx;
+
+.shijian {
   font-size: 24rpx;
-  color: #fff;
+  color: #969696;
+  margin-left: 15rpx;
 }
-.shuoming{
+
+.shuoming {
   font-size: 30rpx;
   margin-left: 15rpx;
   width: 95%;
@@ -119,35 +142,39 @@ height:86rpx;
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-.xuexijindu{
+
+.xuexijindu {
   font-size: 24rpx;
   color: #ccc;
   margin-left: 15rpx;
-  position:absolute;
-  bottom:30rpx;
+  position: absolute;
+  bottom: 43rpx;
+}
 
+.left progress {
+  margin: 25rpx 0rpx 15rpx 15rpx;
+  width: 90%;
 }
-.left progress{
-margin-left:15rpx;
-margin-top:25rpx;
-width: 90%;
-}
-.zcks{
+
+.zcks {
   width: 100%;
   height: auto;
 }
-.zcks_biaoti{
+
+.zcks_biaoti {
   font-size: 34rpx;
   font-weight: bold;
   margin: 20rpx 0 0 30rpx;
 }
-.zcks_xzks{
+
+.zcks_xzks {
   width: 100%;
   border-bottom: 1px solid #e5e5e5;
   padding: 20rpx 30rpx;
   box-sizing: border-box;
 }
-.zcks_new{
+
+.zcks_new {
   font-size: 20rpx;
   color: #fff;
   padding: 1rpx 10rpx;
@@ -156,43 +183,51 @@ width: 90%;
   vertical-align: middle;
   margin-right: 10rpx;
 }
-.zcks_ksbt{
+
+.zcks_ksbt {
   color: #646464;
   font-size: 34rpx;
   vertical-align: middle;
 }
-.bianji{
+
+.bianji {
   width: 40rpx;
   height: 40rpx;
   vertical-align: middle;
   float: right;
-  margin-top:10rpx;
+  margin-top: 10rpx;
 }
-.chankan{
+
+.chankan {
   vertical-align: middle;
   float: right;
-  margin-top:15rpx;
+  margin-top: 15rpx;
   font-size: 32rpx;
   color: #2499f9;
 }
-.zcks_zongfen{
+
+.zcks_zongfen {
   margin-top: 20rpx;
   font-size: 32rpx;
   color: #8c8c8c;
 }
-.zcks_zongfen text{
+
+.zcks_zongfen text {
   margin-right: 20rpx;
 }
-.zcks_zwks{
+
+.zcks_zwks {
   margin-top: 20rpx;
   margin-left: 30rpx;
   font-size: 32rpx;
   color: #8c8c8c;
 }
-.bianxian{
+
+.bianxian {
   border-bottom: 1px solid #e5e5e5;
 }
-.xlpg_kscs{
+
+.xlpg_kscs {
   width: 90%;
   height: 100rpx;
   line-height: 100rpx;
@@ -200,63 +235,77 @@ width: 90%;
   font-size: 32rpx;
   color: #fff;
   background: #2499f9;
-  margin: 40rpx auto; 
+  margin: 40rpx auto;
   border-radius: 50rpx;
 }
-.yinxing{
+
+.yinxing {
   color: red;
 }
-.yangxing{
+
+.yangxing {
   color: #2499f9;
 }
-.chakan{
+
+.chakan {
   float: right;
   color: #2499f9;
   font-size: 34rpx;
 }
-.sxhb_pz{
+
+.sxhb_pz {
   width: 166rpx;
   height: 200rpx;
   margin: 20rpx 0 0 30rpx;
 }
-.sxhbjl_zong{
+
+.sxhbjl_zong {
   padding: 0rpx 30rpx;
 }
-.sxhbjl_fst{
+
+.sxhbjl_fst {
   width: 100%;
   height: auto;
   margin-top: 20rpx;
 }
-.sxhb_biaoti{
+
+.sxhb_biaoti {
   font-size: 34rpx;
   color: #282828;
 }
-.weishenhe{
+
+.weishenhe {
   color: red;
   margin-left: 30rpx;
 }
-.yishenhe{
+
+.yishenhe {
   color: #2499f9;
   margin-left: 30rpx;
 }
-.sxhb_img{
+
+.sxhb_img {
   width: 100%;
   height: auto;
   margin: 30rpx 0 0;
 }
-.img_xuantu{
+
+.img_xuantu {
   width: 165rpx;
   height: 166rpx;
   margin-right: 9rpx;
   margin-bottom: 20rpx;
 }
-.img_xuantu:nth-child(4n){
-   margin-right: 0rpx;
+
+.img_xuantu:nth-child(4n) {
+  margin-right: 0rpx;
 }
-.sxhb_hbsj{
+
+.sxhb_hbsj {
   font-size: 32rpx;
   color: #656565;
 }
-.sxhb_shsj{
-  margin-left:30rpx; 
+
+.sxhb_shsj {
+  margin-left: 30rpx;
 }
