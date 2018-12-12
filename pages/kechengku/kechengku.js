@@ -190,7 +190,7 @@ Page({
       this.setData({
         page:page,
       });
-      this.getCourseBysubid(0, 4, page);
+      this.getCourseBysubid(0, 6, page);
     }
 
   },
