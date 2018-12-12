@@ -84,7 +84,8 @@ line-height:60rpx;
   margin:20rpx 0;
   padding:0 20rpx;
 }
-.left{
+.left,
+.lishikc{
   display:inline-block;
   width:48.5%;
   height:auto;
@@ -105,7 +106,8 @@ line-height:60rpx;
   left: 0rpx;
 } */
 
-.dykctupian{
+.dykctupian,
+.lskcimg{
   width:100%;
   height:210rpx;
   border-radius:20rpx;
@@ -113,13 +115,17 @@ line-height:60rpx;
 .xueshi{
   font-size: 24rpx;
   color:#969696;
-  margin-left:35rpx;
+  display:inline-block;
+  width:33%;
 }
 .shijian{
   font-size: 24rpx;
  color:#969696;
+ display:inline-block;
+  width:33%;
 }
-.shuoming{
+.shuoming,
+.lscksm{
   font-size: 30rpx;
   margin-left: 15rpx;
   width: 95%;
@@ -133,51 +139,40 @@ line-height:60rpx;
   color: #ccc;
   margin-left: 15rpx;
   position:absolute;
-  bottom:90rpx;
+  bottom:47rpx;
 }
 
 .left progress{
-margin-left:15rpx;
-margin-top:25rpx;
+margin:25rpx 0 15rpx 15rpx;
 width: 90%;
 
 }
 .xsshijian{
-  padding-bottom:10rpx;
+  padding:0 15rpx 0rpx;
+  position: relative;
+}
+.xssj_zdkc{
+  color:red;
+  font-size:24rpx;
+ display:inline-block;
+  width:33%;
+text-align:right;
 }
 .lskcnr{
   margin-top: 20rpx;
+  padding: 0 20rpx;
 }
-.lishikc{
-  width: 362rpx;
-  height: 320rpx;
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  margin-bottom: 30rpx;
-}
+
 .lishikc:nth-child(even){
   float: right;
 }
-.lskcimg{
-  width: 362rpx;
-  height:210rpx;
-}
 .yiwancheng{
- position: absolute;
-  right: 10rpx;
-  top: 170rpx;
-  color: #fff;
+  float:right;
+  margin:10rpx 15rpx;
   font-size: 24rpx;
+  color:#969696;
 }
-.lscksm{
-   display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  font-size: 28rpx;
-  margin-left: 15rpx;
-}
+
 .footer{
   width: 100%;
   height: 80rpx;
