@@ -2,10 +2,10 @@
 <view class='kck'>
   <!--弹出框结束-->
   <view class='dingwei'>
-    <view class='tit'>
+    <!-- <view class='tit'>
       <text catchtap='bixiuke' class='xuanke {{bixiuyanse}}'>必修课</text>
       <text catchtap='xuanxiuke' class='xuanxiuke {{xuanxiuyanse}}'>选修课</text>
-    </view>
+    </view> -->
 
     <view class='xuanze'>
       <scroll-view scroll-x="true" scroll-into-view="{{subid}}" class='xuanzekuan'>
@@ -123,6 +123,7 @@
               <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}'    wx:if="{{course.isSign==0}}">
                 <view class='dwlfph_jianju'><text>未选课</text></view>
                 <view>不能观看</view>
+                <image src='/img/new.png' class='new_dw'></image>
               </view>
             </view>
 
