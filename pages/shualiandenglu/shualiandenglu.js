@@ -111,7 +111,7 @@ Page({
     clearInterval(interval)
   },
   error(e) {
-    console.log(e.detail)
+    // console.log(e.detail)
   },
   // switch1change: function (e) {
   //   console.log(e)
