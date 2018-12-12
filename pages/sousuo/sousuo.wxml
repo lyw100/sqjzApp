@@ -68,11 +68,12 @@
           <view class='djjg_xsbf'>
             <text class='djjg_xs'>学时 : {{item.hours}}</text>
             <text class='djjg_bfcs'>{{item.playnumber}}次播放</text>
-          </view>
-          <view class='xuank' wx:if='{{item.subject.type=="0"}}'>
+            <view class='xuank' wx:if='{{item.subject.type=="0"}}'>
             <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}" data-index='{{index}}' data-id='{{item.id}}'>选课</text>
             <text class='yixuan' bindtap='yiyuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
+          </view>
+          
         </view>
       </view>
       <view style='text-align:center' hidden='{{listAll.length>0}}'>

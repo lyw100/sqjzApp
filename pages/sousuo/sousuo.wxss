@@ -1,7 +1,7 @@
 .nr {
   height: auto;
   width: 100%;
-   overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 .tit {
@@ -78,7 +78,7 @@
 
 .sslsnr {
   width: 95%;
-  height: 150rpx; 
+  height: 150rpx;
   margin: 20rpx auto 0rpx;
   overflow-y: hidden;
 }
@@ -111,12 +111,12 @@
 }
 
 .lishinr {
-  font-size:36rpx;
-  color:#656565;
-  display:inline-block;
-  width:85%;
-  vertical-align:top;
-  line-height:50rpx;
+  font-size: 36rpx;
+  color: #656565;
+  display: inline-block;
+  width: 85%;
+  vertical-align: top;
+  line-height: 50rpx;
 }
 
 .one {
@@ -124,7 +124,6 @@
   color: #f90126;
   margin-right: 20rpx;
   font-weight: bold;
-  
 }
 
 .two {
@@ -132,8 +131,7 @@
   color: #fc801e;
   margin-right: 20rpx;
   font-weight: bold;
-  vertical-align:top;
-
+  vertical-align: top;
 }
 
 .tree {
@@ -141,8 +139,7 @@
   color: #ffcd02;
   margin-right: 20rpx;
   font-weight: bold;
-  vertical-align:top;
-
+  vertical-align: top;
 }
 
 .for {
@@ -150,8 +147,7 @@
   color: #c8c8c8;
   margin-right: 20rpx;
   font-weight: bold;
-  vertical-align:top;
-
+  vertical-align: top;
 }
 
 .liuganliang {
@@ -163,16 +159,15 @@
 .synrye, .dianjijieguo {
   margin-top: 110rpx;
   width: 100%;
- 
 }
 
 .synrinfo {
-  width:90%;
-line-height:50rpx;
-margin:0 auto;
-border-bottom:1px solid #e5e5e5;
-font-size:34rpx;
-padding:20rpx 0;
+  width: 90%;
+  line-height: 50rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 34rpx;
+  padding: 20rpx 0;
 }
 
 .djjg_tit {
@@ -206,6 +201,7 @@ padding:20rpx 0;
   width: 100%;
   height: auto;
   padding: 10rpx 20rpx;
+  margin-bottom: 10rpx;
 }
 
 .djjg_nr, .ddjy, .sxjkjy {
@@ -216,7 +212,6 @@ padding:20rpx 0;
   width: 280rpx;
   height: 180rpx;
   vertical-align: top;
-  margin-top: 20rpx;
 }
 
 .djjg_sm {
@@ -236,7 +231,7 @@ padding:20rpx 0;
 .djjg_js {
   color: #a5a5a5;
   font-size: 30rpx;
-  margin-top: -2rpx;
+  margin: 5rpx 0;
 }
 
 .djjg_xsbf {
@@ -246,31 +241,37 @@ padding:20rpx 0;
 .djjg_xs {
   color: #2499f9;
   font-size: 30rpx;
+  display: inline-block;
+  width: 32%;
 }
 
 .djjg_bfcs {
   color: #2499f9;
   font-size: 30rpx;
-  margin-left: 50rpx;
+  margin-left: 20rpx;
+  width: 43%;
+  display: inline-block;
 }
 
 .xuank {
   font-size: 24rpx;
-  margin-top: 5rpx;
+  display: inline-block;
+  width: 20%;
+  text-align: right;
 }
 
 .xuanke {
   border: 1px solid #2499f9;
   color: #2499f9;
   padding: 2rpx 15rpx;
-  border-radius: 17rpx;
+  border-radius: 10rpx;
 }
 
 .yixuan {
   border: 1px solid #b5b5b5;
   color: #b5b5b5;
   padding: 2rpx 15rpx;
-  border-radius: 17rpx;
+  border-radius: 10rpx;
 }
 
 .xgzl {
@@ -285,7 +286,7 @@ padding:20rpx 0;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  margin-top: 30rpx;
+
 }
 
 .xgzl_js {
