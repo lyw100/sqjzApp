@@ -367,6 +367,26 @@ Page({
 
 
     }else{//课程为非选课课程
+      if(currentTime>60){
+        this.videoContext.seek(60);
+        this.videoContext.pause();//视频播放暂停
+        this.videoContext.exitFullScreen();//退出全屏方法
+        wx.showModal({
+          title: '提示',
+          content: '未选课 可预览时长1分钟',
+          showCancel:false,
+          success(res) {
+            
+          }
+        })
+      }
+      if (currentTime < 2){
+        wx.showToast({
+          title: '未选课 可预览时长1分钟',
+          icon: 'none',
+          duration: 3000
+        })
+      }
       //非选课正常播放
       this.setData({
         progress: currentTime
