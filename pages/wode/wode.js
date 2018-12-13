@@ -43,6 +43,11 @@ Page({
               qiandaoxs: false,
               yiqiandaoxs: true
             })
+            wx.showToast({
+              title: '签到成功',
+              icon: 'none',
+              duration: 2000
+            })
           }
         }
       })
