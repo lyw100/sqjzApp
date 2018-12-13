@@ -1,6 +1,6 @@
 <!--shouyebofang.wxml-->
 <view class='contai'>
-<view class='tit tc'>
+<view class='tit tc'  wx:if="{{xianshi==false}}">
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->

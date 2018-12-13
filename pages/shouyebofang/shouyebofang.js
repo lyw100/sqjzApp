@@ -353,6 +353,7 @@ Page({
                 xianshi: true,
                 face:false
               });
+              this.saveProgress();
           }
         }
       }
@@ -455,6 +456,11 @@ Page({
     if (this.data.sectionRecord.section.duration - this.data.progress<3){
       progress = this.data.sectionRecord.section.duration;
     }
+    var sectionRecord=this.data.sectionRecord;
+    sectionRecord.progress = progress;
+    this.setData({
+      sectionRecord: sectionRecord
+    })
     if (courseid != null && courseid > 0) {
       var url = getApp().globalData.url + '/course/saveProgress';
       // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
