@@ -43,7 +43,7 @@
         <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'}}">正在播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse==''}}">未播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse=='zhangjieend'}}">已完成</text>
-        <text class='zzbf_time'>48:28</text>
+        <text class='zzbf_time'>{{section.time}}</text>
        
        </view>
     </view>
