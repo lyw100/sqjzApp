@@ -17,15 +17,15 @@
 .xuanze {
   width: 100%;
   position: relative;
-  padding-left: 20rpx;
 }
 
 .xuanzekuan {
-  width: 87%;
+  width: 85%;
   height: 65rpx;
   line-height: 60rpx;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding-left:10px;
 }
 
 .xz_anniu {
@@ -33,7 +33,7 @@
   height: 65rpx;
   position: absolute;
   top: 0;
-  right: 21rpx;
+  right: 0rpx;
   z-index: 999;
 }
 
@@ -43,14 +43,13 @@
 }
 
 .xz_nr {
-  min-width: 550px;
+  min-width: 750px;
 }
 
 .xz_sm {
   float: left;
   font-size: 34rpx;
   color: #2f2f2f;
-  font-weight: bold;
   display: inline-block;
   margin-left: 20px;
 }
@@ -141,8 +140,8 @@
   margin-bottom: 25rpx;
   box-shadow: 0px 0px 5px 1px #e5e5e5;
   -moz-box-shadow: 0px 0px 5px 1px #e5e5e5;
-  border-top-right-radius: 20rpx;
-  border-top-left-radius: 20rpx;
+  border-radius: 20rpx;
+  /* border-top-left-radius: 20rpx; */
 }
 
 .left:nth-child(even) {
@@ -152,7 +151,8 @@
 .dykctupian {
   width: 100%;
   height: 210rpx;
-  border-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
 }
 
 .xueshi {
@@ -237,8 +237,7 @@
 .sheding {
   box-shadow: 0px 0px 5px 1px #e5e5e5;
   -moz-box-shadow: 0px 0px 5px 1px #e5e5e5;
-  border-top-right-radius: 20rpx;
-  border-top-left-radius: 20rpx;
+  border-radius: 20rpx;
   margin-bottom: 40rpx;
 }
 
@@ -251,7 +250,8 @@
 .ddwhjy_img {
   width: 100%;
   height: 420rpx;
-  border-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
 }
 
 .dykscsp_dingwei {
@@ -264,7 +264,8 @@
   color: #fff;
   text-align: center;
   font-size: 32rpx;
-  border-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
 }
 
 .dykscsp_jianju {
@@ -304,7 +305,8 @@
   color: #fff;
   text-align: center;
   font-size: 28rpx;
-  border-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
 }
 
 .dwlfph_jianju {
