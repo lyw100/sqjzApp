@@ -90,7 +90,7 @@
   </view>
     <!-- 屏幕定位 -->
     <view class="pmdw">
-        <view class='shoucang' style='width:36px;' catchtap='shoucangdj'>
+        <view class='shoucang' style='width:100rpx;' catchtap='shoucangdj'>
           <image data-id="{{record.course.id}}" catchtap='addcollection'  src='/img/shoucang.png' wx:if='{{record.course.collection==0}}'></image>
           <image data-id="{{record.course.id}}" catchtap='delcollection'  src='/img/yishoucang.png' wx:if='{{record.course.collection==1}}'></image>
           <view>
@@ -98,7 +98,7 @@
             <text wx:if='{{record.course.collection==1}}'>已收藏</text>
           </view>
         </view>
-        <view class='dw_xuanke' style='width:36px;' catchtap='xuankedj'>
+        <view class='dw_xuanke' style='width:100rpx;' catchtap='xuankedj'>
           <image data-id="{{record.course.id}}" catchtap='tianjiaxuanke' src='/img/xuanke.png' wx:if='{{isSign==0}}'></image>
           <image src='/img/yixuanke.png'  wx:if='{{isSign==1}}'></image>
           <view>
