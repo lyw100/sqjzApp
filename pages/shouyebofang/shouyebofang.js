@@ -576,13 +576,13 @@ Page({
    * 正在播放的视频添加选课
    */
   tianjiaxuanke: function (e) {
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '是否添加本课程为选课课程',
       success(res) {
         if (res.confirm) {
           // console.log('用户点击确定')
-          var that = this;
           var courseid = e.currentTarget.dataset.id;
           var jzid = getApp().globalData.jiaozhengid;
 
@@ -760,8 +760,8 @@ Page({
           }
           photoTimes.push(map);
         }
-        // console.log("photoTimes");
-        // console.log(photoTimes);
+        console.log("photoTimes");
+        console.log(photoTimes);
         that.setData({
           addPlayNum:false,
           sectionRecord:res.data,
