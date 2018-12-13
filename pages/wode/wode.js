@@ -25,12 +25,56 @@ Page({
   },
   //签到  已签到
   qiandao:function(){
-    this.setData({
-      qiandaoxs: false,
-      yiqiandaoxs: true
-    })
-   
+      var that = this
+      wx.request({
+        url: getApp().globalData.url + '/jzryqd/saveQD', //保存签到
+        method: "POST",
+        // 请求头部  
+        header: {
+          //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          jzid: getApp().globalData.jiaozhengid
+        },
+        success: function (res) {
+          if(res.data == "OK"){
+            that.setData({
+              qiandaoxs: false,
+              yiqiandaoxs: true
+            })
+          }
+        }
+      })
     },
+  qiandaotype:function(){
+    var that = this
+    wx.request({
+      url: getApp().globalData.url + '/jzryqd/getQDType', //获取签到状态
+      method: "POST",
+      // 请求头部  
+      header: {
+        //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        jzid: getApp().globalData.jiaozhengid
+      },
+      success: function (res) {
+        if (res.data == "OK") {
+          that.setData({
+            qiandaoxs: false,
+            yiqiandaoxs: true
+          })
+        }else{
+          that.setData({
+            qiandaoxs: true,
+            yiqiandaoxs: false
+          })
+        }
+      }
+    })
+  },
 
   lianjie:function(){
     wx.showActionSheet({
@@ -610,6 +654,7 @@ Page({
     pageReport = 2;
 
     this.rectifyPeople();//矫正人员信息
+    this.qiandaotype();
     // this.currentCourse();//当月课程
     this.historyCourse();//历史课程
     this.countInfo();
