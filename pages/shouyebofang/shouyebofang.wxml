@@ -8,7 +8,7 @@
   <!-- initial-time="{{sectionRecord.progress==sectionRecord.section.duration?0:sectionRecord.progress}}" -->
   <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.filepath}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true"  bindended="bindended" initial-time="{{sectionRecord.progress==sectionRecord.section.duration?0:sectionRecord.progress}}" autoplay="true">
   
-    <cover-image class="img" src="/img/beijingbai.jpg" wx:if="{{true}}" />
+    <cover-image class="img" src="/img/beijingbai.jpg" wx:if="{{xianshi}}" />
   </video>
 </view>
 <!--   {{sectionRecord.section.name}} -->
