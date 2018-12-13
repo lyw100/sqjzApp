@@ -128,7 +128,7 @@
 
 <!-- 刷脸登录-->
 <view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
-<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;">
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
  <cover-image class="lefttop"  src="/img/zhegan.png" />
 </camera> 
   <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
