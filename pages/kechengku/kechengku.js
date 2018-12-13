@@ -105,6 +105,7 @@ Page({
     //获取必修科目
     this.getKMList(0);
     this.countInfo();
+    this.getZJJZCourse();
   },
 
   /**
@@ -121,6 +122,7 @@ Page({
     // console.log(this.data.firstshow);
     if (this.data.firstshow == false) {
       var that = this;
+      that.getZJJZCourse();
       let jzid = getApp().globalData.jiaozhengid;
       let subList = this.data.subList;
       for (let i = 0; i < subList.length; i++) {
