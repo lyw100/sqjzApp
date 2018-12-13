@@ -166,11 +166,17 @@
   color: #969696;
   margin-left: 15rpx;
 }
+.xukefangdaweizhi{
+display:inline-block;
+float:right;
+width:70rpx;
+height:100%;
+text-align:right;
 
+}
 .xuketupian {
   width: 40rpx;
   height: 40rpx;
-  float: right;
   margin-right: 15rpx;
   margin-top: 12rpx;
 }
@@ -402,3 +408,30 @@
   bottom: 0;
   left: 40%;
 }
+.dibu{
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  border-top: 1px solid #f5f5f5;
+  font-size: 28rpx;
+  color: #7f7d8a;
+}
+.dibu_img{
+   width: 40rpx;
+   height: 40rpx;
+   margin-right: 10px;
+   animation: weuiLoading 0.6s steps(12, end) infinite;
+   vertical-align:middle;
+}
+@keyframes weuiLoading {
+   0% {
+     transform: rotate3d(0, 0, 1, 0deg);
+   }
+  50% {
+     transform: rotate3d(0, 0, 1, 180deg);
+   }
+   100% {
+     transform: rotate3d(0, 0, 1, 360deg);
+   }
+ }
