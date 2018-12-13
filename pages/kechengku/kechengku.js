@@ -269,6 +269,7 @@ Page({
     // }
       this.setData({
         jingxuan: 'xzzhangtai',
+        subid:'sub',
         // bixiuyanse: '',
         // xuanxiuyanse: 'yanse',
         // subType: subType,

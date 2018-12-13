@@ -32,8 +32,13 @@
             <view class="xsshijian">
               <text class="shijian">{{course.courseTime}}</text>
               <text wx:if="{{course.subject.type==0}}" class="xueshi">学时:{{course.hours}}</text>
-              <image data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='cancleSign' class='xuketupian' src='/img/yixuanke.png' wx:if='{{course.isSign==1}}'></image>
-              <image data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='chooseCourse' class='xuketupian' src='/img/xuanke.png' wx:if='{{course.isSign==0}}'></image>
+              <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='cancleSign' wx:if='{{course.isSign==1}}'>
+                <image class='xuketupian' src='/img/yixuanke.png'></image>
+              </view>
+
+              <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='chooseCourse' wx:if='{{course.isSign==0}}'>
+                <image class='xuketupian' src='/img/xuanke.png'></image>
+              </view>
             </view>
             <!-- <view class='ddjy_xuanke'>
               <block wx:if="{{course.subject.type==0}}"> 

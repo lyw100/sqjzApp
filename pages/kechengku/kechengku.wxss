@@ -166,11 +166,17 @@
   color: #969696;
   margin-left: 15rpx;
 }
+.xukefangdaweizhi{
+display:inline-block;
+float:right;
+width:70rpx;
+height:100%;
+text-align:right;
 
+}
 .xuketupian {
   width: 40rpx;
   height: 40rpx;
-  float: right;
   margin-right: 15rpx;
   margin-top: 12rpx;
 }
