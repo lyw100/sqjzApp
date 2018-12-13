@@ -6,7 +6,7 @@ Page({
   */
   data: {
     searchList: [],
-    path: 'https://www.tksqjz.com/SQJZ',
+    path: getApp().globalData.url,
     //path: 'http://localhost:8080/SQJZ',
     qkch: false,//清空
     zhuyesousuo: true,
