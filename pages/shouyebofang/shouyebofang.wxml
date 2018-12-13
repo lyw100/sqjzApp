@@ -11,13 +11,11 @@
     <cover-image class="img" src="/img/beijingbai.jpg" wx:if="{{xianshi}}" />
   </video>
 </view>
-<!-- {{record.course.name}}   -->
+<!--   {{sectionRecord.section.name}} -->
 <!-- 视屏播放首页展示显示' -->
 <view  wx:if='{{xianshiyemain}}'>
-<view style='padding:0 20rpx;'><text class='titinfo'>{{sectionRecord.section.name}}</text></view>
+<view style='padding:0 20rpx;'><text class='titinfo'>{{record.course.name}}</text></view>
 <view class='js'>
-  <!-- <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}">讲师:{{record.course.speaker}}</text>
-  <text class='bixiuke'>{{record.course.subName}}</text> -->
   <text class='kczj'>课程章节</text>
   <view class='kczj_ztsz' catchtap='tiaozhuanjj'>
     <text class='kechengjjie'>课程简介</text>
@@ -42,8 +40,9 @@
     <view class='kcxz_liebiao {{section.yanse}}'>
        <text catchtap="sectionTap" class="liebao_yangshi " data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
        <view class='zhengzbf'>
-        <text class='zzbf_color'>正在播放</text>
-         <text class='zzbf_wbf' wx:if="{{wbf}}">未播放</text>
+        <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'}}">正在播放</text>
+        <text class='zzbf_wbf' wx:if="{{section.yanse==''}}">未播放</text>
+        <text class='zzbf_wbf' wx:if="{{section.yanse=='zhangjieend'}}">已完成</text>
         <text class='zzbf_time'>48:28</text>
        
        </view>
@@ -54,7 +53,6 @@
 <view class='bjzw'></view>
 <view class='xgkc'>
   <text>相关课程</text>
-  <!-- <text class='gdtj' catchtap="gengduotj">更多推荐</text> -->
 </view>
     <view class='lskcnr'>
 
@@ -63,48 +61,50 @@
         <image data-id="{{course.id}}" class='lskcimg' data-index='{{index}}' catchtap='moreCourseTap' src='{{course.thumbnail}}'></image>
         <!-- <text class='yiwancheng' >{{course.courseTime}}</text> -->
         <view class='zhongjian'>
-            <text class='lscksm'>{{course.name}}</text>
-           <view class='jiangshi'>
-            <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}</text>
-            <text>{{record.course.subName}}</text>
-           </view>
-           <view  class='jiangshi'>
-            <text >48:28</text>
-            <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text>
+          <text class='lscksm'>{{course.name}}</text>
+          <view class='jiangshi'>
+            <text wx:if="{{course.speaker!=null&&course.speaker.length>0}}" class='bixiuke'>讲师:{{course.speaker}}</text>
+            <text>{{course.subName}}</text>
+          </view>
+          <view  class='jiangshi'>
+            <text >{{course.courseTime}}</text>
+             <!-- wx:if="{{subType==0}}" -->
+            <text class='syxs'>{{course.hours}}学时</text>
             <view class='xuank' >
-          <!-- <block wx:if="{{subType==0}}"> -->
-            <block wx:if="{{course.isSign==0}}">
-              <text data-id="{{course.id}}" data-index="{{index}}" class='xuanke' catchtap='chooseCourse'>选课</text>
-            </block>
-            <block wx:else>
-              <text data-id="{{course.id}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
-            </block>
-          <!-- </block>   -->
-        </view>
-           </view>
+              <block wx:if="{{course.isSign==0}}">
+                <text data-id="{{course.id}}" data-index="{{index}}" class='xuanke' catchtap='chooseCourse'>选课</text>
+              </block>
+              <block wx:else>
+                <text data-id="{{course.id}}" data-index="{{index}}" class='yixuan' catchtap='cancleSign'>已选</text>
+              </block>
+            </view>
+          </view>
         </view>
          
-         
-        <!-- <text class='bofangcishu'>播放{{course.playnumber}}次</text> -->
-        <!-- <text wx:if="{{subType==0}}" class='syxs'>{{course.hours}}学时</text> -->
-
-        <view class='lfph_dw'  data-id="{{course.id}}" data-index='{{index}}'   wx:if="{{course.isSign==0}}">
-                <view class='dwlfph_jianju'><text>未选课</text></view>
-                <view>不能观看</view>
-              </view>
+       
+        <view class='lfph_dw' catchtap='moreCourseTap' data-id="{{course.id}}" data-index='{{index}}'   wx:if="{{course.isSign==0}}">
+          <view class='dwlfph_jianju'><text>未选课</text></view>
+          <view>不计学时</view>
+        </view>
       </view>
   </view>
     <!-- 屏幕定位 -->
     <view class="pmdw">
         <view class='shoucang' catchtap='shoucangdj'>
-          <image src='/img/shoucang.png' wx:if='{{sc_xianshi}}'></image>
-          <image src='/img/yishoucang.png' wx:if='{{sc_yingcang}}'></image>
-          <view><text>收藏</text></view>
+          <image data-id="{{record.course.id}}" catchtap='addcollection'  src='/img/shoucang.png' wx:if='{{record.course.collection==0}}'></image>
+          <image data-id="{{record.course.id}}" catchtap='delcollection'  src='/img/yishoucang.png' wx:if='{{record.course.collection==1}}'></image>
+          <view>
+            <text wx:if='{{record.course.collection==0}}'>收藏</text>
+            <text wx:if='{{record.course.collection==1}}'>已收藏</text>
+          </view>
         </view>
         <view class='dw_xuanke' catchtap='xuankedj'>
-          <image src='/img/xuanke.png' wx:if='{{xk_xianshi}}'></image>
-          <image src='/img/yixuanke.png'  wx:if='{{xk_yingcang}}'></image>
-          <view><text>已选课</text></view>
+          <image data-id="{{record.course.id}}" catchtap='tianjiaxuanke' src='/img/xuanke.png' wx:if='{{isSign==0}}'></image>
+          <image src='/img/yixuanke.png'  wx:if='{{isSign==1}}'></image>
+          <view>
+            <text wx:if='{{isSign==0}}'>选课</text>
+            <text wx:if='{{isSign==1}}'>已选课</text>
+          </view>
         </view>
     </view>
   </view>
@@ -116,12 +116,12 @@
       <image src='/img/guanbi.png' class='tt_chahao' catchtap='ch_tz'></image>
     </view>
     <view class='kcjj_js'>
-      <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}</text>
+      <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}   </text>
       <text >{{record.course.subName}}</text>
     </view>
     <view class='kechengjianjie'>
       <text class='kcjj_timu'>课程简介:</text>
-      <text class='kcjj_nr'>发送到撒地方撒大是大非俺的沙发阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬 </text>
+      <text class='kcjj_nr'>{{record.course.introduction}}</text>
     </view>
   </view>
 </view>

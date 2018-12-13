@@ -84,6 +84,10 @@ font-weight:bold;
   font-size:28rpx;
   color:#2499f9;
 }
+.zzbf_wbf{
+  font-size:28rpx;
+  color:#bbbbbb;
+}
 
 .zzbf_time{
   font-size:28rpx;
@@ -137,9 +141,12 @@ bottom:10rpx;
   color:#969696;
   margin-top:12rpx;
 }
-.bixiuke,
+
 .syxs{
   margin-left: 20rpx;
+}
+.bixiuke{
+   margin-right: 20rpx;
 }
 .xuank{
 float: right;

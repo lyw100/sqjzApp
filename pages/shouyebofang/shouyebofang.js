@@ -556,44 +556,57 @@ Page({
    * 正在播放的视频添加选课
    */
   tianjiaxuanke: function (e) {
-    var that = this;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = getApp().globalData.jiaozhengid;
-
-    var url = getApp().globalData.url + '/course/saveSign';
-    wx.request({
-      url: url, //获取视频播放信息
-      data: { courseid: courseid, jzid: jzid },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      dataType: 'text',
+    wx.showModal({
+      title: '提示',
+      content: '是否添加本课程为选课课程',
       success(res) {
-        if (res.data == "ok") {//选课成功
-          that.setData({
-            isSign: 1,
-            progress:0,
-            lastTime:0
+        if (res.confirm) {
+          // console.log('用户点击确定')
+          var that = this;
+          var courseid = e.currentTarget.dataset.id;
+          var jzid = getApp().globalData.jiaozhengid;
+
+          var url = getApp().globalData.url + '/course/saveSign';
+          wx.request({
+            url: url, //获取视频播放信息
+            data: { courseid: courseid, jzid: jzid },
+            header: {
+              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+              'content-type': 'application/json' // 默认值
+            },
+            dataType: 'text',
+            success(res) {
+              if (res.data == "ok") {//选课成功
+                that.setData({
+                  isSign: 1,
+                  progress: 0,
+                  lastTime: 0
+                })
+
+                var sections = that.data.sections;
+                for (var i = 0; i < sections.length; i++) {
+                  if (sections[i].yanse == "zhangjie") {//判断正在播放的章节
+                    that.getVideoSection(that.data.record.course.id, sections[i].id);
+                  }
+                }
+                that.videoContext.seek(0);
+                // that.moreCourseTap(e);
+              } else if (res.data == "more") {
+                wx.showToast({
+                  title: '选择课时超出',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            }
           })
 
-          var sections = that.data.sections;
-          for (var i = 0; i < sections.length; i++) {
-            if (sections[i].yanse == "zhangjie") {//判断正在播放的章节
-              that.getVideoSection(that.data.record.course.id, sections[i].id);
-            }
-          }
-          that.videoContext.seek(0);
-          // that.moreCourseTap(e);
-        } else if (res.data == "more") {
-          wx.showToast({
-            title: '选择课时超出',
-            icon: 'none',
-            duration: 2000
-          })
         }
       }
     })
+
+
+   
   },
 
   /**
@@ -759,11 +772,8 @@ Page({
         sections[i].yanse = "zhangjieend";
       }
     }
-    if (sections[index].state != 1){
-      sections[index].yanse ="zhangjie";
-    }else{
-      sections[index].yanse = "zhangjieend zhangjie";
-    }
+    sections[index].yanse ="zhangjie";
+
     this.setData({
       sections:sections
     });
@@ -788,7 +798,7 @@ Page({
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
-          url: getApp().globalData.url + '/sqjz/face',
+          url: getApp().globalData.url + '/course/face',
           filePath: res.tempImagePath,
           header: header,
           formData: {
@@ -864,5 +874,79 @@ Page({
       face: true
     });
     this.getVideoSection(this.data.record.course.id, this.data.sectionRecord.section.id);
+  },
+
+  /**
+   * 收藏课程
+   */
+  addcollection: function (e) {
+    var that = this;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+
+    var url = getApp().globalData.url + '/course/addcollection';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//收藏课程
+          var record = that.data.record;
+          record.collection = 1;
+          that.setData({
+            record: record,
+          })
+          
+        } else {//收藏失败
+          wx.showToast({
+            title: '课程收藏失败',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 取消收藏课程
+   */
+  delcollection: function (e) {
+    var that = this;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = this.data.record.jzid;
+
+    var url = getApp().globalData.url + '/course/delcollection';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消收藏课程
+          var record = that.data.record;
+          record.collection = 0;
+          that.setData({
+            record: record,
+          })
+
+        } else {//取消收藏失败
+          wx.showToast({
+            title: '课程收藏失败',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
+
+
 })
