@@ -416,14 +416,24 @@ Page({
         }
         // console.log(subList);
         that.setData({
-          subList: subList
+          dibu: false,
+          subList: subList,
         })
         // console.log(that.data);
       }
     })
 
   },
-
+  /**
+     * 专家讲座跳转到更多课程页面
+     */
+  moreSubCourse: function (e) {
+    var subid = -1;
+    var subname ="专家讲座";
+    wx.navigateTo({
+      url: '../gengduotuijian/gengduotuijian?subid=' + subid + '&title=' + subname,
+    });
+  },
   /**
    * 跳转到更多课程页面
    */
