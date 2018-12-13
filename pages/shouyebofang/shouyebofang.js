@@ -16,7 +16,7 @@ Page({
     face:true,//作为是否刷脸的依据
     countdown:60,//刷脸倒计时
     xianshi: false,
-    shualiandl: false,//是否显示刷脸登录弹窗
+    shualiandl: true,//是否显示刷脸登录弹窗
     duigouxz: false,
     wbf:false,
     sc_xianshi:true,

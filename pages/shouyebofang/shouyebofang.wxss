@@ -281,3 +281,7 @@ color:#525252;
   font-size: 30rpx;
   color: #535353;
 }
+.lefttop{
+  width: 502rpx;
+  height: 502rpx;
+}

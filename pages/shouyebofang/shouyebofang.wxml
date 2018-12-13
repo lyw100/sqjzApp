@@ -8,7 +8,7 @@
   <!-- initial-time="{{sectionRecord.progress==sectionRecord.section.duration?0:sectionRecord.progress}}" -->
   <video id="myVideo" enable-progress-gesture="false" src="{{sectionRecord.section.filepath}}" binderror="videoErrorCallback" bindfullscreenchange="bindFullscreenchange" bindtimeupdate="bindTimeupdate" bindplay="bindPlay" controls="true" poster="{{sectionRecord.section.thumbnail}}" show-fullscreen-btn="true"  bindended="bindended" initial-time="{{sectionRecord.progress==sectionRecord.section.duration?0:sectionRecord.progress}}" autoplay="true">
   
-    <cover-image class="img" src="/img/beijingbai.jpg" wx:if="{{xianshi}}" />
+    <cover-image class="img" src="/img/beijingbai.jpg" wx:if="{{true}}" />
   </video>
 </view>
 <!--   {{sectionRecord.section.name}} -->
@@ -128,7 +128,9 @@
 
 <!-- 刷脸登录-->
 <view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
-<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;"></camera> 
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 250px; height: 250px;">
+ <cover-image class="lefttop"  src="/img/zhegan.png" />
+</camera> 
   <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
        <text>请点击刷脸验证 {{countdown}}</text>
   </view>
