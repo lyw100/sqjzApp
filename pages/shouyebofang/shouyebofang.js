@@ -798,7 +798,7 @@ Page({
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
-          url: getApp().globalData.url + '/sqjz/face',
+          url: getApp().globalData.url + '/course/face',
           filePath: res.tempImagePath,
           header: header,
           formData: {
