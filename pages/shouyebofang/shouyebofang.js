@@ -884,7 +884,7 @@ Page({
     var courseid = e.currentTarget.dataset.id;
     var jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/addcollection';
+    var url = getApp().globalData.url + '/course/addCollection';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -896,11 +896,10 @@ Page({
       success(res) {
         if (res.data == "ok") {//收藏课程
           var record = that.data.record;
-          record.collection = 1;
+          record.course.collection = 1;
           that.setData({
             record: record,
           })
-          
         } else {//收藏失败
           wx.showToast({
             title: '课程收藏失败',
@@ -920,7 +919,7 @@ Page({
     var courseid = e.currentTarget.dataset.id;
     var jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/delcollection';
+    var url = getApp().globalData.url + '/course/delCollection';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -932,7 +931,7 @@ Page({
       success(res) {
         if (res.data == "ok") {//取消收藏课程
           var record = that.data.record;
-          record.collection = 0;
+          record.course.collection = 0;
           that.setData({
             record: record,
           })
