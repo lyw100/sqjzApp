@@ -21,6 +21,7 @@ Page({
     page:1,
     subid: 'sub',
     dingwei_yincang:false,
+    dibu:false,
   },
   /**遮罩层 */
   // 遮罩层显示
@@ -176,7 +177,6 @@ Page({
     // this.topCourseList();
     //获取必修科目
     this.getKMList(0);
-
     wx.stopPullDownRefresh() //停止下拉刷新
   },
 
@@ -189,6 +189,7 @@ Page({
       var page=this.data.page+1;
       this.setData({
         page:page,
+        dibu:true,
       });
       this.getCourseBysubid(0, 6, page);
     }
@@ -320,20 +321,22 @@ Page({
     this.data.subList = [];
     if(index!=null){//点击非精选科目
       // this.data.jingxuan="";
-      this.setData({
-        jingxuan:'',
-        page:1,
-        subid: 'sub' + subid
-      });
+     
       this.data.subList[0]=subTabList[index];
       this.getCourseBysubid(0,6,1);
       for (var i = 0; i < subTabList.length;i++){
-        if(i==index){
-          subTabList[i].tabClass = "xzzhangtai";
-        }else{
-          subTabList[i].tabClass="";
-        }
+        subTabList[i].tabClass="";
       }
+      subTabList[index].tabClass = "xzzhangtai";
+      this.setData({
+        jingxuan: '',
+        subTabList: subTabList
+      });
+      var that=this; 
+      that.setData({
+        page: 1,
+        subid: 'sub' + subid
+      }); 
     }else{//点击精选tab
       // this.data.jingxuan = "jingxuan";
       this.setData({
@@ -361,9 +364,9 @@ Page({
       subTabList: subTabList
     });
     //跳转到顶部
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+    // wx.pageScrollTo({
+    //   scrollTop: 0
+    // })
 
     wx.hideLoading();
   },

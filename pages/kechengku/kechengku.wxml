@@ -113,7 +113,10 @@
         </view>
       </block>
 
-     
+     <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+     </view>
     </view>
     <!--视频内容 完-->
 
