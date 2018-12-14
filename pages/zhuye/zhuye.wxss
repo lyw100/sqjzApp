@@ -201,3 +201,12 @@ page {
   background: #e5e5e5;
   color: #585858;
 }
+
+@media screen and (min-width: 700px) {
+
+.xuexijindu {
+  position: absolute;
+  bottom: 12%;
+}
+
+}

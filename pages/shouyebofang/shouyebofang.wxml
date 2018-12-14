@@ -1,6 +1,6 @@
 <!--shouyebofang.wxml-->
 <view class='contai'>
-<view class='tit tc'>
+<view class='tit tc'  wx:if="{{xianshi==false}}">
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->
@@ -43,7 +43,7 @@
         <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'}}">正在播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse==''}}">未播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse=='zhangjieend'}}">已完成</text>
-        <text class='zzbf_time'>48:28</text>
+        <text class='zzbf_time'>{{section.time}}</text>
        
        </view>
     </view>
@@ -90,7 +90,7 @@
   </view>
     <!-- 屏幕定位 -->
     <view class="pmdw">
-        <view class='shoucang' style='width:36px;' catchtap='shoucangdj'>
+        <view class='shoucang' style='width:100rpx;' catchtap='shoucangdj'>
           <image data-id="{{record.course.id}}" catchtap='addcollection'  src='/img/shoucang.png' wx:if='{{record.course.collection==0}}'></image>
           <image data-id="{{record.course.id}}" catchtap='delcollection'  src='/img/yishoucang.png' wx:if='{{record.course.collection==1}}'></image>
           <view>
@@ -98,7 +98,7 @@
             <text wx:if='{{record.course.collection==1}}'>已收藏</text>
           </view>
         </view>
-        <view class='dw_xuanke' style='width:36px;' catchtap='xuankedj'>
+        <view class='dw_xuanke' style='width:100rpx;' catchtap='xuankedj'>
           <image data-id="{{record.course.id}}" catchtap='tianjiaxuanke' src='/img/xuanke.png' wx:if='{{isSign==0}}'></image>
           <image src='/img/yixuanke.png'  wx:if='{{isSign==1}}'></image>
           <view>
