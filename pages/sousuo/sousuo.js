@@ -30,6 +30,7 @@ Page({
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
     subjectId: '',//课程id,课程库传参
+    iszjjz:""
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -105,12 +106,12 @@ Page({
       delta: 1
     })
   },
-  xzkc: function () {
+  xzkc: function (e) {
     var path = this.data.path;
     var that = this;
     var index = e.currentTarget.dataset.index;
     var courseid = e.currentTarget.dataset.id;
-    var jzid = 7;
+    var jzid = getApp().globalData.jiaozhengid;
     var url = path + '/course/saveSign';
     wx.request({
       url: url, //获取视频播放信息
@@ -130,7 +131,7 @@ Page({
           wx.showToast({
             title: '选课成功',
             icon: 'success',
-            duration: '500'
+            duration: 500
           })
         }
       }
@@ -484,6 +485,7 @@ Page({
     var courseType = this.data.courseType;
     var path = this.data.path;
     var self = this;
+    var iszjjz=this.data.iszjjz;
     wx.showLoading({
       title: '加载中'
     })
@@ -495,6 +497,7 @@ Page({
         subjectId: subjectId,
         subjectType: subjectType,
         courseType: courseType,
+        iszjjz: iszjjz,
         page: page,
         rows: 5
       },
@@ -545,12 +548,17 @@ Page({
   onLoad: function (options) {
     // console.log(options)
     var menu = options.menu;
+    var iszjjz="";
+    if (options.subjectId == -1) {//判断是否为专家讲座
+      iszjjz='1';
+    }
     if (menu == 'course') {
       this.setData({
         subjectType: options.subjectType,
         courseType: options.courseType,
         subjectId: options.subjectId,
-        menu:'course'
+        menu:'course',
+        iszjjz: iszjjz//判断是否为专家讲座
       })
     }else{
       this.setData({
