@@ -52,7 +52,6 @@ Page({
                 errorcishu++;
               }else{
                 errorcishu=0;
-                errorcishu1=0;
               }
               if (errorcishu >= 3 || errorcishu1>=5){
                 wx.showModal({
