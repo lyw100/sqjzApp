@@ -30,7 +30,8 @@ Page({
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
     subjectId: '',//课程id,课程库传参
-    iszjjz:""
+    iszjjz:"",
+    dibu: false,//加载样式
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -479,6 +480,7 @@ Page({
    * 上拉加载更多
    */
   loadMore: function () {
+
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
     var subjectType = this.data.subjectType;
@@ -486,8 +488,9 @@ Page({
     var path = this.data.path;
     var self = this;
     var iszjjz=this.data.iszjjz;
-    wx.showLoading({
-      title: '加载中'
+    
+    self.setData({
+      dibu:true,
     })
     wx.request({
       url: path + '/search/loadMore',
@@ -521,12 +524,15 @@ Page({
 
           }
         }
+        self.setData({
+          dibu: false,
+        })
       },
-      complete: function () {
-        setTimeout(function () {
-          wx.hideLoading()
-        }, 1000)
-      }
+      // complete: function () {
+      //   setTimeout(function () {
+      //     wx.hideLoading()
+      //   }, 1000)
+      // }
     })
   },
   countInfo: function () {

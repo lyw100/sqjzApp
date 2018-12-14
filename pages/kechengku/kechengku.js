@@ -367,11 +367,14 @@ Page({
       subTabList: subTabList
     });
     //跳转到顶部
-    // wx.pageScrollTo({
-    //   scrollTop: 0
-    // })
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
 
-    wx.hideLoading();
+    setTimeout(function () {
+      wx.hideLoading();
+    }, 2000)
+  
   },
   getZJJZCourse: function () {
     var that = this;

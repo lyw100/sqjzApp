@@ -119,48 +119,10 @@
             </view>
           </view>
         </view>
-        <!-- <view class='djjg_baogao' catchtap='tzbfyemain'>
-          <image class='djjg_img' src='/img/yiyuan.png'></image>
-          <view class='djjg_sm'>
-            <view class='xgzl_bg'>
-              <text>十九大报告</text>
-            </view>
-            <view class='xgzl_js'>
-              <text>讲师 : 李浩师</text>
-            </view>
-            <view class='xgzl_xs'>
-              <text>学时 : 1.2</text>
-            </view>
-          </view>
-        </view>
-        <view class='djjg_baogao' catchtap='tzbfyemain'>
-          <image class='djjg_img' src='/img/yiyuan.png'></image>
-          <view class='djjg_sm'>
-            <view class='xgzl_bg'>
-              <text>十九大报告的萨芬撒</text>
-            </view>
-            <view class='xgzl_js'>
-              <text>讲师 : 李浩师</text>
-            </view>
-            <view class='xgzl_xs'>
-              <text>学时 : 1.2</text>
-            </view>
-          </view>
-        </view>
-        <view class='djjg_baogao' catchtap='tzbfyemain'>
-          <image class='djjg_img' src='/img/yiyuan.png'></image>
-          <view class='djjg_sm'>
-            <view class='xgzl_bg'>
-              <text>十九大报告的萨芬撒地方阿斯蒂芬阿斯蒂芬啊</text>
-            </view>
-            <view class='xgzl_js'>
-              <text>讲师 : 李浩师</text>
-            </view>
-            <view class='xgzl_xs'>
-              <text>学时 : 1.2</text>
-            </view>
-          </view>
-        </view> -->
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+      </view>
       </view>
     </view>
     <!-- 政策法规页面  完 -->
