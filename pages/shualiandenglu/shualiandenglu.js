@@ -54,7 +54,7 @@ Page({
                 errorcishu=0;
                 errorcishu1=0;
               }
-              if (errorcishu>4){
+              if (errorcishu > 3 || errorcishu1>5){
                 wx.showModal({
                   title: '操作超时',
                   cancelText: '退出',
