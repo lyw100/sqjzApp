@@ -87,7 +87,12 @@
           <view>不计学时</view>
         </view>
       </view>
-  </view>
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+      </view>
+
+    </view>
     <!-- 屏幕定位 -->
     <view class="pmdw">
         <view class='shoucang' style='width:100rpx;' catchtap='shoucangdj'>
