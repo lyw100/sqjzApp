@@ -24,7 +24,8 @@ Page({
     // yuyinShow: '',
     page:1,
     moreList:[],
-     dibu: false,//加载样式
+    dibu: false,//加载样式
+    firstshow: true,//第一次加载页面内容
   },
 
   // shipin:function(){
@@ -121,8 +122,49 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
+    if (this.data.firstshow == false) {
+      var that = this;
+      var subid = that.data.subid;
+      that.setData({
+        page: 1,
+        moreList: [],
+      })
+      
+      wx.request({
+        url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+        data: { subid: subid },
+        header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          // console.log(res.data);
+          var list = res.data;
+          for (var i = 0; i < list.length; i++) {
+            if (i == 0) {
+              list[i].img = "biaotou";
+              list[i].text = "titxinxi";
+            } else {
+              list[i].img = "gaibianchang";
+              list[i].text = "xiaotuzi";
+            }
+          }
+          that.setData({
+            swiperCurrent: 0,
+            imgUrls: list
+          })
+        }
+      })
+      //获取更多推荐
+      this.moreCourseList();
+      this.countInfo();
 
+    }
+    //下一次不是第一次渲染
+    this.setData({
+      firstshow: false,
+    })
   },
 
   /**
