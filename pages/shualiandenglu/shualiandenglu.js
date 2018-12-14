@@ -125,9 +125,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    setTimeout(function () {
-      that.takePhoto();
-    }, 5000);
     that.progress();
   },
 
@@ -142,7 +139,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    setTimeout(function () {
+      that.takePhoto();
+    }, 5000);
   },
 
   /**
