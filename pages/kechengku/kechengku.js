@@ -143,6 +143,11 @@ Page({
                   subList: subList,
                 })
 
+              }else{
+                subList[i].courseList[j].isSign = 0;
+                that.setData({
+                  subList: subList,
+                })
               }
             }
           })
