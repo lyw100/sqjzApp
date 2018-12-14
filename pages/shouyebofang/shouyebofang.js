@@ -26,6 +26,7 @@ Page({
     kcjj_yincang:false,
     xianshiyemain:true,
     lastTime:0,
+    dibu: false,
     page:1
   },
   // 点击收藏 选课显示
@@ -197,6 +198,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.setData({
+      dibu:true
+    })
     this.moreCourse();
   },
 
@@ -304,6 +308,7 @@ Page({
   },
   //防拖拽方法
   bindTimeupdate: function (e) {
+    var that=this;
     if(this.data.face==false){
       this.videoContext.pause();//视频播放暂停
     }
@@ -344,16 +349,18 @@ Page({
 
           if (cTime == time && flag == false && currentTime>=progress) {
               this.videoContext.exitFullScreen();//退出全屏方法
-              this.videoContext.pause();//视频播放暂停
-              this.clearProgress();//重新加载定时器
-              photoTimes[i].flag=true;
-              this.setData({
-                photoTimes: photoTimes,
-                shualiandl: true,
-                xianshi: true,
-                face:false
-              });
               this.saveProgress();
+              this.videoContext.pause();//视频播放暂停
+              photoTimes[i].flag=true;
+              setTimeout(function(){
+                that.setData({
+                  photoTimes: photoTimes,
+                  shualiandl: true,
+                  xianshi: true,
+                  face:false
+                });
+                that.clearProgress();//重新加载定时器
+              },100)
           }
         }
       }
@@ -428,6 +435,7 @@ Page({
           }
           page=page+1;
           that.setData({
+            dibu:false,
             moreList: list,
             page:page
           })
