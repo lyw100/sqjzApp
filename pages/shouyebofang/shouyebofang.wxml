@@ -118,7 +118,9 @@
   <view class='kcjj_ym' wx:if='{{kcjj_yincang}}'>
     <view class='tt_dingwei'>
       <text class='tt_info'>{{sectionRecord.section.name}}</text>
-      <image src='/img/guanbi.png' class='tt_chahao' catchtap='ch_tz'></image>
+      <view class='xukefangdaweizhi' catchtap='ch_tz'>
+      <image src='/img/guanbi.png' class='tt_chahao'></image>
+      </view>
     </view>
     <view class='kcjj_js'>
       <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}   </text>

@@ -256,12 +256,18 @@ left:0%;
   overflow: hidden;
   width: 85%;
 }
+.xukefangdaweizhi{
+width:70rpx;
+height:70rpx;
+text-align:right;
+position: absolute;
+top: 0rpx;
+right: 20rpx;
+}
 .tt_chahao{
-  position: absolute;
-  top: 12rpx;
-  right: 20rpx;
-  width: 40rpx;
-  height: 40rpx;
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 10rpx;
 }
 .kcjj_js{
 font-size:30rpx;
