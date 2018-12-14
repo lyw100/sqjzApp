@@ -52,9 +52,8 @@ Page({
                 errorcishu++;
               }else{
                 errorcishu=0;
-                errorcishu1=0;
               }
-              if (errorcishu>4){
+              if (errorcishu >= 3 || errorcishu1>=5){
                 wx.showModal({
                   title: '操作超时',
                   cancelText: '退出',
@@ -126,9 +125,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    setTimeout(function () {
-      that.takePhoto();
-    }, 3000);
     that.progress();
   },
 
@@ -143,7 +139,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    setTimeout(function () {
+      that.takePhoto();
+    }, 5000);
   },
 
   /**
