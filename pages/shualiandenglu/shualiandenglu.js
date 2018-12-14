@@ -128,7 +128,7 @@ Page({
     var that = this
     setTimeout(function () {
       that.takePhoto();
-    }, 3000);
+    }, 5000);
     that.progress();
   },
 

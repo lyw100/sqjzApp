@@ -85,22 +85,25 @@ Page({
     })
   },
   quxiao: function () {
-    var menu=this.data.menu;
-    if(menu=='index'){
-      wx.switchTab({
-        url: '../zhuye/zhuye',
-      })
-    }else if(this.data.subjectId!=''){
-      //相关课程
-      wx.navigateTo({
-        url: '../gengduotuijian/gengduotuijian?subid=' + this.data.subjectId,
-      });
-    }else{
-      //课程库
-      wx.switchTab({
-        url: '../kechengku/kechengku',
-      })
-    }
+    // var menu=this.data.menu;
+    // if(menu=='index'){
+    //   wx.switchTab({
+    //     url: '../zhuye/zhuye',
+    //   })
+    // }else if(this.data.subjectId!=''){
+    //   //相关课程
+    //   wx.navigateTo({
+    //     url: '../gengduotuijian/gengduotuijian?subid=' + this.data.subjectId,
+    //   });
+    // }else{
+    //   //课程库
+    //   wx.switchTab({
+    //     url: '../kechengku/kechengku',
+    //   })
+    // }
+    wx.navigateBack({
+      delta: 1
+    })
   },
   xzkc: function () {
     var path = this.data.path;
@@ -240,6 +243,7 @@ Page({
     var subjectType = this.data.subjectType;
     var courseType = this.data.courseType;
     var subjectId = this.data.subjectId;
+    console.log(subjectId)
     var self = this;
     page = 2;
     wx.request({
