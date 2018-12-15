@@ -14,7 +14,7 @@
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}"  class="swiper">
     <block wx:for="{{imgUrls}}"  wx:for-item="special" wx:for-index="index" wx:key="index">
       <swiper-item class="dingwei">
-        <image data-index='{{index}}' data-specialid='{{special.id}}' src="{{special.thumbnail}}" class="biaotou" bindtap="bannerTap" />
+        <image data-index='{{index}}' data-specialid='{{special.id}}' data-type='{{special.type}}' src="{{special.thumbnail}}" class="biaotou" bindtap="bannerTap" />
         <text class="titxinxi">{{special.name}}</text>
       </swiper-item>
     </block>

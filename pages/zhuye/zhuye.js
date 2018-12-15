@@ -166,10 +166,24 @@ Page({
    * 修改为单击轮播图跳转到专题页面
    */
   bannerTap:function(e){
+    //special为专题,course为课程
+    var type = e.currentTarget.dataset.type;
     var specialid = e.currentTarget.dataset.specialid;
-    wx.navigateTo({
-      url: "/pages/zhuanti/zhuanti?specialid=" + specialid
-    })
+    if(type=="special"){
+      wx.navigateTo({
+        url: "/pages/zhuanti/zhuanti?specialid=" + specialid
+      })
+    }else if(type=="course"){
+      wx.navigateTo({
+        url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + specialid
+      })
+    }else{
+      wx.showToast({
+        title: '获取类型错误',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   /**
    * 重新加载数据
