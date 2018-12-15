@@ -62,7 +62,7 @@ Page({
   onShow: function () {
     var that=this;
     setTimeout(function () {
-     that.cmonthSignList();
+     //that.cmonthSignList();
     }, 200)
   },
 
@@ -164,7 +164,15 @@ Page({
       url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
     })
   },
-
+  /**
+   * 修改为单击轮播图跳转到专题页面
+   */
+  bannerTap:function(e){
+    var specialid = e.currentTarget.dataset.specialid;
+    wx.navigateTo({
+      url: "/pages/zhuanti/zhuanti?specialid=" + specialid
+    })
+  },
   /**
    * 重新加载数据
    */
@@ -197,25 +205,34 @@ Page({
         })
       }
     })
-
+    this.loadBanner();
+  },
+  /**
+   * 加载顶部轮播图
+   */
+  loadBanner:function(){
+    var that = this;
     wx.request({
-      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
-      // url: 'http://localhost:8081/SQJZ/sign/topCourseList', //获取点击量最多的3个课程
-      data: {},
+      url: getApp().globalData.url + '/zhuanti/listBanner',
+      //url: 'http://localhost:8080/SQJZ/zhuanti/listBanner',
+      data: { 
+        jzid: getApp().globalData.jiaozhengid
+        },
       header: {
         'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
         // console.log(res.data);
-        var list = res.data;
-        that.setData({
-          swiperCurrent: 0,
-          imgUrls: list
-        })
+        if(res.data.msg=="OK"){
+          var list = res.data.list;
+          that.setData({
+            swiperCurrent: 0,
+            imgUrls: list
+          })
+        }
       }
     })
-
   },
   /**
    * 当月课程查询

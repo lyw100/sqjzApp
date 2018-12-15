@@ -9,10 +9,10 @@
   <!-- indicator-dots 是否显示面板指示点 autoplay 是否自动切换    current  当前所在滑块的 index   -->
   <!-- interval 自动切换时间间隔 duration 滑动动画时长  circular 是否采用衔接滑动  -->
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}"  class="swiper">
-    <block wx:for="{{imgUrls}}"  wx:for-item="course" wx:for-index="index" wx:key="index">
+    <block wx:for="{{imgUrls}}"  wx:for-item="special" wx:for-index="index" wx:key="index">
       <swiper-item class="dingwei">
-        <image data-index='{{index}}' data-courseid='{{course.id}}' src="{{course.thumbnail}}" class="biaotou" bindtap="swipclick" />
-        <text class="titxinxi">{{course.name}}</text>
+        <image data-index='{{index}}' data-specialid='{{special.id}}' src="{{special.thumbnail}}" class="biaotou" bindtap="bannerTap" />
+        <text class="titxinxi">{{special.name}}</text>
       </swiper-item>
     </block>
   </swiper>
