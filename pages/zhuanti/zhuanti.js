@@ -30,14 +30,21 @@ Page({
         if(res.data.msg=="OK"){
           var title=res.data.name;
           var urls = res.data.imgUrls;
-          var imgUrls=urls.split(",");
+          var imgUrls=[];
+          var arr=urls.split(",");
           wx.setNavigationBarTitle({
             title: title
           })
+          for(var i=0;i<arr.length;i++){
+            if(i==0){
+              imgUrls.push({ url: arr[i], img: "biaotou" });
+            }else{
+              imgUrls.push({ url: arr[i], img: "gaibianchang" });
+            }
+          }
           self.setData({
             imgUrls: imgUrls,
-            swiperCurrent: 0,
-            img : "biaotou"
+            swiperCurrent: 0
           })
         }
       }
@@ -89,20 +96,19 @@ Page({
     // console.log("轮播图动画change方法");
     var index = e.detail.current;
     var imgUrls = this.data.imgUrls;
-    var img="";
+
     for (var i = 0; i < imgUrls.length; i++) {
       if (i == index) {
-        img = "biaotou";
-        //mgUrls[i].text = "titxinxi";
+        //img = "biaotou";
+        imgUrls[i].img = "biaotou";
       } else {
-        img = "gaibianchang";
-        //imgUrls[i].text = "xiaotuzi";
+        //img = "gaibianchang";
+        imgUrls[i].img = "gaibianchang";
       }
 
     }
     this.setData({
-      imgUrls: imgUrls,
-      img:img
+      imgUrls: imgUrls
     })
   },
   gaibian: function () {

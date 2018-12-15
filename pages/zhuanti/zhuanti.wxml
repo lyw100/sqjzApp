@@ -4,7 +4,7 @@
       <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="3000" duration="500" circular="true" current="{{swiperCurrent}}" class="swiper lunbo" previous-margin="25px" next-margin="40px" bindchange="imgChange" bindanimationfinish="gaibian">
         <block wx:for="{{imgUrls}}" wx:for-item="imgUrl" wx:for-index="index" wx:key="index">
           <swiper-item class="titimg">
-            <image data-index='{{index}}' src="{{imgUrl}}" class="{{img}}"/>
+            <image data-index='{{index}}' src="{{imgUrl.url}}" class="{{imgUrl.img}}"/>
           </swiper-item>
         </block>
       </swiper>
