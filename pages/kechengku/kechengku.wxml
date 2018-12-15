@@ -69,12 +69,15 @@
                 <view>不记学时</view>
                 <block wx:if="{{subIndex==1&&index==0}}"></block>
                 <block wx:if="{{course.isNew==1}}">
-                  <image src='/img/new.png' class='new_dw'></image>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
               </view>
               <view wx:if="{{course.isSign==1}}">
                 <block wx:if="{{course.isNew==1}}">
-                  <image src='/img/new.png' class='new_dw'></image>
+                
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
               </view>
               </view>
@@ -99,12 +102,14 @@
                     <view>不记学时</view>
 
                     <block wx:if="{{course.isNew==1}}">
-                      <image src='/img/new.png' class='new_dw'></image>
+                      <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                     </block>
                   </view>
                   <view wx:if="{{course.isSign==1}}">
                     <block wx:if="{{course.isNew==1}}">
-                      <image src='/img/new.png' class='new_dw'></image>
+                      <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                     </block>
                   </view>
                 </view>
@@ -149,12 +154,14 @@
                 <view>不记学时</view>
                 <block wx:if="{{subIndex==1&&index==0}}"></block>
                 <block wx:if="{{course.isNew==1}}">
-                  <image src='/img/new.png' class='new_dw'></image>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
               </view>
               <view wx:if="{{course.isSign==1}}">
                 <block wx:if="{{course.isNew==1}}">
-                  <image src='/img/new.png' class='new_dw'></image>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
               </view>
             </view>
