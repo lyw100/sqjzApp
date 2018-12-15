@@ -143,6 +143,11 @@ Page({
                   subList: subList,
                 })
 
+              }else{
+                subList[i].courseList[j].isSign = 0;
+                that.setData({
+                  subList: subList,
+                })
               }
             }
           })
@@ -373,7 +378,7 @@ Page({
 
     setTimeout(function () {
       wx.hideLoading();
-    }, 2000)
+    }, 1000)
   
   },
   getZJJZCourse: function () {
@@ -471,12 +476,21 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
-          var subList = that.data.subList;
-          var courseList = subList[subindex].courseList;
-          courseList[index].isSign = 1;
-          that.setData({
-            subList: subList,
-          })
+          if (subindex=='zjjz'){//判断是否是专家讲座
+            var zjjzList = that.data.zjjzList;
+            zjjzList[index].isSign = 1;
+            that.setData({
+              zjjzList: zjjzList,
+            })
+          }else{
+            var subList = that.data.subList;
+            var courseList = subList[subindex].courseList;
+            courseList[index].isSign = 1;
+            that.setData({
+              subList: subList,
+            })
+          }
+          
 
         } else if (res.data == "more") {
           wx.showToast({
@@ -530,12 +544,20 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//取消选课成功
-          var subList = that.data.subList;
-          var courseList = subList[subindex].courseList;
-          courseList[index].isSign = 0;
-          that.setData({
-            subList: subList,
-          })
+          if (subindex == 'zjjz') {//判断是否是专家讲座
+            var zjjzList = that.data.zjjzList;
+            zjjzList[index].isSign = 0;
+            that.setData({
+              zjjzList: zjjzList,
+            })
+          }else{
+            var subList = that.data.subList;
+            var courseList = subList[subindex].courseList;
+            courseList[index].isSign = 0;
+            that.setData({
+              subList: subList,
+            })
+          }
           wx.showToast({
             title: '取消课程成功',
             icon: 'none',

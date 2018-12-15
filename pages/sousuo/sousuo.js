@@ -87,30 +87,28 @@ Page({
     })
   },
   quxiao: function () {
-    // var menu=this.data.menu;
-    // if(menu=='index'){
-    //   wx.switchTab({
-    //     url: '../zhuye/zhuye',
-    //   })
-    // }else if(this.data.subjectId!=''){
-    //   //相关课程
-    //   wx.navigateTo({
-    //     url: '../gengduotuijian/gengduotuijian?subid=' + this.data.subjectId,
-    //   });
-    // }else{
-    //   //课程库
-    //   wx.switchTab({
-    //     url: '../kechengku/kechengku',
-    //   })
-    // }
-    wx.navigateBack({
-      delta: 1
-    })
+    var menu=this.data.menu;
+    if(menu=='index'){
+      wx.switchTab({
+        url: '../zhuye/zhuye',
+      })
+    }else if(this.data.subjectId!=''){
+      //相关课程
+      wx.navigateTo({
+        url: '../gengduotuijian/gengduotuijian?subid=' + this.data.subjectId,
+      });
+    }else{
+      //课程库
+      wx.switchTab({
+        url: '../kechengku/kechengku',
+      })
+    }
   },
   xzkc: function (e) {
     var path = this.data.path;
     var that = this;
     var index = e.currentTarget.dataset.index;
+    var xgzl = e.currentTarget.dataset.xgzl;
     var courseid = e.currentTarget.dataset.id;
     var jzid = getApp().globalData.jiaozhengid;
     var url = path + '/course/saveSign';
@@ -124,21 +122,81 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
+        if(xgzl==1){
+          var relateList = that.data.relateList;
+          relateList[index].isSign = 1;
+          that.setData({
+            relateList: relateList,
+          })
+        }else{
           var topList = that.data.topList;
           topList[index].isSign = 1;
           that.setData({
             topList: topList,
           })
+        }
+          
           wx.showToast({
             title: '选课成功',
             icon: 'success',
-            duration: 500
+            duration: 2000
           })
         }
       }
     })
   },
-  yiyuankecheng: function () {
+  yixuankecheng: function (e) {
+    var path = this.data.path;
+    var that = this;
+    var xgzl = e.currentTarget.dataset.xgzl;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = path + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          if (xgzl == 1) {
+            var relateList = that.data.relateList;
+            relateList[index].isSign = 0;
+            that.setData({
+              relateList: relateList,
+            })
+          }else{
+            var topList = that.data.topList;
+            topList[index].isSign = 0;
+            that.setData({
+              topList: topList,
+            })
+          }
+          
+          wx.showToast({
+            title: '取消选课成功',
+            icon: 'success',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
     // this.setData({
     //   xuankeShow: true,
     //   yixuanShow: false

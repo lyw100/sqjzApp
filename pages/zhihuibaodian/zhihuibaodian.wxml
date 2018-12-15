@@ -24,6 +24,12 @@
           <text class='flfg_riqi'>{{item.audittime}}</text>
         </view>
       </view>
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+      </view>
+
+
     </view>
       
       
@@ -69,6 +75,10 @@
           <image src='{{item.attachment[0].fileUrl}}' class='xljt_img'></image>
         </view>
       </view>
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+      </view>
     </view>
     <!--心灵鸡汤 完-->
 
@@ -110,6 +120,10 @@
           </view>
           <image src='{{item.attachment[0].fileUrl}}' class='xljt_img'></image>
          </view>
+      </view>
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
       </view>
     </view>    
     <!--生活帮助 完-->

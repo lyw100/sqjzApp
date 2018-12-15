@@ -239,8 +239,28 @@ Page({
         })
       }
     })
-  }
+  },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  getMsg: function () {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/weChat/msg/getMsg',
+      header: getApp().globalData.header, //获取app.js中的请求头
+      success(res) {
 
+        var data = res.data;
+        //消息总数
+        var msgcount= data.xtcount + data.xwcount
+        
+        //赋值
+        that.setData({
+          msgcount: msgcount,
+        })
+      }
+    })
+  }
 })
 
 

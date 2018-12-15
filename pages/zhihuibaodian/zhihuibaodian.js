@@ -22,6 +22,7 @@ Page({
     xinlingjitang: false,//心灵鸡汤
     shenghuobangzhu: false,//生活帮助
     list: [],
+    dibu: false
   },
 
   /**法律法规 心灵鸡汤 生活 */
@@ -113,6 +114,9 @@ Page({
       wx.showToast({
         title: '到底啦',
       });
+      this.setData({
+        dibu: false
+      })
       return;
     }
     wx.showNavigationBarLoading();
@@ -174,6 +178,9 @@ Page({
         } else {
           hadLastPage = true;
         }
+        that.setData({
+          dibu: false
+        })
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
       }
@@ -192,6 +199,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function (event) {
+    this.setData({
+      dibu:true
+    })
     this.loadList();
   },
   /**
