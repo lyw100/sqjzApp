@@ -27,6 +27,7 @@ Page({
     xianshiyemain:true,
     lastTime:0,
     dibu: false,
+    yulan:true,
     page:1
   },
   // 点击收藏 选课显示
@@ -226,7 +227,10 @@ Page({
       if (this.data.addPlayNum==false){
         var progress=this.data.progress;
         // console.log("progress:"+progress);
-        this.videoContext.seek(progress);
+        var duration=this.data.sectionRecord.section.duration;
+        if (duration!=progress){
+          this.videoContext.seek(progress);
+        }
         var that=this;
         var courseid = this.data.record.course.id;//课程id
         var jzid = this.data.record.jzid;
@@ -375,7 +379,11 @@ Page({
 
 
     }else{//课程为非选课课程
-      if(currentTime>60){
+      let yulan=this.data.yulan;
+      if(currentTime>60&&yulan){
+        this.setData({
+          yulan:false
+        })
         this.videoContext.seek(60);
         this.videoContext.pause();//视频播放暂停
         this.videoContext.exitFullScreen();//退出全屏方法
@@ -384,7 +392,9 @@ Page({
           content: '未选课 可预览时长1分钟',
           showCancel:false,
           success(res) {
-            
+            that.setData({
+              yulan: true
+            })
           }
         })
       }
