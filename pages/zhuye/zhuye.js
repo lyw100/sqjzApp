@@ -62,7 +62,7 @@ Page({
   onShow: function () {
     var that=this;
     setTimeout(function () {
-     //that.cmonthSignList();
+     that.cmonthSignList();
     }, 200)
   },
 
