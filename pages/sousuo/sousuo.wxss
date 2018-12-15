@@ -11,6 +11,8 @@
   position: fixed;
   top: 0;
   background: #fff;
+  z-index:999;
+
 }
 
 .titipt {
@@ -202,6 +204,7 @@
   height: auto;
   padding: 10rpx 20rpx;
   margin-bottom: 10rpx;
+  position: relative;
 }
 
 .djjg_nr, .ddjy, .sxjkjy {
@@ -237,7 +240,29 @@
 .djjg_xsbf {
   margin-top: -8rpx;
 }
+.lfph_dw {
+  width: 280rpx;
+  height: 180rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 20rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+}
 
+.dwlfph_jianju {
+  margin-top: 65rpx;
+}
+
+.new_dw {
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  top: -4.5rpx;
+  left: -4.5rpx;
+}
 .djjg_xs {
   color: #2499f9;
   font-size: 30rpx;

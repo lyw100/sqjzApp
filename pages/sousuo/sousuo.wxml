@@ -72,6 +72,20 @@
             <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}" data-index='{{index}}' data-id='{{item.id}}'>选课</text>
             <text class='yixuan' data-index='{{index}}' data-id='{{item.id}}' bindtap='yixuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
+          <view class='lfph_dw' catchtap='tzbfyemain' id='{{item.id}}' wx:if="{{item.isSign==0}}">
+                <view class='dwlfph_jianju'>
+                  <text>未选课</text>
+                </view>
+                <view>不记学时</view>
+                <block wx:if="{{item.isNew==1}}">
+                  <image src='/img/new.png' class='new_dw'></image>
+                </block>
+              </view>
+              <view wx:if="{{item.isSign==1}}">
+                <block wx:if="{{item.isNew==1}}">
+                  <image src='/img/new.png' class='new_dw'></image>
+                </block>
+              </view>
           </view>
           
         </view>
@@ -122,6 +136,15 @@
           </view>
             </view>
           </view>
+             <view class='lfph_dw' catchtap='tzbfyemain' id='{{item.id}}'  wx:if="{{item.isSign==0}}">
+                <view class='dwlfph_jianju'>
+                  <text>未选课</text>
+                </view>
+                <view>不记学时</view>
+                <block wx:if="{{item.isNew==1}}">
+                  <image src='/img/new.png' class='new_dw'></image>
+                </block>
+              </view>
         </view>
       <view class='dibu' wx:if='{{dibu}}'>
         <image src='/img/jiazai.png' class="dibu_img"></image>
