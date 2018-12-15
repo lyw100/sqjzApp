@@ -5,7 +5,7 @@
     <image class="sis" src='/img/saoyisao.png' bindtap='scanTap'></image>
     <view class='xinxi_dwfl'>
     <image class="xinxi" src='/img/wuxiaoxi.png' catchtap='xiaoxiyemian'></image>
-      <view class='xinzi_shuzi jiujiujia'>99+</view> 
+       <view class='xinzi_shuzi {{jiujiujia}}'  wx:if='{{msgcount>0}}'>{{msgcount}}</view> 
     </view>
   </view>
   <view class='titimg'>

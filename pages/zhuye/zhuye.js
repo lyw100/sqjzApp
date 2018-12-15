@@ -48,6 +48,7 @@ Page({
     
     this.reLoad();
     this.countInfo();
+   
   },
 
   /**
@@ -62,6 +63,7 @@ Page({
    */
   onShow: function () {
     var that=this;
+    this.getMsg();
     setTimeout(function () {
      that.cmonthSignList();
     }, 200)
@@ -253,10 +255,15 @@ Page({
         var data = res.data;
         //消息总数
         var msgcount= data.xtcount + data.xwcount
-        
+        var jiujiujia="";
+        if (msgcount>99){
+          msgcount="99+";
+          jiujiujia ="jiujiujia";
+        }
         //赋值
         that.setData({
           msgcount: msgcount,
+          jiujiujia: jiujiujia
         })
       }
     })
