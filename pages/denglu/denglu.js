@@ -25,6 +25,21 @@ Page({
     let passwd = this.data.password;
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(empoent, module), this.data.password)
     let usernm = this.data.username;
+    if(usernm==""){
+      wx.showModal({
+        title: '提示',
+        content: "账号不能为空",
+        showCancel: false
+      })
+      return
+    } else if (passwd == ""){
+      wx.showModal({
+        title: '提示',
+        content: "密码不能为空",
+        showCancel: false
+      })
+      return
+    }
     wx.request({
       url: getApp().globalData.url + '/weChat/user/login', 
       data: {
