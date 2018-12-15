@@ -9,7 +9,8 @@ Page({
    */
   data: {
      page:1,
-     rows:4
+     rows:4,
+     dibu:false
   },
   /**单击扫一扫图标 */
   scanTap:function(){
@@ -97,9 +98,9 @@ Page({
    */
   onReachBottom: function () {
     // 显示加载图标
-    // wx.showLoading({
-    //   title: '玩命加载中',
-    // })
+    this.setData({
+      dibu: true
+    })
     var that=this;
     var page = this.data.page;
     var rows = this.data.rows;
@@ -119,18 +120,15 @@ Page({
           page+=1;
           var content=that.data.historyList.concat(list);
           that.setData({
+            dibu:false,
             page:page,
             historyList: content
           });
         }else{
-          // wx.showLoading({
-          //   title: '没有更多课程',
-          // })
+          that.setData({
+            dibu:false
+          })
         }
-        // 隐藏加载框
-        // setTimeout(function () {
-        //   wx.hideLoading()
-        // }, 500)
       }
     })
   },
@@ -258,8 +256,28 @@ Page({
         })
       }
     })
-  }
+  },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  getMsg: function () {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/weChat/msg/getMsg',
+      header: getApp().globalData.header, //获取app.js中的请求头
+      success(res) {
 
+        var data = res.data;
+        //消息总数
+        var msgcount= data.xtcount + data.xwcount
+        
+        //赋值
+        that.setData({
+          msgcount: msgcount,
+        })
+      }
+    })
+  }
 })
 
 

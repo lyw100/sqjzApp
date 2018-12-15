@@ -1,6 +1,6 @@
 <!--shouyebofang.wxml-->
 <view class='contai'>
-<view class='tit tc'>
+<view class='tit tc'  wx:if="{{xianshi==false}}">
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
   <!--bindfullscreenchange  视频进入和退出全屏时触发  bindtimeupdate  播放进度变化时触发  -->
@@ -43,7 +43,7 @@
         <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'}}">正在播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse==''}}">未播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse=='zhangjieend'}}">已完成</text>
-        <text class='zzbf_time'>48:28</text>
+        <text class='zzbf_time'>{{section.time}}</text>
        
        </view>
     </view>
@@ -87,23 +87,39 @@
           <view>不计学时</view>
         </view>
       </view>
-  </view>
+      <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
+      </view>
+
+    </view>
     <!-- 屏幕定位 -->
     <view class="pmdw">
-        <view class='shoucang' style='width:100rpx;' catchtap='shoucangdj'>
-          <image data-id="{{record.course.id}}" catchtap='addcollection'  src='/img/shoucang.png' wx:if='{{record.course.collection==0}}'></image>
-          <image data-id="{{record.course.id}}" catchtap='delcollection'  src='/img/yishoucang.png' wx:if='{{record.course.collection==1}}'></image>
+        <view class='shoucang' style='width:100rpx;' data-id="{{record.course.id}}" catchtap='addcollection' wx:if='{{record.course.collection==0}}'>
+          <image  src='/img/shoucang.png'></image>
           <view>
-            <text wx:if='{{record.course.collection==0}}'>收藏</text>
-            <text wx:if='{{record.course.collection==1}}'>已收藏</text>
+            <text>收藏</text>
           </view>
         </view>
-        <view class='dw_xuanke' style='width:100rpx;' catchtap='xuankedj'>
-          <image data-id="{{record.course.id}}" catchtap='tianjiaxuanke' src='/img/xuanke.png' wx:if='{{isSign==0}}'></image>
-          <image src='/img/yixuanke.png'  wx:if='{{isSign==1}}'></image>
+
+        <view class='shoucang' style='width:100rpx;' data-id="{{record.course.id}}" catchtap='delcollection' wx:if='{{record.course.collection==1}}'>
+          <image src='/img/yishoucang.png'></image>
           <view>
-            <text wx:if='{{isSign==0}}'>选课</text>
-            <text wx:if='{{isSign==1}}'>已选课</text>
+            <text>已收藏</text>
+          </view>
+        </view>
+
+        <view class='dw_xuanke' style='width:100rpx;' data-id="{{record.course.id}}" catchtap='tianjiaxuanke' wx:if='{{isSign==0}}'>
+          <image src='/img/xuanke.png'></image>
+          <view>
+            <text>选课</text>
+          </view>
+        </view>
+
+        <view class='dw_xuanke' style='width:100rpx;'  wx:if='{{isSign==1}}'>
+          <image src='/img/yixuanke.png'></image>
+          <view>
+            <text>已选课</text>
           </view>
         </view>
     </view>
@@ -113,7 +129,9 @@
   <view class='kcjj_ym' wx:if='{{kcjj_yincang}}'>
     <view class='tt_dingwei'>
       <text class='tt_info'>{{sectionRecord.section.name}}</text>
-      <image src='/img/guanbi.png' class='tt_chahao' catchtap='ch_tz'></image>
+      <view class='xukefangdaweizhi' catchtap='ch_tz'>
+      <image src='/img/guanbi.png' class='tt_chahao'></image>
+      </view>
     </view>
     <view class='kcjj_js'>
       <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}   </text>

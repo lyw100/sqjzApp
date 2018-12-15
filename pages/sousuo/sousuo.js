@@ -30,6 +30,8 @@ Page({
     subjectType: '',//课程类型：科目种类 0必修 1选修，课程库传参
     courseType: '',//课程类型 0视频 1图文 2音频,课程库传参
     subjectId: '',//课程id,课程库传参
+    iszjjz:"",
+    dibu: false,//加载样式
   },
   shouyebof: function () {
     wx.navigateTo({
@@ -102,12 +104,13 @@ Page({
       })
     }
   },
-  xzkc: function () {
+  xzkc: function (e) {
     var path = this.data.path;
     var that = this;
     var index = e.currentTarget.dataset.index;
+    var xgzl = e.currentTarget.dataset.xgzl;
     var courseid = e.currentTarget.dataset.id;
-    var jzid = 7;
+    var jzid = getApp().globalData.jiaozhengid;
     var url = path + '/course/saveSign';
     wx.request({
       url: url, //获取视频播放信息
@@ -119,21 +122,81 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
+        if(xgzl==1){
+          var relateList = that.data.relateList;
+          relateList[index].isSign = 1;
+          that.setData({
+            relateList: relateList,
+          })
+        }else{
           var topList = that.data.topList;
           topList[index].isSign = 1;
           that.setData({
             topList: topList,
           })
+        }
+          
           wx.showToast({
             title: '选课成功',
             icon: 'success',
-            duration: '500'
+            duration: 2000
           })
         }
       }
     })
   },
-  yiyuankecheng: function () {
+  yixuankecheng: function (e) {
+    var path = this.data.path;
+    var that = this;
+    var xgzl = e.currentTarget.dataset.xgzl;
+    var index = e.currentTarget.dataset.index;
+    var courseid = e.currentTarget.dataset.id;
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = path + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          if (xgzl == 1) {
+            var relateList = that.data.relateList;
+            relateList[index].isSign = 0;
+            that.setData({
+              relateList: relateList,
+            })
+          }else{
+            var topList = that.data.topList;
+            topList[index].isSign = 0;
+            that.setData({
+              topList: topList,
+            })
+          }
+          
+          wx.showToast({
+            title: '取消选课成功',
+            icon: 'success',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
     // this.setData({
     //   xuankeShow: true,
     //   yixuanShow: false
@@ -240,6 +303,7 @@ Page({
     var subjectType = this.data.subjectType;
     var courseType = this.data.courseType;
     var subjectId = this.data.subjectId;
+    console.log(subjectId)
     var self = this;
     page = 2;
     wx.request({
@@ -474,14 +538,17 @@ Page({
    * 上拉加载更多
    */
   loadMore: function () {
+
     var name = this.data.inputText;//搜索框内容
     var subjectId = this.data.choiceId;//科目id
     var subjectType = this.data.subjectType;
     var courseType = this.data.courseType;
     var path = this.data.path;
     var self = this;
-    wx.showLoading({
-      title: '加载中'
+    var iszjjz=this.data.iszjjz;
+    
+    self.setData({
+      dibu:true,
     })
     wx.request({
       url: path + '/search/loadMore',
@@ -491,6 +558,7 @@ Page({
         subjectId: subjectId,
         subjectType: subjectType,
         courseType: courseType,
+        iszjjz: iszjjz,
         page: page,
         rows: 5
       },
@@ -514,12 +582,15 @@ Page({
 
           }
         }
+        self.setData({
+          dibu: false,
+        })
       },
-      complete: function () {
-        setTimeout(function () {
-          wx.hideLoading()
-        }, 1000)
-      }
+      // complete: function () {
+      //   setTimeout(function () {
+      //     wx.hideLoading()
+      //   }, 1000)
+      // }
     })
   },
   countInfo: function () {
@@ -541,12 +612,17 @@ Page({
   onLoad: function (options) {
     // console.log(options)
     var menu = options.menu;
+    var iszjjz="";
+    if (options.subjectId == -1) {//判断是否为专家讲座
+      iszjjz='1';
+    }
     if (menu == 'course') {
       this.setData({
         subjectType: options.subjectType,
         courseType: options.courseType,
         subjectId: options.subjectId,
-        menu:'course'
+        menu:'course',
+        iszjjz: iszjjz//判断是否为专家讲座
       })
     }else{
       this.setData({

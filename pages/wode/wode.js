@@ -22,6 +22,7 @@ Page({
     hours:0,//已完成学时
     page:1,
     rows:6,
+    dibu:false
   },
   //签到  已签到
   qiandao:function(){
@@ -42,6 +43,11 @@ Page({
             that.setData({
               qiandaoxs: false,
               yiqiandaoxs: true
+            })
+            wx.showToast({
+              title: '签到成功',
+              icon: 'none',
+              duration: 2000
             })
           }
         }
@@ -120,6 +126,9 @@ Page({
       wx.showToast({
         title: '到底啦',
       })
+      that.setData({
+        dibu:false
+      })
       return
     }
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
@@ -139,6 +148,7 @@ Page({
               var xzkslen = xzkslist.length
               // 设置数据  
               that.setData({
+                dibu:false,
                 xzkslist: xzkslist,
                 xzkslen: xzkslen
               })
@@ -350,6 +360,7 @@ Page({
         }
         
         that.setData({
+          dibu:false,
           historyList: list
         })
       }
@@ -465,9 +476,9 @@ Page({
     //var path = 'http://localhost:8080/SQJZ';
     var reportList=this.data.reportList
     var self=this;
-    wx.showLoading({
-      title: '加载中'
-    })
+    // wx.showLoading({
+    //   title: '加载中'
+    // })
     wx.request({
       url: path+'/report/list',
       data:{
@@ -498,7 +509,10 @@ Page({
       },
       complete: function () {
         setTimeout(function () {
-          wx.hideLoading()
+          // wx.hideLoading()
+          self.setData({
+            dibu:false
+          })
         }, 1000)
       }
     })
@@ -533,6 +547,9 @@ Page({
       wx.showToast({
         title: '到底啦',
       })
+      that.setData({
+        dibu: false
+      })
       return
     }
     if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
@@ -554,11 +571,13 @@ Page({
             var list = res.data.maplist
             // 设置数据  
             that.setData({
+              dibu:false,
               psyReportList: that.data.psyReportList.concat(list),
               xinlipage: page + 1
             })
           } else {
             that.setData({
+              dibu: false,
               xlhadLastPage: true
             })
             wx.showToast({
@@ -719,6 +738,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.setData({
+      dibu:true
+    })
     var sxhb=this.data.sixhb_xz;
     if (sxhb){
       this.loadMoreReport()

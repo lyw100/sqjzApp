@@ -26,6 +26,7 @@ Page({
     kcjj_yincang:false,
     xianshiyemain:true,
     lastTime:0,
+    dibu: false,
     page:1
   },
   // 点击收藏 选课显示
@@ -197,6 +198,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.setData({
+      dibu:true
+    })
     this.moreCourse();
   },
 
@@ -304,6 +308,7 @@ Page({
   },
   //防拖拽方法
   bindTimeupdate: function (e) {
+    var that=this;
     if(this.data.face==false){
       this.videoContext.pause();//视频播放暂停
     }
@@ -344,15 +349,18 @@ Page({
 
           if (cTime == time && flag == false && currentTime>=progress) {
               this.videoContext.exitFullScreen();//退出全屏方法
+              this.saveProgress();
               this.videoContext.pause();//视频播放暂停
-              this.clearProgress();//重新加载定时器
               photoTimes[i].flag=true;
-              this.setData({
-                photoTimes: photoTimes,
-                shualiandl: true,
-                xianshi: true,
-                face:false
-              });
+              setTimeout(function(){
+                that.setData({
+                  photoTimes: photoTimes,
+                  shualiandl: true,
+                  xianshi: true,
+                  face:false
+                });
+                that.clearProgress();//重新加载定时器
+              },100)
           }
         }
       }
@@ -427,6 +435,7 @@ Page({
           }
           page=page+1;
           that.setData({
+            dibu:false,
             moreList: list,
             page:page
           })
@@ -455,6 +464,11 @@ Page({
     if (this.data.sectionRecord.section.duration - this.data.progress<3){
       progress = this.data.sectionRecord.section.duration;
     }
+    var sectionRecord=this.data.sectionRecord;
+    sectionRecord.progress = progress;
+    this.setData({
+      sectionRecord: sectionRecord
+    })
     if (courseid != null && courseid > 0) {
       var url = getApp().globalData.url + '/course/saveProgress';
       // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
@@ -576,13 +590,13 @@ Page({
    * 正在播放的视频添加选课
    */
   tianjiaxuanke: function (e) {
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '是否添加本课程为选课课程',
       success(res) {
         if (res.confirm) {
           // console.log('用户点击确定')
-          var that = this;
           var courseid = e.currentTarget.dataset.id;
           var jzid = getApp().globalData.jiaozhengid;
 
@@ -760,8 +774,8 @@ Page({
           }
           photoTimes.push(map);
         }
-        // console.log("photoTimes");
-        // console.log(photoTimes);
+        console.log("photoTimes");
+        console.log(photoTimes);
         that.setData({
           addPlayNum:false,
           sectionRecord:res.data,
