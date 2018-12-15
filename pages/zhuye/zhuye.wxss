@@ -29,11 +29,36 @@ page {
   margin: 0 20rpx;
   vertical-align: middle;
 }
+.xinxi_dwfl{
+  display: inline-block;
+  position: relative;
+  margin-left: 20rpx;
+}
+.xinzi_shuzi{
+/* padding:0rpx 10rpx; */
+background:red;
+color:#fff;
+font-size:20rpx;
+position:absolute;
+top:0;
+right:-20rpx;
+border-radius:20rpx;
+display:inline-block;
+min-width: 35rpx;
+text-align: center;
+height:35rpx;
+line-height:35rpx;
+}
+.jiujiujia{
+  position:absolute;
+  top:0;
+  right:-40rpx;
+  padding:0 10rpx;
 
+}
 .xinxi {
   width: 40rpx;
   height: 40rpx;
-  margin-left: 20rpx;
   vertical-align: middle;
 }
 
