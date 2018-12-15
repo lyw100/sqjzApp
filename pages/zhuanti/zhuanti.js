@@ -28,8 +28,12 @@ Page({
       },
       success(res) {
         if(res.data.msg=="OK"){
+          var title=res.data.name;
           var urls = res.data.imgUrls;
           var imgUrls=urls.split(",");
+          wx.setNavigationBarTitle({
+            title: title
+          })
           self.setData({
             imgUrls: imgUrls,
             swiperCurrent: 0,

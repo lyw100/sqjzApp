@@ -40,7 +40,7 @@
     <view class='kcxz_liebiao {{section.yanse}}'>
        <text catchtap="sectionTap" class="liebao_yangshi " data-courseid="{{record.course.id}}" data-index="{{index}}" data-sectionid="{{section.id}}">{{section.name}}</text>
        <view class='zhengzbf'>
-        <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'}}">正在播放</text>
+        <text class='zzbf_color' wx:if="{{section.yanse=='zhangjie'||section.yanse=='zhangjieend zhangjie'}}">正在播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse==''}}">未播放</text>
         <text class='zzbf_wbf' wx:if="{{section.yanse=='zhangjieend'}}">已完成</text>
         <text class='zzbf_time'>{{section.time}}</text>
