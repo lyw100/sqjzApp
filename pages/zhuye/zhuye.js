@@ -92,6 +92,7 @@ Page({
     this.data.page=1;
     this.cmonthSignList();
     this.reLoad();
+    this.getMsg();
     wx.stopPullDownRefresh() //停止下拉刷新
   },
 
