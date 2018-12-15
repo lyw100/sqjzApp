@@ -226,7 +226,10 @@ Page({
       if (this.data.addPlayNum==false){
         var progress=this.data.progress;
         // console.log("progress:"+progress);
-        this.videoContext.seek(progress);
+        var duration=this.data.sectionRecord.section.duration;
+        if (duration!=progress){
+          this.videoContext.seek(progress);
+        }
         var that=this;
         var courseid = this.data.record.course.id;//课程id
         var jzid = this.data.record.jzid;
