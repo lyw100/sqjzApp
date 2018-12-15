@@ -56,7 +56,17 @@
                 <text>未选课</text>
               </view>
               <view>不记学时</view>
+              <block wx:if="{{course.isNew==1}}">
+                 <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
+                </block>
             </view>
+            <view wx:if="{{course.isSign==1}}">
+                <block wx:if="{{course.isNew==1}}">
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
+                </block>
+              </view>
           </view>
           <view class='dibu' wx:if='{{dibu}}'>
           <image src='/img/jiazai.png' class="dibu_img"></image>
