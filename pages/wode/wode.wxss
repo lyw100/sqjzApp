@@ -108,18 +108,6 @@
   border-top-left-radius: 20rpx;
 }
 
-.xueshi {
-  font-size: 24rpx;
-  color: #969696;
-  margin-left: 35rpx;
-}
-
-.shijian {
-  font-size: 24rpx;
-  color: #969696;
-  margin-left: 15rpx;
-}
-
 .shuoming {
   font-size: 30rpx;
   margin-left: 15rpx;
@@ -369,15 +357,33 @@
 .shijian {
   font-size: 24rpx;
   color: #969696;
-  margin-left: 15rpx;
+  /* margin-left: 15rpx; */
+  display: inline-block;
+  width: 33%;
 }
 
 .xueshi {
   font-size: 24rpx;
   color: #969696;
-  margin-left: 35rpx;
+  /* margin-left: 35rpx; */
+  display: inline-block;
+  width: 33%;
+}
+.xssj_zdkc {
+  color: red;
+  font-size: 24rpx;
+  display: inline-block;
+  width: 33%;
+  text-align: right;
 }
 
+.xssj_qxxk {
+  color: #2499f9;
+  font-size: 24rpx;
+  display: inline-block;
+  width: 33%;
+  text-align: right;
+}
 .xukefangdaweizhi {
   display: inline-block;
   float: right;
