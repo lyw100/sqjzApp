@@ -1,0 +1,27 @@
+<view class="qiandao">
+  <!-- 签到页面 -->
+  <view wx:if='{{qd_yemian}}'>
+  <view class='qd_tit'>
+    <image src='/img/dingwei.png' class='dw'></image>
+    <text class='dw_wz'>石家庄生产力促进中心216室石家庄生产力促进中心216室石家庄</text>
+  </view>
+  <view class='ditu'>地图</view>
+  <view class='slqd'>
+    <view class='slqd_yuan'>
+      <text class='shualian'>刷脸签到</text>
+      <view class='shijian'><text>14:14</text></view>
+    </view>
+    <view class='jrqd_sm'>
+      <text wx:if='{{jrqdjc}}'>今天你还未签到</text>
+      <view>今天已经签到<text class='yanse'>1</text>次</view>
+    </view>
+  </view>
+  </view>
+  <!-- 签到页面 完-->
+  <!-- 统计页面 -->
+    <view class='tongji_ym' wx:if='{{th_yemian}}'>
+    
+    </view>
+  <!-- 统计页面 完-->
+
+</view>

@@ -28,10 +28,10 @@ page{
 }
 .ipt{
   display: inline-block;
-  width: 80%;
+  /* width: 80%; */
    height: 75rpx;
   vertical-align: middle;
-  margin-left:20rpx;
+  /* margin-left:20rpx; */
 }
 .anniu{
   width:85%;

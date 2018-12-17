@@ -12,12 +12,14 @@ Page({
     sixhb_xz: false,
     xinlpg_wxz: true,
     xinlpg_xz: false,
+    wdsc_hui:true,
+    wdsc_lan:false,
     kechengxuexixs:true,
     zaixiankaoshixs:false,
     sixianghbxianshi:false,
     xinlipgxianshi:false,
     qiandaoxs:true,
-    yiqiandaoxs: false,
+    wodeshoucangmk:false,
     reportList: [],//思想汇报列表
     hours:0,//已完成学时
     page:1,
@@ -387,11 +389,16 @@ Page({
       sixhb_xz: false,
       xinlpg_wxz: true,
       xinlpg_xz: false,
+      wdsc_hui: true,
+      wdsc_lan: false,
       kechengxuexixs: true,
       zaixiankaoshixs: false,
       sixianghbxianshi: false,
       xinlipgxianshi: false,
-      page:1
+      wodeshoucangmk: false,
+      wdsc_lan: false,
+      wdsc_hui:true,
+     
     })
     this.rectifyPeople();//矫正人员信息
     this.currentCourse();//当月课程
@@ -408,10 +415,13 @@ Page({
       sixhb_xz: false,
       xinlpg_wxz: true,
       xinlpg_xz: false,
+      wdsc_hui: true,
+      wdsc_lan: false,
       kechengxuexixs: false,
       zaixiankaoshixs: true,
       sixianghbxianshi: false,
       xinlipgxianshi: false,
+      wodeshoucangmk:false,
       page: 1,
       xzkslist: [],
       lskslist: [],
@@ -430,13 +440,42 @@ Page({
       zaixks_xz: false,
       xinlpg_wxz: true,
       xinlpg_xz: false,
+      wdsc_hui: true,
+      wdsc_lan: false,
       kechengxuexixs: false,
       zaixiankaoshixs: false,
       sixianghbxianshi: true,
       xinlipgxianshi: false,
+      wodeshoucangmk:false,
     })
    
     
+  },
+  // 我的收藏
+  wodeshoucangtp: function () {
+    this.setData({
+      kechxz_wxz: true,
+      kechxz_xz: false,
+      zaixks_wxz: true,
+      zaixks_xz: false,
+      sixhb_wxz: true,
+      sixhb_xz: false,
+      xinlpg_wxz: true,
+      xinlpg_xz: false,
+      kechengxuexixs: false,
+      zaixiankaoshixs: false,
+      sixianghbxianshi: false,
+      xinlipgxianshi: false,
+      wodeshoucangmk:true,
+      wdsc_lan: true,
+      wdsc_hui:false,
+    })
+  },
+  // 我的签到
+  wodeqiandao:function(){
+    wx.navigateTo({
+      url: '../wodeqiandao/wodeqiandao',
+    })
   },
   loadReport:function(){
     var path=getApp().globalData.url;
@@ -528,11 +567,14 @@ Page({
       zaixks_xz: false,
       sixhb_wxz: true,
       sixhb_xz: false,
+      wdsc_hui: true,
+      wdsc_lan: false,
       kechengxuexixs: false,
       zaixiankaoshixs: false,
       sixianghbxianshi: false,
       xinlipgxianshi: true,
       xlhadLastPage: false,
+      wodeshoucangmk:false,
       psyReportList:[],
       xinlipage: 1,
     })
@@ -665,6 +707,79 @@ Page({
       }
     })
   },
+  countInfoo: function () {
+    wx.request({
+      url: getApp().globalData.url + '/count/kechengku',
+      data: {},
+      method: "POST",
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+
+      }
+    })
+  },
+  getKMList: function (subType) {
+    this.setData({
+      jingxuan: 'xzzhangtai',
+      subid: 'sub',
+      // bixiuyanse: '',
+      // xuanxiuyanse: 'yanse',
+      // subType: subType,
+      page: 1
+    })
+    this.topCourseList();
+    var that = this;
+    //获取科目
+    wx.request({
+      url: getApp().globalData.url + '/course/listKM', //获取科目列表
+      data: { 'type': '' },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+
+        // console.log(res.data);
+        var subList = res.data;
+        that.setData({
+          subList: subList,
+          subTabList: subList
+        })
+        for (var i = 0; i < subList.length; i++) {
+          that.data.subTabList[i].tabClass = "";
+          var subid = subList[i].id;
+          if (i == 1) {
+            that.getCourseBysubid(i, 3, 1);
+          } else {
+            that.getCourseBysubid(i, 4, 1);
+          }
+
+        }
+
+      }
+    })
+  },
+  getZJJZCourse: function () {
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    wx.request({
+      url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
+      data: { jzid: jzid, subid: -1 },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var zjjzList = res.data;
+        that.setData({
+          zjjzList: zjjzList
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -677,6 +792,10 @@ Page({
     // this.currentCourse();//当月课程
     this.historyCourse();//历史课程
     this.countInfo();
+
+    this.getKMList(0);
+    this.countInfoo();
+    this.getZJJZCourse();
   },
 
   /**
