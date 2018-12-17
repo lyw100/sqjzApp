@@ -188,7 +188,7 @@ Page({
             courseList: courseList,
           })
           wx.showToast({
-            title: '取消选课成功',
+            title: '取消课程成功',
             icon: 'success',
             duration: 1000
           })
