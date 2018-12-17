@@ -29,7 +29,16 @@
                 <image class='xuketupian' src='/img/xuanke.png'></image>
               </view>
             </view>
-            
+            <view class='lfph_dw' catchtap='bofang'  data-courseid="{{course.id}}" data-index='{{index}}' wx:if="{{course.isSign==0}}">
+            <view class='dwlfph_jianju'>
+                  <text>未选课</text>
+                </view>
+                <view>不记学时</view>
+            </view>
+          </view>
+          <view class='dibu' wx:if='{{dibu}}'>
+              <image src='/img/jiazai.png' class="dibu_img"></image>
+              <text>火速加载中...</text>
           </view>
         </view>
       </view>

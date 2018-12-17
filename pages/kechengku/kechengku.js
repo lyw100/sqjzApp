@@ -476,6 +476,11 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
+          wx.showToast({
+            title: '选课成功',
+            icon: 'none',
+            duration: 2000
+          })
           if (subindex=='zjjz'){//判断是否是专家讲座
             var zjjzList = that.data.zjjzList;
             zjjzList[index].isSign = 1;

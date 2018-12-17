@@ -8,7 +8,8 @@ Page({
   data: {
     indicatorDots: false,
     specialid:"",
-    courseList:[]
+    courseList:[],
+    dibu: false,//加载样式
   },
   /**
    * 加载专题
@@ -78,14 +79,17 @@ Page({
           }
           self.setData({
             courseList: courseList
-          });
+          });          
           if(list.length>0){
             page++;
           }else{
+            self.setData({
+              dibu: false
+            })
             wx.showToast({
               title: '暂无更多数据',
               icon: 'none',
-              duration: 2000
+              duration: 1000
             })
           }
         }
@@ -184,7 +188,7 @@ Page({
             courseList: courseList,
           })
           wx.showToast({
-            title: '取消选课成功',
+            title: '取消课程成功',
             icon: 'success',
             duration: 1000
           })
@@ -281,6 +285,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.setData({
+      dibu:true
+    })
     this.loadCourse();
   },
 
