@@ -299,6 +299,11 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
+          wx.showToast({
+            title: '选课成功',
+            icon: 'none',
+            duration: 2000
+          })
           var moreList = that.data.moreList;
           moreList[index].isSign = 1;
           that.setData({
