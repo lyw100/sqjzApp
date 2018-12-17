@@ -1,0 +1,93 @@
+.qiandao{
+  width: 100%;
+  height: auto;
+}
+.qd_tit{
+  padding: 0 20rpx;
+}
+.dw{
+  width: 30rpx;
+  height: 40rpx;
+}
+.dw_wz{
+  font-size:34rpx;
+display:inline-block;
+width:92%;
+vertical-align:top;
+margin-left:10rpx;
+}
+.ditu{
+  width: 92%;
+  height: 300rpx;
+  margin: 10rpx auto 50rpx;
+  border: 1px solid red;
+}
+.slqd{
+  width: 100%;
+  height: 605rpx;
+  background: #f0eff5;
+  padding-top:80rpx;
+}
+.slqd_yuan{
+  width: 290rpx;
+  height: 290rpx;
+  color: #fff;
+  background: #2499f9;
+  font-size: 38rpx;
+  border-radius:75px;
+  text-align:center;
+  margin:0rpx auto 20rpx;
+}
+.shualian{
+  display: inline-block;
+  margin-top: 30%;
+}
+.shijian{
+  margin-top: 10rpx;
+}
+.jrqd_sm{
+  text-align: center;
+  font-size: 30rpx;
+  color: #616066;
+}
+.yanse{
+ color:#2499f9;
+padding:0 10rpx;
+font-weight:bold;
+}
+.footer{
+  width:100%;
+height:120rpx;
+border-top:1px solid #e5e5e5;
+box-shadow:0px -1px 3px #e5e5e5;
+background:#fff;
+position:fixed;
+bottom:0;
+}
+.qiandaoye{
+  display:inline-block;
+text-align:center;
+font-size:32rpx;
+margin-top:15rpx;
+margin-left:20%;
+color: #aaaaaa;
+}
+.qd_icon{
+  width: 32rpx;
+  height: 43rpx;
+}
+.tj_icon{
+  width: 39rpx;
+  height: 39rpx;
+}
+.lancolor{
+  color: #2499f9;
+}
+.tongjiye{
+   display:inline-block;
+text-align:center;
+font-size:32rpx;
+margin-top:15rpx;
+margin-left:43%;
+color: #aaaaaa;
+}
