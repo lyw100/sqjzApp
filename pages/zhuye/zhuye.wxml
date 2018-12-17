@@ -35,6 +35,7 @@
                <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
                <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
                <text class='xssj_zdkc' wx:if="{{sign.isAssign==1}}">指定课程</text>
+               <text data-courseid="{{sign.course.id}}"  data-index="{{index}}"  class='xssj_qxxk' catchtap='cancleSign' wx:if="{{sign.isAssign!=1}}">取消选课</text>
         </view>
         <text data-index='{{index}}' class='xuexijindu'>学习进度</text>
         <progress data-index='{{index}}' percent="{{sign.courseProgress}}" show-info color="#2499f9" stroke-width="3"/>
