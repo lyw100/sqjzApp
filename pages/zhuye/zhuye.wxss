@@ -201,6 +201,14 @@ line-height:35rpx;
   text-align: right;
 }
 
+.xssj_qxxk {
+  color: #2499f9;
+  font-size: 24rpx;
+  display: inline-block;
+  width: 33%;
+  text-align: right;
+}
+
 .lskcnr {
   margin-top: 20rpx;
   padding: 0 20rpx;

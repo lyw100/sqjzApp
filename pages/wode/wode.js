@@ -707,79 +707,7 @@ Page({
       }
     })
   },
-  countInfoo: function () {
-    wx.request({
-      url: getApp().globalData.url + '/count/kechengku',
-      data: {},
-      method: "POST",
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success(res) {
-
-      }
-    })
-  },
-  getKMList: function (subType) {
-    this.setData({
-      jingxuan: 'xzzhangtai',
-      subid: 'sub',
-      // bixiuyanse: '',
-      // xuanxiuyanse: 'yanse',
-      // subType: subType,
-      page: 1
-    })
-    this.topCourseList();
-    var that = this;
-    //获取科目
-    wx.request({
-      url: getApp().globalData.url + '/course/listKM', //获取科目列表
-      data: { 'type': '' },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-
-        // console.log(res.data);
-        var subList = res.data;
-        that.setData({
-          subList: subList,
-          subTabList: subList
-        })
-        for (var i = 0; i < subList.length; i++) {
-          that.data.subTabList[i].tabClass = "";
-          var subid = subList[i].id;
-          if (i == 1) {
-            that.getCourseBysubid(i, 3, 1);
-          } else {
-            that.getCourseBysubid(i, 4, 1);
-          }
-
-        }
-
-      }
-    })
-  },
-  getZJJZCourse: function () {
-    var that = this;
-    var jzid = getApp().globalData.jiaozhengid;
-    wx.request({
-      url: getApp().globalData.url + '/course/getCourseBySubid', //根据课程id获取课程
-      data: { jzid: jzid, subid: -1 },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        var zjjzList = res.data;
-        that.setData({
-          zjjzList: zjjzList
-        })
-      }
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -793,9 +721,7 @@ Page({
     this.historyCourse();//历史课程
     this.countInfo();
 
-    this.getKMList(0);
-    this.countInfoo();
-    this.getZJJZCourse();
+    
   },
 
   /**
@@ -883,5 +809,55 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  /**
+   * 取消选课  判断播放进度是否为0  不是0不可以取消
+   */
+  cancleSign: function (e) {
+    var that = this;
+    var courseid = e.currentTarget.dataset.courseid;
+    var index = e.currentTarget.dataset.index;
+
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          var nowList = that.data.nowList;
+          nowList.splice(index, 1);
+          that.setData({
+            nowList: nowList,
+          })
+
+          wx.showToast({
+            title: '取消课程成功',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
+
+  
 })

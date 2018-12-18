@@ -60,11 +60,17 @@
                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
+                <block wx:else>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                </block>
             </view>
             <view wx:if="{{course.isSign==1}}">
                 <block wx:if="{{course.isNew==1}}">
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
+                </block>
+                <block wx:else>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                 </block>
               </view>
           </view>
