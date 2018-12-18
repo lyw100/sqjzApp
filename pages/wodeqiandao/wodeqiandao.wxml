@@ -1,27 +1,162 @@
-<view class="qiandao">
+<view class="qiandao" wx:if='{{yincangqdmk}}'>
   <!-- 签到页面 -->
-  <view wx:if='{{qd_yemian}}'>
-  <view class='qd_tit'>
-    <image src='/img/dingwei.png' class='dw'></image>
-    <text class='dw_wz'>石家庄生产力促进中心216室石家庄生产力促进中心216室石家庄</text>
-  </view>
-  <view class='ditu'>地图</view>
-  <view class='slqd'>
-    <view class='slqd_yuan'>
-      <text class='shualian'>刷脸签到</text>
-      <view class='shijian'><text>14:14</text></view>
+  <view wx:if='{{qd_yemian}}' style='height:100%;'>
+    <view class='qd_tit'>
+      <image src='/img/dingwei.png' class='dw'></image>
+      <text class='dw_wz'>石家庄生产力促进中心216室石家庄生产力促进中心216室石家庄</text>
     </view>
-    <view class='jrqd_sm'>
-      <text wx:if='{{jrqdjc}}'>今天你还未签到</text>
-      <view>今天已经签到<text class='yanse'>1</text>次</view>
+    <view class='ditu'>地图</view>
+    <view class='slqd'>
+      <view class='slqd_yuan' catchtap='shualianqiandao'>
+        <text class='shualian'>刷脸签到</text>
+        <view class='shijian'>
+          <text>14:14</text>
+        </view>
+      </view>
+      <view class='jrqd_sm'>
+        <text wx:if='{{jrqdjc}}'>今天你还未签到</text>
+        <view>今天已经签到
+          <text class='yanse'>1</text>次</view>
+      </view>
     </view>
-  </view>
   </view>
   <!-- 签到页面 完-->
   <!-- 统计页面 -->
-    <view class='tongji_ym' wx:if='{{th_yemian}}'>
-    
+  <view class='tongji_ym' wx:if='{{th_yemian}}'>
+    <view class='qdcs'>
+      <view class='byqd'>本月签到
+        <text class='yanse'>10</text>次</view>
+        <picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange" class='tj_pk'>
+        <view class="rili">
+        <image src='/img/rili.png' class='rili_icon'></image>
+        {{date}}
+        <image src='/img/rilijiantou.png' class='jiantou_icon'></image>
+      </view>
+         
+        </picker>
+      
+      <view style='clear:both'></view>
     </view>
-  <!-- 统计页面 完-->
+    <view class='zhansekuai'></view>
+    <view class='tj_nr'>
+      <view class='tj_time'>
+        <text class="jihao">15</text>/<text class='yuefen'>12月</text>
+        <view class='xiantiao'></view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>10:34</text>
+        <view class='sm_xq'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>10:34</text>
+        <view class='sm_xq qubiaokuang'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='zhansekuai_2'></view>
+    </view>
 
+    <view class='tj_nr'>
+      <view class='tj_time'>
+        <text class="jihao">15</text>/<text class='yuefen'>11月</text>
+        <view class='xiantiao'></view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>10:34</text>
+        <view class='sm_xq'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>10:34</text>
+        <view class='sm_xq'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>8:00</text>
+        <view class='sm_xq'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='tj_sm'>
+        <text class='tj_tm'>8:00</text>
+        <view class='sm_xq'>
+          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <view class='tj_dizhi'>
+            <image src='/img/dingwei.png' class='tj_dw'></image>
+            <view class='th_xqdz'>
+              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='clear:both'></view>
+  <!-- 统计页面 完-->
+  <view class='footer'>
+    <view class='qiandaoye' catchtap='djqd_ym' wx:if='{{qdy_hui}}'>
+      <image src='/img/qiandao.png' class='qd_icon'></image>
+      <view>签到</view>
+    </view>
+    <view class='qiandaoye' wx:if='{{qdy_lan}}'>
+      <image src='/img/qiandaoxuanzhong.png' class='qd_icon'></image>
+      <view class='lancolor'>签到</view>
+    </view>
+    <view class='tongjiye' wx:if='{{tjym_hui}}' catchtap='djtj_ym'>
+      <image src='/img/tongji.png' class='tj_icon'></image>
+      <view>统计</view>
+    </view>
+
+    <view class='tongjiye' wx:if='{{tjym_lan}}'>
+      <image src='/img/tongjixuanzhong.png' class='tj_icon'></image>
+      <view class='lancolor'>统计</view>
+    </view>
+  </view>
+</view>
+
+<!-- 刷脸登录-->
+<view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
+ <cover-image class="lefttop"  src="/img/zhegan.png" />
+</camera> 
+  <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
+       <text>请点击刷脸验证 {{countdown}}</text>
+  </view>
+  <view  class="anniu" catchtap="resetVideo"  wx:if="{{countdown==0}}">
+       <text>刷脸验证超时,本章节进度清空</text>
+  </view>
 </view>
