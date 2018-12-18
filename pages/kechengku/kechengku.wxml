@@ -102,7 +102,7 @@
               <view class='sheding'>
                 <view class='dykscsp_tupian'>
                   <image data-id="{{course.id}}" data-index='{{index}}' class="ddwhjy_img" src='{{course.thumbnail}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
-                  <view data-id="{{course.id}}" data-index='{{index}}' class='dykscsp_dingwei' wx:if="{{course.isSign==0}}">
+                  <view data-id="{{course.id}}" data-index='{{index}}'  catchtap='bofang'class='dykscsp_dingwei' wx:if="{{course.isSign==0}}">
                     <view class='dykscsp_jianju'>
                       <text>未选课</text>
                     </view>
