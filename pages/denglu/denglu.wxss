@@ -36,14 +36,21 @@ page{
 .anniu{
   width:85%;
   height: 80rpx;
-  border: 1px solid #ccc;
   line-height: 80rpx;
   text-align: center;
-  color: #fff;
-  background: #2499f9;
-  border-radius: 40rpx;
-  font-size: 36rpx;
   margin-top: 40rpx;
+}
+.button-hover {
+  color:#fff;
+  background-color:#2499f9;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+}
+.btn_shualian{
+  color:#fff;
+  background-color:#2499f9;
+  border-radius: 50rpx;
+  font-size: 36rpx;
 }
 .cuowu{
   margin-top: 30rpx;
