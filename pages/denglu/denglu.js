@@ -2,7 +2,7 @@ var RSAUtil = require("../../utils/RSA.js");
 var module="";
 var empoent="";
 Page({
-
+  
   /**
    * 页面的初始数据
    */
@@ -20,8 +20,32 @@ Page({
       password: e.detail.value
     })
   },
-  scanQRCode: function () {
-   // var header = getApp().globalData.header; //获取app.js中的请求头
+  scanQRCode: function (e) {
+    wx.login({
+      success(res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: getApp().globalData.url + '/wechat/getOpenid',
+            data: {
+              code: res.code,
+              formId: e.detail.formId
+            },
+            method: "POST",
+            header: {
+              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res) {
+              
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+
     let passwd = this.data.password;
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(empoent, module), this.data.password)
     let usernm = this.data.username;
