@@ -54,12 +54,12 @@
 .wode_nr {
   width: 100%;
   height: auto;
-  padding: 20rpx 0 0rpx;
+  padding: 35rpx 0 0rpx;
 }
 
 .nr_mokuan {
   display: inline-block;
-  margin-bottom: 13rpx;
+  margin-bottom: 30rpx;
 }
 
 .kcwxz {
