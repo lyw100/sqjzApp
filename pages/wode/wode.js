@@ -24,7 +24,9 @@ Page({
     hours:0,//已完成学时
     page:1,
     rows:6,
-    dibu:false
+    dibu:false,
+    scpage:1,
+    courseList:[]
   },
   //签到  已签到
   qiandao:function(){
@@ -469,6 +471,149 @@ Page({
       wodeshoucangmk:true,
       wdsc_lan: true,
       wdsc_hui:false,
+      scpage:1,
+      courseList:[]
+    })
+    this.loadCollection();//我的收藏
+  },
+  /*加载我的收藏*/
+  loadCollection:function(){
+    var url=getApp().globalData.url;
+    var self=this;
+    var page=this.data.scpage;
+    wx.request({
+      url: url+'/wdsc/list',
+      data: {
+        jzid: getApp().globalData.jiaozhengid,
+        page: page,
+        rows: 6
+      },
+      method: 'POST',
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res){
+        if(res.data.msg=="OK"){
+          var list=res.data.list;
+          var courseList=self.data.courseList;
+          for(var i=0;i<list.length;i++){
+            courseList.push(list[i]);
+          }
+          self.setData({
+            courseList: courseList
+          })
+          if(list.length>0){
+            self.setData({
+              scpage:page+1
+            })
+          }else{
+            self.setData({
+              dibu:false
+            })
+            wx.showToast({
+              title: '暂无更多数据',
+              icon:'none',
+              duration:1000
+            })
+          }
+        }
+      }
+    })
+  },
+  //我的收藏，视频播放
+  bofang: function (e) {
+    var courseid = e.currentTarget.dataset.id;
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
+      url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
+    })
+  },
+  /**
+   * 我的收藏，选课
+   */
+  chooseCourse: function (e) {
+
+    var courseid = e.currentTarget.dataset.id;
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = getApp().globalData.url + '/course/saveSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//选课成功
+          wx.showToast({
+            title: '选课成功',
+            icon: 'none',
+            duration: 2000
+          })
+          var courseList=that.data.courseList;
+          courseList[index].isSign=1;
+          that.setData({
+            courseList: courseList,
+          })
+        } else if (res.data == "more") {
+          wx.showToast({
+            title: '选择课时超出',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 我的收藏
+   * 取消选课  判断播放进度是否为0  不是0不可以取消
+   */
+  cancleCourse: function (e) {
+    var courseid = e.currentTarget.dataset.id;
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+
+    var jzid = getApp().globalData.jiaozhengid;
+    var url = getApp().globalData.url + '/course/cancleSign';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { courseid: courseid, jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        if (res.data == "ok") {//取消选课成功
+          var courseList=that.data.courseList;
+          courseList[index].isSign=0;
+          that.setData({
+            courseList: courseList,
+          })
+          wx.showToast({
+            title: '取消课程成功',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "progress") {
+          wx.showToast({
+            title: '该课程已学习不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data == "assign") {
+          wx.showToast({
+            title: '指定课程不可取消',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
     })
   },
   // 我的签到
@@ -719,6 +864,7 @@ Page({
     this.qiandaotype();
     // this.currentCourse();//当月课程
     this.historyCourse();//历史课程
+    //this.loadCollection();//我的收藏
     this.countInfo();
 
     
@@ -755,6 +901,14 @@ Page({
     //心里评估刷新
     if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
       this.xinlipiggu();
+    }
+    //我的收藏
+    if (this.data.wodeshoucangmk){
+      this.setData({
+        scpage:1,
+        courseList:[]
+      })
+      this.loadCollection();
     }
   },
 
@@ -801,6 +955,10 @@ Page({
       // 心理评估上拉触底 
     if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
       this.loadPsyReportList();
+    }
+    //我的收藏
+    if (this.data.wodeshoucangmk){
+      this.loadCollection();
     }
   },
 
