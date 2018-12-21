@@ -39,7 +39,7 @@
    <view class='nr_mokuan'>
       <image src='/img/jizhongxuexi.png' class='kcwxz'></image>
     </view>
-    <view class='nr_mokuan'>
+    <view class='nr_mokuan' catchtap='wode_ywld'>
       <image src='/img/yiwulaodong.png' class='kcwxz'></image>
     </view>
     <view class='nr_mokuan' catchtap='wodeshoucangtp'>

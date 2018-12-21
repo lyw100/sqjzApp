@@ -1,0 +1,93 @@
+<view class="ywld">
+  <!-- 我的页面 -->
+  <view class='ywld_wode'>
+      <view class='ywld_xiala'>
+          <view class='xiala_qb' catchtap='quanbudj'>
+            <text>全部</text>
+            <image src='/img/xialajiantou.png' class='xiajiantou'></image>
+          </view>
+          
+          <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>
+            <text catchtap='laodongdj'>劳动中</text>
+            <text catchtap='laodongdj'>已完成</text>
+          </view>
+      </view>
+      <view class='ywld_nr'>
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心裕华区老年活动中心裕华区老年裕华区老年</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='weiwancheng'>未完成</text>
+            <text class='daishenhe'>待审核</text>
+          </view>
+        </view>
+
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='weiwancheng'>未完成</text>
+            <text class='shenhetongguo'>审核通过</text>
+          </view>
+        </view>
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='weiwancheng'>未完成</text>
+            <text class='shenheweitongguo'>审核未通过</text>
+          </view>
+        </view>
+      </view>
+  </view>
+  <!-- 定位 -->
+  <view class='ywld_footer'>
+    <view class='wdym_tiap' wx:if='{{wode_xsyc}}'>
+      <image src='/img/wod.png' class='wode_tupian'></image>
+      <view class='wode_color'><text>我的</text></view>
+    </view>
+    <view class='wdym_tiap' wx:if='{{wode_xsychui}}' catchtap='wode_hui'>
+      <image src='/img/wdwxz.png' class='wode_tupian'></image>
+      <view class='wode_hui'><text>我的</text></view>
+    </view>
+
+    <view class='wdym_tijz' wx:if='{{wode_jzyc}}'>
+      <image src='/img/jz.png' class='wode_jztp'></image>
+      <view class='wode_color'><text>集中</text></view>
+    </view>
+
+    <view class='wdym_tijz' wx:if='{{wode_jzychui}}' catchtap='jz_dj'>
+      <image src='/img/jzwxz.png' class='wode_jztp'></image>
+      <view class='wode_hui'><text>集中</text></view>
+    </view>
+  </view>
+
+
+  <view class='xinjian'>
+    <image src='/img/xinjian.png' class='xinjain_icon'></image>
+  </view>
+</view>

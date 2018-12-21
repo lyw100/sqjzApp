@@ -24,7 +24,9 @@
     "pages/yanzheng/yanzheng",
     "pages/shuruxinmimao/shuruxinmimao",
     "pages/zhuanti/zhuanti",
-    "pages/wodeqiandao/wodeqiandao"
+    "pages/wodeqiandao/wodeqiandao",
+    "pages/yiwulaodong/yiwulaodong",
+
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

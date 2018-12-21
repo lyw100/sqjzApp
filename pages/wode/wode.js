@@ -616,6 +616,12 @@ Page({
       }
     })
   },
+  // 义务劳动
+  wode_ywld: function () {
+    wx.navigateTo({
+      url: '../yiwulaodong/yiwulaodong',
+    })
+  },
   // 我的签到
   wodeqiandao:function(){
     wx.navigateTo({
