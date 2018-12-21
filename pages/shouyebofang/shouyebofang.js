@@ -225,13 +225,15 @@ Page({
       this.videoContext.pause()
     }else{
       if (this.data.addPlayNum==false){
+        this.setData({
+          addPlayNum: true
+        });
         var progress=this.data.progress;
         // console.log("progress:"+progress);
         var duration=this.data.sectionRecord.section.duration;
         if (duration!=progress){
           this.videoContext.seek(progress);
         }
-        var that=this;
         var courseid = this.data.record.course.id;//课程id
         var jzid = this.data.record.jzid;
         var url = getApp().globalData.url + '/course/addPlayNum';
@@ -245,9 +247,7 @@ Page({
           },
           success(res) {
             // console.log(res.data);
-            that.setData({
-              addPlayNum:true
-            });
+            
           }
         })
 
