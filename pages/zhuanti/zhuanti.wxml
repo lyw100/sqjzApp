@@ -21,11 +21,11 @@
             <view class="xsshijian">
               <text class="shijian">{{course.courseTime}}</text>
               <text wx:if="{{course.subject.type==0}}" class="xueshi">学时:{{course.hours}}</text>
-              <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='cancleSign' wx:if='{{course.isSign==1}}'>
+              <view class='xukefangdaweizhi' data-id="{{course.id}}"  data-index="{{index}}" catchtap='cancleSign' wx:if='{{course.isSign==1}}'>
                 <image class='xuketupian' src='/img/yixuanke.png'></image>
               </view>
 
-              <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='chooseCourse' wx:if='{{course.isSign==0}}'>
+              <view class='xukefangdaweizhi' data-id="{{course.id}}"  data-index="{{index}}" catchtap='chooseCourse' wx:if='{{course.isSign==0}}'>
                 <image class='xuketupian' src='/img/xuanke.png'></image>
               </view>
             </view>

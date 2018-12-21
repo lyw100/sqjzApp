@@ -227,7 +227,7 @@
   <!-- 我的收藏页面 -->
     <view  wx:if="{{wodeshoucangmk}}">
         <view class="dykcsp">
-           <block wx:for="{{sub.courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index"> 
+           <block wx:for="{{courseList}}" wx:key="index" wx:for-item="course" wx:for-index="index"> 
             <view class='left' >
               <image data-id="{{course.id}}" class='dykctupian' data-index='{{index}}' catchtap='bofang' src='{{course.thumbnail}}'></image>
 
@@ -236,35 +236,45 @@
                 <text class="shijian">{{course.courseTime}}</text>
                 <text class="xueshi" >学时:{{course.hours}}</text>
 
-                <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='cancleSign' wx:if='{{course.isSign==1}}'>
+                <view class='xukefangdaweizhi' data-id="{{course.id}}" data-index="{{index}}" catchtap='cancleCourse' wx:if='{{course.isSign==1}}'>
                     <image class='xuketupian' src='/img/yixuanke.png'></image>
                   </view>
-                  <view class='xukefangdaweizhi' data-id="{{course.id}}" data-subIndex="{{subIndex}}" data-index="{{index}}" catchtap='chooseCourse' wx:if='{{course.isSign==0}}'>
+                  <view class='xukefangdaweizhi' data-id="{{course.id}}" data-index="{{index}}" catchtap='chooseCourse' wx:if='{{course.isSign==0}}'>
                     <image class='xuketupian' src='/img/xuanke.png'></image>
                   </view>
 
               </view>
-
+              <!--未选课-->
               <view class='lfph_dw' catchtap='bofang' data-id="{{course.id}}" data-index='{{index}}' wx:if="{{course.isSign==0}}">
                 <view class='dwlfph_jianju'>
                   <text>未选课</text>
                 </view>
                 <view>不记学时</view>
-                <block wx:if="{{subIndex==1&&index==0}}"></block>
+                
                 <block wx:if="{{course.isNew==1}}">
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
+                <block wx:else>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                </block>
               </view>
+              <!--已选课-->
               <view wx:if="{{course.isSign==1}}">
                 <block wx:if="{{course.isNew==1}}">
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
+                <block wx:else>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                </block>
               </view>
             </view>
-
          </block> 
+         <view class='dibu' wx:if='{{dibu}}'>
+              <image src='/img/jiazai.png' class="dibu_img"></image>
+              <text>火速加载中...</text>
+            </view>
           <view style='clear:both;'></view>
         </view>
     </view>

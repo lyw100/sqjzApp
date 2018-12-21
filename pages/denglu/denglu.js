@@ -21,31 +21,6 @@ Page({
     })
   },
   scanQRCode: function (e) {
-    wx.login({
-      success(res) {
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: getApp().globalData.url + '/wechat/getOpenid',
-            data: {
-              code: res.code,
-              formId: e.detail.formId
-            },
-            method: "POST",
-            header: {
-              'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            success(res) {
-              
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
-
     let passwd = this.data.password;
     let pw = RSAUtil.encryptedString(RSAUtil.getRasKey(empoent, module), this.data.password)
     let usernm = this.data.username;
@@ -79,7 +54,35 @@ Page({
           wx.setStorageSync("username", usernm);
           wx.setStorageSync("password", pw)
           wx.setStorageSync("passwd", passwd)
+          var jzid=res.data.jzid;
             getApp().globalData.header.Cookie = 'JSESSIONID=' + res.data.sessionId;
+          //记录登录时间  更新模板消息发送数据
+          wx.login({
+            success(res1) {
+              if (res1.code) {
+                //发起网络请求
+                wx.request({
+                  url: getApp().globalData.url + '/wechat/getOpenid',
+                  data: {
+                    jzid: jzid,
+                    code: res1.code,
+                    formId: e.detail.formId
+                  },
+                  method: "POST",
+                  header: {
+                    'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  success(res2) {
+
+                  }
+                })
+              } else {
+                console.log('微信登录失败！' + res1.errMsg)
+              }
+            }
+          })
+          
           wx.navigateTo({
             url: '../shualiandenglu/shualiandenglu',
           })

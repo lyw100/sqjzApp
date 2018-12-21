@@ -882,6 +882,7 @@ Page({
   clearProgress:function(){
     var that=this;
     var progress=this.data.sectionRecord.progress;
+    clearTimeout(timer);
     timer = setTimeout(function () {
       //进度清零  并暂停
       that.videoContext.seek(0);
