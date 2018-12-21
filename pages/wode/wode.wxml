@@ -63,7 +63,7 @@
         <image data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' catchtap='coursePlay' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='dykctupian' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text data-index='{{index}}' class="shuoming">{{sign.course.name}}</text>
-        <view>
+        <view class='xssjxs_jj'>
           <text data-index='{{index}}' class="shijian">{{sign.courseTime}}</text>
           <text data-index='{{index}}' class="xueshi">学时:{{sign.course.hours}}</text>
           <text class='xssj_zdkc' wx:if="{{sign.isAssign==1}}">指定课程</text>
