@@ -262,15 +262,11 @@ overflow:auto;
 }
 .anniu{
   width:85%;
-  height: 80rpx;
-  border: 1px solid #ccc;
-  line-height: 80rpx;
   text-align: center;
-  color: #fff;
-  background: #2499f9;
-  border-radius: 40rpx;
-  font-size: 36rpx;
-  margin-top: 100rpx;
+  font-size: 40rpx;
+  padding-top: 50rpx;
+  color:#2499f9f9;
+
 }
 .lefttop{
   width: 502rpx;

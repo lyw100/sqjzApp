@@ -349,7 +349,9 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-
+.xssjxs_jj{
+  padding:0 15rpx 0rpx;
+}
 .xsshijian {
   padding-bottom: 15rpx;
 }
@@ -365,9 +367,10 @@
 .xueshi {
   font-size: 24rpx;
   color: #969696;
-  /* margin-left: 35rpx; */
   display: inline-block;
   width: 33%;
+  padding-left:3rpx;
+
 }
 .xssj_zdkc {
   color: red;

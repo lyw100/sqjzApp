@@ -153,10 +153,8 @@
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
  <cover-image class="lefttop"  src="/img/zhegan.png" />
 </camera> 
-  <view class="anniu" catchtap="takePhoto" wx:if="{{countdown!=0}}" >
-       <text>请点击刷脸验证 {{countdown}}</text>
+  <view class="anniu" >
+        <text>识别中请稍后....</text>
   </view>
-  <view  class="anniu" catchtap="resetVideo"  wx:if="{{countdown==0}}">
-       <text>刷脸验证超时,本章节进度清空</text>
-  </view>
+  
 </view>
