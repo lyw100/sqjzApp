@@ -1,0 +1,46 @@
+<view class='xjld'>
+  <view class='xjld_nr'>
+    <textarea placeholder="请输入劳动内容..." adjust-position="true" class='txtaa'bindblur="bindTextAreaBlur" />
+    <view class='xzsj'>
+      <view class='left'>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <view class="picker">
+            <view class='kaishi'>
+              <text>开始</text>
+            </view>
+            <view class='left_riqi'>
+              <text>2018年</text>
+              <text>{{multiArray[0][multiIndex[0]]}}</text>
+            </view>
+            <view class='xiaoshi'>{{multiArray[1][multiIndex[1]]}}:{{multiArray[2][multiIndex[2]]}}
+            </view>
+            
+          </view>
+        </picker>
+      </view>
+      <image src='/img/shengfenjiantou.png' class='zjt'></image>
+
+      <view class='right'>
+         <picker mode="multiSelector" bindchange="bindMultiPickerChange2" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndexx}}" range="{{multiArrayy}}">
+          <view class="picker">
+           <view class='kaishi'>
+          <text>结束</text>
+        </view>
+            <view class='left_riqi'>
+              <text>2018年</text>
+              <text>{{multiArrayy[0][multiIndexx[0]]}}</text>
+            </view>
+            <view class='xiaoshi'>{{multiArrayy[1][multiIndexx[1]]}}:{{multiArrayy[2][multiIndexx[2]]}}</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='lddd' catchtap='shurulaodongdid'>
+      <text>劳动地点</text>
+      <text class='lddd_shuru'>请输入劳动地点</text>
+    </view>
+  </view>
+  <view class='anniu' catchtap='tz_ywld'>
+    <text>提交</text>
+  </view>
+</view>

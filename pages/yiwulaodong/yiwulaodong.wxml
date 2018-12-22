@@ -62,6 +62,22 @@
             <text class='shenheweitongguo'>审核未通过</text>
           </view>
         </view>
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='weiwancheng'>未完成</text>
+            <text class='shenheweitongguo'>审核未通过</text>
+          </view>
+        </view>
       </view>
   </view>
   <!-- 定位 -->
@@ -87,7 +103,7 @@
   </view>
 
 
-  <view class='xinjian'>
+  <view class='xinjian' catchtap='xinjianlaodong'>
     <image src='/img/xinjian.png' class='xinjain_icon'></image>
   </view>
 </view>

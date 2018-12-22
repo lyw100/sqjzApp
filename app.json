@@ -1,5 +1,5 @@
 {
-  "pages": [  
+  "pages": [ 
     "pages/shouye/shouye",
     "pages/zhuye/zhuye",
     "pages/shouyebofang/shouyebofang",
@@ -26,7 +26,8 @@
     "pages/zhuanti/zhuanti",
     "pages/wodeqiandao/wodeqiandao",
     "pages/yiwulaodong/yiwulaodong",
-
+    "pages/xinjianlaodong/xinjianlaodong",
+    "pages/chaxun/chaxun"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
