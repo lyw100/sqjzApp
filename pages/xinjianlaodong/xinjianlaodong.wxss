@@ -73,11 +73,14 @@ page {
   height: 100rpx;
   line-height: 100rpx;
   font-size: 34rpx;
+  border-bottom: 1px solid #e5e5e5;
 }
-
+.ldjsdd{
+  border-bottom: none;
+}
 .lddd_shuru {
   display: inline-block;
-  width: 73%;
+  width: 64%;
   color: #818183;
   text-align: right;
   margin-left: 5%;
@@ -94,6 +97,6 @@ page {
   color: #fff;
   font-size: 34rpx;
   text-align: center;
-  margin: 400rpx auto 0rpx;
+  margin: 250rpx auto 0rpx;
   border-radius: 50rpx;
 }

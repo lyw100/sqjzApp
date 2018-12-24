@@ -8,12 +8,16 @@
           </view>
           
           <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>
+            <text catchtap='laodongdj'>未审核</text>
+            <text catchtap='laodongdj'>已审核</text>
             <text catchtap='laodongdj'>劳动中</text>
             <text catchtap='laodongdj'>已完成</text>
+            <text catchtap='laodongdj'>开始劳动</text>
           </view>
       </view>
       <view class='ywld_nr'>
-        <view class='nr_kuai'>
+        <!-- 审核中点击跳转页面 -->
+        <view class='nr_kuai' catchtap='shenhezhong'>
           <view class='nr_tit'>
             <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
           </view>
@@ -26,7 +30,7 @@
           </view>
           <view class='nr_footer'>
             <text class='weiwancheng'>未完成</text>
-            <text class='daishenhe'>待审核</text>
+            <text class='daishenhe'>审核中</text>
           </view>
         </view>
 
@@ -75,7 +79,39 @@
           </view>
           <view class='nr_footer'>
             <text class='weiwancheng'>未完成</text>
-            <text class='shenheweitongguo'>审核未通过</text>
+            <text class='shenhetongguo'>劳动中</text>
+          </view>
+        </view>
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='yiwancheng'>已完成</text>
+            <text class='shenhetongguo'>已完成</text>
+          </view>
+        </view>
+        <view class='nr_kuai'>
+          <view class='nr_tit'>
+            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+          </view>
+          <view class='nr_dwwz'>
+            <image src='/img/dingwei.png' class='nr_dwtb'></image>
+            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+          </view>
+          <view class='nr_dwwz'>
+            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+          </view>
+          <view class='nr_footer'>
+            <text class='weiwancheng'>未完成</text>
+            <text class='shenhetongguo'>开始劳动</text>
           </view>
         </view>
       </view>

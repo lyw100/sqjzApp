@@ -36,8 +36,13 @@
       </view>
     </view>
     <view class='lddd' catchtap='shurulaodongdid'>
-      <text>劳动地点</text>
+      <text>开始劳动地点</text>
       <text class='lddd_shuru'>请输入劳动地点</text>
+    </view>
+
+    <view class='lddd ldjsdd' catchtap='shurulaodongdid'>
+      <text>结束劳动地点</text>
+      <text class='lddd_shuru'>请输入劳动结束地点</text>
     </view>
   </view>
   <view class='anniu' catchtap='tz_ywld'>

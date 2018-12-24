@@ -1,0 +1,58 @@
+<view class='shz' wx:if='{{shualiandenglu}}'>
+  <view class='shz_nr'>
+    <view class='shz_dz'>
+      <text>去石家庄裕华区老年社区劳动,帮助老人做一些义务劳动</text>
+      <!-- 审核中 -->
+      <image src='/img/shz.png' class='shz_icon'></image>
+       <!-- 审核通过 -->
+      <image src='/img/shtg.png' class='shz_icon' wx:if='{{shtg}}'></image>
+       <!-- 审核未通过 -->
+      <image src='/img/shbtg.png' class='shz_icon' wx:if='{{shbtg}}'></image>
+    </view>
+    <view class='sh_timt'>
+      <text>开始时间</text>
+      <text class='time_riqi'>12月14日 08：00</text>
+    </view>
+    <view class='sh_timt'>
+      <text>结束时间</text>
+      <text class='time_riqi'>12月14日 08：00</text>
+    </view>
+    <view class='sh_timt'>
+      <text>执行人</text>
+      <text class='time_riqi'>张三</text>
+    </view>
+    <view class='sh_timt'>
+      <text>开始劳动地点</text>
+      <text class='time_riqi'>裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心</text>
+    </view>
+    <view class='sh_timt'>
+      <text>结束劳动地点</text>
+      <text class='time_riqi'>裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心</text>
+    </view>
+  </view>
+  <!-- 审核未通过原因 -->
+    <view class='weitongguoyy' wx:if='{{shenhe_wtgyy}}'>
+      <view ><text>审核未通过原因</text></view>
+      <view class='wtt_yuanyin'>
+        <text>安静的疯狂拉升京东方可拉到数据库浪费 安静的疯狂拉升京东方可拉到数据库浪费</text>
+      </view>
+    </view>
+  <!-- 开始劳动灰色按钮  审核通过蓝色按钮 审核未通过没有按钮-->
+  <view class='anniu' wx:if='{{ksld_huise}}'>
+    <text>开始劳动</text>
+  </view>
+  <view class='anniu2' wx:if='{{ksld_lanse}}' catchtap='tzldz'>
+    <text>开始劳动</text>
+  </view>
+  <!-- 刷脸登录 -->
+</view>
+
+<view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
+<camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
+ <cover-image class="lefttop"  src="/img/zhegan.png" />
+</camera> 
+  <view class="shebieziti">
+        <text>识别中请稍后....</text>
+  </view>
+  
+</view>

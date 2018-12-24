@@ -4,50 +4,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    xiala_dwyc:false,
-    wode_xsyc:true,
-    wode_xsychui:false,
-    wode_jzyc:false,
-    wode_jzychui:true,
+    shtg:false,
+    shbtg:false,
+    ksld_huise:false,
+    ksld_lanse:true,
+    shenhe_wtgyy:false,
+    shualiandenglu:true,
+    shualiandl:false,
   },
-  // 点击全部
-  quanbudj:function(){
-    this.setData({
-      xiala_dwyc: true,
-    });
-  },
-  laodongdj: function () {
-    this.setData({
-      xiala_dwyc: false,
-    });
-  },
-  // 点击内容
-  jz_dj:function(){
-    this.setData({
-      wode_xsyc: false,
-      wode_xsychui: true,
-      wode_jzyc: true,
-      wode_jzychui: false,
-    });
-  },
-  wode_hui: function () {
-    this.setData({
-      wode_xsyc: true,
-      wode_xsychui: false,
-      wode_jzyc: false,
-      wode_jzychui: true,
-    });
-  },
-  // 跳转新建劳动页面
-  xinjianlaodong: function () {
+  tzldz:function(){
     wx.navigateTo({
-      url: '../xinjianlaodong/xinjianlaodong',
-    })
-  },
-   // 跳转审核中页面
-  shenhezhong: function () {
-    wx.navigateTo({
-      url: '../shenhezhong/shenhezhong',
+      url: '../kaishilaodong/kaishilaodong',
     })
   },
   /**
