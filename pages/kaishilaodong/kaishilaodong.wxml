@@ -56,7 +56,14 @@
         <image src='/img/sctp.png' class='guanbi'></image>
       </view>
       <view class='zipaishijian'><text>开始劳动:2018.12.14 08:00</text></view>
-     
+    </view>
+
+    <view class='zipai'>
+      <view class='tupaindingwei'>
+        <image src='/img/rili.png' class='tianjian'></image>
+        <image src='/img/sctp.png' class='guanbi'></image>
+      </view>
+      <view class='zipaishijian'><text>结束劳动:2018.12.14 08:00</text></view>
     </view>
     <image src='/img/tianjian.png' class='tianjian jiahaojl' catchtap='paizhao' wx:if="{{yincang}}"></image>
     </view>
