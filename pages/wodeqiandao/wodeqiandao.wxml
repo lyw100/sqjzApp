@@ -3,20 +3,21 @@
   <view wx:if='{{qd_yemian}}' style='height:100%;'>
     <view class='qd_tit'>
       <image src='/img/dingwei.png' class='dw'></image>
-      <text class='dw_wz'>石家庄生产力促进中心216室石家庄生产力促进中心216室石家庄</text>
+      <text class='dw_wz'>{{address}}</text>
     </view>
-    <view class='ditu'>地图</view>
+    <view class='ditu'>
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" style="width: 100%; height: 100%;" show-location></map>
+    </view>
     <view class='slqd'>
       <view class='slqd_yuan' catchtap='shualianqiandao'>
         <text class='shualian'>刷脸签到</text>
         <view class='shijian'>
-          <text>14:14</text>
+          <text>{{currentTime}}</text>
         </view>
       </view>
       <view class='jrqd_sm'>
-        <text wx:if='{{jrqdjc}}'>今天你还未签到</text>
-        <view>今天已经签到
-          <text class='yanse'>1</text>次</view>
+        <text wx:if='{{qdnum == 0}}'>今日你还未签到</text>
+        <view wx:else>今日你已签到<text class='yanse' >{{qdnum}}</text>次</view>
       </view>
     </view>
   </view>
@@ -151,10 +152,10 @@
 <!-- 刷脸登录-->
 <view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
- <cover-image class="lefttop"  src="/img/zhegan.png" />
+ <cover-image class="lefttop"  src="{{imgurl}}" />
 </camera> 
   <view class="anniu" >
-        <text>识别中请稍后....</text>
+        <text>{{msgData}}</text>
   </view>
   
 </view>
