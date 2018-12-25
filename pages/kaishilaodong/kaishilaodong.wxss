@@ -73,6 +73,7 @@
 }
 .zipai{
   display: inline-block;
+  margin-right:30rpx;
 }
 .zipaishijian{
   font-size: 18rpx;

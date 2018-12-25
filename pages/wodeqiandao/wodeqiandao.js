@@ -1,3 +1,6 @@
+var errorcishu = 0;//未检测到人脸次数限制
+var errorcishu1 = 0;//多次刷脸未通过次数限制
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -13,6 +16,14 @@ Page({
     tjym_lan:false,
     qd_yemian:true,
     th_yemian:false,
+    msgData: "识别中,请稍后...",
+    num: 25, //初始值
+    imgurl: "", //图片路径
+    interval: "", //定时器
+    latitude:0,
+    longitude:0,
+    adress:""
+
   },
   /**
    * 签到
@@ -31,6 +42,24 @@ Page({
    * 统计
    */
   djtj_ym:function(){
+    // wx.request({
+    //   url: getApp().globalData.url + '/jzryqd/getList',
+    //   method: "POST",
+    //   // 请求头部  
+    //   header: {
+    //     //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   data: {
+    //     jzid: getApp().globalData.jiaozhengid 
+    //   },
+    //   success: function (res) {
+    //     // var count = res.data;
+    //     // that.setData({
+    //     //   qdnum: count
+    //     // })
+    //   }
+    // })
     this.setData({
       qdy_hui: true,
       qdy_lan: false,
@@ -54,74 +83,219 @@ Page({
   * 点击刷脸签到
   */
   shualianqiandao:function(){
-    this.setData({
+    var that = this
+    that.setData({
       yincangqdmk: false,
       shualiandl: true,
     })
+    setTimeout(function () {
+      that.takePhoto();
+    }, 5000);
   },
   /**
   * 刷脸登录
   */
   takePhoto: function () {
     var that = this;
-    clearTimeout(timer);//取消定时器
-    clearInterval(interval);//取消计时器
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        wx.showLoading({
-          title: '正在核验身份.....',
+        console.log("src："+res.tempImagePath)
+        this.setData({
+          src: res.tempImagePath,
+          msgData: "识别中,请稍后..."
         })
-        // this.setData({ logindisabled: true });
+        // wx.showLoading({
+        //   title: '正在校验.....',
+        // })
+        this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
-          url: getApp().globalData.url + '/course/face',
+          url: getApp().globalData.url + '/weChat/user/face',
           filePath: res.tempImagePath,
           header: header,
           formData: {
-            telephone: wx.getStorageSync("username")
+            telephone: wx.getStorageSync("username"),
+            password: wx.getStorageSync("password")
           },
           name: 'file',
-          success: (res) => {
-            wx.hideLoading();
-            var data = JSON.parse(res.data);
+          success: (rest) => {
+            var data = JSON.parse(rest.data);
             if (data.msg == "OK") {
-              this.setData({
-                shualiandl: false,//是否展示刷脸窗口
-                xianshi: false,
-                face: true//验证通过
-              });
-              this.videoContext.play();//视频播放暂停
+              var jzid = getApp().globalData.jiaozhengid;
+              wx.uploadFile({
+                url: getApp().globalData.url + '/jzryqd/uploadQDImg',
+                filePath: res.tempImagePath,
+                name: 'file',
+                formData: {
+                  jzid: jzid
+                },
+                success(res) {
+                  var json = JSON.parse(res.data);
+                  wx.request({
+                    url: getApp().globalData.url + '/jzryqd/saveQD', //保存签到
+                    method: "POST",
+                    // 请求头部  
+                    header: {
+                      //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                      jzid: jzid,
+                      latitude: that.data.latitude,
+                      longitude: that.data.longitude,
+                      address: that.data.address,
+                      qdtime: json.qdtime,
+                      imgpath: json.imgpath
+                    },
+                    success: function (res) {
+                      var data = res.data;
+                      var str = "";
+                      if (data == "OK") {
+                        str = "签到成功";
+                      } else {
+                        str = "签到失败";
+                      }
+                      that.setData({
+                        yincangqdmk: true,
+                        shualiandl: false,
+                      })
+                      that.getQDAddress(that);
+                      wx.showToast({
+                        title: str,
+                        icon: 'none',
+                        duration: 2000
+                      })
 
-            } else {
-              wx.showModal({
-                title: '提示',
-                content: data.msg,
-                showCancel: false,
-                success: function () {
-                  that.clearProgress();//重新加载定时器
+                    }
+                  })
                 }
               })
+            } else {
+              this.setData({
+                msgData: data.msg
+              })
+              errorcishu1++;
+              if ('未能识别到人脸' == data.msg) {
+                errorcishu++;
+              } else {
+                errorcishu = 0;
+              }
+              if (errorcishu >= 3 || errorcishu1 >= 5) {
+                wx.showModal({
+                  title: '操作超时',
+                  cancelText: '退出',
+                  confirmText: '再试一次',
+                  content: '正对手机更容易成功',
+                  success: function (sm) {
+                    if (sm.confirm) {
+                      errorcishu = 0;
+                      errorcishu1 = 0;
+                      setTimeout(function () {
+                        that.takePhoto();
+                      }, 3000);
+                    } else if (sm.cancel) {
+                      wx.navigateBack({
+                        delta: 1
+                      })
+                    }
+                  }
+                })
+              } else {
+                setTimeout(function () {
+                  that.takePhoto();
+                }, 3000);
+              }
             }
-
           }
         })
       }
     })
+  },
+  /**
+   * 获取位置及当前签到次数
+   */
+  getQDAddress:function(that){
+    // 引入SDK核心类
+    var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+    var qqmapsdk = new QQMapWX({
+      key: '4QSBZ-6FUHF-SS3JW-JUQI2-YDTIS-E4FTW' // 必填
+    });
+    var regionWX = [];
+    wx.getLocation({
+      //type: 'wgs84',
+      type: 'gcj02',
+      success: function (res) {
+        //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          coord_type: 2,
+          poi_options: 'policy=2;radius=3000;page_size=20;page_index=1',
+          success: function (address) {
+            var address = address.result.formatted_addresses.recommend;
+            that.setData({
+              latitude: res.latitude,
+              longitude: res.longitude,
+              address: address
+            })
+          }
+        })
+      }
+    });
 
-    this.setData({
-      yincangqdmk: true,
-      shualiandl: false,
+    wx.request({
+      url: getApp().globalData.url + '/jzryqd/getQDType',
+      method: "POST",
+      // 请求头部  
+      header: {
+        //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        jzid: getApp().globalData.jiaozhengid
+      },
+      success: function (res) {
+        var count = res.data;
+          that.setData({
+            qdnum: count
+          })
+      }
+    })
+    setInterval(function () {
+      that.getTime();
+    }, 1000) //循环时间 这里是1秒 
+  },
+  /**
+   * 摄像头图片循环
+   */
+  progress: function () {
+    var that = this;
+    var num = that.data.num;
+    var interval = setInterval(function () {
+      that.setData({
+        imgurl: "../../img/" + (39 - num) + ".png"
+      })
+      num--;
+      if (num == 13) {
+        num = 25
+      }
+    }, 100)
+    that.setData({
+      interval: interval
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.progress();
+    this.getQDAddress(this);
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -133,7 +307,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+   
   },
 
   /**
@@ -169,5 +343,40 @@ Page({
    */
   onShareAppMessage: function () {
     
-  }
+  },
+  /**
+   * 获取当前时间
+   */
+  getTime: function () {
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    //获取当前时间
+    var n = timestamp * 1000;
+    var date = new Date(n);
+    //时
+    var h = date.getHours();
+    //分
+    var m = date.getMinutes();
+    //秒
+    var s = date.getSeconds();
+    if (h < 10) {
+      h = "0" + date.getHours();
+    } else {
+      h = date.getHours();
+    }
+    if (m < 10) {
+      m = "0" + date.getMinutes();
+    } else {
+      m = date.getMinutes();
+    }
+    if(s < 10){
+      s = "0" + date.getSeconds();
+    }else{
+      s = date.getSeconds();
+    }
+    var currentTime = h + ":" + m + ":" + s;
+    this.setData({
+      currentTime: currentTime
+    })
+  },
 })
