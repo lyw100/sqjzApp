@@ -36,7 +36,7 @@
       <image src='/img/xlpgwx.png' class='kcwxz' wx:if="{{xinlpg_wxz}}" catchtap='xinlipiggu'></image>
       <image src='/img/xlpgxz.png' class='kcwxz' wx:if="{{xinlpg_xz}}"></image>
     </view>
-   <view class='nr_mokuan'>
+   <view class='nr_mokuan' catchtap='jizhongxuexi'>
       <image src='/img/jizhongxuexi.png' class='kcwxz'></image>
     </view>
     <view class='nr_mokuan' catchtap='wode_ywld'>

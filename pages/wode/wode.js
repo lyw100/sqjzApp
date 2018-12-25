@@ -899,6 +899,14 @@ Page({
       }
     })
   },
+  // 集中学习
+  jizhongxuexi: function(){
+    wx.showToast({
+      title: '功能开发中',
+      icon: 'none',
+      duration: 1000
+    })
+  },
   
   /**
    * 生命周期函数--监听页面加载
