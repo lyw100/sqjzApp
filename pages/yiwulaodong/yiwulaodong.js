@@ -5,38 +5,63 @@ Page({
    */
   data: {
     xiala_dwyc:false,
-    wode_xsyc:true,
-    wode_xsychui:false,
-    wode_jzyc:false,
-    wode_jzychui:true,
+    status:'',
+    statusStr:'全部',
+    type: 0,//1集中  0个人
+    page:1,
+    rows:6,
+    laborItems:[],
+    dibu:false,//火速加载中
   },
   // 点击全部
   quanbudj:function(){
-    this.setData({
-      xiala_dwyc: true,
-    });
+    if (this.data.xiala_dwyc){
+      this.setData({
+        xiala_dwyc: false,
+      });
+    }else{
+      this.setData({
+        xiala_dwyc: true,
+      });
+    }
   },
-  laodongdj: function () {
+  laodongdj: function (e) {
+    let statusStr='全部';
+    let status=e.currentTarget.dataset.status;
+    if (status == '0') { statusStr = '未审核'}
+    else if (status == 1) { statusStr = '审核未通过' }
+    else if (status == 2) { statusStr = '未劳动' }
+    else if (status == 3) { statusStr = '劳动中' }
+    else if (status == 4) { statusStr = '已完成' }
     this.setData({
       xiala_dwyc: false,
+      status:status,
+      statusStr: statusStr,
+      page:1,
+      laborItems: []
     });
+    this.laborItems();
   },
   // 点击内容
   jz_dj:function(){
     this.setData({
-      wode_xsyc: false,
-      wode_xsychui: true,
-      wode_jzyc: true,
-      wode_jzychui: false,
+      type: 1,
+      page:1,
+      laborItems: [],
+      status: '',
+      statusStr: '全部',
     });
+    this.laborItems();
   },
   wode_hui: function () {
     this.setData({
-      wode_xsyc: true,
-      wode_xsychui: false,
-      wode_jzyc: false,
-      wode_jzychui: true,
+      type: 0,
+      page: 1,
+      laborItems:[],
+      status: '',
+      statusStr: '全部',
     });
+    this.laborItems();
   },
   // 跳转新建劳动页面
   xinjianlaodong: function () {
@@ -54,7 +79,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.laborItems();
   },
 
   /**
@@ -96,7 +121,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+    // 显示加载图标
+    this.setData({
+      dibu: true
+    })
+    this.laborItems();
   },
 
   /**
@@ -104,5 +133,42 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  /**
+   * 获取劳动列表
+   */
+  laborItems:function(){
+    let type=this.data.type;
+    let status=this.data.status;
+    let page=this.data.page;
+    let rows=this.data.rows;
+    let jzid=getApp().globalData.jiaozhengid;
+    let that=this;
+    wx.request({
+      url: getApp().globalData.url + '/labor/getLaborItemList', //请求劳动列表
+      data: { jzid: jzid, page: page, rows: rows ,type:type,status:status},
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        var list = res.data.laborItems;
+        if (list.length > 0) {
+          page += 1;
+          var content = that.data.laborItems.concat(list);
+          that.setData({
+            page: page,
+            laborItems: content
+          });
+        }
+        setTimeout(function(){
+          that.setData({
+            dibu: false
+          })
+        },800);
+      }
+    })
+
   }
 })
