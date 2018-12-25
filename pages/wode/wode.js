@@ -298,6 +298,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
       data: { jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -322,15 +323,39 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/cmonthSignList', //请求当月已选课程地址
       data: { jzid: jzid },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data);
+        // var hours = res.data.hours;
+        var list = res.data.list;
+        that.setData({
+          // hours: parseFloat(hours).toFixed(1),
+          nowList: list
+        })
+      }
+    })
+  },
+  /**
+   * 获取当月已完成课程总学时
+   */
+  currentCourseHours: function () {
+    var that = this;
+    var jzid = getApp().globalData.jiaozhengid;
+    // console.log(that.globalData.header.Cookie);
+    wx.request({
+      url: getApp().globalData.url + '/sign/signHours', //请求当月已选课程时间
+      data: { jzid: jzid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
         // console.log(res.data);
         var hours = res.data.hours;
-        var list = res.data.list;
         that.setData({
           hours: parseFloat(hours).toFixed(1),
-          nowList: list
         })
       }
     })
@@ -346,6 +371,7 @@ Page({
       // url: 'http://localhost:8081/SQJZ/sign/historySignList', //请求历史已选课程地址
       data: { jzid: jzid, 'page': that.data.page, 'rows': that.data.rows },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
@@ -887,7 +913,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.onLoad();
+    this.currentCourseHours();
     
     // 在线考试刷新
     if (this.data.zaixks_wxz == false && this.data.zaixks_xz == true) {
