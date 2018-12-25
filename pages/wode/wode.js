@@ -128,7 +128,9 @@ Page({
     var jzid = getApp().globalData.jiaozhengid
     if (kshadLastPage) {
       wx.showToast({
-        title: '到底啦',
+        title: '暂无更多数据',
+        icon: 'none',
+        duration: 1000
       })
       that.setData({
         dibu:false
@@ -155,6 +157,11 @@ Page({
                 dibu:false,
                 xzkslist: xzkslist,
                 xzkslen: xzkslen
+              })
+            }else{
+              that.setData({
+                dibu: false,
+                xzkslen: 0
               })
             }
           }
@@ -188,9 +195,11 @@ Page({
               kshadLastPage: true,
               lskslen: lskslen
             })
-            wx.showToast({
-              title: '到底啦',
-            })
+            // wx.showToast({
+            //   title: '暂无更多数据',
+            //   icon: 'none',
+            //   duration: 1000
+            // })
           }
         }
       })
@@ -757,14 +766,16 @@ Page({
     })
     this.loadPsyReportList();
   },
-  //加载心理评估页面的历史考试
+  //加载心理评估页面的历史评估
   loadPsyReportList: function () {
     var that = this;
     var page = this.data.xinlipage
     var xlhadLastPage = this.data.xlhadLastPage
     if (xlhadLastPage) {
       wx.showToast({
-        title: '到底啦',
+        title: '暂无更多数据',
+        icon: 'none',
+        duration: 1000
       })
       that.setData({
         dibu: false
@@ -773,11 +784,11 @@ Page({
     }
     if (this.data.xinlpg_wxz == false && this.data.xinlpg_xz == true) {
       wx.request({
-        url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史考试
+        url: getApp().globalData.url + '/psyass/getPsyReportList', //获取历史评估
         method: "POST",
         // 请求头部  
         header: {
-          //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
           'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
@@ -792,16 +803,20 @@ Page({
             that.setData({
               dibu:false,
               psyReportList: that.data.psyReportList.concat(list),
-              xinlipage: page + 1
+              xinlipage: page + 1,
+              xlpglen: that.data.psyReportList.length + list.length
             })
           } else {
             that.setData({
               dibu: false,
-              xlhadLastPage: true
+              xlhadLastPage: true,
+              xlpglen: that.data.psyReportList.length
             })
-            wx.showToast({
-              title: '到底啦',
-            })
+            // wx.showToast({
+            //   title: '暂无更多数据',
+            //   icon: 'none',
+            //   duration: 1000
+            // })
           }
         }
       })
