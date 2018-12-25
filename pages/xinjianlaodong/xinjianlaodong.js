@@ -4,114 +4,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: 0,
-    multiArray: [['12月22日', '12月23日', '12月24日'], ['01', '02', '03', '04', '05'], ['00', '05']],
-    objectMultiArray: [
-      [
-        {
-          id: 0,
-          name: '12月22日'
-        },
-        {
-          id: 1,
-          name: '12月23日'
-        },
-        {
-          id: 2,
-          name: '12月24日'
-        }
-      ], [
-        {
-          id: 0,
-          name: '01'
-        },
-        {
-          id: 1,
-          name: '02'
-        },
-        {
-          id: 2,
-          name: '03'
-        },
-        {
-          id: 3,
-          name: '04'
-        },
-        {
-          id: 3,
-          name: '05'
-        }
-      ], [
-        {
-          id: 0,
-          name: '00'
-        },
-        {
-          id: 1,
-          name: '05'
-        }
-      ]
-    ],
-
-    index: 0,
-    multiArrayy: [['12月26日', '12月27日', '12月28日'], ['01', '02', '03', '04', '05'], ['00', '05']],
-    objectMultiArray: [
-      [
-        {
-          id: 0,
-          name: '12月26日'
-        },
-        {
-          id: 1,
-          name: '12月27日'
-        },
-        {
-          id: 2,
-          name: '12月28日'
-        }
-      ], [
-        {
-          id: 0,
-          name: '01'
-        },
-        {
-          id: 1,
-          name: '02'
-        },
-        {
-          id: 2,
-          name: '03'
-        },
-        {
-          id: 3,
-          name: '04'
-        },
-        {
-          id: 3,
-          name: '05'
-        }
-      ], [
-        {
-          id: 0,
-          name: '00'
-        },
-        {
-          id: 1,
-          name: '05'
-        }
-      ]
-    ],
+   
   },
-  bindMultiPickerChange: function (e) {
+  bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      multiIndex: e.detail.value
+      date: e.detail.value
     })
   },
-  bindMultiPickerChange2: function (e) {
+  bindTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      multiIndexx: e.detail.value
+      time: e.detail.value
+    })
+  },
+  bindDateChange2: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange2: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value
     })
   },
   bindTextAreaBlur(e) {
