@@ -41,31 +41,47 @@ Page({
    * 统计
    */
   djtj_ym:function(){
-    // wx.request({
-    //   url: getApp().globalData.url + '/jzryqd/getList',
-    //   method: "POST",
-    //   // 请求头部  
-    //   header: {
-    //     //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-    //     'content-type': 'application/x-www-form-urlencoded'
-    //   },
-    //   data: {
-    //     jzid: getApp().globalData.jiaozhengid 
-    //   },
-    //   success: function (res) {
-    //     // var count = res.data;
-    //     // that.setData({
-    //     //   qdnum: count
-    //     // })
-    //   }
-    // })
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    //年  
+    var year = date.getFullYear();
+    //月  
+    var month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    this.setData({
+      date: year + "-" + month
+    });
+    this.getTJList();
     this.setData({
       qdy_hui: true,
       qdy_lan: false,
       tjym_hui: false,
       tjym_lan: true,
       qd_yemian: false,
-      th_yemian: true,
+      th_yemian: true
+    })
+  },
+  /**
+   * 获取签到统计数据
+   */
+  getTJList:function(){
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/jzryqd/getList',
+      method: "POST",
+      // 请求头部  
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        jzid: getApp().globalData.jiaozhengid,
+        time: that.data.date
+      },
+      success: function (res) {
+        that.setData({
+          maplist: res.data
+        })
+      }
     })
   },
   bindDateChange: function (e) {
@@ -73,6 +89,7 @@ Page({
     this.setData({
       date: e.detail.value
     })
+    this.getTJList();
   },
   myCatchTouch: function () {
     // console.log('stop user scroll it!');
@@ -100,7 +117,6 @@ Page({
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        console.log("src："+res.tempImagePath)
         this.setData({
           src: res.tempImagePath,
           msgData: "识别中,请稍后..."
@@ -262,9 +278,12 @@ Page({
         jzid: getApp().globalData.jiaozhengid
       },
       success: function (res) {
-        var count = res.data;
+        var dtcount = res.data.dtcount;
+        var dycount = res.data.dycount;
+        console.log(res);
           that.setData({
-            qdnum: count
+            dtqdnum: dtcount,
+            dyqdnum: dycount,
           })
       }
     })
