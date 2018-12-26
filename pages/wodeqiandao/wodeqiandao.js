@@ -224,8 +224,8 @@ Page({
     });
     var regionWX = [];
     wx.getLocation({
-      type: 'wgs84',
-      //type: 'gcj02',
+      // type: 'wgs84',
+      type: 'gcj02',
       success: function (res) {
         //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
         qqmapsdk.reverseGeocoder({
@@ -233,7 +233,7 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude
           },
-          coord_type: 2,
+          coord_type: 5,
           poi_options: 'policy=2;radius=3000;page_size=20;page_index=1',
           success: function (data) {
             //console.log(data);
