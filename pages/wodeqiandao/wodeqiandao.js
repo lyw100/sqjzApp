@@ -1,6 +1,5 @@
 var errorcishu = 0;//未检测到人脸次数限制
 var errorcishu1 = 0;//多次刷脸未通过次数限制
-var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -161,7 +160,7 @@ Page({
                         yincangqdmk: true,
                         shualiandl: false,
                       })
-                      that.getQDAddress(that);
+                      that.getQDAddress();
                       wx.showToast({
                         title: str,
                         icon: 'none',
@@ -216,8 +215,9 @@ Page({
   /**
    * 获取位置及当前签到次数
    */
-  getQDAddress:function(that){
-    // 引入SDK核心类
+  getQDAddress:function(){
+    var that = this;
+    // // 引入SDK核心类
     var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
     var qqmapsdk = new QQMapWX({
       key: '4QSBZ-6FUHF-SS3JW-JUQI2-YDTIS-E4FTW' // 必填
@@ -236,7 +236,7 @@ Page({
           coord_type: 2,
           poi_options: 'policy=2;radius=3000;page_size=20;page_index=1',
           success: function (data) {
-            console.log(data);
+            //console.log(data);
              var address = data.result.formatted_addresses.recommend;
             //var address = data.result.address;
             that.setData({
@@ -248,7 +248,8 @@ Page({
         })
       }
     });
-
+   
+    
     wx.request({
       url: getApp().globalData.url + '/jzryqd/getQDType',
       method: "POST",
@@ -267,9 +268,7 @@ Page({
           })
       }
     })
-    setInterval(function () {
-      that.getTime();
-    }, 1000) //循环时间 这里是1秒 
+    
   },
   /**
    * 摄像头图片循环
@@ -294,8 +293,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+   
     this.progress();
-    this.getQDAddress(this);
+    this.getQDAddress();
+    setInterval(function () {
+      that.getTime();
+    }, 1000) //循环时间 这里是1秒 
   },
   
   /**
@@ -309,7 +313,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
   },
 
   /**
