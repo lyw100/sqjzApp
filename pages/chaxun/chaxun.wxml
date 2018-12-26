@@ -2,36 +2,28 @@
   <view class='sskuang'>
     <view class='ssk_nr'>
       <image src='/img/sousuo.png' class='ss_icon'></image>
-      <input placeholder="请输入劳动地点" auto-focus  bindinput="bindKeyInput" />
+      <input placeholder="请输入劳动地点" auto-focus value="{{searchinput}}"  bindinput="bindKeyInput" />
       <image src='/img/ssqx.png' class='chahao_icon' catchtap='chahaodj'></image>
     </view>
     <text class='quxiao' catchtap='quxiaoanniu'>取消</text>
   </view>
 
   <view class='sousuo_nr' wx:if='{{nr_xsyc}}'>
-    <view class='ss_dz'>
-        <image src='/img/dingwei.png' class='dizhi'></image>
-        <view class='dz_nr'>
-          <view class='dz_tit'>
-            <text>河北以岭</text>
-            <text class='dz_color'>医院</text>
+    
+    <block wx:for="{{list}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+      <view class='ss_dz' data-title='{{item.title}}' catchtap='reback'>
+          <image src='/img/dingwei.png' class='dizhi'></image>
+          <view class='dz_nr'>
+            <view class='dz_tit'>
+              <text>{{item.title}}</text>
+              <!-- <text class='dz_color'>{{item.address}}</text> -->
+            </view>
+            <view class='dz_xx'>
+              <text>{{item.address}}</text>
+            </view>
           </view>
-          <view class='dz_xx'>
-            <text>河北省石家庄市桥西区新石北路385号</text>
-          </view>
-        </view>
-    </view>
-    <view class='ss_dz'>
-        <image src='/img/dingwei.png' class='dizhi'></image>
-        <view class='dz_nr'>
-          <view class='dz_tit'>
-            <text>河北以岭</text>
-            <text class='dz_color'>医院</text>
-          </view>
-          <view class='dz_xx'>
-            <text>河北省石家庄市桥西区新石北路385号</text>
-          </view>
-        </view>
-    </view>
+      </view>
+    </block>
+    
   </view>
 </view>

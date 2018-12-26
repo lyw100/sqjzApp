@@ -3,136 +3,67 @@
   <view class='ywld_wode'>
       <view class='ywld_xiala'>
           <view class='xiala_qb' catchtap='quanbudj'>
-            <text>全部</text>
+            <text>{{statusStr}}</text>
             <image src='/img/xialajiantou.png' class='xiajiantou'></image>
           </view>
           
-          <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>
-            <text catchtap='laodongdj'>未审核</text>
-            <text catchtap='laodongdj'>已审核</text>
-            <text catchtap='laodongdj'>劳动中</text>
-            <text catchtap='laodongdj'>已完成</text>
-            <text catchtap='laodongdj'>开始劳动</text>
+          <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>  
+            <text data-status='' class='{{status==""?"xiala_qb":""}}' catchtap='laodongdj'>全部</text>
+            <block  wx:if='{{type==0}}'>
+              <text data-status='0' class='{{status=="0"?"xiala_qb":""}}' catchtap='laodongdj'>未审核</text>
+              <text data-status='1' class='{{status=="1"?"xiala_qb":""}}' catchtap='laodongdj'>审核未通过</text>
+            </block>
+            <text data-status='2' class='{{status=="2"?"xiala_qb":""}}' catchtap='laodongdj'>未劳动</text>
+            <text data-status='3' class='{{status=="3"?"xiala_qb":""}}' catchtap='laodongdj'>劳动中</text>
+            <text data-status='4' class='{{status=="4"?"xiala_qb":""}}' catchtap='laodongdj'>已完成</text>
           </view>
       </view>
-      <view class='ywld_nr'>
-        <!-- 审核中点击跳转页面 -->
-        <view class='nr_kuai' catchtap='shenhezhong'>
-          <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
-          </view>
-          <view class='nr_dwwz'>
-            <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心裕华区老年活动中心裕华区老年裕华区老年</text>
-          </view>
-          <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
-          </view>
-          <view class='nr_footer'>
-            <text class='weiwancheng'>未完成</text>
-            <text class='daishenhe'>审核中</text>
-          </view>
-        </view>
+      <view class='ywld_nr' wx:for="{{laborItems}}" wx:key="index" wx:for-item="item" wx:for-index="index">
 
-        <view class='nr_kuai'>
+        <!-- 审核中点击跳转页面 -->
+        <view class='nr_kuai' data-id='{{item.id}}' catchtap='shenhezhong'>
           <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
+            <text>{{item.labor.content}}</text>
           </view>
           <view class='nr_dwwz'>
             <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
+            <text style='vertical-align:middle;'>{{item.labor.startAddress}}</text>
           </view>
           <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
+            <text>活动时间 : {{item.labor.startTime}} 至 {{item.labor.endTime}}</text>
           </view>
           <view class='nr_footer'>
-            <text class='weiwancheng'>未完成</text>
-            <text class='shenhetongguo'>审核通过</text>
+            <text wx:if='{{item.status==0}}' class='daishenhe'>待审核</text>
+            <text wx:if='{{item.status==1}}'  class='shenheweitongguo'>审核未通过</text>
+            <text wx:if='{{item.status==2}}'  class='shenhetongguo'>未劳动</text>
+            <text wx:if='{{item.status==3}}'  class='shenhetongguo'>劳动中</text>
+            <text wx:if='{{item.status==4}}'  class='shenhetongguo'>已完成</text>
           </view>
         </view>
-        <view class='nr_kuai'>
-          <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
-          </view>
-          <view class='nr_dwwz'>
-            <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
-          </view>
-          <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
-          </view>
-          <view class='nr_footer'>
-            <text class='weiwancheng'>未完成</text>
-            <text class='shenheweitongguo'>审核未通过</text>
-          </view>
-        </view>
-        <view class='nr_kuai'>
-          <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
-          </view>
-          <view class='nr_dwwz'>
-            <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
-          </view>
-          <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
-          </view>
-          <view class='nr_footer'>
-            <text class='weiwancheng'>未完成</text>
-            <text class='shenhetongguo'>劳动中</text>
-          </view>
-        </view>
-        <view class='nr_kuai'>
-          <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
-          </view>
-          <view class='nr_dwwz'>
-            <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
-          </view>
-          <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
-          </view>
-          <view class='nr_footer'>
-            <text class='yiwancheng'>已完成</text>
-            <text class='shenhetongguo'>已完成</text>
-          </view>
-        </view>
-        <view class='nr_kuai'>
-          <view class='nr_tit'>
-            <text>去石家庄雨花区老年社区劳动,帮助老人做一些医务劳动。</text>
-          </view>
-          <view class='nr_dwwz'>
-            <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>裕华区老年活动中心</text>
-          </view>
-          <view class='nr_dwwz'>
-            <text>活动时间 : 11.24 08:00 至 11.24 10:00</text>
-          </view>
-          <view class='nr_footer'>
-            <text class='weiwancheng'>未完成</text>
-            <text class='shenhetongguo'>开始劳动</text>
-          </view>
-        </view>
+       
+      </view>
+        <view class='dibu' wx:if='{{dibu}}'>
+        <image src='/img/jiazai.png' class="dibu_img"></image>
+        <text>火速加载中...</text>
       </view>
   </view>
   <!-- 定位 -->
   <view class='ywld_footer'>
-    <view class='wdym_tiap' wx:if='{{wode_xsyc}}'>
+    <view class='wdym_tiap' wx:if='{{type==0}}'>
       <image src='/img/wod.png' class='wode_tupian'></image>
       <view class='wode_color'><text>我的</text></view>
     </view>
-    <view class='wdym_tiap' wx:if='{{wode_xsychui}}' catchtap='wode_hui'>
+    <view class='wdym_tiap' wx:if='{{type==1}}' catchtap='wode_hui'>
       <image src='/img/wdwxz.png' class='wode_tupian'></image>
       <view class='wode_hui'><text>我的</text></view>
     </view>
 
-    <view class='wdym_tijz' wx:if='{{wode_jzyc}}'>
+    <view class='wdym_tijz' wx:if='{{type==1}}'>
       <image src='/img/jz.png' class='wode_jztp'></image>
       <view class='wode_color'><text>集中</text></view>
     </view>
 
-    <view class='wdym_tijz' wx:if='{{wode_jzychui}}' catchtap='jz_dj'>
+    <view class='wdym_tijz' wx:if='{{type==0}}' catchtap='jz_dj'>
       <image src='/img/jzwxz.png' class='wode_jztp'></image>
       <view class='wode_hui'><text>集中</text></view>
     </view>
