@@ -153,15 +153,17 @@ Page({
       },
       success(res) {
         // console.log(res.data);
-        var list = res.data.laborItems;
+        let list = res.data.laborItems;
+        if(page>1){
+          list = that.data.laborItems.concat(list);
+        }
         if (list.length > 0) {
           page += 1;
-          var content = that.data.laborItems.concat(list);
-          that.setData({
-            page: page,
-            laborItems: content
-          });
         }
+        that.setData({
+          page: page,
+          laborItems: list
+        });
         setTimeout(function(){
           that.setData({
             dibu: false

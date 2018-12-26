@@ -89,24 +89,22 @@ overflow-y:auto;
   margin-right: 10rpx;
   font-size: 28rpx;
   margin-top: 15rpx;
+  text-align:right;
 }
 .weiwancheng{
   color: red;
 }
 .daishenhe{
-  float: right;
   padding: 2rpx 15rpx;
   background: #f3f3f3;
   color: #646668;
 }
 .shenhetongguo{
-  float: right;
   padding: 2rpx 15rpx;
   background: #f3f3f3;
   color: #2499f9;
 }
 .shenheweitongguo{
-  float: right;
   padding: 2rpx 15rpx;
   background: #f3f3f3;
   color: red;

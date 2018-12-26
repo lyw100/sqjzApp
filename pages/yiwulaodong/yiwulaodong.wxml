@@ -27,7 +27,7 @@
           </view>
           <view class='nr_dwwz'>
             <image src='/img/dingwei.png' class='nr_dwtb'></image>
-            <text style='vertical-align:middle;'>{{item.labor.address}}</text>
+            <text style='vertical-align:middle;'>{{item.labor.startAddress}}</text>
           </view>
           <view class='nr_dwwz'>
             <text>活动时间 : {{item.labor.startTime}} 至 {{item.labor.endTime}}</text>
