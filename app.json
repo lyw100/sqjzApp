@@ -68,5 +68,10 @@
         "selectedIconPath": "img/wodexuanzhong.png"
       }
     ]
+  },
+  "permission":{
+    "scope.userLocation":{
+      "desc":"你的位置信息将用于小程序位置借口的效果展示"
+    }
   }
 }
