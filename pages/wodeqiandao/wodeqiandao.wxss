@@ -28,10 +28,9 @@ overflow:auto;
 }
 
 .ditu {
-  width: 92%;
-  height: 300rpx;
-  margin: 10rpx auto 50rpx;
-  border: 1px solid red;
+  width: 96%;
+  height: 320rpx;
+  margin: 10rpx auto 30rpx;
 }
 
 .slqd {
