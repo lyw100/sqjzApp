@@ -26,7 +26,7 @@ Page({
     this.setData({
       startDate: e.detail.value,
       endtMinDate: e.detail.value,
-      startTime:'00:00',
+      startTime:'08:00',
       endMinTime:'',
     })
     if (e.detail.value>=this.data.endDate){
@@ -34,7 +34,13 @@ Page({
         endDate: e.detail.value,
         startMaxTime: this.data.endTime,
         startMinTime:'',
+        endMinTime: e.detail.value
       })
+      if (this.data.startTime > this.data.endTime) {
+        this.setData({
+          endTime: e.detail.value,
+        })
+      }
     }else{
       this.setData({
         startMaxTime: '',
@@ -66,12 +72,21 @@ Page({
     this.setData({
       endDate: e.detail.value,
       startMaxDate: e.detail.value,
-      endTime:'23:59',
+      endTime:'16:00',
     })
     if (e.detail.value == this.data.startDate) {
       this.setData({
-        endMinTime: this.data.startTime
+        endMinTime: this.data.startTime,
       })
+      if (this.data.startTime > this.data.endTime) {
+        this.setData({
+          endTime: this.data.startTime,
+        })
+      }else{
+        this.setData({
+          startMaxTime: this.data.endTime
+        })
+      }
     } else {
       this.setData({
         endMinTime: '',

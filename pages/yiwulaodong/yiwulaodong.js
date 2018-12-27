@@ -70,16 +70,17 @@ Page({
     })
   },
    // 跳转审核中页面
-  shenhezhong: function () {
+  shenhezhong: function (e) {
+    let itemid=e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../shenhezhong/shenhezhong',
+      url: '../shenhezhong/shenhezhong?itemid='+itemid,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.laborItems();
+    
   },
 
   /**
@@ -93,7 +94,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.setData({
+      page: 1,
+    }) 
+    this.laborItems();
   },
 
   /**
