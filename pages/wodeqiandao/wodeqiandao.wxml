@@ -16,8 +16,8 @@
         </view>
       </view>
       <view class='jrqd_sm'>
-        <text wx:if='{{qdnum == 0}}'>今日你还未签到</text>
-        <view wx:else>今日你已签到<text class='yanse' >{{qdnum}}</text>次</view>
+        <text wx:if='{{dtqdnum == 0}}'>今日你还未签到</text>
+        <view wx:else>今日你已签到<text class='yanse' >{{dtqdnum}}</text>次</view>
       </view>
     </view>
   </view>
@@ -26,7 +26,7 @@
   <view class='tongji_ym' wx:if='{{th_yemian}}'>
     <view class='qdcs'>
       <view class='byqd'>本月签到
-        <text class='yanse'>10</text>次</view>
+        <text class='yanse'>{{dyqdnum}}</text>次</view>
         <picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange" class='tj_pk'>
         <view class="rili">
         <image src='/img/rili.png' class='rili_icon'></image>
@@ -39,92 +39,29 @@
       <view style='clear:both'></view>
     </view>
     <view class='zhansekuai'></view>
+    <block wx:for="{{maplist}}"  wx:for-item="json" wx:for-index="index" wx:key="index">
     <view class='tj_nr'>
       <view class='tj_time'>
-        <text class="jihao">15</text>/<text class='yuefen'>12月</text>
+        <text class="jihao">{{json.dtime}}</text>/<text class='yuefen'>{{json.mtime}}</text>
         <view class='xiantiao'></view>
       </view>
+        <block wx:for="{{json.signlist}}"  wx:for-item="sign" wx:for-index="index" wx:key="index">
       <view class='tj_sm'>
-        <text class='tj_tm'>10:34</text>
-        <view class='sm_xq'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
-          <view class='tj_dizhi'>
-            <image src='/img/dingwei.png' class='tj_dw'></image>
-            <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='tj_sm'>
-        <text class='tj_tm'>10:34</text>
+        <text class='tj_tm'>{{sign.signtime}}</text>
         <view class='sm_xq qubiaokuang'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
+          <image src='{{sign.imgurl}}' class='zipaizhao'></image>
           <view class='tj_dizhi'>
             <image src='/img/dingwei.png' class='tj_dw'></image>
             <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
+              <text>{{sign.address}}</text>
             </view>
           </view>
         </view>
       </view>
+      </block>
       <view class='zhansekuai_2'></view>
     </view>
-
-    <view class='tj_nr'>
-      <view class='tj_time'>
-        <text class="jihao">15</text>/<text class='yuefen'>11月</text>
-        <view class='xiantiao'></view>
-      </view>
-      <view class='tj_sm'>
-        <text class='tj_tm'>10:34</text>
-        <view class='sm_xq'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
-          <view class='tj_dizhi'>
-            <image src='/img/dingwei.png' class='tj_dw'></image>
-            <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='tj_sm'>
-        <text class='tj_tm'>10:34</text>
-        <view class='sm_xq'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
-          <view class='tj_dizhi'>
-            <image src='/img/dingwei.png' class='tj_dw'></image>
-            <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='tj_sm'>
-        <text class='tj_tm'>8:00</text>
-        <view class='sm_xq'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
-          <view class='tj_dizhi'>
-            <image src='/img/dingwei.png' class='tj_dw'></image>
-            <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='tj_sm'>
-        <text class='tj_tm'>8:00</text>
-        <view class='sm_xq'>
-          <image src='/img/ceshi.jpg' class='zipaizhao'></image>
-          <view class='tj_dizhi'>
-            <image src='/img/dingwei.png' class='tj_dw'></image>
-            <view class='th_xqdz'>
-              <text>石家庄生产力促进中心,河北省石家庄市桥西区红旗大街新石北路263号石家庄生产力促进中心</text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
   <view style='clear:both'></view>
   <!-- 统计页面 完-->
