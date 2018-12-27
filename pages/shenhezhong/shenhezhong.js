@@ -1,3 +1,4 @@
+var autoTakePhone;
 Page({
 
   /**
@@ -10,7 +11,10 @@ Page({
     this.setData({
       shualiandl: true,//是否展示刷脸窗口
     });
-   
+    var that=this;
+    autoTakePhone=setInterval(function(){
+      that.takePhoto();
+    },3000);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -119,17 +123,14 @@ Page({
             var data = JSON.parse(res.data);
             if (data.msg == "OK") {
               wx.redirectTo({
-                url: '../kaishilaodong/kaishilaodong',
+                url: '../kaishilaodong/kaishilaodong?itemid='+this.data.laborItem.id,
               })
-
+              clearInterval(autoTakePhone);
             } else {
-              wx.showModal({
-                title: '提示',
-                content: data.msg,
-                showCancel: false,
-                success: function () {
-                 
-                }
+              wx.showToast({
+                title: data.msg,
+                icon: 'none',
+                duration: 2000
               })
             }
 

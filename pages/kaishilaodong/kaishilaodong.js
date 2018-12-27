@@ -5,35 +5,107 @@ Page({
    * 页面的初始数据
    */
   data: {
-    yincang:true,
+    yincang:true,//上传照片选择是否显示
+    tijiao:true,//提交按钮与结束劳动切换
     shualiandl:false,
+    laborItem:'',
   },
   tijiao_zhuye: function () {
-    wx.navigateBack({
-      delta:2,
-      url: '../yiwulaodong/yiwulaodong',
-    })
+    let status=this.data.laborItem.status;
+    if(status==2){
+      //保存开始劳动照片
+      this.saveLaborPicture(status);
+    }else if(status==3){
+      //劳动结束上传照片
+      this.saveLaborPicture(status);
+      wx.navigateBack({
+        delta:2,
+        url: '../yiwulaodong/yiwulaodong',
+      })
+    }
+
   },
+  /**
+   * 上传照片
+   */
   paizhao:function(){
+    let that=this;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+        let laborItem = that.data.laborItem;
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
+        var tempFilePaths = res.tempFilePaths;
+        let dateTime=that.getDateTime();
+        let laodong='';
+        if (laborItem.status==2){
+          laodong = '开始劳动照片';
+        } else if (laborItem.status == 3) {
+          laodong = '结束劳动照片';
+        }
+        for (let i = 0; i < tempFilePaths.length;i++){
+          let map={};
+          map.picture = tempFilePaths[i];
+          map.time = laodong;
+          map.isUsed = 0;//未上传
+          laborItem.pictures.push(map);
+        }
+        that.setData({
+          laborItem: laborItem
+        })
       }
     })
+    
+  },
+  /**
+   * 移除照片
+   */
+  removePicture:function(e){
+    let index = e.currentTarget.dataset.index;
+    let laborItem=this.data.laborItem;
+    laborItem.pictures.splice(index,1);
     this.setData({
-      yincang: false,
-    })
+      laborItem: laborItem
+    });
   },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let  itemid=options.itemid;
+    if (itemid==null){
+      itemid=6;
+    }
+    console.log(itemid);
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/labor/getLaborItemById', //获取义务劳动内容
+      data: { id: itemid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          laborItem: res.data,
+        });
+        let title = '';
+        if (res.data.status == 2) {
+          title = '开始劳动';
+        } else if (res.data.status == 3) {
+          title = '劳动中';
+        } else if (res.data.status == 2) {
+          title = '结束劳动';
+        }
+        console.log(title);
+        wx.setNavigationBarTitle({
+          title: title,
+        })
+      }
+    }) 
   },
 
   /**
@@ -83,5 +155,142 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+   * 获取当前时间
+   */
+  getDateTime: function () {
+    let now = new Date();
+    
+    let nowYear = now.getFullYear(); //当前年 
+    let nowMonth = now.getMonth() + 1; //当前月 
+    if (nowMonth < 10) { nowMonth = "0" + nowMonth }
+    let nowDay = now.getDate(); //当前日 
+    if (nowDay < 10) { nowDay = "0" + nowDay }
+    let nowHour = now.getHours();//当前时间
+    if (nowHour < 10) { nowHour = "0" + nowHour }
+    let nowMin = now.getMinutes();//当前分钟
+    if (nowMin < 10) { nowMin = "0" + nowMin }
+
+
+    console.log(nowHour);
+    console.log(nowMin);
+    let DateTime = nowYear + "-" + nowMonth + "-" + nowDay+" "+nowHour+":"+nowMin;
+    console.log('DateTime:' + DateTime);
+    //返回当天的日期
+    return DateTime;
+  },
+
+  /**
+   * 查询地点
+   */
+  getAddress: function () {
+    let address = '';
+    let location ='';
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        location = res.latitude + "," + res.longitude;//38.01845,114.45482
+        let key = "YGNBZ-MWGWI-6YCGS-54WJU-ZL4HJ-OXFA6"; 
+        let url = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + location
+          + "&key=" + key + "&get_poi=0"
+          + "&output=json";
+        wx.request({
+          url: url, //请求腾讯定位
+          data: {},
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            let status = res.data.status;
+            if (status == 0) {
+              address = res.data.result.formatted_addresses.recommend;
+              console.log(res.data.result.address);
+            }
+          }
+        })
+      }
+    })
+    console.log(address);
+    return address;
+    
+  },
+
+  /**
+   * 保存劳动照片
+   */
+  saveLaborPicture:function(status){
+    
+    let pictures=this.data.laborItem.pictures;
+    let urls=[];
+    for(let i=0;i<pictures.length;i++){
+      if(pictures[i].isUsed==0){
+        urls.push(pictures[i].picture);
+      }
+    }
+    if(urls.length==0){
+      wx.showToast({
+        title: '请选择照片后提交',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }else{
+      
+      let laborItem = this.data.laborItem;
+      let dateTime = this.getDateTime();
+      let json={};
+      json.address=this.getAddress();
+      console.log(address);
+      json.itemid=laborItem.id;
+      json.dateTime = dateTime + ':00';
+      json.status=status;
+      if (urls.length==1){
+        json.end = "yes";
+      }else{
+        json.end = "no";
+      }
+      this.uploadOneByOne(urls, 0, 0, 0, urls.length,json);
+    }
+  },
+
+  /**
+  * 采用递归的方式上传多张
+  */
+  uploadOneByOne(imgPaths, successUp, failUp, count, length, json) {
+    let that = this;
+
+    console.log('正在上传第' + (count+1) + '张');
+    var header = getApp().globalData.header; //获取app.js中的请求头
+    wx.uploadFile({
+      url: getApp().globalData.url + '/labor/uploadPicture',
+      filePath: imgPaths[count],
+      header: header,
+      formData: json,
+      name: 'file',//示例，使用顺序给文件命名
+      success: function (e) {
+        successUp++;//成功+1
+      },
+      fail: function (e) {
+        failUp++;//失败+1
+      },
+      complete: function (e) {
+        count++;//下一张
+        if (count == length) {
+          //上传完毕，作一下提示
+          console.log('上传成功' + successUp + ',' + '失败' + failUp);
+          
+
+        } else {
+          //递归调用，上传下一张
+          if (count+1 == length){
+            json.end="yes";
+          }
+          that.uploadOneByOne(imgPaths, successUp, failUp, count, length, json);
+          
+        }
+      }
+    })
+  },
+
 })

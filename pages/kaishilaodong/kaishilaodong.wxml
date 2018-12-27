@@ -1,77 +1,72 @@
 <view class='shz'>
   <view class='shz_nr'>
     <view class='shz_dz'>
-      <text>去石家庄裕华区老年社区劳动,帮助老人做一些义务劳动</text>
+      <text>{{laborItem.labor.content}}</text>
       <image src='/img/shtg.png' class='shz_icon'></image>
     </view>
     <view class='sh_timt'>
       <text>开始时间</text>
-      <text class='time_riqi'>12月14日 08：00</text>
+      <text class='time_riqi'>{{laborItem.labor.startTime}}</text>
     </view>
     <view class='sh_timt'>
       <text>结束时间</text>
-      <text class='time_riqi'>12月14日 08：00</text>
+      <text class='time_riqi'>{{laborItem.labor.endTime}}</text>
     </view>
     <view class='sh_timt'>
       <text>执行人</text>
-      <text class='time_riqi'>张三</text>
+      <text class='time_riqi'>{{laborItem.person}}</text>
     </view>
     <view class='sh_timt'>
       <text>开始劳动地点</text>
-      <text class='time_riqi'>裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心裕华我区老年活动中心</text>
+      <text class='time_riqi'>{{laborItem.labor.startAddress}}</text>
     </view>
     <view class='sh_timt'>
       <text>结束劳动地点</text>
-      <text class='time_riqi'>裕华我区老年活动中心</text>
+      <text class='time_riqi'>{{laborItem.labor.endAddress}}</text>
     </view>
   </view>
   <view class='zhansewei'></view>
   <view class='sjlddd'>
-    <view class='kaishi_timt'>
+    <view class='kaishi_timt' wx:if='{{laborItem.status>2}}'>
       <text>实际劳动地点</text>
-      <text class='time_riqi'>裕华我区老年活动中心</text>
+      <text class='time_riqi'>{{laborItem.startRealAddress}}</text>
     </view>
 
     <!-- 在结束劳动页面里显示 -->
-    <view class='kaishi_timt'>
+    <view class='kaishi_timt' wx:if='{{laborItem.status>3}}'>
       <text>实际结束劳动地点</text>
-      <text class='time_riqi time_riqi2'>裕华我区老年活动中心</text>
+      <text class='time_riqi time_riqi2'>{{laborItem.endRealAddress}}</text>
     </view>
 
     <!-- 在劳动中页面里显示 -->
-    <view class='kaishi_timt2'>
+    <view class='kaishi_timt2' wx:if='{{laborItem.status>2}}'>
       <text>实际开始时间</text>
-      <text class='time_riqi'>12月14日 08:00</text>
+      <text class='time_riqi'>{{laborItem.startRealTime}}</text>
     </view>
-     <view class='kaishi_timt2'>
+    <view class='kaishi_timt2' wx:if='{{laborItem.status>3}}'>
       <text>实际结束时间</text>
-      <text class='time_riqi'>12月14日 08:00</text>
+      <text class='time_riqi'>{{laborItem.endRealTime}}</text>
     </view>
     
 
     <view class='chuanzhaopain'>
-    <view class='zipai'>
-      <view class='tupaindingwei'>
-        <image src='/img/rili.png' class='tianjian'></image>
-        <image src='/img/sctp.png' class='guanbi'></image>
+    <block  wx:for="{{laborItem.pictures}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+      <view class='zipai'>
+        <view class='tupaindingwei'>
+          <image src='{{item.picture}}' class='tianjian'></image>
+          <image src='/img/sctp.png' data-index='{{index}}' wx:if='{{item.isUsed==0}}' class='guanbi' catchtap='removePicture'></image>
+        </view>
+        <view class='zipaishijian'><text>{{item.time}}</text></view>
       </view>
-      <view class='zipaishijian'><text>开始劳动:2018.12.14 08:00</text></view>
-    </view>
+    </block>
 
-    <view class='zipai'>
-      <view class='tupaindingwei'>
-        <image src='/img/rili.png' class='tianjian'></image>
-        <image src='/img/sctp.png' class='guanbi'></image>
-      </view>
-      <view class='zipaishijian'><text>结束劳动:2018.12.14 08:00</text></view>
-    </view>
-    <image src='/img/tianjian.png' class='tianjian jiahaojl' catchtap='paizhao' wx:if="{{yincang}}"></image>
+    <image src='/img/tianjian.png' class='tianjian jiahaojl' catchtap='paizhao' wx:if="{{tijiao}}"></image>
     </view>
   </view>
-  <view class='anniu' catchtap='tijiao_zhuye'>
+  <view class='anniu' catchtap='tijiao_zhuye' wx:if='{{tijiao}}'>
     <text>提交</text>
   </view>
-  <view class='anniu'>
+  <view class='anniu'wx:if='{{tijiao==false}}'>
     <text>结束劳动</text>
   </view>
 </view>

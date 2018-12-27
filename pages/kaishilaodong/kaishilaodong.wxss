@@ -73,10 +73,16 @@
 }
 .zipai{
   display: inline-block;
-  margin-right:30rpx;
+  margin:0 35rpx 30rpx 0;
+}
+.zipai:nth-child(3n){
+  margin-right:0rpx;
 }
 .zipaishijian{
-  font-size: 18rpx;
+  font-size:22rpx;
+  text-align:center;
+  margin-top:10rpx;
+
 }
 .guanbi{
   position: absolute;
@@ -106,9 +112,9 @@
   border-radius:50rpx; 
   font-size: 34rpx;
 }
-.jiahaojl{
+/* .jiahaojl{
   margin: 0 15rpx;
-}
+} */
 /* 刷脸登录 */
 .nr{
   width:100%;
