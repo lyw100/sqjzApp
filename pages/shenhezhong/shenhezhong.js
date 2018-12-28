@@ -7,7 +7,7 @@ Page({
   data: {
     shualiandl:false,
     facemsg:'',
-    num:12,
+    num:25,
     imgurl:''
   },
   tzldz:function(){
@@ -109,11 +109,11 @@ Page({
     var num = that.data.num;
     intervalImg = setInterval(function () {
       that.setData({
-        imgurl: "../../img/" + (13 - num) + ".png"
+        imgurl: "../../img/" + (39 - num) + ".png"
       })
       num--;
-      if (num == 0) {
-        num = 12
+      if (num == 13) {
+        num = 25
       }
     }, 100)
     

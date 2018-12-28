@@ -73,6 +73,8 @@ Page({
   shenhezhong: function (e) {
     let itemid=e.currentTarget.dataset.id;
     let status = e.currentTarget.dataset.status;
+      
+
     if(status<=2){
       wx.navigateTo({
         url: '../shenhezhong/shenhezhong?itemid='+itemid,
