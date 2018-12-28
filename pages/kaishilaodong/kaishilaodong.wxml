@@ -2,7 +2,9 @@
   <view class='shz_nr'>
     <view class='shz_dz'>
       <text>{{laborItem.labor.content}}</text>
-      <image src='/img/shtg.png' class='shz_icon'></image>
+      <image src='/img/shtg.png' wx:if='{{laborItem.status==2}}' class='shz_icon'></image>
+      <image src='/img/ldz.png' wx:if='{{laborItem.status==3}}' class='shz_icon'></image>
+      <image src='/img/ldjs.png' wx:if='{{laborItem.status==4}}' class='shz_icon'></image>
     </view>
     <view class='sh_timt'>
       <text>开始时间</text>
@@ -28,7 +30,7 @@
   <view class='zhansewei'></view>
   <view class='sjlddd'>
     <view class='kaishi_timt' wx:if='{{laborItem.status>2}}'>
-      <text>实际开始地点</text>
+      <text>实际开始劳动地点</text>
       <scroll-view scroll-x class='time_riqi time_riqi2'>
         <text>{{laborItem.startRealAddress}}</text>
       </scroll-view>
@@ -36,7 +38,7 @@
 
     <!-- 在结束劳动页面里显示 -->
     <view class='kaishi_timt' wx:if='{{laborItem.status>3}}'>
-      <text>实际结束地点</text>
+      <text>实际结束劳动地点</text>
       <scroll-view scroll-x class='time_riqi time_riqi2'>
         <text>{{laborItem.endRealAddress}}</text>
       </scroll-view>

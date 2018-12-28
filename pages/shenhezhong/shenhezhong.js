@@ -8,7 +8,8 @@ Page({
     shualiandl:false,
     facemsg:'',
     num:25,
-    imgurl:''
+    imgurl:'',
+    kaishi:true,
   },
   tzldz:function(){
     this.setData({
@@ -37,6 +38,16 @@ Page({
         that.setData({
           laborItem: res.data,
         });
+
+        let datetime = that.getDateTime();
+        let startTime = res.data.labor.startTime;
+        let endTime = res.data.labor.endTime;
+        if (datetime < startTime||datetime>endTime) {
+          that.setData({
+            kaishi: false,
+          });
+        }
+
         let title='';
         if (res.data.status == 0){
           title='审核中';
@@ -161,5 +172,28 @@ Page({
         })
       }
     })
+  },
+
+  /**
+  * 获取当前时间
+  */
+  getDateTime: function () {
+    let now = new Date();
+
+    let nowYear = now.getFullYear(); //当前年 
+    let nowMonth = now.getMonth() + 1; //当前月 
+    if (nowMonth < 10) { nowMonth = "0" + nowMonth }
+    let nowDay = now.getDate(); //当前日 
+    if (nowDay < 10) { nowDay = "0" + nowDay }
+    let nowHour = now.getHours();//当前时间
+    if (nowHour < 10) { nowHour = "0" + nowHour }
+    let nowMin = now.getMinutes();//当前分钟
+    if (nowMin < 10) { nowMin = "0" + nowMin }
+
+
+    let DateTime = nowYear + "-" + nowMonth + "-" + nowDay + " " + nowHour + ":" + nowMin;
+
+    //返回当天的日期
+    return DateTime;
   },
 })

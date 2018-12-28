@@ -1,23 +1,24 @@
 <view class="ywld">
   <!-- 我的页面 -->
-  <view class='ywld_wode'>
-      <view class='ywld_xiala'>
-          <view class='xiala_qb' catchtap='quanbudj'>
-            <text>{{statusStr}}</text>
-            <image src='/img/xialajiantou.png' class='xiajiantou'></image>
-          </view>
-          
-          <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>  
-            <text data-status='' class='{{status==""?"xiala_qb":""}}' catchtap='laodongdj'>全部</text>
-            <block  wx:if='{{type==0}}'>
-              <text data-status='0' class='{{status=="0"?"xiala_qb":""}}' catchtap='laodongdj'>未审核</text>
-              <text data-status='1' class='{{status=="1"?"xiala_qb":""}}' catchtap='laodongdj'>审核未通过</text>
-            </block>
-            <text data-status='2' class='{{status=="2"?"xiala_qb":""}}' catchtap='laodongdj'>未劳动</text>
-            <text data-status='3' class='{{status=="3"?"xiala_qb":""}}' catchtap='laodongdj'>劳动中</text>
-            <text data-status='4' class='{{status=="4"?"xiala_qb":""}}' catchtap='laodongdj'>已完成</text>
-          </view>
+  <view class='ywld_xiala'>
+      <view class='xiala_qb' catchtap='quanbudj'>
+        <text>{{statusStr}}</text>
+        <image src='/img/xialajiantou.png' class='xiajiantou'></image>
       </view>
+      
+      <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>  
+        <text data-status='' class='{{status==""?"xiala_qb":""}}' catchtap='laodongdj'>全部</text>
+        <block  wx:if='{{type==0}}'>
+          <text data-status='0' class='{{status=="0"?"xiala_qb":""}}' catchtap='laodongdj'>未审核</text>
+          <text data-status='1' class='{{status=="1"?"xiala_qb":""}}' catchtap='laodongdj'>审核未通过</text>
+        </block>
+        <text data-status='2' class='{{status=="2"?"xiala_qb":""}}' catchtap='laodongdj'>未劳动</text>
+        <text data-status='3' class='{{status=="3"?"xiala_qb":""}}' catchtap='laodongdj'>劳动中</text>
+        <text data-status='4' class='{{status=="4"?"xiala_qb":""}}' catchtap='laodongdj'>已完成</text>
+      </view>
+  </view>
+  <view class='ywld_wode'>
+      
       <view class='ywld_nr' wx:for="{{laborItems}}" wx:key="index" wx:for-item="item" wx:for-index="index">
 
         <!-- 审核中点击跳转页面 -->

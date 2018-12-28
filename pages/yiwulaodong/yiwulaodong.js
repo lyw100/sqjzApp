@@ -73,8 +73,7 @@ Page({
   shenhezhong: function (e) {
     let itemid=e.currentTarget.dataset.id;
     let status = e.currentTarget.dataset.status;
-      
-
+   
     if(status<=2){
       wx.navigateTo({
         url: '../shenhezhong/shenhezhong?itemid='+itemid,
@@ -174,7 +173,7 @@ Page({
         if(page>1){
           list = that.data.laborItems.concat(list);
         }
-        if (list.length > 0) {
+        if (res.data.laborItems.length > 0) {
           page += 1;
         }
         that.setData({
@@ -189,5 +188,7 @@ Page({
       }
     })
 
-  }
+  },
+
+ 
 })
