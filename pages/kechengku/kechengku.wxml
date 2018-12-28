@@ -38,7 +38,7 @@
           </block>
         </swiper>
       </view>
-      <block wx:if="{{jingxuan!=''}}">
+      <block wx:if="{{jingxuan!='' && zjjzList.length != 0}}">
         <view class="subTitle">
           <text class='dykctext' wx:if="{{jingxuan!=''}}">专家讲座</text>
           <text class='genduotuijian' wx:if="{{jingxuan!=''}}"  catchtap='moreZJJZ'>查看更多</text>
