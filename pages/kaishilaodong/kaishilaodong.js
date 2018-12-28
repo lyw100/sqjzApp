@@ -1,4 +1,4 @@
-var autoTakePhone;
+var intervalImg;
 Page({
 
   /**
@@ -11,6 +11,8 @@ Page({
     laborItem:'',
     address:'',
     facemsg:'',
+    num: 12,
+    imgurl: ''
   },
   tijiao_zhuye: function () {
     let status=this.data.laborItem.status;
@@ -293,7 +295,7 @@ Page({
           //上传完毕，作一下提示
           let laborItem=that.data.laborItem;
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
-          for(let i=0;i<laborItem.pictures;i++){
+          for(let i=0;i<laborItem.pictures.length;i++){
             laborItem.pictures[i].isUsed=1;
           }
           if(json.status==2){
@@ -339,18 +341,36 @@ Page({
       shualiandl: true,//是否展示刷脸窗口
     });
     var that = this;
-    autoTakePhone = setInterval(function () {
-      that.setData({
-        facemsg: '',
-      })
+    this.changeImg();//切图
+    setTimeout(function () {
       that.takePhoto();
     }, 4000);
+  },
+  /**
+   * 切图
+   */
+  changeImg: function () {
+    var that = this;
+    var num = that.data.num;
+    intervalImg = setInterval(function () {
+      that.setData({
+        imgurl: "../../img/" + (13 - num) + ".png"
+      })
+      num--;
+      if (num == 0) {
+        num = 12
+      }
+    }, 100)
+
   },
   /**
    * 刷脸登录
    */
   takePhoto: function () {
     let  that=this;
+    that.setData({
+      facemsg: '',
+    })
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
@@ -366,7 +386,7 @@ Page({
           },
           name: 'file',
           success: (res) => {
-            wx.hideLoading();
+            
             var data = JSON.parse(res.data);
             if (data.msg == "OK") {
               that.setData({
@@ -374,11 +394,14 @@ Page({
                 jieshu: false,
                 shualiandl:false
               })
-            clearInterval(autoTakePhone);
+              clearInterval(intervalImg);
             } else {
               that.setData({
                 facemsg: data.msg,
               })
+              setTimeout(function () {
+                that.takePhoto();
+              }, 3000);
             }
 
           }

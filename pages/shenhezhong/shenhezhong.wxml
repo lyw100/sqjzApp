@@ -49,7 +49,7 @@
 
 <view class='nr' wx:if='{{shualiandl}}' >
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
- <cover-image class="lefttop"  src="/img/zhegan.png" />
+ <cover-image class="lefttop"  src="{{imgurl}}" />
 </camera> 
   <view class="shebieziti">
         <text>{{facemsg==''?'识别中请稍后....':facemsg}}</text>

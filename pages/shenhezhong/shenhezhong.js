@@ -1,4 +1,4 @@
-var autoTakePhone;
+var intervalImg ;
 Page({
 
   /**
@@ -7,16 +7,16 @@ Page({
   data: {
     shualiandl:false,
     facemsg:'',
+    num:12,
+    imgurl:''
   },
   tzldz:function(){
     this.setData({
       shualiandl: true,//是否展示刷脸窗口
     });
     var that=this;
-    autoTakePhone=setInterval(function(){
-      that.setData({
-        facemsg: '',
-      })
+    this.changeImg();//切图
+    setTimeout(function(){
       that.takePhoto();
     },3000);
   },
@@ -102,10 +102,30 @@ Page({
     
   },
   /**
+   * 切图
+   */
+  changeImg: function () {
+    var that = this;
+    var num = that.data.num;
+    intervalImg = setInterval(function () {
+      that.setData({
+        imgurl: "../../img/" + (13 - num) + ".png"
+      })
+      num--;
+      if (num == 0) {
+        num = 12
+      }
+    }, 100)
+    
+  },
+  /**
    * 刷脸登录
    */
   takePhoto: function () {
     let that=this;
+    that.setData({
+      facemsg: '',
+    })
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
@@ -121,17 +141,20 @@ Page({
           },
           name: 'file',
           success: (res) => {
-            wx.hideLoading();
+           
             var data = JSON.parse(res.data);
             if (data.msg == "OK") {
+              clearInterval(intervalImg);
               wx.redirectTo({
                 url: '../kaishilaodong/kaishilaodong?itemid='+this.data.laborItem.id,
               })
-              clearInterval(autoTakePhone);
             } else {
              that.setData({
                facemsg:data.msg
              })
+             setTimeout(function(){
+               that.takePhoto();
+             },3000);
             }
 
           }

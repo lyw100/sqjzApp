@@ -125,7 +125,7 @@
   position:fixed;
   top:0;
   left: 0;
-  background-color:#fff;
+  background-color:#2499f9;
   z-index: 999999999;
   height: 100%;
   overflow: hidden;
@@ -135,7 +135,7 @@
   text-align: center;
   font-size: 40rpx;
   padding-top: 50rpx;
-  color:#2499f9f9;
+  color:#fff;
 
 }
 .lefttop{

@@ -28,14 +28,18 @@
   <view class='zhansewei'></view>
   <view class='sjlddd'>
     <view class='kaishi_timt' wx:if='{{laborItem.status>2}}'>
-      <text>实际劳动地点</text>
-      <text class='time_riqi'>{{laborItem.startRealAddress}}</text>
+      <text>实际开始地点</text>
+      <scroll-view scroll-x class='time_riqi time_riqi2'>
+        <text>{{laborItem.startRealAddress}}</text>
+      </scroll-view>
     </view>
 
     <!-- 在结束劳动页面里显示 -->
     <view class='kaishi_timt' wx:if='{{laborItem.status>3}}'>
-      <text>实际结束劳动地点</text>
-      <text class='time_riqi time_riqi2'>{{laborItem.endRealAddress}}</text>
+      <text>实际结束地点</text>
+      <scroll-view scroll-x class='time_riqi time_riqi2'>
+        <text>{{laborItem.endRealAddress}}</text>
+      </scroll-view>
     </view>
 
     <!-- 在劳动中页面里显示 -->
@@ -73,7 +77,7 @@
 
 <view class='nr' wx:if='{{shualiandl}}'  catchtouchmove="myCatchTouch">
 <camera device-position="{{device?'back':'front'}}" flash="off" binderror="error" style="width: 500rpx; height: 500rpx;">
- <cover-image class="lefttop"  src="/img/zhegan.png" />
+ <cover-image class="lefttop"  src="{{imgurl}}" />
 </camera> 
   <view class="shebieziti">
         <text>{{facemsg==''?'识别中请稍后....':facemsg}}</text>

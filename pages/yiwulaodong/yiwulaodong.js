@@ -129,6 +129,7 @@ Page({
       page: 1,
     })
     this.laborItems();
+    wx.stopPullDownRefresh(); //停止下拉刷新
   },
 
   /**
