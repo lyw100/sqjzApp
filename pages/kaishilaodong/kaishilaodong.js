@@ -1,14 +1,16 @@
-// pages/kaishilaodong/shoukaishilaodong.js
+var autoTakePhone;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    yincang:true,//上传照片选择是否显示
-    tijiao:true,//提交按钮与结束劳动切换
+    jieshu:false,//结束按钮
+    tijiao:false,//提交按钮与上传图片按钮
     shualiandl:false,
     laborItem:'',
+    address:'',
+    facemsg:'',
   },
   tijiao_zhuye: function () {
     let status=this.data.laborItem.status;
@@ -18,10 +20,7 @@ Page({
     }else if(status==3){
       //劳动结束上传照片
       this.saveLaborPicture(status);
-      wx.navigateBack({
-        delta:2,
-        url: '../yiwulaodong/yiwulaodong',
-      })
+     
     }
 
   },
@@ -52,8 +51,9 @@ Page({
           map.isUsed = 0;//未上传
           laborItem.pictures.push(map);
         }
+        that.getAddress();
         that.setData({
-          laborItem: laborItem
+          laborItem: laborItem          
         })
       }
     })
@@ -95,10 +95,22 @@ Page({
         let title = '';
         if (res.data.status == 2) {
           title = '开始劳动';
+          that.setData({
+            tijiao:true,
+            jieshu:false
+          })
         } else if (res.data.status == 3) {
           title = '劳动中';
-        } else if (res.data.status == 2) {
+          that.setData({
+            tijiao: false,
+            jieshu:true
+          })
+        } else if (res.data.status == 4) {
           title = '结束劳动';
+          that.setData({
+            tijiao: false,
+            jieshu: false
+          })
         }
         console.log(title);
         wx.setNavigationBarTitle({
@@ -185,12 +197,11 @@ Page({
    * 查询地点
    */
   getAddress: function () {
-    let address = '';
-    let location ='';
+    let that=this;
     wx.getLocation({
       type: 'wgs84',
       success(res) {
-        location = res.latitude + "," + res.longitude;//38.01845,114.45482
+        let location = res.latitude + "," + res.longitude;//38.01845,114.45482
         let key = "YGNBZ-MWGWI-6YCGS-54WJU-ZL4HJ-OXFA6"; 
         let url = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + location
           + "&key=" + key + "&get_poi=0"
@@ -204,15 +215,17 @@ Page({
           success(res) {
             let status = res.data.status;
             if (status == 0) {
-              address = res.data.result.formatted_addresses.recommend;
-              console.log(res.data.result.address);
+              let address = res.data.result.formatted_addresses.recommend;
+              console.log("address推荐:"+res.data.result.address);
+              console.log("address:"+address);
+              that.setData({
+                address:address,
+              })
             }
           }
         })
       }
     })
-    console.log(address);
-    return address;
     
   },
 
@@ -240,8 +253,8 @@ Page({
       let laborItem = this.data.laborItem;
       let dateTime = this.getDateTime();
       let json={};
-      json.address=this.getAddress();
-      console.log(address);
+      json.address=this.data.address;
+      console.log("address.real:" + json.address);
       json.itemid=laborItem.id;
       json.dateTime = dateTime + ':00';
       json.status=status;
@@ -259,7 +272,7 @@ Page({
   */
   uploadOneByOne(imgPaths, successUp, failUp, count, length, json) {
     let that = this;
-
+    
     console.log('正在上传第' + (count+1) + '张');
     var header = getApp().globalData.header; //获取app.js中的请求头
     wx.uploadFile({
@@ -278,8 +291,33 @@ Page({
         count++;//下一张
         if (count == length) {
           //上传完毕，作一下提示
+          let laborItem=that.data.laborItem;
           console.log('上传成功' + successUp + ',' + '失败' + failUp);
-          
+          for(let i=0;i<laborItem.pictures;i++){
+            laborItem.pictures[i].isUsed=1;
+          }
+          if(json.status==2){
+            laborItem.startRealTime=json.dateTime.substring(0,16);
+            laborItem.startRealAddress=json.address;
+            laborItem.status=3;
+            that.setData({
+              tijiao: false,
+              jieshu: true,
+              laborItem:laborItem
+            })
+          }else if(json.status==3){
+            // laborItem.endRealTime = json.dateTime.substring(0, 16);
+            // laborItem.endRealAddress = json.address;
+            // laborItem.status = 4;
+            // that.setData({
+            //   tijiao: false,
+            //   jieshu: false
+            // })
+            wx.navigateBack({
+              delta: 2,
+              url: '../yiwulaodong/yiwulaodong',
+            })
+          }
 
         } else {
           //递归调用，上传下一张
@@ -293,4 +331,59 @@ Page({
     })
   },
 
+  /**
+   * 结束劳动
+   */
+  jieshulaodong:function(){
+    this.setData({
+      shualiandl: true,//是否展示刷脸窗口
+    });
+    var that = this;
+    autoTakePhone = setInterval(function () {
+      that.setData({
+        facemsg: '',
+      })
+      that.takePhoto();
+    }, 4000);
+  },
+  /**
+   * 刷脸登录
+   */
+  takePhoto: function () {
+    let  that=this;
+    const ctx = wx.createCameraContext()
+    ctx.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        // this.setData({ logindisabled: true });
+        var header = getApp().globalData.header; //获取app.js中的请求头
+        wx.uploadFile({
+          url: getApp().globalData.url + '/course/face',
+          filePath: res.tempImagePath,
+          header: header,
+          formData: {
+            telephone: wx.getStorageSync("username")
+          },
+          name: 'file',
+          success: (res) => {
+            wx.hideLoading();
+            var data = JSON.parse(res.data);
+            if (data.msg == "OK") {
+              that.setData({
+                tijiao: true,
+                jieshu: false,
+                shualiandl:false
+              })
+            clearInterval(autoTakePhone);
+            } else {
+              that.setData({
+                facemsg: data.msg,
+              })
+            }
+
+          }
+        })
+      }
+    })
+  },
 })

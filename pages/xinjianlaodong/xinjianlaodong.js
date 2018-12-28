@@ -9,8 +9,6 @@ Page({
     startTime:'08:00',
     startMinDate:'',
     startMaxDate:'',
-    startMinTime:'',
-    startMaxTime:'16:00',
     endDate:'',
     endTime:'16:00',
     endtMinDate:'',
@@ -20,6 +18,9 @@ Page({
     startAddress:'',
     endAddress:'',
   },
+  /**
+   * 开始年月日选择
+   */
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     
@@ -32,19 +33,15 @@ Page({
     if (e.detail.value>=this.data.endDate){
       this.setData({
         endDate: e.detail.value,
-        startMaxTime: this.data.endTime,
-        startMinTime:'',
-        endMinTime: e.detail.value
+        endMinTime: '08:00',
       })
       if (this.data.startTime > this.data.endTime) {
         this.setData({
-          endTime: e.detail.value,
+          endTime: '08:00',
         })
       }
     }else{
       this.setData({
-        startMaxTime: '',
-        startMinTime: '',
         endMinTime:'',
       })
     }
@@ -71,7 +68,6 @@ Page({
     
     this.setData({
       endDate: e.detail.value,
-      startMaxDate: e.detail.value,
       endTime:'16:00',
     })
     if (e.detail.value == this.data.startDate) {
@@ -82,16 +78,10 @@ Page({
         this.setData({
           endTime: this.data.startTime,
         })
-      }else{
-        this.setData({
-          startMaxTime: this.data.endTime
-        })
       }
     } else {
       this.setData({
         endMinTime: '',
-        startMinTime: '',
-        startMaxTime:'',
       })
     }
 
@@ -101,11 +91,6 @@ Page({
     this.setData({
       endTime: e.detail.value
     })
-    if (this.data.startDate == this.data.endDate) {
-      this.setData({
-        startMaxTime: e.detail.value
-      })
-    }
   },
   bindTextAreaInput(e) {
     this.setData({

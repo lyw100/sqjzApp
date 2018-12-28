@@ -6,6 +6,7 @@ Page({
    */
   data: {
     shualiandl:false,
+    facemsg:'',
   },
   tzldz:function(){
     this.setData({
@@ -13,6 +14,9 @@ Page({
     });
     var that=this;
     autoTakePhone=setInterval(function(){
+      that.setData({
+        facemsg: '',
+      })
       that.takePhoto();
     },3000);
   },
@@ -101,13 +105,11 @@ Page({
    * 刷脸登录
    */
   takePhoto: function () {
+    let that=this;
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        wx.showLoading({
-          title: '正在核验身份.....',
-        })
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
@@ -127,11 +129,9 @@ Page({
               })
               clearInterval(autoTakePhone);
             } else {
-              wx.showToast({
-                title: data.msg,
-                icon: 'none',
-                duration: 2000
-              })
+             that.setData({
+               facemsg:data.msg
+             })
             }
 
           }

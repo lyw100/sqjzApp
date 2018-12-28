@@ -1,4 +1,4 @@
-<view class='shz'>
+<view class='shz'  wx:if='{{shualiandl==false}}'>
   <view class='shz_nr'>
     <view class='shz_dz'>
       <text>{{laborItem.labor.content}}</text>
@@ -66,7 +66,7 @@
   <view class='anniu' catchtap='tijiao_zhuye' wx:if='{{tijiao}}'>
     <text>提交</text>
   </view>
-  <view class='anniu'wx:if='{{tijiao==false}}'>
+  <view class='anniu' catchtap='jieshulaodong' wx:if='{{jieshu}}'>
     <text>结束劳动</text>
   </view>
 </view>
@@ -76,7 +76,7 @@
  <cover-image class="lefttop"  src="/img/zhegan.png" />
 </camera> 
   <view class="shebieziti">
-        <text>识别中请稍后....</text>
+        <text>{{facemsg==''?'识别中请稍后....':facemsg}}</text>
   </view>
   
 </view>
