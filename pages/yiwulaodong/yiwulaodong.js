@@ -72,9 +72,16 @@ Page({
    // 跳转审核中页面
   shenhezhong: function (e) {
     let itemid=e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../shenhezhong/shenhezhong?itemid='+itemid,
-    })
+    let status = e.currentTarget.dataset.status;
+    if(status<=2){
+      wx.navigateTo({
+        url: '../shenhezhong/shenhezhong?itemid='+itemid,
+      })
+    }else{
+      wx.navigateTo({
+        url: '../kaishilaodong/kaishilaodong?itemid=' + itemid,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -118,7 +125,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.setData({
+      page: 1,
+    })
+    this.laborItems();
   },
 
   /**

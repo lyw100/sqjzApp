@@ -52,7 +52,7 @@
  <cover-image class="lefttop"  src="/img/zhegan.png" />
 </camera> 
   <view class="shebieziti">
-        <text>识别中请稍后....</text>
+        <text>{{facemsg==''?'识别中请稍后....':facemsg}}</text>
   </view>
   
 </view>

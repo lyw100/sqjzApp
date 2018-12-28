@@ -21,7 +21,7 @@ Page({
       let key = "YGNBZ-MWGWI-6YCGS-54WJU-ZL4HJ-OXFA6";
       let regin = this.data.city;
       let location = this.data.latitude + "," + this.data.longitude;//38.01845,114.45482
-      let url = "http://apis.map.qq.com/ws/place/v1/suggestion/?region=" + regin
+      let url = "https://apis.map.qq.com/ws/place/v1/suggestion/?region=" + regin
        + "&key=" + key + "&keyword=" + value + "&location=" + location + "&region_fix=1" 
        + "&output=json";
       let that=this;

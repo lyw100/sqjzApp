@@ -1,3 +1,4 @@
+var autoTakePhone;
 Page({
 
   /**
@@ -5,12 +6,19 @@ Page({
    */
   data: {
     shualiandl:false,
+    facemsg:'',
   },
   tzldz:function(){
     this.setData({
       shualiandl: true,//是否展示刷脸窗口
     });
-   
+    var that=this;
+    autoTakePhone=setInterval(function(){
+      that.setData({
+        facemsg: '',
+      })
+      that.takePhoto();
+    },3000);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -97,13 +105,11 @@ Page({
    * 刷脸登录
    */
   takePhoto: function () {
+    let that=this;
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        wx.showLoading({
-          title: '正在核验身份.....',
-        })
         // this.setData({ logindisabled: true });
         var header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
@@ -119,18 +125,13 @@ Page({
             var data = JSON.parse(res.data);
             if (data.msg == "OK") {
               wx.redirectTo({
-                url: '../kaishilaodong/kaishilaodong',
+                url: '../kaishilaodong/kaishilaodong?itemid='+this.data.laborItem.id,
               })
-
+              clearInterval(autoTakePhone);
             } else {
-              wx.showModal({
-                title: '提示',
-                content: data.msg,
-                showCancel: false,
-                success: function () {
-                 
-                }
-              })
+             that.setData({
+               facemsg:data.msg
+             })
             }
 
           }

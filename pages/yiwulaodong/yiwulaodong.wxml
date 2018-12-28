@@ -21,7 +21,7 @@
       <view class='ywld_nr' wx:for="{{laborItems}}" wx:key="index" wx:for-item="item" wx:for-index="index">
 
         <!-- 审核中点击跳转页面 -->
-        <view class='nr_kuai' data-id='{{item.id}}' catchtap='shenhezhong'>
+        <view class='nr_kuai' data-id='{{item.id}}' data-status='{{item.status}}' catchtap='shenhezhong'>
           <view class='nr_tit'>
             <text>{{item.labor.content}}</text>
           </view>
@@ -70,7 +70,7 @@
   </view>
 
 
-  <view class='xinjian' catchtap='xinjianlaodong'>
+  <view class='xinjian' catchtap='xinjianlaodong' wx:if='{{type==0}}'>
     <image src='/img/xinjian.png' class='xinjain_icon'></image>
   </view>
 </view>
