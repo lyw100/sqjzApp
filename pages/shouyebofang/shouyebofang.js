@@ -2,7 +2,7 @@ var interval;
 var timer;
 Page({
   // gengduotj: function () {
-  //   var subid = this.data.record.course.subject.id;
+  //   let subid = this.data.record.course.subject.id;
   //   wx.redirectTo({
   //     url: '../gengduotuijian/gengduotuijian?subid=' + subid,
   //   });
@@ -79,10 +79,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var data = {};
-    var url = '';
-    var jzid = getApp().globalData.jiaozhengid;
+    let that = this;
+    let data = {};
+    let url = '';
+    let jzid = getApp().globalData.jiaozhengid;
     data.jzid = jzid;
     if (options.record == 'sign') {//选课播放记录
       data.id = options.id;
@@ -106,14 +106,14 @@ Page({
       },
       success(res) {
         // console.log(res.data);
-        var isSign = 0//标识是选课 0为浏览
+        let isSign = 0//标识是选课 0为浏览
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
        
-        var sections = res.data.course.sections;
-        var flag=true;
-        for (var i = 0; i < sections.length; i++) {
+        let sections = res.data.course.sections;
+        let flag=true;
+        for (let i = 0; i < sections.length; i++) {
           if(sections[i].state==1){//判断章节是否播放完
             sections[i].yanse = "zhangjieend";
           }else{
@@ -228,15 +228,15 @@ Page({
         this.setData({
           addPlayNum: true
         });
-        var progress=this.data.progress;
+        let progress=this.data.progress;
         // console.log("progress:"+progress);
-        var duration=this.data.sectionRecord.section.duration;
+        let duration=this.data.sectionRecord.section.duration;
         if (duration!=progress){
           this.videoContext.seek(progress);
         }
-        var courseid = this.data.record.course.id;//课程id
-        var jzid = this.data.record.jzid;
-        var url = getApp().globalData.url + '/course/addPlayNum';
+        let courseid = this.data.record.course.id;//课程id
+        let jzid = this.data.record.jzid;
+        let url = getApp().globalData.url + '/course/addPlayNum';
         wx.request({
           url: url,
           data: { courseid: courseid,jzid: jzid },
@@ -267,15 +267,15 @@ Page({
    * 视频播放结束退出全屏
    */
   bindended:function(){
-    var progress = parseInt(this.data.progress);
-    var duration = this.data.sectionRecord.section.duration;
+    let progress = parseInt(this.data.progress);
+    let duration = this.data.sectionRecord.section.duration;
     if (duration - progress < 3) {
       this.saveProgress();//保存视频进度
       this.videoContext.exitFullScreen();//执行全屏方法
 
-      var sections = this.data.sections;
+      let sections = this.data.sections;
       
-      for (var i = 0; i < sections.length; i++) {
+      for (let i = 0; i < sections.length; i++) {
         if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
           sections[i].yanse = "zhangjieend";
           if((i+1)<sections.length){//有下一个章节
@@ -299,7 +299,7 @@ Page({
    * 全屏的方法
    */
   bindFullscreenchange: function (e) {
-    // var isfull = e.detail.fullScreen;
+    // let isfull = e.detail.fullScreen;
     // if (!isfull) {
     //   // console.log("非全屏暂停");
     //   this.videoContext.pause();//视频暂停
@@ -312,14 +312,14 @@ Page({
   },
   //防拖拽方法
   bindTimeupdate: function (e) {
-    var that=this;
+    let that=this;
     if(this.data.face==false){
       this.videoContext.pause();//视频播放暂停
     }
     //console.log(e.detail)
-    var currentTime = e.detail.currentTime;//当前时间
-    var lastTime = this.data.lastTime;//上一个节点的时间
-    var progress = this.data.progress;//播放进度  最大的播放时间
+    let currentTime = e.detail.currentTime;//当前时间
+    let lastTime = this.data.lastTime;//上一个节点的时间
+    let progress = this.data.progress;//播放进度  最大的播放时间
 
 
     // console.log("progress:" + progress);
@@ -344,12 +344,12 @@ Page({
       if(progress!=this.data.sectionRecord.section.duration){
         //弹出刷脸登录
         //刷脸验证的时间集合 10分钟内 1-2次   大于10分钟  1-3次
-        var photoTimes = this.data.photoTimes;
-        var cTime=parseInt(currentTime);
+        let photoTimes = this.data.photoTimes;
+        let cTime=parseInt(currentTime);
         //循环刷脸时间 验证刷脸
-        for(var i=0;i<photoTimes.length;i++){
-          var time=photoTimes[i].time;
-          var flag=photoTimes[i].flag;
+        for(let i=0;i<photoTimes.length;i++){
+          let time=photoTimes[i].time;
+          let flag=photoTimes[i].flag;
 
           if (cTime == time && flag == false && currentTime>=progress) {
               this.videoContext.exitFullScreen();//退出全屏方法
@@ -421,15 +421,15 @@ Page({
    * 获取推荐课程列表
    */
   moreCourse: function () {
-    var that = this;
+    let that = this;
     // console.log(this.data.record);
-    var courseid = this.data.record.course.id;
-    var subid = this.data.record.course.subject.id;
+    let courseid = this.data.record.course.id;
+    let subid = this.data.record.course.subject.id;
     if (courseid != null && courseid > 0) {
-      var url = getApp().globalData.url + '/course/getMoreCourse';
-      // var url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
-      var jzid = this.data.record.jzid;
-      var page=this.data.page;
+      let url = getApp().globalData.url + '/course/getMoreCourse';
+      // let url = 'http://localhost:8081/SQJZ/course/getMoreCourse'; //获取推荐课程列表地址
+      let jzid = this.data.record.jzid;
+      let page=this.data.page;
       wx.request({
         url: url, //获取推荐课程列表地址
         data: { subid: subid, courseid: courseid, page: page, rows: 4, jzid: jzid },
@@ -439,7 +439,7 @@ Page({
         },
         success(res) {
           // console.log(res.data);
-          var list = res.data;
+          let list = res.data;
           if(page>1){
             list=that.data.moreList.concat(list);
           }
@@ -459,12 +459,12 @@ Page({
    * 保存视频进度
    */
   saveProgress: function () {
-    var that = this;
+    let that = this;
     // console.log(this.data.record);
-    var courseid = this.data.record.course.id;//课程id
-    var sectionid = this.data.sectionRecord.section.id;//课程章节id
-    var progress = parseInt(this.data.progress);//进度
-    var shualian="";
+    let courseid = this.data.record.course.id;//课程id
+    let sectionid = this.data.sectionRecord.section.id;//课程章节id
+    let progress = parseInt(this.data.progress);//进度
+    let shualian="";
     if (this.data.shualiandl == true && progress!=0) {
       shualian="1";//正在刷脸中退出
     }else{
@@ -474,15 +474,15 @@ Page({
     if (this.data.sectionRecord.section.duration - this.data.progress<3){
       progress = this.data.sectionRecord.section.duration;
     }
-    var sectionRecord=this.data.sectionRecord;
+    let sectionRecord=this.data.sectionRecord;
     sectionRecord.progress = progress;
     this.setData({
       sectionRecord: sectionRecord
     })
     if (courseid != null && courseid > 0) {
-      var url = getApp().globalData.url + '/course/saveProgress';
-      // var url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
-      var jzid = this.data.record.jzid;
+      let url = getApp().globalData.url + '/course/saveProgress';
+      // let url = 'http://localhost:8081/SQJZ/course/saveProgress'; 
+      let jzid = this.data.record.jzid;
       // console.log(jzid);
       wx.request({
         url: url,
@@ -507,10 +507,10 @@ Page({
   moreCourseTap: function (e) {
     this.saveProgress();  
 
-    var courseid = e.currentTarget.dataset.id;
-    var url = getApp().globalData.url + '/course/getRecord';
-    var that = this;
-    var jzid = getApp().globalData.jiaozhengid;
+    let courseid = e.currentTarget.dataset.id;
+    let url = getApp().globalData.url + '/course/getRecord';
+    let that = this;
+    let jzid = getApp().globalData.jiaozhengid;
     wx.request({
       url: url, //获取视频播放信息
       data: { jzid: jzid, courseid: courseid },
@@ -519,14 +519,14 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        var isSign = 0//标识是选课 0为浏览
+        let isSign = 0//标识是选课 0为浏览
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
         }
        
-        var sections = res.data.course.sections;
-        var flag = true;
-        for (var i = 0; i < sections.length; i++) {
+        let sections = res.data.course.sections;
+        let flag = true;
+        for (let i = 0; i < sections.length; i++) {
           if (sections[i].state == 1) {//判断章节是否播放完
             sections[i].yanse = "zhangjieend";
           } else {
@@ -562,12 +562,12 @@ Page({
    * 添加选课记录
    */
   chooseCourse: function (e) {
-    var that = this;
-    var index = e.currentTarget.dataset.index;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let courseid = e.currentTarget.dataset.id;
+    let jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/saveSign';
+    let url = getApp().globalData.url + '/course/saveSign';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -578,7 +578,7 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//选课成功
-          var moreList = that.data.moreList;
+          let moreList = that.data.moreList;
           moreList[index].isSign = 1;
           that.setData({
             moreList: moreList,
@@ -600,17 +600,17 @@ Page({
    * 正在播放的视频添加选课
    */
   tianjiaxuanke: function (e) {
-    var that = this;
+    let that = this;
     wx.showModal({
       title: '提示',
       content: '是否添加本课程为选课课程',
       success(res) {
         if (res.confirm) {
           // console.log('用户点击确定')
-          var courseid = e.currentTarget.dataset.id;
-          var jzid = getApp().globalData.jiaozhengid;
+          let courseid = e.currentTarget.dataset.id;
+          let jzid = getApp().globalData.jiaozhengid;
 
-          var url = getApp().globalData.url + '/course/saveSign';
+          let url = getApp().globalData.url + '/course/saveSign';
           wx.request({
             url: url, //获取视频播放信息
             data: { courseid: courseid, jzid: jzid },
@@ -627,8 +627,8 @@ Page({
                   lastTime: 0
                 })
 
-                var sections = that.data.sections;
-                for (var i = 0; i < sections.length; i++) {
+                let sections = that.data.sections;
+                for (let i = 0; i < sections.length; i++) {
                   if (sections[i].yanse == "zhangjie") {//判断正在播放的章节
                     that.getVideoSection(that.data.record.course.id, sections[i].id);
                   }
@@ -657,12 +657,12 @@ Page({
    * 取消选课  判断播放进度是否为0  不是0不可以取消
    */
   cancleSign:function(e){
-    var that = this;
-    var index = e.currentTarget.dataset.index;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let courseid = e.currentTarget.dataset.id;
+    let jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/cancleSign';
+    let url = getApp().globalData.url + '/course/cancleSign';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -673,7 +673,7 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//取消选课成功
-          var moreList = that.data.moreList;
+          let moreList = that.data.moreList;
           moreList[index].isSign = 0;
           that.setData({
             moreList: moreList,
@@ -706,11 +706,11 @@ Page({
    * 取消正在播放的视频添加选课
    */
   quxiaoxuanke: function (e) {
-    var that = this;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = getApp().globalData.jiaozhengid;
+    let that = this;
+    let courseid = e.currentTarget.dataset.id;
+    let jzid = getApp().globalData.jiaozhengid;
 
-    var url = getApp().globalData.url + '/course/cancleSign';
+    let url = getApp().globalData.url + '/course/cancleSign';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -746,8 +746,8 @@ Page({
    * 获取正在播放的章节信息
    */
   getVideoSection:function(courseid,sectionid){
-    var jzid = getApp().globalData.jiaozhengid;
-    var that=this;
+    let jzid = getApp().globalData.jiaozhengid;
+    let that=this;
     wx.request({
       // url:'http://localhost:8081/SQJZ/course/getVideoSection', //获取正在播放的章节信息
       url: getApp().globalData.url + '/course/getVideoSection', //获取正在播放的章节信息
@@ -757,28 +757,28 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        var progress = res.data.progress;
-        var duration= res.data.section.duration;
-        var shualian=res.data.shualian;
+        let progress = res.data.progress;
+        let duration= res.data.section.duration;
+        let shualian=res.data.shualian;
         //视频弹出验证次数    10分钟以内 弹1-2次    大于10分钟弹 1-3次 
         //视频播放前10%不弹验证 
-        var prefix = parseInt(duration * 0.1); 
-        var num = 0;//视频弹出验证次数
+        let prefix = parseInt(duration * 0.1); 
+        let num = 0;//视频弹出验证次数
         if (duration <= 600) {//小于10分钟  弹1-2次 
           num = Math.floor( Math.random()*2+1);
         } else if (duration > 600) {//  大于10分钟弹 1-3次 
           num = Math.floor(Math.random()*3 + 1);
         }
-        var photoTimes=[];//刷脸的时间集合
+        let photoTimes=[];//刷脸的时间集合
         //根据刷脸次数   循环添加刷脸时间
-        for(var i=0;i<num;i++){
-          var map={};
+        for(let i=0;i<num;i++){
+          let map={};
           if(i==0&&shualian==1){//上一次观看视频到验证时退出
             map.flag = false;
             map.time = progress;
           }else{
             //随机刷脸时间      整个视频长度的10%进度之内不刷脸  
-            var photoTime=parseInt(Math.random() * (duration - prefix) + prefix);
+            let photoTime=parseInt(Math.random() * (duration - prefix) + prefix);
             map.flag=false;
             map.time = photoTime;
           }
@@ -805,11 +805,11 @@ Page({
    */
   sectionTap:function(e){
     this.saveProgress();
-    var courseid = e.currentTarget.dataset.courseid;
-    var sectionid = e.currentTarget.dataset.sectionid;
-    var index = e.currentTarget.dataset.index;
-    var sections=this.data.sections;
-    for(var i=0;i<sections.length;i++){
+    let courseid = e.currentTarget.dataset.courseid;
+    let sectionid = e.currentTarget.dataset.sectionid;
+    let index = e.currentTarget.dataset.index;
+    let sections=this.data.sections;
+    for(let i=0;i<sections.length;i++){
       if(sections[i].state!=1){
         sections[i].yanse="";
       }else{
@@ -829,7 +829,7 @@ Page({
    * 刷脸登录
    */
   takePhoto: function () {
-    var that=this;
+    let that=this;
     clearTimeout(timer);//取消定时器
     clearInterval(interval);//取消计时器
     const ctx = wx.createCameraContext()
@@ -840,7 +840,7 @@ Page({
           title: '正在核验身份.....',
         })
         // this.setData({ logindisabled: true });
-        var header = getApp().globalData.header; //获取app.js中的请求头
+        let header = getApp().globalData.header; //获取app.js中的请求头
         wx.uploadFile({
           url: getApp().globalData.url + '/course/face',
           filePath: res.tempImagePath,
@@ -851,7 +851,7 @@ Page({
           name: 'file',
           success: (res) => {
             wx.hideLoading();
-            var data = JSON.parse(res.data);
+            let data = JSON.parse(res.data);
             if (data.msg == "OK") {
               this.setData({
                 shualiandl: false,//是否展示刷脸窗口
@@ -880,8 +880,8 @@ Page({
    * 倒计时清除当前视频进度
    */
   clearProgress:function(){
-    var that=this;
-    var progress=this.data.sectionRecord.progress;
+    let that=this;
+    let progress=this.data.sectionRecord.progress;
     clearTimeout(timer);
     timer = setTimeout(function () {
       //进度清零  并暂停
@@ -925,11 +925,11 @@ Page({
    * 收藏课程
    */
   addcollection: function (e) {
-    var that = this;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    let that = this;
+    let courseid = e.currentTarget.dataset.id;
+    let jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/addCollection';
+    let url = getApp().globalData.url + '/course/addCollection';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -940,7 +940,7 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//收藏课程
-          var record = that.data.record;
+          let record = that.data.record;
           record.course.collection = 1;
           that.setData({
             record: record,
@@ -960,11 +960,11 @@ Page({
    * 取消收藏课程
    */
   delcollection: function (e) {
-    var that = this;
-    var courseid = e.currentTarget.dataset.id;
-    var jzid = this.data.record.jzid;
+    let that = this;
+    let courseid = e.currentTarget.dataset.id;
+    let jzid = this.data.record.jzid;
 
-    var url = getApp().globalData.url + '/course/delCollection';
+    let url = getApp().globalData.url + '/course/delCollection';
     wx.request({
       url: url, //获取视频播放信息
       data: { courseid: courseid, jzid: jzid },
@@ -975,7 +975,7 @@ Page({
       dataType: 'text',
       success(res) {
         if (res.data == "ok") {//取消收藏课程
-          var record = that.data.record;
+          let record = that.data.record;
           record.course.collection = 0;
           that.setData({
             record: record,
