@@ -39,6 +39,7 @@
       <view style='clear:both'></view>
     </view>
     <view class='zhansekuai'></view>
+    <view wx:if='{{maplist.length > 0}}'>
     <block wx:for="{{maplist}}"  wx:for-item="json" wx:for-index="index" wx:key="index">
     <view class='tj_nr'>
       <view class='tj_time'>
@@ -62,6 +63,8 @@
       <view class='zhansekuai_2'></view>
     </view>
     </block>
+    </view>
+     <view wx:else>暂无签到信息</view>
   </view>
   <view style='clear:both'></view>
   <!-- 统计页面 完-->
