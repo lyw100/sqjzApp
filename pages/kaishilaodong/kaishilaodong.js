@@ -1,3 +1,5 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var qqmapsdk;
 var intervalImg;
 Page({
 
@@ -120,6 +122,10 @@ Page({
         })
       }
     }) 
+
+    qqmapsdk = new QQMapWX({
+      key: '4QSBZ-6FUHF-SS3JW-JUQI2-YDTIS-E4FTW' // 必填
+    });
   },
 
   /**
@@ -204,26 +210,20 @@ Page({
       type: 'gcj02',
       success(res) {
         let location = res.latitude + "," + res.longitude;//38.01845,114.45482
-        let key = "YGNBZ-MWGWI-6YCGS-54WJU-ZL4HJ-OXFA6"; 
-        let url = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + location
-          + "&key=" + key + "&get_poi=0"
-          + "&output=json";
-        wx.request({
-          url: url, //请求腾讯定位
-          data: {},
-          header: {
-            'content-type': 'application/json' // 默认值
+        console.log(location);
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
           },
-          success(res) {
-            let status = res.data.status;
-            if (status == 0) {
-              let address = res.data.result.formatted_addresses.recommend;
-              console.log("address推荐:"+res.data.result.address);
-              console.log("address:"+address);
-              that.setData({
-                address:address,
-              })
-            }
+          poi_options: 'policy=2;radius=500;page_size=10;page_index=1',
+          success: function (data) {
+            //console.log(data);
+            var address = data.result.formatted_addresses.recommend;
+            //var address = data.result.address;
+            that.setData({
+              address: address
+            })
           }
         })
       }
