@@ -47,7 +47,9 @@ Page({
             kaishi: false,
           });
         }
-
+        console.log('kaishi:'+that.data.kaishi);
+        console.log('status:'+res.data.status);
+        console.log('status1:'+res.data.labor.status);
         let title='';
         if (res.data.status == 0){
           title='审核中';

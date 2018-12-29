@@ -554,6 +554,10 @@ Page({
         })
 
         that.moreCourse();    
+        //跳转到顶部
+        wx.pageScrollTo({
+          scrollTop: 0
+        })
       }
     })
 

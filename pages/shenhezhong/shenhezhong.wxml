@@ -38,7 +38,7 @@
     </view>
   </view>
   <!-- 开始劳动灰色按钮  审核通过蓝色按钮 审核未通过没有按钮-->
-  <view class='anniu' wx:if='{{laborItem.labor.status!=2}}||kaishi==false'>
+  <view class='anniu' wx:if='{{laborItem.labor.status!=2||kaishi==false}}'>
     <text>开始劳动</text>
   </view>
   <view class='anniu2' wx:if='{{laborItem.labor.status==2&&kaishi==true}}' catchtap='tzldz'>

@@ -78,7 +78,7 @@ Page({
       city:options.city
     })
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         that.setData({
           latitude: res.latitude,

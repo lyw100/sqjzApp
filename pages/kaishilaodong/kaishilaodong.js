@@ -201,7 +201,7 @@ Page({
   getAddress: function () {
     let that=this;
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success(res) {
         let location = res.latitude + "," + res.longitude;//38.01845,114.45482
         let key = "YGNBZ-MWGWI-6YCGS-54WJU-ZL4HJ-OXFA6"; 
