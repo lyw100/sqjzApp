@@ -158,7 +158,7 @@ Page({
                     method: "POST",
                     // 请求头部  
                     header: {
-                      //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+                      'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
                       'content-type': 'application/x-www-form-urlencoded'
                     },
                     data: {
@@ -276,7 +276,7 @@ Page({
       method: "POST",
       // 请求头部  
       header: {
-        //'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
