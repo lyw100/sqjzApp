@@ -272,7 +272,6 @@ overflow:auto;
   height: 502rpx;
 }
 .nr_zwnr{
-  margin-left: 40rpx;
+  margin-left: 30rpx;
   font-size:32rpx;
-
 }
