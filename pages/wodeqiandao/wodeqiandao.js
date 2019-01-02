@@ -78,8 +78,13 @@ Page({
         time: that.data.date
       },
       success: function (res) {
+        var dyqd=0;
+        if(res.data.length>0){
+          dyqd = res.data.length;
+        }
         that.setData({
-          maplist: res.data
+          maplist: res.data,
+          dyqdnum: dyqd,
         })
       }
     })
