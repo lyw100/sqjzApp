@@ -43,8 +43,8 @@
         </view>
       </view>
        
-      <view class='nr_tit' wx:if='{{laborItems.length==0}}'>
-        <text>暂无劳动内容...</text>
+      <view class='nr_zwnr' wx:if='{{laborItems.length==0}}'>
+        <text>暂无劳动内容</text>
       </view>
       
       <view class='dibu' wx:if='{{dibu}}'>

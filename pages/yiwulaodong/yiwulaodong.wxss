@@ -166,7 +166,11 @@ page{
   text-align: center;
   margin-left:43%;
 }
+.nr_zwnr{
+  margin-left: 40rpx;
+  font-size:32rpx;
 
+}
 
 
 .dibu{
