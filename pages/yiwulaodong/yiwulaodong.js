@@ -38,7 +38,7 @@ Page({
       status:status,
       statusStr: statusStr,
       page:1,
-      laborItems: []
+      // laborItems: []
     });
     this.laborItems();
   },
@@ -47,7 +47,7 @@ Page({
     this.setData({
       type: 1,
       page:1,
-      laborItems: [],
+      // laborItems: [],
       status: '',
       statusStr: '全部',
     });
@@ -57,7 +57,7 @@ Page({
     this.setData({
       type: 0,
       page: 1,
-      laborItems:[],
+      // laborItems:[],
       status: '',
       statusStr: '全部',
     });
