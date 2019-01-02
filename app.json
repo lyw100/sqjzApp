@@ -29,9 +29,9 @@
     "pages/xinjianlaodong/xinjianlaodong",
     "pages/chaxun/chaxun",
     "pages/shenhezhong/shenhezhong",
-    "pages/kaishilaodong/kaishilaodong"
-  
-
+    "pages/kaishilaodong/kaishilaodong",
+    "pages/jizhongxuexi/jizhongxuexi",
+    "pages/jzxxzt/jzxxzt"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -1,0 +1,68 @@
+<view class="ywld">
+  <view class='ywld_xiala'>
+    <view class='xiala_qb' catchtap='quanbudj'>
+      <text>全部</text>
+      <image src='/img/xialajiantou.png' class='xiajiantou'></image>
+    </view>
+
+    <view class='xiala_dw' wx:if='{{xiala_dwyc}}'>
+      <text class='xiala_qb'>全部</text>
+      <text>未开始</text>
+      <text>学习中</text>
+      <text>已结束</text>
+    </view>
+  </view>
+  <view class='ywld_wode'>
+    <view class='ywld_nr'>
+      <view class='nr_kuai' catchtap='shenhezhong'>
+        <view class='nr_tit'>
+          <text>2019年春节义务劳动</text>
+        </view>
+        <view class='nr_dwwz'>
+          <image src='/img/dingwei.png' class='nr_dwtb'></image>
+          <text style='vertical-align:middle;'>撒旦法师打</text>
+        </view>
+        <view class='nr_dwwz'>
+          <text>活动时间 : 2019-10-20 至 2019-14-10</text>
+        </view>
+        <view class='nr_footer'>
+          <text class='wks'>未开始</text>
+        </view>
+      </view>
+    </view>
+    <view class='ywld_nr'>
+      <view class='nr_kuai' catchtap='shenhezhong'>
+        <view class='nr_tit'>
+          <text>2019年春节义务劳动</text>
+        </view>
+        <view class='nr_dwwz'>
+          <image src='/img/dingwei.png' class='nr_dwtb'></image>
+          <text style='vertical-align:middle;'>撒旦法师打</text>
+        </view>
+        <view class='nr_dwwz'>
+          <text>活动时间 : 2019-10-20 至 2019-14-10</text>
+        </view>
+        <view class='nr_footer'>
+          <text class='shenhetongguo'>学习中</text>
+        </view>
+      </view>
+    </view>
+    <view class='ywld_nr'>
+      <view class='nr_kuai' catchtap='shenhezhong'>
+        <view class='nr_tit'>
+          <text>2019年春节义务劳动</text>
+        </view>
+        <view class='nr_dwwz'>
+          <image src='/img/dingwei.png' class='nr_dwtb'></image>
+          <text style='vertical-align:middle;'>撒旦法师打</text>
+        </view>
+        <view class='nr_dwwz'>
+          <text>活动时间 : 2019-10-20 至 2019-14-10</text>
+        </view>
+        <view class='nr_footer'>
+          <text class='yijiehshu'>已结束</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
