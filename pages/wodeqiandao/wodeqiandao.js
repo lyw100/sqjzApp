@@ -80,7 +80,12 @@ Page({
       success: function (res) {
         var dyqd=0;
         if(res.data.length>0){
-          dyqd = res.data.length;
+          for (var i = 0; i < res.data.length; i++) {
+            var signlist=res.data[i].signlist;
+            for (var j = 0; j < signlist.length; j++) {
+              dyqd++;
+            }
+          }
         }
         that.setData({
           maplist: res.data,
