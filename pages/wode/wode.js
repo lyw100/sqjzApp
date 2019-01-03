@@ -901,11 +901,14 @@ Page({
   },
   // 集中学习
   jizhongxuexi: function(){
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none',
-      duration: 1000
+    wx.navigateTo({
+      url: '../jizhongxuexi/jizhongxuexi',
     })
+    // wx.showToast({
+    //   title: '功能开发中',
+    //   icon: 'none',
+    //   duration: 1000
+    // })
   },
   
   /**
