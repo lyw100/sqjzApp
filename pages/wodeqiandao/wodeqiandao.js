@@ -110,6 +110,14 @@ Page({
   */
   shualianqiandao:function(){
     var that = this
+    if (that.data.address =='undefined'){
+      wx.showToast({
+        title: '获取位置失败，请打开手机GPS定位功能',
+        icon: 'none',
+        mask:ture,
+      })
+      return;
+    }
     that.setData({
       yincangqdmk: false,
       shualiandl: true,
