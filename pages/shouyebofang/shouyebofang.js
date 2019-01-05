@@ -28,7 +28,8 @@ Page({
     lastTime:0,
     dibu: false,
     yulan:true,
-    page:1
+    page:1,
+    shoucangzhong:false,
   },
   // 点击收藏 选课显示
   shoucangdj:function(){
@@ -929,35 +930,43 @@ Page({
    * 收藏课程
    */
   addcollection: function (e) {
-    let that = this;
-    let courseid = e.currentTarget.dataset.id;
-    let jzid = this.data.record.jzid;
+    let shoucangzhong=this.data.shoucangzhong;
+    if(shoucangzhong==false){
+      this.setData({
+        shoucangzhong:true
+      })
+      let that = this;
+      let courseid = e.currentTarget.dataset.id;
+      let jzid = this.data.record.jzid;
 
-    let url = getApp().globalData.url + '/course/addCollection';
-    wx.request({
-      url: url, //获取视频播放信息
-      data: { courseid: courseid, jzid: jzid },
-      header: {
-        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-        'content-type': 'application/json' // 默认值
-      },
-      dataType: 'text',
-      success(res) {
-        if (res.data == "ok") {//收藏课程
-          let record = that.data.record;
-          record.course.collection = 1;
-          that.setData({
-            record: record,
-          })
-        } else {//收藏失败
-          wx.showToast({
-            title: '课程收藏失败',
-            icon: 'none',
-            duration: 2000
-          })
+      let url = getApp().globalData.url + '/course/addCollection';
+      wx.request({
+        url: url, //获取视频播放信息
+        data: { courseid: courseid, jzid: jzid },
+        header: {
+          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+          'content-type': 'application/json' // 默认值
+        },
+        dataType: 'text',
+        success(res) {
+          if (res.data == "ok") {//收藏课程
+            let record = that.data.record;
+            record.course.collection = 1;
+            that.setData({
+              record: record,
+              shoucangzhong:false
+            })
+          } else {//收藏失败
+            wx.showToast({
+              title: '课程收藏失败',
+              icon: 'none',
+              duration: 2000
+            })
+          }
         }
-      }
-    })
+      })
+
+    }
   },
 
   /**
