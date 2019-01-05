@@ -47,7 +47,7 @@
 
   </view>
   <!-- 学习中灰色按钮  签到 签退蓝色按钮 -->
-  <view class='{{nextHour>learnItem.learn.startTime&&nowTime<learnItem.learn.endTime?"anniu2":"anniu"}}' wx:if='{{learnItem.status==0}}' catchtap='{{nextHour>learnItem.learn.startTime&&nowTime<learnItem.learn.endTime?"qiandao":"qiandao"}}'>
+  <view class='{{nextHour>learnItem.learn.startTime&&nowTime<learnItem.learn.endTime?"anniu2":"anniu"}}' wx:if='{{learnItem.status==0}}' catchtap='{{nextHour>learnItem.learn.startTime&&nowTime<learnItem.learn.endTime?"qiandao":""}}'>
     <text>签到</text>
   </view>
   <view class='anniu' wx:if='{{learnItem.status==1&&nowTime<learnItem.learn.endTime}}'>
