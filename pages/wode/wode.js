@@ -88,7 +88,7 @@ Page({
 
   lianjie:function(){
     wx.showActionSheet({
-      itemList: ['修改密码', '退出当前账号登录'],
+      itemList: ['修改密码', '退出当前账号登录','清除缓存'],
       success(res) {
         if(res.tapIndex==0){
           wx.navigateTo({
@@ -112,9 +112,25 @@ Page({
           wx.reLaunch({
             url: '../denglu/denglu'
           })
+        } else if (res.tapIndex == 2) {
+          wx.clearStorage({
+            success: function (res) {
+              wx.showToast({
+                title: '清除缓存成功',
+                icon: 'none',
+                duration: 1000
+              })
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: '清除缓存失败',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          });
         }
-        
-      },
+       },
       fail(res) {
         // console.log(res.errMsg)
       }
