@@ -230,6 +230,11 @@ Page({
                 learnItem.status=1;
                 learnItem.startRealTime=nowTime;
                 learnItem.startUrl = data.photo;
+                wx.showToast({
+                  title: '签到成功',
+                  icon: 'none',
+                  duration: 3000
+                })
               } else if (learnItem.status == '1') {
                 wx.setNavigationBarTitle({
                   title: '已结束',
@@ -237,6 +242,11 @@ Page({
                 learnItem.status = 2;
                 learnItem.endRealTime = nowTime;
                 learnItem.endUrl = data.photo;
+                wx.showToast({
+                  title: '签退成功',
+                  icon: 'none',
+                  duration: 3000
+                })
               }
               that.setData({
                 shualiandl: false,
