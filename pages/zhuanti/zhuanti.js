@@ -86,11 +86,13 @@ Page({
             self.setData({
               dibu: false
             })
-            wx.showToast({
-              title: '暂无更多数据',
-              icon: 'none',
-              duration: 1000
-            })
+            if(page>1){
+              wx.showToast({
+                title: '暂无更多数据',
+                icon: 'none',
+                duration: 1000
+              })
+            }
           }
         }
       }

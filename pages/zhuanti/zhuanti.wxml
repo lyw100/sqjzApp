@@ -41,6 +41,9 @@
               <text>火速加载中...</text>
           </view>
         </view>
+        <view hidden='{{courseList.length>0}}' style="margin-left:20rpx;font-size:30rpx">
+          <text>该专题暂无课程</text>
+        </view>
       </view>
     </view>
 </view>
