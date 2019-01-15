@@ -1,5 +1,6 @@
 <!--shouyebofang.wxml-->
-<view class='contai'>
+<wxs src="../../wxs/indexOfUtil.wxs" module="tools"/>
+<view class='contai' wx:if='{{shiti==false}}'>
 <view class='tit tc'  wx:if="{{xianshi==false}}">
   <!-- <image class='titimg' src='/img/yiyuan.png'></image> -->
   <!--enable-progress-gesture 拖动手势开启    binderror 视频播放出错时触发 -->
@@ -172,5 +173,64 @@
   </view>
   <view  class="anniu" catchtap="resetVideo"  wx:if="{{countdown==0}}">
        <text>刷脸验证超时,本章节进度清空</text>
+  </view>
+</view>
+
+<view class="ksxq" wx:if="{{shiti}}">
+  <view class='tit'>
+    <text class='timu' wx:if="{{questions[curQindex].type==2}}">判断题</text>
+    <text class='timu' wx:if="{{questions[curQindex].type==0}}">单选题</text>
+    <text class='timu' wx:if="{{questions[curQindex].type==1}}">多选题</text>
+    <text class='djt'><text class='dqs'>{{curQindex+1}}</text>/{{questions.length}}</text>
+  </view>
+  <view class='center'>
+    <swiper current="{{curQswiper}}"  class='spr' bindchange="changeQuestion">
+      <block wx:for="{{questions}}" wx:key="qid" wx:for-item="item" wx:for-index="qid">
+        <swiper-item class="spr_gd">
+          <view class='fst'>
+            <!-- 题目 -->
+            <view class='kaoti'>{{qid+1+'.'+item.content}}</view>
+            <!-- 图片 -->
+            <view wx:if='{{item.img}}'>
+              <block wx:for='{{item.img}}' wx:key='imgid' wx:for-item='imgsrc'>
+                <image class='wxParse-img' src='{{imgsrc}}'></image>
+              </block>
+            </view>
+            <!-- 单选题选项 -->
+            <view class='daan' wx:if="{{item.type==0}}">
+              <block wx:for="{{item.xuanxiangArr}}" wx:key="xxid" wx:for-item="itemsub">
+                <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='{{itemsub.key}}'>
+                  <text class='xuanxiang {{item.hasChoose==itemsub.key?"xzyanse":""}}'>{{itemsub.key}}</text>
+                  <text class='daan_xiangjie'>{{itemsub.value}}</text>
+                </view>
+              </block>
+            </view>
+            <!-- 多选题选项 -->
+            <view class='daan' wx:if="{{item.type==1}}">
+              <block wx:for="{{item.xuanxiangArr}}" wx:key="xxid" wx:for-item="itemsub">
+                <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='{{itemsub.key}}'>
+                  <text class='xuanxiang {{tools.indexOfTF(item.hasChoose,itemsub.key)?"xzyanse":""}}'>{{itemsub.key}}</text>
+                  <text class='daan_xiangjie'>{{itemsub.value}}</text>
+                </view>
+              </block>
+            </view>
+            <!-- 判断题选项 -->
+            <view class='daan' wx:if="{{item.type==2}}">
+              <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='A'>
+                <text class='xuanxiang {{item.hasChoose=="1"?"xzyanse":""}}'>A</text>
+                <text class='daan_xiangjie'>正确</text>
+              </view>
+              <view class='xx' bindtap='menuClick' data-index='{{qid}}' data-key='B'>
+                <text class='xuanxiang {{item.hasChoose=="0"?"xzyanse":""}}'>B</text>
+                <text class='daan_xiangjie'>错误</text>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='{{curQindex==questions.length-1?"kt_anniu":"kt_anniuhui"}}'bindtap="{{curQindex==questions.length-1?'questionSubmit':''}}">
+    <text>提交</text>
   </view>
 </view>

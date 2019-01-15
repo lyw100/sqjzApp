@@ -1,3 +1,4 @@
+var WxParse = require('../../wxParse/wxParse.js');
 var interval;
 var timer;
 Page({
@@ -30,6 +31,9 @@ Page({
     yulan:true,
     page:1,
     shoucangzhong:false,
+    shiti:false,
+    curQindex:0,
+    curQswiper:0
   },
   // 点击收藏 选课显示
   shoucangdj:function(){
@@ -269,31 +273,15 @@ Page({
    */
   bindended:function(){
     let progress = parseInt(this.data.progress);
-    let duration = this.data.sectionRecord.section.duration;
+    let sectionRecord = this.data.sectionRecord;
+    let duration = sectionRecord.section.duration;
+    let isSign=this.data.isSign;
     if (duration - progress < 3) {
-      this.saveProgress();//保存视频进度
-      this.videoContext.exitFullScreen();//执行全屏方法
-
-      let sections = this.data.sections;
-      
-      for (let i = 0; i < sections.length; i++) {
-        if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
-          sections[i].yanse = "zhangjieend";
-          if((i+1)<sections.length){//有下一个章节
-            this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i+1].id);
-            if (sections[i + 1].yanse != "zhangjieend"){
-              sections[i + 1].yanse = "zhangjie";
-            }else{
-              sections[i + 1].yanse = "zhangjieend zhangjie";
-            }
-          }
-
-          this.setData({
-            sections:sections
-          })
-        }
+      if (isSign==1&&sectionRecord.state!=1){//未完成课时
+      // if (isSign==1){//未完成课时
+        this.videoContext.exitFullScreen();//执行全屏方法
+        this.getquestions();
       }
-
     }  
   },
   /**
@@ -468,8 +456,10 @@ Page({
     let shualian="";
     if (this.data.shualiandl == true && progress!=0) {
       shualian="1";//正在刷脸中退出
+    }else if(this.data.shiti==true){
+      shualian = "2";//做试题中退出
     }else{
-      shualian = "0";//不是刷脸状态
+      shualian = "0";//正常状态退出
     }
 
     if (this.data.sectionRecord.section.duration - this.data.progress<3){
@@ -1003,7 +993,227 @@ Page({
         }
       }
     })
-  }
+  },
 
+
+  /**
+   * 章节视频看完   获取试题
+   */
+  getquestions: function () {
+    let that = this;
+    let sectionid = this.data.sectionRecord.section.id;
+    
+    let url = getApp().globalData.url + '/course/questionList';
+    wx.request({
+      url: url, //获取视频播放信息
+      data: { sectionid: sectionid },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'json',
+      success(res) {
+          if (res.data.length>0) {//章节关联试题数量
+            let questions = res.data;
+            for (var i = 0; i < questions.length; i++) {
+              WxParse.wxParse('topic' + i, 'html', questions[i].content, that)
+              if (i === questions.length - 1) {
+                WxParse.wxParseTemArray("qcontentArr", 'topic', questions.length, that)
+              }
+            }
+            let qcontentArr = that.data.qcontentArr;
+            for (var j = 0; j < qcontentArr.length; j++) {
+              let contentStr = ''
+              let imgArr = []
+              let imgLen = 0
+              for (var k = 0; k < qcontentArr[j].length; k++) {
+                let node = qcontentArr[j][k].nodes[0]
+                if (node.tag == 'img') {
+                  imgArr[imgLen] = getApp().globalData.url.substring(0, getApp().globalData.url.length - 5) + node.attr.src
+                  imgLen++
+                } else {
+                  contentStr = contentStr + node.text
+                }
+              }
+              questions[j].content = contentStr
+              questions[j].img = imgArr
+            }
+
+
+            that.setData({
+              questions: questions,
+              curQindex:0,
+              curQswiper:0,
+              shiti:true
+            })
+            
+        }
+      }
+    })
+  },
+
+  /**
+   * 试题完成保存进度 并自动播放下一个章节
+   */
+  getNextSection :function(){
+    this.saveProgress();//保存视频进度
+
+    let progress = parseInt(this.data.progress);
+    let sectionRecord = this.data.sectionRecord;
+    let duration = sectionRecord.section.duration;
+    let isSign = this.data.isSign;
+
+
+    let sections = this.data.sections;
+
+    for (let i = 0; i < sections.length; i++) {
+      if (sections[i].id == this.data.sectionRecord.section.id) {//该章节正在播放的章节
+        sections[i].yanse = "zhangjieend";
+        if ((i + 1) < sections.length) {//有下一个章节
+          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i + 1].id);
+          if (sections[i + 1].yanse != "zhangjieend") {
+            sections[i + 1].yanse = "zhangjie";
+          } else {
+            sections[i + 1].yanse = "zhangjieend zhangjie";
+          }
+        }
+
+        this.setData({
+          sections: sections
+        })
+      }
+    }
+  },
+  // 题目滑动触发事件
+  changeQuestion: function (e) {
+    this.setData({
+      curQindex: e.detail.current
+    })
+  },
+
+  // 选择对应选项
+  menuClick: function (e) {
+    let index = e.currentTarget.dataset.index
+    let key = e.currentTarget.dataset.key
+    // 点击改变选项样式，存储选项
+    let questions = this.data.questions;
+    let question = questions[index];
+    let qtype = questions[index].type
+    // 单选
+    if (qtype == '0') {
+      question.hasChoose = key;
+    }else if (qtype == '1') {// 多选题
+      let isChoose = true
+      let hasChoose = question.hasChoose;
+      if (hasChoose != ""&&hasChoose!=null) {
+        let chooseArr = hasChoose.split(",")
+        if (chooseArr.indexOf(key)>-1){
+          chooseArr.splice(chooseArr.indexOf(key), 1);
+          isChoose = false
+        }
+       
+        if (isChoose) {
+          question.hasChoose = hasChoose + "," + key
+        } else {
+          question.hasChoose = chooseArr.join(",")
+        }
+      } else {
+        question.hasChoose = key
+      }
+    } else if (qtype == '2') {// 判断题
+      if ('A' == key) {
+        question.hasChoose = '1'
+      } else if ('B' == key) {
+        question.hasChoose = '0'
+      }
+    }
+    this.setData({
+      questions: questions
+    })
+  },
+  /**
+   * 试题提交
+   */
+  questionSubmit:function(){
+    let flag=false;
+    let questions=this.data.questions;
+    let weiwancheng=[];
+    for(let i=0;i<questions.length;i++){
+      let question=questions[i];
+      if (question.hasChoose == null || question.hasChoose==""){
+        weiwancheng.push(i+1);
+        flag = true;
+      }
+    }
+    if(flag){
+      wx.showToast({
+        title: '您第' + weiwancheng.join(",") + '道试题未完成',
+        icon: 'none',
+        duration: 3000
+      })
+      return;//如果试题未完成返回
+    }
+    let hasScore=0;
+    let rightNum =0;
+    let isPass=0;
+    let totalScore=0;
+    for (let i = 0; i < questions.length; i++) {
+      let question = questions[i];
+      totalScore += question.score;
+      if (question.hasChoose == question.zhengque) {
+        hasScore += question.score;
+        rightNum+=1;
+      }
+      question.hasChoose="";//清除已选答案
+    }
+    //得分小于60% 不及格
+    if(hasScore*100/totalScore<60){
+      this.setData({
+        questions: questions,
+        curQindex: 0,
+        curQswiper: 0
+      })
+      wx.showToast({
+        title: '您的得分未及格,请重新完成试题',
+        icon: 'none',
+        duration: 3000
+      })
+    }else{
+      isPass = 1;//及格了
+      this.setData({
+        questions: questions,
+        curQindex: 0,
+        curQswiper:0,
+        shiti: false
+      })
+      this.getNextSection(); 
+    }
+
+    let signSectionid=this.data.sectionRecord.id;
+    let jzid = this.data.record.jzid;
+    let questionNum = questions.length;
+
+    //保存做题记录信息
+    wx.request({
+      url: getApp().globalData.url + '/course/saveSignSectionQuestion',
+      data: { signSectionid: signSectionid ,
+              jzid:jzid,
+              questionNum:questionNum,
+              rightNum:rightNum,
+              hasScore:hasScore,
+              totalScore:totalScore,
+              isPass: isPass
+              },
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/json' // 默认值
+      },
+      dataType: 'text',
+      success(res) {
+        
+      }
+    })
+
+  }
 
 })
