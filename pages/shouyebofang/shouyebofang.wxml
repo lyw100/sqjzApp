@@ -156,6 +156,10 @@
       <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}   </text>
       <text >{{record.course.subName}}</text>
     </view>
+    <view class='kechengjianjie' wx:if="{{record.course.isZJJZ==1}}">
+      <text class='kcjj_timu'>专家介绍:</text>
+      <text class='kcjj_nr'>{{record.course.speakerIntroduction}}</text>
+    </view>
     <view class='kechengjianjie'>
       <text class='kcjj_timu'>课程简介:</text>
       <text class='kcjj_nr'>{{record.course.introduction}}</text>
