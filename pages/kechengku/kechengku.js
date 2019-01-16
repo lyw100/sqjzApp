@@ -215,7 +215,17 @@ Page({
   topCourseList: function () {
     var that = this;
     var query = {};
-    if (this.data.jingxuan == "") {
+    var url = getApp().globalData.url + '/sign/topCourseList';
+    if (this.data.jingxuan != ""){
+      //精选课程
+      query.subid = 0;
+      url = getApp().globalData.url + '/sign/kckTopCourseList';
+    } else if ( this.data.subList[0].id == this.data.subTabList[0].id){
+      //正则法规教育
+      url = getApp().globalData.url + '/sign/kckTopCourseList';
+      query.subid = this.data.subList[0].id;
+    }else {
+      //其它
       query.subid = this.data.subList[0].id;
     }
     // if (this.data.bixiuyanse=="yanse"){
@@ -224,7 +234,7 @@ Page({
     //   query.type=1;
     // }
     wx.request({
-      url: getApp().globalData.url + '/sign/topCourseList', //获取点击量最多的3个课程
+      url: url, //获取点击量最多的3个课程
       data: query,
       header: {
         'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
