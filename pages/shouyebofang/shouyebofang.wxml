@@ -16,6 +16,16 @@
 <!-- 视屏播放首页展示显示' -->
 <view  wx:if='{{xianshiyemain}}'>
 <view style='padding:0 20rpx;'><text class='titinfo'>{{record.course.name}}</text></view>
+<view wx:if="{{record.course.isZJJZ==1}}" style='padding:20rpx 20rpx 0;margin-top:20rpx;border-top:1px solid #f5f5f5;'>
+  <view style='font-size:30rpx;margin-bottom:20rpx;'>
+    <text>专家</text>:
+    <text>{{course.speaker}}</text>
+  </view>
+  <view style='font-size:30rpx;'>
+    <text>专家介绍</text>:
+    <text>{{record.course.speakerIntroduction}}</text>
+  </view>
+</view>
 <view class='js'>
   <text class='kczj'>课程章节</text>
   <view class='kczj_ztsz' catchtap='tiaozhuanjj'>
@@ -155,10 +165,6 @@
     <view class='kcjj_js'>
       <text wx:if="{{record.course.speaker!=null&&record.course.speaker.length>0}}" class='bixiuke'>讲师:{{record.course.speaker}}   </text>
       <text >{{record.course.subName}}</text>
-    </view>
-    <view class='kechengjianjie' wx:if="{{record.course.isZJJZ==1}}">
-      <text class='kcjj_timu'>专家介绍:</text>
-      <text class='kcjj_nr'>{{record.course.speakerIntroduction}}</text>
     </view>
     <view class='kechengjianjie'>
       <text class='kcjj_timu'>课程简介:</text>

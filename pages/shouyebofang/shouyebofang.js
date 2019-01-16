@@ -1187,6 +1187,10 @@ Page({
         shiti: false
       })
       this.getNextSection(); 
+      //跳转到顶部
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
     }
 
     let signSectionid=this.data.sectionRecord.id;
