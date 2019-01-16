@@ -596,6 +596,25 @@ Page({
             that.setData({
               zjjzList: zjjzList,
             })
+            let jingxuan = this.data.jingxuan;
+            if (jingxuan != "") {
+              let subid = zjjzList[index].subject.id;
+              let courseid = zjjzList[index].id;
+              let subList = that.data.subList;
+              for (let i = 0; i < subList.length; i++) {
+                if (subid == subList[i].id) {
+                  let courses = subList[i].courseList;
+                  for (let j = 0; j < courses.length; j++) {
+                    if (courseid == courses[j].id) {
+                      courses[j].isSign = 0;
+                      that.setData({
+                        subList: subList,
+                      })
+                    }
+                  }
+                }
+              }
+            }
           }else{
             var subList = that.data.subList;
             var courseList = subList[subindex].courseList;
@@ -603,6 +622,18 @@ Page({
             that.setData({
               subList: subList,
             })
+            let jingxuan = this.data.jingxuan;
+            if (jingxuan != "") {
+              let zjjzList = that.data.zjjzList;
+              for (let i = 0; i < zjjzList.length; i++) {
+                if (courseList[index].id == zjjzList[i].id) {
+                  zjjzList[i].isSign = 0;
+                  that.setData({
+                    zjjzList: zjjzList,
+                  })
+                }
+              }
+            }
           }
           wx.showToast({
             title: '取消课程成功',
