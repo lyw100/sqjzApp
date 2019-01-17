@@ -497,7 +497,7 @@ Page({
             that.setData({
               zjjzList: zjjzList,
             })
-            let jingxuan = this.data.jingxuan;
+            let jingxuan = that.data.jingxuan;
             if(jingxuan!=""){
               let subid = zjjzList[index].subject.id;
               let courseid = zjjzList[index].id;
@@ -523,7 +523,7 @@ Page({
             that.setData({
               subList: subList,
             })
-            let jingxuan = this.data.jingxuan;
+            let jingxuan = that.data.jingxuan;
             if (jingxuan != "") {
               let zjjzList = that.data.zjjzList;
               for (let i = 0; i < zjjzList.length; i++) {
