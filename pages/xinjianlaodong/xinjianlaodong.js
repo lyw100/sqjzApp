@@ -279,7 +279,8 @@ Page({
     json.provinceid = this.data.jzry.jzProvinceId;
     json.cityid = this.data.jzry.jzCityId;
     json.countyid = this.data.jzry.jzCountyId;
-    json.orgid = this.data.jzry.jzAddressId;
+    json.officeid = this.data.jzry.jzAddressId;
+    json.orgid=this.data.jzry.jzdwId;
 
     wx.request({
       url: getApp().globalData.url + '/labor/createLabor', //添加义务劳动
