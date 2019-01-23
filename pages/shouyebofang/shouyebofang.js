@@ -31,9 +31,10 @@ Page({
     yulan:true,
     page:1,
     shoucangzhong:false,
-    shiti:false,
-    curQindex:0,
-    curQswiper:0
+    shiti:false,//是否显示试题
+    curQindex:0,//当前试题的索引
+    curQswiper:0,//主动控制当前试题的索引变量
+    sectionEnd:false//当前课程是否播放结束
   },
   // 点击收藏 选课显示
   shoucangdj:function(){
@@ -226,6 +227,14 @@ Page({
     // this.videoContext.play();
     // console.log("点击播放");
     // this.videoContext.requestFullScreen();//执行全屏方法
+    if(this.data.sectionEnd){//当前课程播放结束
+      this.videoContext.seek(0);
+      this.videoContext.pause();//暂停
+      this.setData({
+        sectionEnd:false
+      });
+      return;
+    }
     if (this.data.shualiandl){
       this.videoContext.pause()
     }else{
@@ -277,10 +286,13 @@ Page({
     let duration = sectionRecord.section.duration;
     let isSign=this.data.isSign;
     if (duration - progress < 3) {
-      if (isSign==1&&sectionRecord.state!=1){//未完成课时
-      // if (isSign==1){//未完成课时
+      if (isSign==1){//选课
         this.videoContext.exitFullScreen();//执行全屏方法
-        this.getquestions();
+        if (sectionRecord.state != 1){//未完成课时
+          this.getquestions();
+        }else{
+          this.getNextSection();
+        }
       }
     }  
   },
@@ -790,6 +802,7 @@ Page({
         });
         
         that.videoContext = wx.createVideoContext('myVideo');
+        
       }
     })
 
@@ -1047,7 +1060,9 @@ Page({
               shiti:true
             })
             
-        }
+          }else{
+            that.getNextSection();
+          }
       }
     })
   },
@@ -1076,6 +1091,11 @@ Page({
           } else {
             sections[i + 1].yanse = "zhangjieend zhangjie";
           }
+        }else{
+          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i].id);
+          this.setData({
+            sectionEnd: true//当前课程播放结束
+          })
         }
 
         this.setData({

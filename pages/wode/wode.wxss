@@ -361,7 +361,7 @@
   color: #969696;
   display: inline-block;
   width: 33%;
-  text-align:right;
+  text-align:left;
 }
 
 .xueshi {
