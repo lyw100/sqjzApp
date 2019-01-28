@@ -1092,9 +1092,12 @@ Page({
             sections[i + 1].yanse = "zhangjieend zhangjie";
           }
         }else{
-          this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i].id);
+          // this.getVideoSection(this.data.record.course.id, this.data.record.course.sections[i].id);
+          sectionRecord.progress = sectionRecord.section.duration;
           this.setData({
-            sectionEnd: true//当前课程播放结束
+            sectionRecord: sectionRecord,
+            sectionEnd: true,//当前课程播放结束
+            shiti: false
           })
         }
 
@@ -1204,7 +1207,7 @@ Page({
         questions: questions,
         curQindex: 0,
         curQswiper:0,
-        shiti: false
+        
       })
       this.getNextSection(); 
       //跳转到顶部
