@@ -205,10 +205,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.setData({
-      dibu:true
-    })
-    this.moreCourse();
+    if(this.data.shiti==false){
+      this.setData({
+        dibu:true
+      })
+      this.moreCourse();
+    }
   },
 
   /**
