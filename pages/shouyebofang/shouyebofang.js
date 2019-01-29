@@ -367,7 +367,7 @@ Page({
                   face:false
                 });
                 that.clearProgress();//重新加载定时器
-              },100)
+              },300)
           }
         }
       }
