@@ -145,10 +145,12 @@
 
   <!--思想汇报页面 -->
   <view class='sxhb' wx:if="{{sixianghbxianshi}}">
-    <view class='dukc_tiaoshi' catchtap='tzpaizhaoyemian'>
+    <!-- <view class='dukc_tiaoshi' catchtap='tzpaizhaoyemian'>
       <text>拍照汇报</text>
     </view>
-    <image src='/img/paizhao.png' class='sxhb_pz' catchtap='dianji'></image>
+    <image src='/img/paizhao.png' class='sxhb_pz' catchtap='dianji'></image> -->
+    <view class="sxhb_xzhb" catchtap='tzpaizhaoyemian'>新增汇报</view>
+    <view class='xiantiao'></view>
     <view class='dukc_tiaoshi'>
       <text>思想汇报记录</text>
     </view>
