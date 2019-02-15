@@ -26,7 +26,14 @@ Page({
     rows:6,
     dibu:false,
     scpage:1,
+    isFold: true,
     courseList:[]
+  },
+
+  sxhb_zhankai: function (e) {
+    this.setData({
+      isFold: !this.data.isFold,
+    })
   },
   //签到  已签到
   qiandao:function(){

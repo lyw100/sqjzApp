@@ -157,9 +157,13 @@
     <view class='sxhbjl_zong'>
       <view class='sxhbjl_fst' wx:for='{{reportList}}' wx:key='{{index}}'>
         <view class='sxhb_biaoti'>
-          <text>{{item.title}}</text>
+          <text style='font-weight:bold;'>{{item.title}}</text>
           <text class='weishenhe' wx:if='{{item.state=="0"}}'>未审核</text>
           <text class='yishenhe' wx:if='{{item.state=="1"}}'>已审核</text>
+        </view>
+        <view class='sxhb_shuoming'>
+          <text class="{{isFold?'sxhb_jianjie':'sxhb_show'}}">束带结发开单收费结案率时代峰峻了看束带结发开单收费结案率时代峰峻了看</text>
+          <text class='sxhb_zh' catchtap='sxhb_zhankai'>展开</text>
         </view>
         <view class='sxhb_img'>
           <view wx:for='{{item.images}}' wx:for-item='image' wx:key='id' style='display:inline-block'>

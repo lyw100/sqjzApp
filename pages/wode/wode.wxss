@@ -267,7 +267,27 @@ border-radius:50rpx;
   color: #2499f9;
   margin-left: 30rpx;
 }
-
+.sxhb_shuoming{
+  font-size: 34rpx;
+  color:#282828;
+  margin-top:6px;
+}
+.sxhb_jianjie{
+  display: inline-block;
+  width: 85%;
+  height:44rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;/* 超出内容显示为省略号*/
+  white-space: nowrap;
+}
+.sxhb_show{
+   display: inline-block;
+  width: 85%;
+}
+.sxhb_zh{
+  color: #2499f9;
+  float: right;
+}
 .sxhb_img {
   width: 100%;
   height: auto;
