@@ -699,8 +699,11 @@ Page({
         if (res.data.msg == 'OK') {
           var list = res.data.list;
           for (var i = 0; i < list.length; i++) {
-            var images = list[i].content.split(',')
-            list[i].images = images
+            var images = [];
+            if(list[i].urls.length>0){
+              images= list[i].urls.split(',');
+            }
+            list[i].images = images;
           }
           self.setData({
             reportList: list
@@ -737,8 +740,11 @@ Page({
           var list = res.data.list;
           if(list.length>0){
             for (var i = 0; i < list.length; i++) {
-              var images = list[i].content.split(',')
-              list[i].images = images
+              var images = [];
+              if (list[i].urls.length > 0) {
+                images = list[i].urls.split(',');
+              }
+              list[i].images = images;
               reportList.push(list[i])
             }
             self.setData({

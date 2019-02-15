@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputText:'',
+    inputText:'',//标题
+    inputContent:'',//内容
     imgList:[],//图片列表
     urlList:[]//上传图片返回的地址
   },
@@ -13,6 +14,12 @@ Page({
     var text=event.detail.value
     this.setData({
       inputText:text
+    })
+  },
+  inputContentBind:function(event){
+    var text=event.detail.value
+    this.setData({
+      inputContent:text
     })
   },
   /**
@@ -52,10 +59,11 @@ Page({
       })
       return;
     }
+    var content=this.data.inputContent;
     var imgList=this.data.imgList
-    if(imgList.length==0){
+    if (content==""&&imgList.length==0){
       wx.showToast({
-        title: '请选择思想汇报图片',
+        title: '请输入思想汇报内容或选择图片',
         icon: 'none',
         duration: 1000
       })
@@ -101,6 +109,7 @@ Page({
                 data:{
                   jzid: getApp().globalData.jiaozhengid,
                   title:title,
+                  content:content,
                   pathes: JSON.stringify(imgUrls)
                 },
                 method:'POST',
