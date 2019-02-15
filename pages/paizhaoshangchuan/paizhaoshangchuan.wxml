@@ -2,8 +2,8 @@
 <view class='pzsc'>
 
     <view class='wenben'>
-      <input  placeholder="请输入标题..."></input>
-       <textarea placeholder="请输入文本报告..." adjust-position="false" bindinput='inputBind'/>
+      <input  placeholder="请输入标题..." bindinput='inputBind'></input>
+       <textarea placeholder="请输入文本报告..." adjust-position="false" bindinput='inputContentBind'/>
     </view>
     <view class='xztupian'>
       <view class='tupianview' wx:for='{{imgList}}' wx:key='{{index}}' wx:for-item='img' data-index='{{index}}' bindlongpress='deleteImg'>
