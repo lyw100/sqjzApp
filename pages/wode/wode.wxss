@@ -221,19 +221,28 @@
 .yangxing {
   color: #2499f9;
 }
+.xiantiao{
+border:1px solid #e5e5e5;
+margin-top:42rpx;
+border-top:none;
 
+}
 .chakan {
   float: right;
   color: #2499f9;
   font-size: 34rpx;
 }
+.sxhb_xzhb{
+width:90%;
+height:90rpx;
+line-height:90rpx;
+background:#2499f9;
+color:#fff;
+margin:50rpx auto 0;
+text-align:center;
+border-radius:50rpx;
 
-.sxhb_pz {
-  width: 166rpx;
-  height: 200rpx;
-  margin: 20rpx 0 0 30rpx;
 }
-
 .sxhbjl_zong {
   padding: 0rpx 30rpx;
 }
