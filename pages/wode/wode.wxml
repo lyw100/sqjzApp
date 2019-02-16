@@ -161,9 +161,10 @@
           <text class='weishenhe' wx:if='{{item.state=="0"}}'>未审核</text>
           <text class='yishenhe' wx:if='{{item.state=="1"}}'>已审核</text>
         </view>
-        <view class='sxhb_shuoming'>
-          <text class="{{isFold?'sxhb_jianjie':'sxhb_show'}}">束带结发开单收费结案率时代峰峻了看束带结发开单收费结案率时代峰峻了看</text>
-          <text class='sxhb_zh' catchtap='sxhb_zhankai'>展开</text>
+        <view class='sxhb_shuoming' wx:if='{{item.content.length>0}}'>
+          <text class="{{item.isFold?'sxhb_jianjie':'sxhb_show'}}">{{item.content}}</text>
+          <text data-index='{{index}}' class='sxhb_zh' wx:if='{{item.isFold}}' catchtap='sxhb_zhankai'>展开</text>
+          <text data-index='{{index}}' class='sxhb_zh' wx:if='{{!item.isFold}}' catchtap='sxhb_zhankai'>收起</text>
         </view>
         <view class='sxhb_img'>
           <view wx:for='{{item.images}}' wx:for-item='image' wx:key='id' style='display:inline-block'>

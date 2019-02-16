@@ -26,13 +26,15 @@ Page({
     rows:6,
     dibu:false,
     scpage:1,
-    isFold: true,
     courseList:[]
   },
 
   sxhb_zhankai: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let reportList=this.data.reportList;
+    reportList[index].isFold = !reportList[index].isFold;
     this.setData({
-      isFold: !this.data.isFold,
+      reportList: reportList,
     })
   },
   //签到  已签到
@@ -711,6 +713,7 @@ Page({
               images= list[i].urls.split(',');
             }
             list[i].images = images;
+            list[i].isFold=true;
           }
           self.setData({
             reportList: list
@@ -752,6 +755,7 @@ Page({
                 images = list[i].urls.split(',');
               }
               list[i].images = images;
+              list[i].isFold = true;
               reportList.push(list[i])
             }
             self.setData({
