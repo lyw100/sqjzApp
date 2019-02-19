@@ -4,15 +4,15 @@
     <view class='tit_sm'>
       <view class='wd_name'>
         <text>{{jzry.name}}</text>
-        <text>{{jzry.sex==0?'女':'男'}}</text>
-        <text>{{jzry.age}}</text>
+        <text>{{jzry.sex==''?'':(jzry.sex==0?'女':'男')}}</text>
+        <text>{{jzry.age==0?'':jzry.age}}</text>
       </view>
       <view class='tit_dizhi'>
         <text>{{jzry.jzdwName}}</text>
       </view>
       <view class='tit_guiding'>
-        <text>规定学时:8</text>
-        <text>完成学时:{{hours}}</text>
+        <text>劳动时长:{{labor_hours}}</text>
+        <text>学习时长:{{hours}}</text>
       </view>
     </view>
     <!-- <image class='wd_jiandao' src='/img/qiandao.png' catchtap='qiandao' wx:if="{{qiandaoxs}}"></image>

@@ -22,6 +22,7 @@ Page({
     wodeshoucangmk:false,
     reportList: [],//思想汇报列表
     hours:0,//已完成学时
+    labor_hours:0,//劳动时长
     page:1,
     rows:6,
     dibu:false,
@@ -388,8 +389,10 @@ Page({
       success(res) {
         // console.log(res.data);
         var hours = res.data.hours;
+        var labor_hours = res.data.labor_hours;
         that.setData({
           hours: parseFloat(hours).toFixed(1),
+          labor_hours: parseFloat(labor_hours).toFixed(1),
         })
       }
     })
