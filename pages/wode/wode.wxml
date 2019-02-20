@@ -11,8 +11,8 @@
         <text>{{jzry.jzdwName}}</text>
       </view>
       <view class='tit_guiding'>
-        <text>劳动时长:{{labor_hours}}</text>
         <text>学习时长:{{hours}}</text>
+        <text>劳动时长:{{labor_hours}}</text>
       </view>
     </view>
     <!-- <image class='wd_jiandao' src='/img/qiandao.png' catchtap='qiandao' wx:if="{{qiandaoxs}}"></image>
