@@ -27,6 +27,10 @@
       <text>签到时间</text>
       <text class='time_riqi'>{{learnItem.startRealTime}}</text>
     </view>
+    <view class='xxz_k'>
+      <text>签到地点</text>
+      <text class='time_riqi'>{{learnItem.startRealAddress}}</text>
+    </view>
     <view class='xxz_zp'>
       <text>签到照片</text>
       <image class='xxz_photo' src='{{learnItem.startUrl}}'></image>
@@ -38,6 +42,10 @@
     <view class='xxz_k'>
       <text>签退时间</text>
       <text class='time_riqi'>{{learnItem.endRealTime}}</text>
+    </view>
+    <view class='xxz_k'>
+      <text>签退地点</text>
+      <text class='time_riqi'>{{learnItem.endRealAddress}}</text>
     </view>
     <view class='xxz_zp'>
       <text>签退照片</text>
