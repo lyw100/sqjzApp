@@ -20,6 +20,7 @@ Page({
           wx.reLaunch({
             url: '../shouye/shouye'
           });
+          return false;
         }
       }
     })

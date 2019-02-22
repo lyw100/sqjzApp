@@ -18,6 +18,13 @@ Page({
       url: getApp().globalData.url + '/weChat/msg/goXTXX',
       header: getApp().globalData.header, //获取app.js中的请求头
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if(res.data.msg==""){
           wx.navigateTo({
             url: '../xitongxiaoxi/xitongxiaoxi',
@@ -49,7 +56,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -68,7 +81,13 @@ Page({
       url: getApp().globalData.url + '/weChat/msg/getMsg',
       header: getApp().globalData.header, //获取app.js中的请求头
       success(res) {
-        
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var data =res.data;
         //系统消息
         var xtshuzishow="";

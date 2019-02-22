@@ -91,7 +91,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -137,6 +143,13 @@ Page({
             },
             dataType: 'text',
             success(res) {
+              //判断session
+              if (res.data.timeOut == 'OUT') {
+                wx.reLaunch({
+                  url: '../shouye/shouye'
+                });
+                return false;
+              }
               if (res.data == "true") {//是选课内容
                 subList[i].courseList[j].isSign = 1;
                 that.setData({
@@ -241,6 +254,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var list = res.data;
         for (var i = 0; i < list.length; i++) {
@@ -303,7 +323,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var subList = res.data;
         that.setData({
@@ -402,6 +428,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var zjjzList = res.data;
         that.setData({
           zjjzList: zjjzList
@@ -426,6 +459,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var courseList = res.data;
         if (page == 1) {
@@ -485,6 +525,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
           wx.showToast({
             title: '选课成功',
@@ -589,6 +636,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           if (subindex == 'zjjz') {//判断是否是专家讲座
             var zjjzList = that.data.zjjzList;

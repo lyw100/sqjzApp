@@ -46,6 +46,13 @@ Page({
         pwd: that.data.pwd,
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res);
         if (res.data.msg == "OK") {
           wx.switchTab({

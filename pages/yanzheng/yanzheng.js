@@ -69,6 +69,13 @@ Page({
         yzm:that.data.yzm
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res);
         if (res.data.msg == "OK") {
           wx.navigateTo({
@@ -108,6 +115,13 @@ Page({
         username: that.data.username,
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data)
         if(res.data.msg=="OK"){
           that.getCode();

@@ -62,6 +62,13 @@ Page({
           'content-type': 'application/x-www-form-urlencoded' // 默认值
         },
         success(res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.data.msg == "OK"){
             var psyrepid = res.data.psyrepid;
             wx.redirectTo({
@@ -90,7 +97,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -106,6 +119,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var list = res.data;
         for(var i=0;i<list.length;i++){

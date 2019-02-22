@@ -78,6 +78,13 @@ Page({
         time: that.data.date
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var dyqd=0;
         if(res.data.length>0){
           for (var i = 0; i < res.data.length; i++) {
@@ -164,6 +171,13 @@ Page({
                   jzid: jzid
                 },
                 success(res) {
+                  //判断session
+                  if (res.data.timeOut == 'OUT') {
+                    wx.reLaunch({
+                      url: '../shouye/shouye'
+                    });
+                    return false;
+                  }
                   var json = JSON.parse(res.data);
                   wx.request({
                     url: getApp().globalData.url + '/jzryqd/saveQD', //保存签到
@@ -182,6 +196,13 @@ Page({
                       imgpath: json.imgpath
                     },
                     success: function (res) {
+                      //判断session
+                      if (res.data.timeOut == 'OUT') {
+                        wx.reLaunch({
+                          url: '../shouye/shouye'
+                        });
+                        return false;
+                      }
                       var data = res.data;
                       var str = "";
                       if (data == "OK") {
@@ -295,6 +316,13 @@ Page({
         jzid: getApp().globalData.jiaozhengid
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var dtcount = res.data.dtcount;
         var dycount = res.data.dycount;
         console.log(res);

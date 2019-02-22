@@ -69,6 +69,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var list = res.data;
         self.setData({
           searchList: list
@@ -121,6 +128,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
         if(xgzl==1){
           var relateList = that.data.relateList;
@@ -162,6 +176,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           if (xgzl == 1) {
             var relateList = that.data.relateList;
@@ -293,6 +314,13 @@ Page({
       },
       method: 'POST',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
     this.search();
@@ -322,6 +350,13 @@ Page({
         'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data.msg == "OK") {
           if (res.data.listAll.length > 0) {
             var choiceId = self.data.choiceId;
@@ -382,6 +417,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         self.setData({
           hotList: res.data.list
         })
@@ -440,6 +482,13 @@ Page({
       },
       method: 'POST',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
     this.search();
@@ -463,6 +512,13 @@ Page({
       },
       method: 'POST',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
     var searchData = this.data.sercherStorage;
@@ -529,6 +585,13 @@ Page({
       },
       method: 'POST',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
     this.search();
@@ -568,6 +631,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var relateList = self.data.relateList;
         if (res.data.msg == "OK") {
           var list = res.data.list;
@@ -602,6 +672,13 @@ Page({
         'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/x-www-form-urlencoded' },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
 
       }
     })
@@ -643,6 +720,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         self.setData({
           hotList: res.data.list
         })

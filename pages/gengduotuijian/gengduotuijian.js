@@ -59,7 +59,12 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -88,6 +93,12 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var list = res.data;
         for(var i=0;i<list.length;i++){
@@ -139,6 +150,12 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           // console.log(res.data);
           var list = res.data;
           for (var i = 0; i < list.length; i++) {
@@ -232,6 +249,12 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);        
         var list = res.data;
         if(list.length>0){
@@ -298,6 +321,12 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
           wx.showToast({
             title: '选课成功',
@@ -342,6 +371,12 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           var moreList = that.data.moreList;
           moreList[index].isSign = 0;

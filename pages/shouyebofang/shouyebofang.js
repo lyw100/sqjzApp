@@ -77,7 +77,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -111,6 +117,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         let isSign = 0//标识是选课 0为浏览
         if (res.data.operator != null) {
@@ -262,6 +275,13 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
+            //判断session
+            if (res.data.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
             // console.log(res.data);
             
           }
@@ -441,6 +461,13 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           // console.log(res.data);
           let list = res.data;
           if(page>1){
@@ -498,6 +525,13 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           // console.log(res.data);
 
         }
@@ -524,6 +558,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         let isSign = 0//标识是选课 0为浏览
         if (res.data.operator != null) {
           isSign = 1;//播放课程为选课课程
@@ -586,6 +627,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
           let moreList = that.data.moreList;
           moreList[index].isSign = 1;
@@ -629,6 +677,13 @@ Page({
             },
             dataType: 'text',
             success(res) {
+              //判断session
+              if (res.data.timeOut == 'OUT') {
+                wx.reLaunch({
+                  url: '../shouye/shouye'
+                });
+                return false;
+              }
               if (res.data == "ok") {//选课成功
                 that.setData({
                   isSign: 1,
@@ -681,6 +736,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           let moreList = that.data.moreList;
           moreList[index].isSign = 0;
@@ -729,6 +791,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           that.setData({
             isSign: 0,
@@ -766,6 +835,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         let progress = res.data.progress;
         let duration= res.data.section.duration;
         let shualian=res.data.shualian;
@@ -954,6 +1030,13 @@ Page({
         },
         dataType: 'text',
         success(res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.data == "ok") {//收藏课程
             let record = that.data.record;
             record.course.collection = 1;
@@ -992,6 +1075,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消收藏课程
           let record = that.data.record;
           record.course.collection = 0;
@@ -1028,6 +1118,13 @@ Page({
       },
       dataType: 'json',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
           if (res.data.length>0) {//章节关联试题数量
             let questions = res.data;
             for (var i = 0; i < questions.length; i++) {
@@ -1239,7 +1336,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
 

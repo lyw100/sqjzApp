@@ -28,6 +28,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if(res.data.msg=="OK"){
           var title=res.data.name;
           var urls = res.data.imgUrls;
@@ -71,6 +78,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data.msg == "OK") {
           var list = res.data.list;
           var courseList = self.data.courseList;
@@ -141,6 +155,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
           var courseList = that.data.courseList;
           courseList[index].isSign = 1;
@@ -183,6 +204,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           var courseList = that.data.courseList;
           courseList[index].isSign = 0;
@@ -229,7 +257,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
