@@ -43,6 +43,7 @@ Page({
           jzid: getApp().globalData.jiaozhengid
         },
         success: function (res) {
+          
           if(res.data == "OK"){
             that.setData({
               qiandaoxs: false,

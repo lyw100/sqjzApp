@@ -16,7 +16,11 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        if (res.data.timeOut =='OUT'){
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+        }
       }
     })
   },
