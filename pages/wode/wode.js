@@ -22,11 +22,21 @@ Page({
     wodeshoucangmk:false,
     reportList: [],//思想汇报列表
     hours:0,//已完成学时
+    labor_hours:0,//劳动时长
     page:1,
     rows:6,
     dibu:false,
     scpage:1,
     courseList:[]
+  },
+
+  sxhb_zhankai: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let reportList=this.data.reportList;
+    reportList[index].isFold = !reportList[index].isFold;
+    this.setData({
+      reportList: reportList,
+    })
   },
   //签到  已签到
   qiandao:function(){
@@ -380,8 +390,10 @@ Page({
       success(res) {
         // console.log(res.data);
         var hours = res.data.hours;
+        var labor_hours = res.data.labor_hours;
         that.setData({
           hours: parseFloat(hours).toFixed(1),
+          labor_hours: parseFloat(labor_hours).toFixed(1),
         })
       }
     })
@@ -700,8 +712,12 @@ Page({
         if (res.data.msg == 'OK') {
           var list = res.data.list;
           for (var i = 0; i < list.length; i++) {
-            var images = list[i].content.split(',')
-            list[i].images = images
+            var images = [];
+            if(list[i].urls.length>0){
+              images= list[i].urls.split(',');
+            }
+            list[i].images = images;
+            list[i].isFold=true;
           }
           self.setData({
             reportList: list
@@ -738,8 +754,12 @@ Page({
           var list = res.data.list;
           if(list.length>0){
             for (var i = 0; i < list.length; i++) {
-              var images = list[i].content.split(',')
-              list[i].images = images
+              var images = [];
+              if (list[i].urls.length > 0) {
+                images = list[i].urls.split(',');
+              }
+              list[i].images = images;
+              list[i].isFold = true;
               reportList.push(list[i])
             }
             self.setData({

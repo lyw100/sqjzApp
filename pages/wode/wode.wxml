@@ -4,15 +4,15 @@
     <view class='tit_sm'>
       <view class='wd_name'>
         <text>{{jzry.name}}</text>
-        <text>{{jzry.sex==0?'女':'男'}}</text>
-        <text>{{jzry.age}}</text>
+        <text>{{jzry.sex==''?'':(jzry.sex==0?'女':'男')}}</text>
+        <text>{{jzry.age==0?'':jzry.age}}</text>
       </view>
       <view class='tit_dizhi'>
         <text>{{jzry.jzdwName}}</text>
       </view>
       <view class='tit_guiding'>
-        <text>规定学时:8</text>
-        <text>完成学时:{{hours}}</text>
+        <text>学习时长:{{hours}}</text>
+        <text>劳动时长:{{labor_hours}}</text>
       </view>
     </view>
     <!-- <image class='wd_jiandao' src='/img/qiandao.png' catchtap='qiandao' wx:if="{{qiandaoxs}}"></image>
@@ -145,19 +145,26 @@
 
   <!--思想汇报页面 -->
   <view class='sxhb' wx:if="{{sixianghbxianshi}}">
-    <view class='dukc_tiaoshi' catchtap='tzpaizhaoyemian'>
+    <!-- <view class='dukc_tiaoshi' catchtap='tzpaizhaoyemian'>
       <text>拍照汇报</text>
     </view>
-    <image src='/img/paizhao.png' class='sxhb_pz' catchtap='dianji'></image>
+    <image src='/img/paizhao.png' class='sxhb_pz' catchtap='dianji'></image> -->
+    <view class="sxhb_xzhb" catchtap='tzpaizhaoyemian'>新增汇报</view>
+    <view class='xiantiao'></view>
     <view class='dukc_tiaoshi'>
       <text>思想汇报记录</text>
     </view>
     <view class='sxhbjl_zong'>
       <view class='sxhbjl_fst' wx:for='{{reportList}}' wx:key='{{index}}'>
         <view class='sxhb_biaoti'>
-          <text>{{item.title}}</text>
+          <text style='font-weight:bold;'>{{item.title}}</text>
           <text class='weishenhe' wx:if='{{item.state=="0"}}'>未审核</text>
           <text class='yishenhe' wx:if='{{item.state=="1"}}'>已审核</text>
+        </view>
+        <view class='sxhb_shuoming' wx:if='{{item.content.length>0}}'>
+          <text class="{{item.isFold?'sxhb_jianjie':'sxhb_show'}}">{{item.content}}</text>
+          <text data-index='{{index}}' class='sxhb_zh' wx:if='{{item.isFold}}' catchtap='sxhb_zhankai'>展开</text>
+          <text data-index='{{index}}' class='sxhb_zh' wx:if='{{!item.isFold}}' catchtap='sxhb_zhankai'>收起</text>
         </view>
         <view class='sxhb_img'>
           <view wx:for='{{item.images}}' wx:for-item='image' wx:key='id' style='display:inline-block'>

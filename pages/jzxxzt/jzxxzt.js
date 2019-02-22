@@ -1,3 +1,5 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var qqmapsdk;
 var intervalTime;
 var intervalImg;
 Page({
@@ -8,6 +10,7 @@ Page({
   data: {
     learnItem:'',
     shualiandl: false,
+    address: '',//当前地点
     nowTime:'',//当前时间
     nextHour:'',//下一小时
     facemsg: '',
@@ -68,6 +71,9 @@ Page({
       }
     })
 
+    qqmapsdk = new QQMapWX({
+      key: '4QSBZ-6FUHF-SS3JW-JUQI2-YDTIS-E4FTW' // 必填
+    });
   },
 
   /**
@@ -166,14 +172,13 @@ Page({
    * 签到  签退
    */
   qiandao:function(){
+    this.getAddress();
     let that=this;
     this.changeImg();
     this.setData({
       shualiandl:true
     });
-    setTimeout(function () {
-      that.takePhoto();
-    }, 3000);
+    
   },
   /**
    * 切图
@@ -202,6 +207,7 @@ Page({
     })
     let nowTime=this.data.nowTime;
     let learnItem = this.data.learnItem;
+    let address=this.data.address;
     const ctx = wx.createCameraContext()
     ctx.takePhoto({
       quality: 'high',
@@ -215,7 +221,8 @@ Page({
           formData: {
             telephone: wx.getStorageSync("username"),
             itemid: learnItem.id,
-            dateTime:nowTime
+            dateTime:nowTime,
+            address:address
           },
           name: 'file',
           success: (res) => {
@@ -230,6 +237,7 @@ Page({
                 learnItem.status=1;
                 learnItem.startRealTime=nowTime;
                 learnItem.startUrl = data.photo;
+                learnItem.startRealAddress=address;
                 wx.showToast({
                   title: '签到成功',
                   icon: 'none',
@@ -242,6 +250,7 @@ Page({
                 learnItem.status = 2;
                 learnItem.endRealTime = nowTime;
                 learnItem.endUrl = data.photo;
+                learnItem.endRealAddress = address;
                 wx.showToast({
                   title: '签退成功',
                   icon: 'none',
@@ -266,5 +275,38 @@ Page({
         })
       }
     })
+  },
+
+  /**
+   * 查询地点
+   */
+  getAddress: function () {
+    let that = this;
+    wx.getLocation({
+      type: 'gcj02',
+      success(res) {
+        let location = res.latitude + "," + res.longitude;//38.01845,114.45482
+        console.log(location);
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          poi_options: 'policy=2;radius=500;page_size=10;page_index=1',
+          success: function (data) {
+            //console.log(data);
+            var address = data.result.formatted_addresses.recommend;
+            //var address = data.result.address;
+            that.setData({
+              address: address
+            })
+            setTimeout(function () {
+              that.takePhoto();
+            }, 3000);
+          }
+        })
+      }
+    })
+
   },
 })
