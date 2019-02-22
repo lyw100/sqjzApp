@@ -255,7 +255,7 @@ Page({
     let imgUrls=this.data.urlList;
 
     wx.request({
-      url: path + '/report/add',
+      url: getApp().globalData.url + '/report/add',
       data: {
         jzid: getApp().globalData.jiaozhengid,
         title: title,

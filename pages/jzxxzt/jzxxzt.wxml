@@ -48,7 +48,7 @@
     <view class='xxz_k'>
       <text>签退地点</text>
       <scroll-view scroll-x  class='time_riqi'>
-      <text class='time_riqi'>{{learnItem.endRealAddress}}</text>
+      <text>{{learnItem.endRealAddress}}</text>
       </scroll-view>
     </view>
     <view class='xxz_zp'>
