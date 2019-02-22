@@ -712,7 +712,7 @@ Page({
           var list = res.data.list;
           for (var i = 0; i < list.length; i++) {
             var images = [];
-            if(list[i].urls.length>0){
+            if (list[i].urls!=null&&list[i].urls.length>0){
               images= list[i].urls.split(',');
             }
             list[i].images = images;
@@ -754,7 +754,7 @@ Page({
           if(list.length>0){
             for (var i = 0; i < list.length; i++) {
               var images = [];
-              if (list[i].urls.length > 0) {
+              if (list[i].urls!=null&&list[i].urls.length > 0) {
                 images = list[i].urls.split(',');
               }
               list[i].images = images;
