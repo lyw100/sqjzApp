@@ -81,88 +81,49 @@ Page({
     var self=this
     //图片数量
     var count = 0
-    for (var i = 0; i < imgList.length; i++) {
-      wx.uploadFile({
-        url: path + '/report/upload',
-        filePath: imgList[i],
-        name: 'file',
-        header: {
-          'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-          'content-type': 'multipart/form-data'
-        },
-        formData: { 
-          jzid: getApp().globalData.jiaozhengid,
-          index: i 
+    if(imgList.length>0){
+      for (var i = 0; i < imgList.length; i++) {
+        wx.uploadFile({
+          url: path + '/report/upload',
+          filePath: imgList[i],
+          name: 'file',
+          header: {
+            'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+            'content-type': 'multipart/form-data'
           },
-        success(res) {
-          var data = JSON.parse(res.data)
-          if (data.msg == "OK") {
-            count++;
-            var imgUrls = self.data.urlList
-            imgUrls.push(data.imgUrl)
-            self.setData({
-              urlList: imgUrls
-            })
-            if (count == imgList.length) {
-              wx.request({
-                url: path+'/report/add',
-                data:{
-                  jzid: getApp().globalData.jiaozhengid,
-                  title:title,
-                  content:content,
-                  pathes: JSON.stringify(imgUrls)
-                },
-                method:'POST',
-                header:{
-                  'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
-                  'content-type': 'application/x-www-form-urlencoded'
-                },
-                success(res){
-                  if(res.data=='OK'){
-                    wx.showToast({
-                      title: '发表成功',
-                      icon:'success',
-                      duration:2000,
-                      success:function(){
-                        wx.navigateBack({
-                          delta: 1
-                        })
-                      }
-                    })
-                  }else{
-                    wx.hideToast();
-                    wx.showModal({
-                      title: '错误提示',
-                      content: '发表思想汇报失败',
-                      showCancel: false,
-                      success: function (res) { }
-                    })
-                  }
-                },
-                fail:function(res){
-                  wx.hideToast();
-                  wx.showModal({
-                    title: '错误提示',
-                    content: '发表思想汇报失败',
-                    showCancel: false,
-                    success: function (res) { }
-                  })
-                }
+          formData: { 
+            jzid: getApp().globalData.jiaozhengid,
+            index: i 
+            },
+          success(res) {
+            var data = JSON.parse(res.data)
+            if (data.msg == "OK") {
+              count++;
+              var imgUrls = self.data.urlList
+              imgUrls.push(data.imgUrl)
+              self.setData({
+                urlList: imgUrls
               })
-              
+              if (count == imgList.length) {
+               self.saveReport();
+                
+              }
             }
+          },
+          fail: function (res) {
+            wx.hideToast();
+            wx.showModal({
+              title: '错误提示',
+              content: '上传图片失败',
+              showCancel: false,
+              success: function (res) { }
+            })
           }
-        },
-        fail: function (res) {
-          wx.hideToast();
-          wx.showModal({
-            title: '错误提示',
-            content: '上传图片失败',
-            showCancel: false,
-            success: function (res) { }
-          })
-        }
-      })
+        })
+      }
+
+    }else{
+      self.saveReport();
     }
    
   },
@@ -278,5 +239,59 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 保存思想汇报
+   */
+  saveReport:function(){
+    let title = this.data.inputText
+    let content = this.data.inputContent;
+    let imgUrls=this.data.urlList;
+
+    wx.request({
+      url: path + '/report/add',
+      data: {
+        jzid: getApp().globalData.jiaozhengid,
+        title: title,
+        content: content,
+        pathes: JSON.stringify(imgUrls)
+      },
+      method: 'POST',
+      header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        if (res.data == 'OK') {
+          wx.showToast({
+            title: '发表成功',
+            icon: 'success',
+            duration: 2000,
+            success: function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else {
+          wx.hideToast();
+          wx.showModal({
+            title: '错误提示',
+            content: '发表思想汇报失败',
+            showCancel: false,
+            success: function (res) { }
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideToast();
+        wx.showModal({
+          title: '错误提示',
+          content: '发表思想汇报失败',
+          showCancel: false,
+          success: function (res) { }
+        })
+      }
+    })
   }
 })
