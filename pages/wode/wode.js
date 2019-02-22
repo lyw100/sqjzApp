@@ -53,6 +53,13 @@ Page({
           jzid: getApp().globalData.jiaozhengid
         },
         success: function (res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if(res.data == "OK"){
             that.setData({
               qiandaoxs: false,
@@ -81,6 +88,13 @@ Page({
         jzid: getApp().globalData.jiaozhengid
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "OK") {
           that.setData({
             qiandaoxs: false,
@@ -114,7 +128,13 @@ Page({
               'content-type': 'application/x-www-form-urlencoded'
             },
             success(res){
-
+              //判断session
+              if (res.data.timeOut == 'OUT') {
+                wx.reLaunch({
+                  url: '../shouye/shouye'
+                });
+                return false;
+              }
             }
           })
           getApp().globalData.jiaozhengid = "";
@@ -175,6 +195,13 @@ Page({
           },
           data: { jzid: jzid},
           success: function (res) {
+            //判断session
+            if (res.data.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
             if (res.data.msg == "success") {
               var xzkslist = res.data.xzkslist
               var xzkslen = xzkslist.length
@@ -207,6 +234,13 @@ Page({
           jzid: jzid
         },
         success: function (res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.data.msg == "success") {
             var lskslist = res.data.lskslist
             // 设置数据  
@@ -241,6 +275,13 @@ Page({
       wx.showModal({
         content: '考试开始后不能停止，确定开始考试吗？',
         success: function (res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.confirm) {
             // 生成试卷
             wx.request({
@@ -256,6 +297,13 @@ Page({
                 tpid: tpid
               },
               success: function (res) {
+                //判断session
+                if (res.data.timeOut == 'OUT') {
+                  wx.reLaunch({
+                    url: '../shouye/shouye'
+                  });
+                  return false;
+                }
                 if (res.data.msg == "success") {
                   var ppid = res.data.ppid
                   var timeStr = res.data.timeStr
@@ -295,6 +343,13 @@ Page({
           tpid: tpid
         },
         success: function (res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.data.msg == "success") {
             var ppid = res.data.ppid
             var timeStr = res.data.timeStr
@@ -337,6 +392,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var jzry = res.data;
         
@@ -362,6 +424,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         // var hours = res.data.hours;
         var list = res.data.list;
@@ -387,6 +456,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var hours = res.data.hours;
         var labor_hours = res.data.labor_hours;
@@ -412,6 +488,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         var list = res.data;
         if (that.data.page > 1) {
@@ -557,6 +640,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res){
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if(res.data.msg=="OK"){
           var list=res.data.list;
           var courseList=self.data.courseList;
@@ -611,6 +701,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//选课成功
           wx.showToast({
             title: '选课成功',
@@ -652,6 +749,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           var courseList=that.data.courseList;
           courseList[index].isSign=0;
@@ -708,6 +812,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data.msg == 'OK') {
           var list = res.data.list;
           for (var i = 0; i < list.length; i++) {
@@ -749,6 +860,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res){
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if(res.data.msg=='OK'){
           var list = res.data.list;
           if(list.length>0){
@@ -833,6 +951,13 @@ Page({
           jzid: getApp().globalData.jiaozhengid
         },
         success: function (res) {
+          //判断session
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           if (res.data.msg == "success") {
             var list = res.data.maplist
             // 设置数据  
@@ -931,7 +1056,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },
@@ -1082,6 +1213,13 @@ Page({
       },
       dataType: 'text',
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data == "ok") {//取消选课成功
           var nowList = that.data.nowList;
           nowList.splice(index, 1);

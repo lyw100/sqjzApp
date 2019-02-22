@@ -32,6 +32,12 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success(res) {
+          if (res.data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
           let status = res.data.status;
           if (status == 0) {
             that.setData({

@@ -52,6 +52,13 @@ Page({
         jsonarray: jsonarray
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data.msg == "success") {
           wx.redirectTo({
             url: '../kaoshijieguo/kaoshijieguo?ppid=' + ppid,
@@ -157,6 +164,13 @@ Page({
         ppid: ppid
       },
       success: function (res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         if (res.data.msg == "success") {
           var pQuestionArr = res.data.pQuestionArr
           //富文本循环替换html标签
@@ -222,7 +236,13 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
       }
     })
   },

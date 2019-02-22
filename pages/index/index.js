@@ -28,6 +28,12 @@ Page({
       },
       method: 'get',
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data)
         tname = res.data.tname
       }

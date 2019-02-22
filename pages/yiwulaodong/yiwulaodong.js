@@ -168,6 +168,13 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        //判断session
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         // console.log(res.data);
         let list = res.data.laborItems;
         if(page>1){
