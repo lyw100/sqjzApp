@@ -173,29 +173,36 @@ Page({
         }
         if (res.data.msg == "success") {
           var pQuestionArr = res.data.pQuestionArr
-          //富文本循环替换html标签
-          for (var i = 0; i < pQuestionArr.length; i++) {
-            WxParse.wxParse('topic' + i, 'html', pQuestionArr[i].question.content, that)
-            if (i === pQuestionArr.length - 1) {
-              WxParse.wxParseTemArray("qcontentArr", 'topic', pQuestionArr.length, that)
-            }
-          }
-          let qcontentArr = that.data.qcontentArr;
-          for (var j = 0; j < qcontentArr.length; j++) {
-            let contentStr = ''
-            let imgArr = []
-            let imgLen = 0
-            for (var k = 0; k < qcontentArr[j].length;k++){
-              let node = qcontentArr[j][k].nodes[0]
-              if (node.tag == 'img'){
-                imgArr[imgLen] = getApp().globalData.url.substring(0, getApp().globalData.url.length-5) + node.attr.src
-                imgLen ++
-              }else{
-                contentStr = contentStr + node.text
+          if (pQuestionArr.length == 0){
+            wx.showToast({
+              title: '试卷无试题！',
+              icon: 'none'
+            })
+          }else{
+            //富文本循环替换html标签
+            for (var i = 0; i < pQuestionArr.length; i++) {
+              WxParse.wxParse('topic' + i, 'html', pQuestionArr[i].question.content, that)
+              if (i === pQuestionArr.length - 1) {
+                WxParse.wxParseTemArray("qcontentArr", 'topic', pQuestionArr.length, that)
               }
             }
-            pQuestionArr[j].question.content = contentStr
-            pQuestionArr[j].question.img = imgArr
+            let qcontentArr = that.data.qcontentArr;
+            for (var j = 0; j < qcontentArr.length; j++) {
+              let contentStr = ''
+              let imgArr = []
+              let imgLen = 0
+              for (var k = 0; k < qcontentArr[j].length;k++){
+                let node = qcontentArr[j][k].nodes[0]
+                if (node.tag == 'img'){
+                  imgArr[imgLen] = getApp().globalData.url.substring(0, getApp().globalData.url.length-5) + node.attr.src
+                  imgLen ++
+                }else{
+                  contentStr = contentStr + node.text
+                }
+              }
+              pQuestionArr[j].question.content = contentStr
+              pQuestionArr[j].question.img = imgArr
+            }
           }
           var tfngNum = res.data.tfngNum
           var singleNum = res.data.singleNum
@@ -307,7 +314,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wxTimer.stop();
+    if(wxTimer != null){
+      wxTimer.stop();
+    }
   },
 
   /**
