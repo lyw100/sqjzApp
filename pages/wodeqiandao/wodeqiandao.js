@@ -161,6 +161,12 @@ Page({
           name: 'file',
           success: (rest) => {
             var data = JSON.parse(rest.data);
+            if (data.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
             if (data.msg == "OK") {
               var jzid = getApp().globalData.jiaozhengid;
               wx.uploadFile({

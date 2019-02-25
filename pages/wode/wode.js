@@ -701,13 +701,7 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
-        }
+        
         if (res.data == "ok") {//选课成功
           wx.showToast({
             title: '选课成功',
@@ -725,6 +719,15 @@ Page({
             icon: 'none',
             duration: 2000
           })
+        }else{
+          var data = JSON.parse(res.data);
+          //判断session
+          if (data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
       }
     })
@@ -779,7 +782,17 @@ Page({
             icon: 'none',
             duration: 2000
           })
-        }
+        } else {
+          var data = JSON.parse(res.data);
+          //判断session
+          if (data.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
+        }          
+
       }
     })
   },
