@@ -116,6 +116,7 @@ Page({
       url: getApp().globalData.url + '/psyass/getQuestion', //获取90道心理评估试题
       data: {},
       header: {
+        'Cookie': getApp().globalData.header.Cookie, //获取app.js中的请求头
         'content-type': 'application/json' // 默认值
       },
       success(res) {
