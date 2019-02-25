@@ -50,7 +50,7 @@ Page({
    * 发表
    */
   fabiao:function(){
-    var title=this.data.inputText
+    var title=this.data.inputText.trim();
     if(title==''){
       wx.showToast({
         title: '请输入标题',
@@ -59,7 +59,7 @@ Page({
       })
       return;
     }
-    var content=this.data.inputContent;
+    var content = this.data.inputContent.trim();
     var imgList=this.data.imgList
     if (content==""&&imgList.length==0){
       wx.showToast({
