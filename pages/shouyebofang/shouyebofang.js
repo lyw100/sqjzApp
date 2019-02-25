@@ -275,12 +275,15 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
-            //判断session
-            if (res.data.timeOut == 'OUT') {
-              wx.reLaunch({
-                url: '../shouye/shouye'
-              });
-              return false;
+            if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+              var errdata = JSON.parse(res.data);
+              //判断session
+              if (errdata.timeOut == 'OUT') {
+                wx.reLaunch({
+                  url: '../shouye/shouye'
+                });
+                return false;
+              }
             }
             // console.log(res.data);
             
@@ -525,12 +528,15 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success(res) {
-          //判断session
-          if (res.data.timeOut == 'OUT') {
-            wx.reLaunch({
-              url: '../shouye/shouye'
-            });
-            return false;
+          if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+            var errdata = JSON.parse(res.data);
+            //判断session
+            if (errdata.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
           }
           // console.log(res.data);
 
@@ -627,12 +633,15 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
         if (res.data == "ok") {//选课成功
           let moreList = that.data.moreList;
@@ -677,12 +686,15 @@ Page({
             },
             dataType: 'text',
             success(res) {
-              //判断session
-              if (res.data.timeOut == 'OUT') {
-                wx.reLaunch({
-                  url: '../shouye/shouye'
-                });
-                return false;
+              if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+                var errdata = JSON.parse(res.data);
+                //判断session
+                if (errdata.timeOut == 'OUT') {
+                  wx.reLaunch({
+                    url: '../shouye/shouye'
+                  });
+                  return false;
+                }
               }
               if (res.data == "ok") {//选课成功
                 that.setData({
@@ -736,12 +748,15 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
         if (res.data == "ok") {//取消选课成功
           let moreList = that.data.moreList;
@@ -791,12 +806,15 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
         if (res.data == "ok") {//取消选课成功
           that.setData({
@@ -1030,12 +1048,15 @@ Page({
         },
         dataType: 'text',
         success(res) {
-          //判断session
-          if (res.data.timeOut == 'OUT') {
-            wx.reLaunch({
-              url: '../shouye/shouye'
-            });
-            return false;
+          if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+            var errdata = JSON.parse(res.data);
+            //判断session
+            if (errdata.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
           }
           if (res.data == "ok") {//收藏课程
             let record = that.data.record;
@@ -1075,12 +1096,15 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
         if (res.data == "ok") {//取消收藏课程
           let record = that.data.record;
@@ -1336,12 +1360,15 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
       }
     })

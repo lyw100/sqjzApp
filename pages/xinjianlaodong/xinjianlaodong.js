@@ -298,12 +298,15 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
+        if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+          var errdata = JSON.parse(res.data);
+          //判断session
+          if (errdata.timeOut == 'OUT') {
+            wx.reLaunch({
+              url: '../shouye/shouye'
+            });
+            return false;
+          }
         }
         if(res.data=='ok'){
           wx.navigateBack({

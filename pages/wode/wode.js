@@ -720,13 +720,15 @@ Page({
             duration: 2000
           })
         }else{
-          var data = JSON.parse(res.data);
-          //判断session
-          if (data.timeOut == 'OUT') {
-            wx.reLaunch({
-              url: '../shouye/shouye'
-            });
-            return false;
+          if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+            var errdata = JSON.parse(res.data);
+            //判断session
+            if (errdata.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
           }
         }
       }
@@ -752,13 +754,7 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
-        }
+       
         if (res.data == "ok") {//取消选课成功
           var courseList=that.data.courseList;
           courseList[index].isSign=0;
@@ -783,13 +779,15 @@ Page({
             duration: 2000
           })
         } else {
-          var data = JSON.parse(res.data);
-          //判断session
-          if (data.timeOut == 'OUT') {
-            wx.reLaunch({
-              url: '../shouye/shouye'
-            });
-            return false;
+          if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+            var errdata = JSON.parse(res.data);
+            //判断session
+            if (errdata.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
           }
         }          
 
@@ -1226,13 +1224,7 @@ Page({
       },
       dataType: 'text',
       success(res) {
-        //判断session
-        if (res.data.timeOut == 'OUT') {
-          wx.reLaunch({
-            url: '../shouye/shouye'
-          });
-          return false;
-        }
+        
         if (res.data == "ok") {//取消选课成功
           var nowList = that.data.nowList;
           nowList.splice(index, 1);
@@ -1257,6 +1249,17 @@ Page({
             icon: 'none',
             duration: 2000
           })
+        } else {
+          if (res.data.indexOf("{") == 0 && res.data.lastIndexOf("}") != -1) {
+            var errdata = JSON.parse(res.data);
+            //判断session
+            if (errdata.timeOut == 'OUT') {
+              wx.reLaunch({
+                url: '../shouye/shouye'
+              });
+              return false;
+            }
+          }
         }
       }
     })
