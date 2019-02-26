@@ -29,6 +29,7 @@ Page({
         url: url, //请求腾讯定位
         data: { },
         header: {
+          'Cookie': getApp().globalData.header.Cookie, 
           'content-type': 'application/json' // 默认值
         },
         success(res) {
