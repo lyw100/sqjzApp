@@ -42,9 +42,16 @@ Page({
         psyrepid: psyrepid,
       },
       header: {
+        'Cookie': getApp().globalData.header.Cookie, 
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        if (res.data.timeOut == 'OUT') {
+          wx.reLaunch({
+            url: '../shouye/shouye'
+          });
+          return false;
+        }
         var data = res.data;
          that.setData({
            bianhao: data.bianhao,
