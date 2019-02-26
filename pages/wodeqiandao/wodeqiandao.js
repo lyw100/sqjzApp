@@ -172,6 +172,7 @@ Page({
               wx.uploadFile({
                 url: getApp().globalData.url + '/jzryqd/uploadQDImg',
                 filePath: res.tempImagePath,
+                header: header,
                 name: 'file',
                 formData: {
                   jzid: jzid
