@@ -16,9 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var a='{"1":"1"}'
-    a=JSON.parse(a)
-    console.log(Object.prototype.toString.call(a) )
+    // var a='{"1":"1"}'
+    // a=JSON.parse(a)
+    // console.log(Object.prototype.toString.call(a) )
     
   },
 
