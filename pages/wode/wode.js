@@ -275,13 +275,6 @@ Page({
       wx.showModal({
         content: '考试开始后不能停止，确定开始考试吗？',
         success: function (res) {
-          //判断session
-          if (res.data.timeOut == 'OUT') {
-            wx.reLaunch({
-              url: '../shouye/shouye'
-            });
-            return false;
-          }
           if (res.confirm) {
             // 生成试卷
             wx.request({
