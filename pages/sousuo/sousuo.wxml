@@ -72,11 +72,20 @@
             <text class='xuanke' bindtap='xzkc' wx:if="{{item.isSign=='0'}}" data-index='{{index}}' data-id='{{item.id}}'>选课</text>
             <text class='yixuan' data-index='{{index}}' data-id='{{item.id}}' bindtap='yixuankecheng' wx:if="{{item.isSign=='1'}}">已选</text>
           </view>
+           
+                <block wx:if="{{item.isNew==1}}">
+                  <image src='/img/jiangzuo.png' wx:if="{{item.isZJJZ==1}}" class='new_dw'></image>
+                  <image src='/img/new.png' wx:else class='new_dw'></image>
+                </block>
+                <block wx:else>
+                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
+                </block>
           <view class='lfph_dw' catchtap='tzbfyemain' id='{{item.id}}' wx:if="{{item.isSign==0}}">
-                <view class='dwlfph_jianju'>
-                  <text>未选课</text>
-                </view>
-                <view>不记学时</view>
+                  <text class='sousuo_wxk'>未选课</text>
+                  <text>不记学时</text>
+               
+              </view>
+              <!-- <view wx:if="{{item.isSign==1}}">
                 <block wx:if="{{item.isNew==1}}">
                   <image src='/img/jiangzuo.png' wx:if="{{item.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
@@ -84,16 +93,7 @@
                 <block wx:else>
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                 </block>
-              </view>
-              <view wx:if="{{item.isSign==1}}">
-                <block wx:if="{{item.isNew==1}}">
-                  <image src='/img/jiangzuo.png' wx:if="{{item.isZJJZ==1}}" class='new_dw'></image>
-                  <image src='/img/new.png' wx:else class='new_dw'></image>
-                </block>
-                <block wx:else>
-                  <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
-                </block>
-              </view>
+              </view> -->
           </view>
           
         </view>
