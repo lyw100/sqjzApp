@@ -256,20 +256,23 @@
                   </view>
 
               </view>
-              <!--未选课-->
-              <view class='lfph_dw' catchtap='bofang' data-id="{{course.id}}" data-index='{{index}}' wx:if="{{course.isSign==0}}">
-                <view class='dwlfph_jianju'>
-                  <text>未选课</text>
-                </view>
-                <view>不记学时</view>
-                
-                <block wx:if="{{course.isNew==1}}">
+
+               <block wx:if="{{course.isNew==1}}">
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                   <image src='/img/new.png' wx:else class='new_dw'></image>
                 </block>
                 <block wx:else>
                   <image src='/img/jiangzuo.png' wx:if="{{course.isZJJZ==1}}" class='new_dw'></image>
                 </block>
+
+              <!--未选课-->
+              <view class='lfph_dw' catchtap='bofang' data-id="{{course.id}}" data-index='{{index}}' wx:if="{{course.isSign==0}}">
+                <view class='dwlfph_jianju'>
+                  <text class='kck_weixuanke'>未选课</text>
+                  <text>不记学时</text>
+                </view> 
+                
+               
               </view>
               <!--已选课-->
               <view wx:if="{{course.isSign==1}}">
