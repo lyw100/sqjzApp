@@ -30,10 +30,8 @@
               </view>
             </view>
             <view class='lfph_dw' catchtap='bofang'  data-courseid="{{course.id}}" data-index='{{index}}' wx:if="{{course.isSign==0}}">
-            <view class='dwlfph_jianju'>
-                  <text>未选课</text>
-                </view>
-                <view>不记学时</view>
+                <text class='zt_weixuanke'>未选课</text>
+                <text>不记学时</text>
             </view>
           </view>
           <view class='dibu' wx:if='{{dibu}}'>
