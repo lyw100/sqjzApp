@@ -307,7 +307,7 @@ Page({
                   })
                 } else if (res.data.msg == "notstart"){
                   wx.showToast({
-                    title: '考试尚未开放！',
+                    title: '考试未开放！',
                     icon: 'none'
                   })
                 }else {
