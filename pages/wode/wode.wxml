@@ -81,7 +81,7 @@
     </view>
     <view class="dykcsp">
       <view class='left' wx:for="{{historyList}}" wx:key="index" wx:for-item="sign" wx:for-index="index">
-        <image catchtap='coursePlay' data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
+        <image catchtap='coursePlay'  data-courseid="{{sign.course.id}}"  data-id="{{sign.id}}" class='dykctupian' data-index='{{index}}' src='{{sign.course.thumbnail}}'></image>
         <!-- <image class='lskcimg' data-index='{{index}}' src='/img/yiyuan.png'></image> -->
         <text class='shuoming'>{{sign.course.name}}</text>
         <text class='shijian' style='float:right;margin:10rpx 15rpx; 15rpx'>{{sign.state==1?'已完成':'未完成'}}</text>

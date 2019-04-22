@@ -513,10 +513,10 @@ Page({
    * 视频播放触发事件
    */
   coursePlay:function(e){
-    var id = e.currentTarget.dataset.id;
+    var courseid = e.currentTarget.dataset.courseid;
     //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
     wx.navigateTo({ 
-      url: "/pages/shouyebofang/shouyebofang?record=sign&id=" + id
+      url: "/pages/shouyebofang/shouyebofang?record=record&courseid=" + courseid
     })
   },
   /** 课程学习*/
