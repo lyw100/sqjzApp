@@ -29,12 +29,12 @@
       <image src='/img/zxksxz.png' class='kcwxz' wx:if="{{zaixks_xz}}"></image>
     </view>
     <view class='nr_mokuan'>
-      <image src='/img/sxhbwx.png' class='kcwxz' wx:if="{{sixhb_wxz}}" catchtap='sixianghuibao'></image>
-      <image src='/img/sxhbxz.png' class='kcwxz' wx:if="{{sixhb_xz}}"></image>
-    </view>
-    <view class='nr_mokuan'>
       <image src='/img/xlpgwx.png' class='kcwxz' wx:if="{{xinlpg_wxz}}" catchtap='xinlipiggu'></image>
       <image src='/img/xlpgxz.png' class='kcwxz' wx:if="{{xinlpg_xz}}"></image>
+    </view>
+    <view class='nr_mokuan'>
+      <image src='/img/sxhbwx.png' class='kcwxz' wx:if="{{sixhb_wxz}}" catchtap='sixianghuibao'></image>
+      <image src='/img/sxhbxz.png' class='kcwxz' wx:if="{{sixhb_xz}}"></image>
     </view>
    <view class='nr_mokuan' catchtap='jizhongxuexi'>
       <image src='/img/jizhongxuexi.png' class='kcwxz'></image>
