@@ -49,6 +49,12 @@ Page({
       });
       return;
     }else{
+      wx.showToast({
+        title: '正在提交...',
+        icon: 'loading',
+        mask: true,
+        duration: 10000
+      })
       var jsonarray = JSON.stringify(alllist);
       wx.request({
         method: "POST",
@@ -75,6 +81,7 @@ Page({
               url: '../ceshijieguo/ceshijieguo?psyrepid=' + psyrepid,
             })
           }else{
+            wx.hideToast();
             wx.showModal({
               title: '提示',
               content: '提交失败'
